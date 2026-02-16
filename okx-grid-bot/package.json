@@ -1,0 +1,16 @@
+{
+  "name": "okx-grid-bot",
+  "version": "1.0.0",
+  "description": "OKX Grid Trading Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js"
+  },
+  "dependencies": {
+    "okx-api": "^3.1.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
