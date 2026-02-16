@@ -5,6 +5,55 @@
 const { spawn } = require('child_process');
 const crypto = require('crypto');
 const https = require('https');
+const fs = require('fs');
+const path = require('path');
+
+// ============ 日志配置 ============
+const LOG_FILE = path.join(__dirname, 'trades.log');
+const PROFIT_FILE = path.join(__dirname, 'profit.json');
+
+function writeLog(msg) {
+    const time = new Date().toISOString();
+    const line = `[${time}] ${msg}`;
+    console.log(line);
+    fs.appendFileSync(LOG_FILE, line + '\n');
+}
+
+function loadProfit() {
+    try {
+        if (fs.existsSync(PROFIT_FILE)) {
+            return JSON.parse(fs.readFileSync(PROFIT_FILE, 'utf8'));
+        }
+    } catch(e) {}
+    return { trades: [], totalProfit: 0, startTime: Date.now() };
+}
+
+function saveProfit(data) {
+    fs.writeFileSync(PROFIT_FILE, JSON.stringify(data, null, 2));
+}
+
+function recordTrade(side, amount, price, value) {
+    const profit = loadProfit();
+    const trade = {
+        time: new Date().toISOString(),
+        side,
+        amount,
+        price,
+        value
+    };
+    profit.trades.push(trade);
+    
+    // 简单计算：如果先买后卖，算利润
+    if (side === 'sell' && profit.trades.length > 1) {
+        const lastBuy = [...profit.trades].reverse().find(t => t.side === 'buy');
+        if (lastBuy) {
+            profit.totalProfit += (price - lastBuy.price) * amount;
+        }
+    }
+    
+    saveProfit(profit);
+    writeLog(`💰 交易记录: ${side} ${amount} @ ${price}, 累计收益: ${profit.totalProfit.toFixed(2)} USDT`);
+}
 
 // ============ 配置 ============
 const CONFIG = {
@@ -112,24 +161,25 @@ async function placeOrder(side, px, sz) {
         sz: sz.toString()
     };
     
-    console.log(`📥${side === 'buy' ? '买入' : '卖出'} ${sz} @ ${px}`);
+    writeLog(`📥${side === 'buy' ? '买入' : '卖出'} ${sz} @ ${px}`);
     
     if (CONFIG.testMode) {
-        console.log(`   [模拟] ${side === 'buy' ? '买入' : '卖出'} ${sz} BTC`);
+        writeLog(`   [模拟] ${side === 'buy' ? '买入' : '卖出'} ${sz} BTC`);
         return { success: true };
     }
     
     try {
         const res = await pythonRequest('POST', '/api/v5/trade/order', body);
         if (res.code === '0' && res.data && res.data[0] && res.data[0].ordId) {
-            console.log(`   ✅ 成功! 订单ID: ${res.data[0].ordId}`);
+            writeLog(`   ✅ 成功! 订单ID: ${res.data[0].ordId}`);
+            recordTrade(side, sz, px, sz * px);
             return { success: true, orderId: res.data[0].ordId };
         } else {
-            console.log(`   ❌ 失败: ${res.data ? res.data[0].sMsg : res.msg}`);
+            writeLog(`   ❌ 失败: ${res.data ? res.data[0].sMsg : res.msg}`);
             return { success: false };
         }
     } catch (e) {
-        console.log(`   ❌ 错误: ${e.message}`);
+        writeLog(`   ❌ 错误: ${e.message}`);
         return { success: false };
     }
 }
@@ -164,16 +214,16 @@ class GridBot {
     }
     
     async start() {
-        console.log('========== 网格交易机器人启动 ==========');
-        console.log(`交易对: ${CONFIG.symbol}`);
-        console.log(`网格数量: ${CONFIG.gridCount}`);
-        console.log(`网格间距: ${CONFIG.gridSpread * 100}%`);
-        console.log(`测试模式: ${CONFIG.testMode ? '是' : '否'}`);
-        console.log('=========================================');
+        writeLog('========== 网格交易机器人启动 ==========');
+        writeLog(`交易对: ${CONFIG.symbol}`);
+        writeLog(`网格数量: ${CONFIG.gridCount}`);
+        writeLog(`网格间距: ${CONFIG.gridSpread * 100}%`);
+        writeLog(`测试模式: ${CONFIG.testMode ? '是' : '否'}`);
+        writeLog('=========================================');
         
         const initOk = await this.initGrids();
         if (!initOk) {
-            console.log('初始化失败');
+            writeLog('初始化失败');
             return;
         }
         
