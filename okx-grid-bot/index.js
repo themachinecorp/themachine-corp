@@ -8,9 +8,11 @@ const path = require('path');
 
 // ============ 配置 ============
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.001 },
-    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.002 },
-    { symbol: 'SOL/USDT', instId: 'SOL-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.003 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.003 },
+    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.005 },
+    { symbol: 'SOL/USDT', instId: 'SOL-USDT', baseOrderValue: 1, gridCount: 15, gridSpread: 0.008 },
+    { symbol: 'DOGE/USDT', instId: 'DOGE-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.01 },
+    { symbol: 'XRP/USDT', instId: 'XRP-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.005 },
 ];
 
 const CONFIG = {
