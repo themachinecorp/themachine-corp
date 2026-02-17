@@ -1,14 +1,27 @@
 /**
- * OKX Grid Trading Bot with Python for API calls
+ * OKX Grid Trading Bot - Multi Pair Version
  */
 
 const { spawn } = require('child_process');
-const crypto = require('crypto');
-const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-// ============ 日志配置 ============
+// ============ 配置 ============
+const TRADING_PAIRS = [
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.001 },
+    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.002 },
+    { symbol: 'SOL/USDT', instId: 'SOL-USDT', baseOrderValue: 1, gridCount: 10, gridSpread: 0.003 },
+];
+
+const CONFIG = {
+    apiKey: '87f9c88b-111c-43ff-a08a-49fb3381e7f2',
+    secretKey: 'CDDC78B4CB328C767A1A79CF35DDEAF7',
+    passphrase: 'TheMachine8023!',
+    checkInterval: 5000,
+    testMode: false
+};
+
+// ============ 日志 ============
 const LOG_FILE = path.join(__dirname, 'trades.log');
 const PROFIT_FILE = path.join(__dirname, 'profit.json');
 
@@ -32,49 +45,22 @@ function saveProfit(data) {
     fs.writeFileSync(PROFIT_FILE, JSON.stringify(data, null, 2));
 }
 
-function recordTrade(side, amount, price, value) {
+function recordTrade(pair, side, amount, price, value) {
     const profit = loadProfit();
-    const trade = {
+    profit.trades.push({
+        pair,
         time: new Date().toISOString(),
         side,
         amount,
         price,
         value
-    };
-    profit.trades.push(trade);
-    
-    // 简单计算：如果先买后卖，算利润
-    if (side === 'sell' && profit.trades.length > 1) {
-        const lastBuy = [...profit.trades].reverse().find(t => t.side === 'buy');
-        if (lastBuy) {
-            profit.totalProfit += (price - lastBuy.price) * amount;
-        }
-    }
-    
+    });
     saveProfit(profit);
-    writeLog(`💰 交易记录: ${side} ${amount} @ ${price}, 累计收益: ${profit.totalProfit.toFixed(2)} USDT`);
+    writeLog(`💰 ${pair} ${side} ${amount.toFixed(6)} @ ${price.toFixed(2)}, 累计: ${profit.totalProfit.toFixed(2)} USDT`);
 }
 
-// ============ 配置 ============
-const CONFIG = {
-    apiKey: '87f9c88b-111c-43ff-a08a-49fb3381e7f2',
-    secretKey: 'CDDC78B4CB328C767A1A79CF35DDEAF7',
-    passphrase: 'TheMachine8023!',
-    
-    symbol: 'BTC/USDT',
-    gridCount: 10,
-    gridSpread: 0.001,
-    orderRatio: 0.1,
-    minOrderAmount: 1,
-    baseOrderValue: 1,   // 1 USDT 每格
-    checkInterval: 3000,
-    testMode: false
-};
-
-const instId = 'BTC-USDT';
-
-// ============ Python API 调用 ============
-function pythonRequest(method, endpoint, body = {}) {
+// ============ Python API ============
+function pythonRequest(method, instId, endpoint, body = {}) {
     return new Promise((resolve, reject) => {
         const bodyStr = Object.keys(body).length > 0 ? JSON.stringify(body) : '{}';
         
@@ -133,10 +119,10 @@ except Exception as e:
     });
 }
 
-// ============ 行情获取 ============
-async function getTicker() {
+// ============ 行情 ============
+async function getTicker(instId) {
     try {
-        const res = await pythonRequest('GET', `/api/v5/market/ticker?instId=${instId}`);
+        const res = await pythonRequest('GET', instId, `/api/v5/market/ticker?instId=${instId}`);
         if (res.code === '0' && res.data && res.data[0]) {
             return {
                 last: parseFloat(res.data[0].last),
@@ -151,7 +137,7 @@ async function getTicker() {
 }
 
 // ============ 下单 ============
-async function placeOrder(side, px, sz) {
+async function placeOrder(instId, side, px, sz) {
     const body = {
         instId,
         tdMode: 'cash',
@@ -164,15 +150,14 @@ async function placeOrder(side, px, sz) {
     writeLog(`📥${side === 'buy' ? '买入' : '卖出'} ${sz} @ ${px}`);
     
     if (CONFIG.testMode) {
-        writeLog(`   [模拟] ${side === 'buy' ? '买入' : '卖出'} ${sz} BTC`);
+        writeLog(`   [模拟] ${side === 'buy' ? '买入' : '卖出'} ${sz}`);
         return { success: true };
     }
     
     try {
-        const res = await pythonRequest('POST', '/api/v5/trade/order', body);
+        const res = await pythonRequest('POST', instId, '/api/v5/trade/order', body);
         if (res.code === '0' && res.data && res.data[0] && res.data[0].ordId) {
-            writeLog(`   ✅ 成功! 订单ID: ${res.data[0].ordId}`);
-            recordTrade(side, sz, px, sz * px);
+            writeLog(`   ✅ 成功! ID: ${res.data[0].ordId}`);
             return { success: true, orderId: res.data[0].ordId };
         } else {
             writeLog(`   ❌ 失败: ${res.data ? res.data[0].sMsg : res.msg}`);
@@ -184,23 +169,27 @@ async function placeOrder(side, px, sz) {
     }
 }
 
-// ============ 网格策略 ============
+// ============ 单币种网格 ============
 class GridBot {
-    constructor() {
+    constructor(pairConfig) {
+        this.symbol = pairConfig.symbol;
+        this.instId = pairConfig.instId;
+        this.baseOrderValue = pairConfig.baseOrderValue;
+        this.gridCount = pairConfig.gridCount;
+        this.gridSpread = pairConfig.gridSpread;
         this.grids = [];
         this.running = false;
     }
     
     async initGrids() {
-        const ticker = await getTicker();
+        const ticker = await getTicker(this.instId);
         if (!ticker) return false;
         
         const midPrice = ticker.last;
-        const spread = this.gridSpread || CONFIG.gridSpread;
         
         this.grids = [];
-        for (let i = 0; i < CONFIG.gridCount; i++) {
-            const price = midPrice * (1 - spread * (CONFIG.gridCount / 2 - i));
+        for (let i = 0; i < this.gridCount; i++) {
+            const price = midPrice * (1 - this.gridSpread * (this.gridCount / 2 - i));
             this.grids.push({
                 id: i,
                 price: price,
@@ -208,67 +197,66 @@ class GridBot {
             });
         }
         
-        console.log(`网格初始化，当前价格: ${midPrice}`);
-        console.log(`网格范围: ${this.grids[0].price.toFixed(2)} - ${this.grids[this.grids.length - 1].price.toFixed(2)}`);
+        writeLog(`[${this.symbol}] 初始化，价格: ${midPrice.toFixed(2)}，范围: ${this.grids[0].price.toFixed(2)} - ${this.grids[this.grids.length - 1].price.toFixed(2)}`);
         return true;
-    }
-    
-    async start() {
-        writeLog('========== 网格交易机器人启动 ==========');
-        writeLog(`交易对: ${CONFIG.symbol}`);
-        writeLog(`网格数量: ${CONFIG.gridCount}`);
-        writeLog(`网格间距: ${CONFIG.gridSpread * 100}%`);
-        writeLog(`测试模式: ${CONFIG.testMode ? '是' : '否'}`);
-        writeLog('=========================================');
-        
-        const initOk = await this.initGrids();
-        if (!initOk) {
-            writeLog('初始化失败');
-            return;
-        }
-        
-        this.running = true;
-        setInterval(() => this.tick(), CONFIG.checkInterval);
     }
     
     async tick() {
         if (!this.running) return;
         
-        const ticker = await getTicker();
+        const ticker = await getTicker(this.instId);
         if (!ticker) return;
         
         const price = ticker.last;
         
         for (const grid of this.grids) {
-            // 买入条件
-            if (!grid.filled && price <= grid.price * (1 - CONFIG.gridSpread / 2)) {
-                const sz = CONFIG.baseOrderValue / grid.price;
-                await placeOrder('buy', grid.price, sz);
-                grid.filled = true;
+            if (!grid.filled && price <= grid.price * (1 - this.gridSpread / 2)) {
+                const sz = this.baseOrderValue / grid.price;
+                const result = await placeOrder(this.instId, 'buy', grid.price, sz);
+                if (result.success) {
+                    recordTrade(this.symbol, 'buy', sz, grid.price, this.baseOrderValue);
+                    grid.filled = true;
+                }
             }
             
-            // 卖出条件
-            if (grid.filled && price >= grid.price * (1 + CONFIG.gridSpread / 2)) {
-                const sz = CONFIG.baseOrderValue / grid.price;
-                await placeOrder('sell', grid.price, sz);
-                grid.filled = false;
+            if (grid.filled && price >= grid.price * (1 + this.gridSpread / 2)) {
+                const sz = this.baseOrderValue / grid.price;
+                const result = await placeOrder(this.instId, 'sell', grid.price, sz);
+                if (result.success) {
+                    recordTrade(this.symbol, 'sell', sz, grid.price, this.baseOrderValue);
+                    grid.filled = false;
+                }
             }
         }
         
         const filled = this.grids.filter(g => g.filled).length;
-        process.stdout.write(`\r价格: ${price.toFixed(2)} | 持仓: ${filled}/${this.grids.length}格`);
+        process.stdout.write(`\r[${this.symbol}] ${price.toFixed(2)} | ${filled}/${this.gridCount}格`);
     }
     
-    stop() {
-        this.running = false;
+    start() {
+        this.initGrids().then(ok => {
+            if (ok) {
+                writeLog(`========== ${this.symbol} 网格启动 ==========`);
+                this.running = true;
+                setInterval(() => this.tick(), CONFIG.checkInterval);
+            }
+        });
     }
 }
 
-const bot = new GridBot();
-bot.start();
+// ============ 主程序 ============
+writeLog('========== 多币种网格交易启动 ==========');
+writeLog(`交易对: ${TRADING_PAIRS.map(p => p.symbol).join(', ')}`);
+writeLog(`测试模式: ${CONFIG.testMode ? '是' : '否'}`);
+writeLog('=========================================');
+
+// 启动每个交易对
+TRADING_PAIRS.forEach(pairConfig => {
+    const bot = new GridBot(pairConfig);
+    bot.start();
+});
 
 process.on('SIGINT', () => {
-    bot.stop();
-    console.log('\n机器人已停止');
+    writeLog('机器人已停止');
     process.exit();
 });
