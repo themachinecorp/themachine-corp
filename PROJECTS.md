@@ -3,28 +3,42 @@
 ## 活跃项目
 
 ### 1. OKX 网格交易
-- 状态：运行中
-- 交易对：BTC, ETH, SOL
-- 总交易：119笔
+- 状态：运行中（systemd）
+- 交易对：BTC, ETH, SOL, DOGE, XRP
 - 收益：-0.01 USDT
-- URL：系统服务
+- 位置：~/.openclaw/workspace/okx-grid-bot/
 
-### 2. AI 内容站
-- 状态：待完善
-- 位置：~/.openclaw/workspace/ai-content-site
-- 待完成：内容采集、自动发布
+### 2. Mystic AI
+- 状态：已部署
+- URL：https://mystic-ai-henna.vercel.app
+- API：MiniMax
 
 ### 3. Crime AI (THE MACHINE)
-- 状态：已部署
+- 状态：已部署（优化中）
 - URL：https://crime-ai.vercel.app
-- 待完成：API 修复
 
 ### 4. Dashboard
 - 状态：运行中
 - URL：https://themachine-dashboard.vercel.app
 
-## 待启动
+## 监控系统 (新增)
 
-- Mystic AI 恢复
-- 信号机器人
-- 内容自动站
+位置：~/.openclaw/workspace/monitoring/
+
+| 脚本 | 功能 | 状态 |
+|------|------|------|
+| service-monitor.sh | 服务监控（OKX、OpenClaw、Clash） | ✅ |
+| ssl-monitor.sh | SSL 证书监控 | ✅ |
+| dns-monitor.sh | DNS 解析监控 | ✅ |
+| backup-monitor.sh | 备份状态监控 | ✅ |
+| proxy-monitor.sh | Clash 代理监控 | ✅ |
+| run-all.sh | 综合报告 | ✅ |
+| cron-manager.sh | Cron 任务管理 | ✅ |
+
+### Cron 任务
+- System Monitor：每 2 小时运行
+- OKX Bot Status：每 2 小时
+- Dashboard Auto-Optimize：每 2 小时
+- Crime AI Auto-Optimize：每小时
+- Workspace Backup：每小时
+- Multi-Project Status：每 2 小时
