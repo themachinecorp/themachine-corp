@@ -3,119 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 图像生成</title>
+    <title>AI 生成</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); 
-            color: #fff; 
-            min-height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            padding: 20px;
-        }
-        .container { width: 100%; max-width: 600px; }
-        h1 { text-align: center; margin-bottom: 40px; font-size: 32px; background: linear-gradient(90deg, #00d4ff, #7b2ff7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .input-box { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
-        textarea { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 16px; min-height: 120px; resize: none; font-family: inherit; }
-        textarea:focus { outline: none; border-color: #00d4ff; }
-        textarea::placeholder { color: rgba(255,255,255,0.4); }
-        .settings { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
-        select, .btn { padding: 12px 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 14px; cursor: pointer; }
-        select { flex: 1; min-width: 150px; }
-        .btn { background: linear-gradient(135deg, #00d4ff, #7b2ff7); border: none; font-weight: 600; transition: all 0.3s; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,212,255,0.4); }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #000; color: #fff; min-height: 100vh; }
         
-        /* Progress bar */
-        .progress-container { display: none; margin-top: 20px; }
-        .progress-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #7b2ff7); width: 0%; transition: width 0.5s; }
-        .progress-text { text-align: center; margin-top: 10px; font-size: 14px; color: #00d4ff; }
+        .header { position: fixed; top: 0; left: 0; right: 0; height: 56px; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 100; border-bottom: 1px solid #222; }
+        .header h1 { font-size: 18px; background: linear-gradient(90deg, #FFD700, #FF6B6B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .history-btn { color: #FFD700; font-size: 14px; background: none; border: none; cursor: pointer; }
         
-        #result { margin-top: 24px; text-align: center; display: none; }
-        #result img { max-width: 100%; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .main { padding: 56px 0 200px; }
         
-        #status { margin-top: 16px; padding: 12px; border-radius: 8px; text-align: center; display: none; font-size: 14px; }
-        .loading { background: rgba(0,212,255,0.2); color: #00d4ff; }
-        .error { background: rgba(248,113,113,0.2); color: #f87171; }
-        .success { background: rgba(74,222,128,0.2); color: #4ade80; }
+        /* History Panel */
+        .history-panel { display: none; position: fixed; inset: 0; background: #000; z-index: 200; overflow-y: auto; }
+        .history-panel.show { display: block; }
+        .history-header { position: sticky; top: 0; background: #111; padding: 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
+        .history-header h2 { font-size: 18px; }
+        .close-btn { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
         
-        .tips { text-align: center; margin-top: 20px; color: rgba(255,255,255,0.5); font-size: 12px; }
+        .history-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 16px; }
+        .history-item { position: relative; aspect-ratio: 1; background: #111; border-radius: 8px; overflow: hidden; }
+        .history-item img { width: 100%; height: 100%; object-fit: cover; }
+        .history-item .prompt { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        /* Current Result */
+        .result-area { min-height: 50vh; display: flex; align-items: center; justify-content: center; background: #0a0a0a; }
+        .result-area img { max-width: 100%; max-height: 70vh; }
+        
+        /* Tasks */
+        .tasks { padding: 12px; }
+        .task { background: #111; border-radius: 12px; padding: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+        .task-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; background: #222; }
+        .task-info { flex: 1; }
+        .task-prompt { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 6px; }
+        .task-progress { display: flex; align-items: center; gap: 8px; }
+        .progress-bar { flex: 1; height: 4px; background: #333; border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #FFD700, #FF6B6B); width: 0%; transition: width 0.3s; }
+        .progress-text { font-size: 12px; color: #888; min-width: 40px; }
+        
+        /* Input Area */
+        .input-area { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, #000 50%, transparent); padding: 20px 16px; }
+        .input-box { background: #1a1a1a; border-radius: 16px; border: 1px solid #333; overflow: hidden; }
+        .prompt-input { width: 100%; padding: 14px; border: none; background: transparent; color: #fff; font-size: 14px; min-height: 50px; max-height: 80px; resize: none; }
+        .prompt-input::placeholder { color: #666; }
+        .prompt-input:focus { outline: none; }
+        
+        .options { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid #222; overflow-x: auto; }
+        .option-btn { padding: 6px 12px; border-radius: 16px; border: 1px solid #333; background: #222; color: #999; font-size: 12px; white-space: nowrap; cursor: pointer; }
+        .option-btn.active { background: linear-gradient(135deg, #FFD700, #FF6B6B); color: #000; border-color: transparent; }
+        
+        .action-bar { display: flex; gap: 10px; padding: 12px 14px; }
+        .model-select { flex: 1; padding: 10px 12px; border-radius: 10px; border: 1px solid #333; background: #222; color: #fff; font-size: 13px; }
+        .generate-btn { padding: 10px 24px; border-radius: 10px; border: none; background: linear-gradient(135deg, #FFD700, #FF6B6B); color: #000; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .generate-btn:disabled { opacity: 0.5; }
+        
+        .tips { text-align: center; padding: 10px; color: #444; font-size: 11px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>✨ AI 图像生成</h1>
-        
-        <div class="input-box">
-            <textarea id="prompt" placeholder="描述你想要的图像...&#10;例如：一只可爱的猫咪在阳光下玩耍"></textarea>
-            
-            <div class="settings">
-                <select id="model">
-                    <option value="majicmixRealistic_v7.safetensors">🎨 majicMIX v7 (写实)</option>
-                    <option value="majicflus_v10.safetensors">🌟 majicFlus v1.0</option>
-                </select>
-                <button class="btn" onclick="generate()" id="generateBtn">立即生成</button>
-            </div>
-            
-            <div id="status"></div>
-            
-            <!-- Progress -->
-            <div class="progress-container" id="progressContainer">
-                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-                <div class="progress-text" id="progressText">正在生成...</div>
-            </div>
-        </div>
-        
-        <div id="result">
-            <img id="resultImg" alt="生成结果">
-        </div>
-        
-        <div class="tips">视频模型下载中...</div>
+    <div class="header">
+        <h1>✨ AI 生成</h1>
+        <button class="history-btn" onclick="showHistory()">历史</button>
     </div>
+    
+    <div class="main">
+        <div class="result-area" id="resultArea">
+            <img id="resultImg" style="display:none">
+        </div>
+        <div class="tasks" id="tasks"></div>
+    </div>
+    
+    <!-- History Panel -->
+    <div class="history-panel" id="historyPanel">
+        <div class="history-header">
+            <h2>生成历史</h2>
+            <button class="close-btn" onclick="hideHistory()">×</button>
+        </div>
+        <div class="history-grid" id="historyGrid"></div>
+    </div>
+    
+    <div class="input-area">
+        <div class="input-box">
+            <textarea class="prompt-input" id="prompt" placeholder="描述你想要的图像..."></textarea>
+            
+            <div class="options">
+                <button class="option-btn active" onclick="setRatio(this, 512, 768)">竖图</button>
+                <button class="option-btn" onclick="setRatio(this, 768, 512)">横图</button>
+                <button class="option-btn" onclick="setRatio(this, 512, 512)">方图</button>
+            </div>
+            
+            <div class="action-bar">
+                <select class="model-select" id="model">
+                    <option value="majicmixRealistic_v7.safetensors">🎨 majicMIX v7</option>
+                    <option value="majicflus_v10.safetensors">🌟 majicFlus</option>
+                </select>
+                <button class="generate-btn" onclick="generate()" id="generateBtn">生成</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tips">支持 Ctrl+Enter 快速生成</div>
 
     <script>
-        let promptId = null;
-        let checkInterval = null;
+        let width = 512, height = 768;
+        let tasks = [];
+        let history = JSON.parse(localStorage.getItem('ai-history') || '[]');
+        
+        function setRatio(btn, w, h) {
+            document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            width = w; height = h;
+        }
+        
+        function showHistory() {
+            document.getElementById('historyPanel').classList.add('show');
+            renderHistory();
+        }
+        
+        function hideHistory() {
+            document.getElementById('historyPanel').classList.remove('show');
+        }
+        
+        function renderHistory() {
+            const grid = document.getElementById('historyGrid');
+            grid.innerHTML = history.map((item, i) => `
+                <div class="history-item" onclick="showResult('${item.url}', '${item.prompt}')">
+                    <img src="${item.url}">
+                    <div class="prompt">${item.prompt}</div>
+                </div>
+            `).join('');
+        }
+        
+        function showResult(url, prompt) {
+            const img = document.getElementById('resultImg');
+            img.src = url;
+            img.style.display = 'block';
+            hideHistory();
+        }
+        
+        function addToHistory(url, prompt) {
+            history.unshift({ url, prompt, time: Date.now() });
+            if (history.length > 50) history.pop();
+            localStorage.setItem('ai-history', JSON.stringify(history));
+        }
+        
+        function renderTasks() {
+            const el = document.getElementById('tasks');
+            el.innerHTML = tasks.map((t, i) => `
+                <div class="task">
+                    <img class="task-img" src="${t.preview || ''}" onerror="this.style.display='none'">
+                    <div class="task-info">
+                        <div class="task-prompt">${t.prompt}</div>
+                        <div class="task-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width:${t.progress}%"></div></div>
+                            <span class="progress-text">${t.progress}%</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
         
         function generate() {
             const prompt = document.getElementById('prompt').value.trim();
             const model = document.getElementById('model').value;
             
-            if (!prompt) {
-                showStatus('请输入描述文字', 'error');
-                return;
-            }
+            if (!prompt) { alert('请输入描述'); return; }
             
-            showProgress('正在启动生成任务...', 0);
+            const taskId = Date.now();
+            const task = { id: taskId, prompt, progress: 0, preview: '' };
+            tasks.push(task);
+            renderTasks();
             document.getElementById('generateBtn').disabled = true;
-            document.getElementById('result').style.display = 'none';
+            
+            // Clear input
+            document.getElementById('prompt').value = '';
             
             const workflow = {
                 prompt: {
-                    "3": { inputs: { text: prompt, clip: ["4", 0] }, class_type: "CLIPTextEncode" },
-                    "4": { inputs: { text: "low quality, blurry, distorted, deformed, bad anatomy", clip: ["4", 0] }, class_type: "CLIPTextEncode" },
+                    "3": { inputs: { text: prompt, clip: ["4", 1] }, class_type: "CLIPTextEncode" },
+                    "4": { inputs: { ckpt_name: model }, class_type: "CheckpointLoaderSimple" },
                     "5": { 
                         inputs: { 
                             seed: Math.floor(Math.random() * 1000000000), 
-                            steps: 25, 
-                            cfg: 7, 
-                            sampler_name: "euler", 
-                            scheduler: "normal", 
-                            positive: ["3", 0], 
-                            negative: ["4", 0], 
-                            model: ["6", 0], 
-                            latent: ["8", 0], 
-                            denoise: 1 
-                        }, 
-                        class_type: "KSampler" 
+                            steps: 25, cfg: 7, sampler_name: "euler", scheduler: "normal", 
+                            positive: ["3", 0], negative: ["3", 0], model: ["4", 0], latent_image: ["8", 0], denoise: 1 
+                        }, class_type: "KSampler" 
                     },
-                    "6": { inputs: { ckpt_name: model }, class_type: "CheckpointLoaderSimple" },
-                    "8": { inputs: { width: 512, height: 768, batch_size: 1 }, class_type: "EmptyLatentImage" },
-                    "10": { inputs: { samples: ["5", 0], vae: ["6", 2] }, class_type: "VAEDecode" },
+                    "8": { inputs: { width: width, height: height, batch_size: 1 }, class_type: "EmptyLatentImage" },
+                    "10": { inputs: { samples: ["5", 0], vae: ["4", 2] }, class_type: "VAEDecode" },
                     "11": { inputs: { images: ["10", 0], filename_prefix: "output" }, class_type: "SaveImage" }
                 }
             };
@@ -127,79 +202,54 @@
             })
             .then(res => res.json())
             .then(data => {
-                promptId = data.prompt_id;
-                showProgress('正在生成中 (25步)...', 10);
-                checkStatus();
+                task.promptId = data.prompt_id;
+                task.progress = 10;
+                renderTasks();
+                checkTaskStatus(task);
             })
             .catch(e => {
-                showStatus('连接失败: ' + e.message, 'error');
+                alert('连接失败: ' + e.message);
+                tasks = tasks.filter(t => t.id !== taskId);
+                renderTasks();
                 document.getElementById('generateBtn').disabled = false;
-                hideProgress();
             });
         }
         
-        function checkStatus() {
-            if (!promptId) return;
-            
-            fetch('/history/' + promptId)
+        function checkTaskStatus(task) {
+            fetch('/history/' + task.promptId)
             .then(res => res.json())
             .then(data => {
-                const result = data[promptId];
-                if (result) {
-                    // Check status
-                    const status = result.status;
-                    if (status && status.exec_info) {
-                        const progress = status.exec_info.progress || 0;
-                        const percent = Math.round(progress * 100);
-                        showProgress(`生成中... ${percent}%`, Math.min(percent + 10, 90));
-                    }
-                    
-                    // Check outputs
-                    const outputs = result.outputs;
-                    for (const nodeId in outputs) {
-                        const node = outputs[nodeId];
+                const result = data[task.promptId];
+                if (result && result.status) {
+                    task.progress = Math.min(95, Math.round((result.status.exec_info?.progress || 0) * 100));
+                    renderTasks();
+                }
+                
+                if (result && result.outputs) {
+                    for (const nodeId in result.outputs) {
+                        const node = result.outputs[nodeId];
                         if (node.images) {
                             const img = node.images[0];
-                            document.getElementById('resultImg').src = '/view?filename=' + img.filename + '&type=output';
-                            document.getElementById('result').style.display = 'block';
-                            showProgress('✨ 生成完成！', 100);
+                            const url = '/view?filename=' + img.filename + '&type=output';
+                            
+                            // Show result
+                            showResult(url, task.prompt);
+                            addToHistory(url, task.prompt);
+                            
+                            // Remove from tasks
+                            tasks = tasks.filter(t => t.id !== task.id);
+                            renderTasks();
                             document.getElementById('generateBtn').disabled = false;
-                            if (checkInterval) clearInterval(checkInterval);
                             return;
                         }
                     }
                 }
-                // Continue checking
-                checkInterval = setTimeout(checkStatus, 2000);
+                setTimeout(() => checkTaskStatus(task), 1500);
             })
-            .catch(e => {
-                showStatus('检查失败: ' + e.message, 'error');
-                document.getElementById('generateBtn').disabled = false;
-                hideProgress();
-            });
+            .catch(() => setTimeout(() => checkTaskStatus(task), 1500));
         }
         
-        function showProgress(text, percent) {
-            document.getElementById('progressContainer').style.display = 'block';
-            document.getElementById('progressText').textContent = text;
-            document.getElementById('progressFill').style.width = percent + '%';
-            document.getElementById('status').style.display = 'none';
-        }
-        
-        function hideProgress() {
-            document.getElementById('progressContainer').style.display = 'none';
-        }
-        
-        function showStatus(msg, type) {
-            const el = document.getElementById('status');
-            el.textContent = msg;
-            el.className = type;
-            el.style.display = 'block';
-            document.getElementById('progressContainer').style.display = 'none';
-        }
-        
-        // Ctrl+Enter to generate
-        document.getElementById('prompt').addEventListener('keydown', function(e) {
+        document.getElementById('prompt').addEventListener('keydown', e => {
             if (e.key === 'Enter' && e.ctrlKey) generate();
         });
     </script>
