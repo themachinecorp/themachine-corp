@@ -181,6 +181,7 @@ class GridBot {
         this.gridSpread = pairConfig.gridSpread;
         this.grids = [];
         this.running = false;
+        this.lastMidPrice = 0;
     }
     
     async initGrids() {
@@ -188,6 +189,7 @@ class GridBot {
         if (!ticker) return false;
         
         const midPrice = ticker.last;
+        this.lastMidPrice = midPrice;
         
         this.grids = [];
         for (let i = 0; i < this.gridCount; i++) {
@@ -203,8 +205,26 @@ class GridBot {
         return true;
     }
     
+    async checkAndResetGrids() {
+        const ticker = await getTicker(this.instId);
+        if (!ticker) return;
+        
+        const currentPrice = ticker.last;
+        const priceChange = Math.abs(currentPrice - this.lastMidPrice) / this.lastMidPrice;
+        
+        // If price moved more than 30%, reset grids
+        if (priceChange > 0.3) {
+            writeLog(`[${this.symbol}] 价格变动 ${(priceChange*100).toFixed(1)}%，重置网格...`);
+            this.grids = [];
+            await this.initGrids();
+        }
+    }
+    
     async tick() {
         if (!this.running) return;
+        
+        // Check if grids need reset due to price movement
+        await this.checkAndResetGrids();
         
         const ticker = await getTicker(this.instId);
         if (!ticker) return;
