@@ -7,12 +7,13 @@ const fs = require('fs');
 const path = require('path');
 
 // ============ 配置 ============
+// 使用市价单策略 - 避免价格限制问题
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 2, gridCount: 10, gridSpread: 0.005 },
-    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 2, gridCount: 10, gridSpread: 0.008 },
-    { symbol: 'SOL/USDT', instId: 'SOL-USDT', baseOrderValue: 2, gridCount: 15, gridSpread: 0.025 },
-    { symbol: 'DOGE/USDT', instId: 'DOGE-USDT', baseOrderValue: 5, gridCount: 10, gridSpread: 0.03 },
-    { symbol: 'XRP/USDT', instId: 'XRP-USDT', baseOrderValue: 5, gridCount: 10, gridSpread: 0.02 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 2, gridCount: 5, gridSpread: 0.002 },
+    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 2, gridCount: 5, gridSpread: 0.003 },
+    { symbol: 'SOL/USDT', instId: 'SOL-USDT', baseOrderValue: 2, gridCount: 5, gridSpread: 0.005 },
+    { symbol: 'DOGE/USDT', instId: 'DOGE-USDT', baseOrderValue: 5, gridCount: 5, gridSpread: 0.005 },
+    { symbol: 'XRP/USDT', instId: 'XRP-USDT', baseOrderValue: 5, gridCount: 5, gridSpread: 0.005 },
 ];
 
 const CONFIG = {
@@ -140,16 +141,16 @@ async function getTicker(instId) {
 
 // ============ 下单 ============
 async function placeOrder(instId, side, px, sz) {
+    // 使用市价单 - 避免价格限制
     const body = {
         instId,
         tdMode: 'cash',
         side,
-        ordType: 'limit',
-        px: px.toString(),
+        ordType: 'market',  // 市价单
         sz: sz.toString()
     };
     
-    writeLog(`📥${side === 'buy' ? '买入' : '卖出'} ${sz} @ ${px}`);
+    writeLog(`📥${side === 'buy' ? '市价买入' : '市价卖出'} ${sz} @ 市价`);
     
     if (CONFIG.testMode) {
         writeLog(`   [模拟] ${side === 'buy' ? '买入' : '卖出'} ${sz}`);
@@ -189,20 +190,52 @@ class GridBot {
         if (!ticker) return false;
         
         const midPrice = ticker.last;
+        const buyPrice = ticker.buy;
+        const sellPrice = ticker.sell;
         this.lastMidPrice = midPrice;
         
         this.grids = [];
-        for (let i = 0; i < this.gridCount; i++) {
-            const price = midPrice * (1 - this.gridSpread * (this.gridCount / 2 - i));
+        
+        // Use MUCH tighter spreads to stay within OKX limits (typically 1% from current)
+        const spread = 0.005; // 0.5% between each grid
+        
+        // Calculate prices as percentage of current price
+        for (let i = 1; i <= this.gridCount / 2; i++) {
+            // Buy grids: slightly below current buy price
+            const buyGridPrice = buyPrice * (1 - spread * i);
             this.grids.push({
                 id: i,
-                price: price,
+                side: 'buy',
+                price: parseFloat(buyGridPrice.toFixed(this.getPrecision())),
+                filled: false
+            });
+            
+            // Sell grids: slightly above current sell price  
+            const sellGridPrice = sellPrice * (1 + spread * i);
+            this.grids.push({
+                id: this.gridCount / 2 + i,
+                side: 'sell',
+                price: parseFloat(sellGridPrice.toFixed(this.getPrecision())),
                 filled: false
             });
         }
         
-        writeLog(`[${this.symbol}] 初始化，价格: ${midPrice.toFixed(2)}，范围: ${this.grids[0].price.toFixed(2)} - ${this.grids[this.grids.length - 1].price.toFixed(2)}`);
+        writeLog(`[${this.symbol}] 初始化，现价: ${midPrice.toFixed(this.getPrecision())}`);
+        const buyGrids = this.grids.filter(g => g.side === 'buy');
+        const sellGrids = this.grids.filter(g => g.side === 'sell');
+        writeLog(`[${this.symbol}] 买单: ${buyGrids.map(g => g.price.toFixed(this.getPrecision())).join(', ')}`);
+        writeLog(`[${this.symbol}] 卖单: ${sellGrids.map(g => g.price.toFixed(this.getPrecision())).join(', ')}`);
         return true;
+    }
+    
+    getPrecision() {
+        // Return appropriate decimal places based on symbol
+        if (this.symbol.includes('BTC')) return 2;
+        if (this.symbol.includes('ETH')) return 2;
+        if (this.symbol.includes('SOL')) return 3;
+        if (this.symbol.includes('XRP')) return 4;
+        if (this.symbol.includes('DOGE')) return 5;
+        return 4;
     }
     
     async checkAndResetGrids() {
@@ -232,7 +265,8 @@ class GridBot {
         const price = ticker.last;
         
         for (const grid of this.grids) {
-            if (!grid.filled && price <= grid.price * (1 - this.gridSpread / 2)) {
+            // Buy grids: trigger when price drops to or below grid price
+            if (grid.side === 'buy' && !grid.filled && price <= grid.price) {
                 const sz = this.baseOrderValue / grid.price;
                 const result = await placeOrder(this.instId, 'buy', grid.price, sz);
                 if (result.success) {
@@ -241,7 +275,8 @@ class GridBot {
                 }
             }
             
-            if (grid.filled && price >= grid.price * (1 + this.gridSpread / 2)) {
+            // Sell grids: trigger when price rises to or above grid price
+            if (grid.side === 'sell' && grid.filled && price >= grid.price) {
                 const sz = this.baseOrderValue / grid.price;
                 const result = await placeOrder(this.instId, 'sell', grid.price, sz);
                 if (result.success) {

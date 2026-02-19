@@ -16,7 +16,8 @@ if ! curl -s http://localhost:$COMFY_PORT > /dev/null 2>&1; then
     sleep 2
     cd "$COMFY_DIR"
     source venv/bin/activate
-    nohup python main.py --listen 0.0.0.0 --port $COMFY_PORT > /tmp/comfy.log 2>&1 &
+    # 使用 lowvram 模式避免崩溃
+    nohup python main.py --listen 0.0.0.0 --port $COMFY_PORT --lowvram > /tmp/comfy.log 2>&1 &
     for i in {1..30}; do
         if curl -s http://localhost:$COMFY_PORT > /dev/null 2>&1; then
             echo "$(date '+%Y-%m-%d %H:%M:%S') - ComfyUI 已启动" >> $LOG
