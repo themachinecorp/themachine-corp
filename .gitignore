@@ -1,3 +1,7 @@
 mystic-ai/
 mystic-ai/
 crime-ai/
+
+# Logs
+*.log
+okx-grid-bot/*.log
