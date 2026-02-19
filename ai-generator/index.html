@@ -490,7 +490,7 @@
         </div>
         <div class="nav-links">
             <a href="#" class="active" onclick="showTab('image')">🖼️ 图像</a>
-            <a href="#" onclick="showTab('video')">🎬 视频</a>
+            <a href="#" onclick="showTab('video')" >🎬 视频</a>
             <a href="#" onclick="showTab('history')">📜 历史</a>
         </div>
     </nav>
@@ -505,7 +505,11 @@
                 <div class="model-select-wrapper" id="modelList">
                     <div class="model-card selected" onclick="selectModel('majicmixRealistic_v7.safetensors')">
                         <div class="model-card-name">majicMIX Realistic</div>
-                        <div class="model-card-info">写真模型 · 2.1GB</div>
+                        <div class="model-card-info">写真模型 · 2.0GB</div>
+                    </div>
+                    <div class="model-card" style="opacity:0.5;" onclick="showToast('模型下载中...', true)">
+                        <div class="model-card-name">Realistic Vision V6</div>
+                        <div class="model-card-info">🚧 下载中...</div>
                     </div>
                 </div>
             </div>
@@ -558,7 +562,7 @@
                         </select>
                     </div>
                     <div class="setting-item">
-                        <span class="setting-label">随机种子</span>
+                        <span class="setting-label">随机种子 <button onclick="document.getElementById('seed').value=Math.floor(Math.random()*1000000000)" style="background:#333;color:#888;border:none;padding:2px 6px;border-radius:4px;font-size:10px;cursor:pointer;">🎲</button></span>
                         <input type="number" class="setting-input" id="seed" placeholder="随机">
                     </div>
                 </div>
@@ -566,9 +570,13 @@
             
             <!-- 提示词 -->
             <div class="panel prompt-section">
-                <div class="panel-title">提示词</div>
+                <div class="panel-title">提示词 
+                    <span style="float:right;">
+                        <button onclick="loadPrompts()" style="background:#333;color:#888;border:none;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer;">📋 模板</button>
+                    </span>
+                </div>
                 <textarea class="prompt-input" id="prompt" placeholder="描述你想要的图像...&#10;例如: a beautiful woman, detailed face, soft lighting, professional photography"></textarea>
-                <textarea class="negative-prompt" id="negativePrompt" placeholder="负面提示词 (可选)&#10;例如: low quality, blurry, distorted"></textarea>
+                <textarea class="negative-prompt" id="negativePrompt" placeholder="负面提示词 (可选)"></textarea>
             </div>
             
             <button class="generate-btn" onclick="generate()" id="generateBtn">🚀 开始生成</button>
@@ -594,7 +602,7 @@
     </div>
     
     <!-- 视频生成 -->
-    <div class="container" id="videoTab" style="display:none;">
+    <div class="container" id="videoTab" >
         <div class="settings-panel">
             <div class="panel">
                 <div class="panel-title">🎬 视频模型</div>
@@ -663,7 +671,7 @@
     </div>
     
     <!-- 历史记录 -->
-    <div class="container" id="historyTab" style="display:none;">
+    <div class="container" id="historyTab" >
         <div class="preview-panel">
             <div class="preview-container">
                 <div class="tabs">
@@ -682,12 +690,57 @@
         let tasks = {};
         let history = JSON.parse(localStorage.getItem('ai-gen-history') || '[]');
         
+        // 默认负面提示词
+        const defaultNegative = "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, deformed, disfigured, mutation, mutated";
+        
+        // Prompt 模板
+        const promptTemplates = [
+            { name: "👩 亚洲美女", prompt: "beautiful asian woman, detailed face, soft lighting, professional photography, 8k, photorealistic, sharp focus" },
+            { name: "🎭 肖像", prompt: "professional portrait, studio lighting, detailed face, sharp eyes, beautiful composition, 8k, photography" },
+            { name: "🌆 夜景", prompt: "city night scene, neon lights, detailed, 8k, photorealistic,Cinematic lighting" },
+            { name: "🏞️ 风景", prompt: "beautiful landscape, mountains, sunset, detailed, 8k, photorealistic, epic scale" },
+            { name: "🎨 动漫", prompt: "anime style, illustration, detailed, vibrant colors, beautiful, masterpiece" },
+            { name: "👗 穿搭", prompt: "fashion photography, beautiful woman, stylish outfit, detailed, studio lighting, 8k, professional photography" }
+        ];
+        
+        // 加载保存的设置
+        function loadSavedSettings() {
+            const saved = JSON.parse(localStorage.getItem('ai-gen-settings') || '{}');
+            if (saved.negativePrompt) document.getElementById('negativePrompt').value = saved.negativePrompt;
+            else document.getElementById('negativePrompt').value = defaultNegative;
+            if (saved.steps) document.getElementById('steps').value = saved.steps;
+            if (saved.cfg) document.getElementById('cfg').value = saved.cfg;
+            if (saved.sampler) document.getElementById('sampler').value = saved.sampler;
+        }
+        
+        // 保存设置
+        function saveSettings() {
+            const settings = {
+                negativePrompt: document.getElementById('negativePrompt').value,
+                steps: document.getElementById('steps').value,
+                cfg: document.getElementById('cfg').value,
+                sampler: document.getElementById('sampler').value
+            };
+            localStorage.setItem('ai-gen-settings', JSON.stringify(settings));
+        }
+        
+        // 加载默认设置
+        loadSavedSettings();
+        
         // 显示提示
         function showToast(msg, isError = false) {
             const toast = document.getElementById('toast');
             toast.textContent = msg;
             toast.className = 'toast show' + (isError ? ' error' : '');
             setTimeout(() => toast.className = 'toast', 3000);
+        }
+        
+        // 加载 Prompt 模板
+        function loadPrompts() {
+            const prompt = document.getElementById('prompt');
+            const templates = promptTemplates.map(t => `${t.name}: ${t.prompt}`).join('\n\n');
+            prompt.value = prompt.value ? prompt.value + '\n\n' + templates : templates;
+            showToast('模板已加载');
         }
         
         // Tab 切换
@@ -723,6 +776,9 @@
                 return;
             }
             
+            // 保存设置
+            saveSettings();
+            
             const negativePrompt = document.getElementById('negativePrompt').value.trim();
             const steps = parseInt(document.getElementById('steps').value) || 25;
             const cfg = parseInt(document.getElementById('cfg').value) || 7;
@@ -733,14 +789,8 @@
             btn.disabled = true;
             btn.textContent = '提交中...';
             
-            // 检查 LoRA
+            // LoRA 暂时禁用 (文件下载不完整)
             const lorAs = [];
-            if (document.getElementById('lora1')?.checked) {
-                lorAs.push({
-                    name: document.getElementById('lora1').value,
-                    weight: parseFloat(document.getElementById('lora1-weight')?.value || 0.5)
-                });
-            }
             
             // 构建工作流 - 固定版本，正确处理 LoRA
             const workflow = {
@@ -1002,24 +1052,53 @@
             btn.disabled = true;
             btn.textContent = '生成中...';
             
-            // SVD workflow
+            // 视频生成需要额外模型，暂不可用
+            showToast('视频生成需要安装 clip_vision 模型', true);
+            return;
+            
+            // SVD 图像转视频 workflow
+            // 需要先生成图片，再转视频
             const workflow = {
                 prompt: {
-                    "5": { inputs: { ckpt_name: selectedVideoModel }, class_type: "CheckpointLoaderSD" },
-                    "6": { inputs: { text: prompt, clip: ["5", 0] }, class_type: "CLIPTextEncode" },
-                    "3": { inputs: { width: 576, height: 1024, batch_size: 1 }, class_type: "EmptyLatentImage" },
-                    "4": { 
+                    // 1. Load checkpoint
+                    "4": { inputs: { ckpt_name: "majicmixRealistic_v7.safetensors" }, class_type: "CheckpointLoaderSimple" },
+                    // 2. Encode prompt
+                    "3": { inputs: { text: prompt, clip: ["4", 1] }, class_type: "CLIPTextEncode" },
+                    // 3. Generate latent
+                    "8": { inputs: { width: 576, height: 1024, batch_size: 1 }, class_type: "EmptyLatentImage" },
+                    // 4. Sample
+                    "5": { 
                         inputs: { 
                             seed: Math.floor(Math.random() * 1000000000), 
-                            steps: 20, cfg: 1.0, sampler_name: "euler", scheduler: "normal",
-                            positive: ["6", 0], negative: ["6", 0], model: ["5", 1], latent_image: ["3", 0], denoise: 1 
+                            steps: 20, cfg: 7, sampler_name: "euler", scheduler: "normal",
+                            positive: ["3", 0], negative: ["3", 0], model: ["4", 0], latent_image: ["8", 0], denoise: 1 
                         }, class_type: "KSampler" 
                     },
-                    "8": { inputs: { samples: ["4", 0], target_size: [1024, 576], crop: "center" }, class_type: "VAEDecodeTiled" },
-                    "10": { inputs: { images: ["8", 0], film_mode: true, loop_count: 0, manage_latent: true, frames: frames, fps: fps, motion_bucket_id: motion }, class_type: "SVDImg2Vid" },
-                    "11": { inputs: { images: ["10", 0], filename_prefix: "video" }, class_type: "SaveVideo" }
+                    // 5. Decode to image
+                    "10": { inputs: { samples: ["5", 0], vae: ["4", 2] }, class_type: "VAEDecode" },
+                    // 6. Load VAE for video
+                    "vae": { inputs: { vae_name: "ae" }, class_type: "VAELoad" },
+                    // 7. SVD image to video
+                    "svd": {
+                        inputs: {
+                            clip_vision: ["clip_vision", 0],
+                            init_image: ["10", 0],
+                            vae: ["vae", 0],
+                            width: 576,
+                            height: 1024,
+                            video_frames: frames,
+                            motion_bucket_id: motion,
+                            fps: fps,
+                            augmentation_level: 0
+                        },
+                        class_type: "SVD_img2vid_Conditioning"
+                    },
+                    // 8. Save video
+                    "11": { inputs: { video: ["svd", 2], filename_prefix: "video" }, class_type: "SaveVideo" }
                 }
             };
+            
+            // 注意：需要加载 clip_vision 模型
             
             try {
                 const res = await fetch('/prompt', {
