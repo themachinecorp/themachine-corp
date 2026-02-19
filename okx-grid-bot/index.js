@@ -7,13 +7,10 @@ const fs = require('fs');
 const path = require('path');
 
 // ============ 配置 ============
-// 使用市价单策略 - 避免价格限制问题
+// 只交易 BTC 和 ETH，使用更激进的策略
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 2, gridCount: 5, gridSpread: 0.002 },
-    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 2, gridCount: 5, gridSpread: 0.003 },
-    { symbol: 'SOL/USDT', instId: 'SOL-USDT', baseOrderValue: 2, gridCount: 5, gridSpread: 0.005 },
-    { symbol: 'DOGE/USDT', instId: 'DOGE-USDT', baseOrderValue: 5, gridCount: 5, gridSpread: 0.005 },
-    { symbol: 'XRP/USDT', instId: 'XRP-USDT', baseOrderValue: 5, gridCount: 5, gridSpread: 0.005 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 5, gridCount: 3, gridSpread: 0.001 },
+    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 5, gridCount: 3, gridSpread: 0.002 },
 ];
 
 const CONFIG = {

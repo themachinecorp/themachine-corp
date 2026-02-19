@@ -507,13 +507,13 @@
                         <div class="model-card-name">majicMIX Realistic</div>
                         <div class="model-card-info">📸 写真 · 2.0GB</div>
                     </div>
-                    <div class="model-card" onclick="selectModel('Counterfeit-V3.safetensors')">
+                    <div class="model-card" onclick="selectModel('CounterfeitV30.safetensors')">
                         <div class="model-card-name">Counterfeit V3</div>
-                        <div class="model-card-info">🎭 动漫插画 · 1.8GB</div>
+                        <div class="model-card-info">🎭 动漫插画 · 2.5GB</div>
                     </div>
-                    <div class="model-card" onclick="selectModel('meinaMix_v10.safetensors')">
+                    <div class="model-card" onclick="selectModel('MeinaMixV10.safetensors')">
                         <div class="model-card-name">MeinaMix</div>
-                        <div class="model-card-info">🌸 动漫美女 · 2.1GB</div>
+                        <div class="model-card-info">🌸 动漫美女 · 2.5GB</div>
                     </div>
                 </div>
             </div>
@@ -720,6 +720,8 @@
         let selectedModel = 'majicmixRealistic_v7.safetensors';
         let generateMode = 'txt2img'; // txt2img or img2img
         let uploadedImage = null;
+        let videoMode = 'txt2vid'; // txt2vid or img2vid
+        let videoUploadedImage = null;
         let tasks = {};
         let history = JSON.parse(localStorage.getItem('ai-gen-history') || '[]');
         
@@ -798,6 +800,32 @@
         document.getElementById('denoiseStrength').addEventListener('input', function() {
             document.getElementById('denoiseValue').textContent = this.value;
         });
+        
+        // 视频模式切换
+        function setVideoMode(mode) {
+            videoMode = mode;
+            document.getElementById('modeTxt2Vid').className = mode === 'txt2vid' ? 'mode-btn active' : 'mode-btn';
+            document.getElementById('modeImg2Vid').className = mode === 'img2vid' ? 'mode-btn active' : 'mode-btn';
+            document.getElementById('modeTxt2Vid').style.background = mode === 'txt2vid' ? 'linear-gradient(135deg,#667eea,#764ba2)' : '#222';
+            document.getElementById('modeTxt2Vid').style.color = mode === 'txt2vid' ? '#fff' : '#888';
+            document.getElementById('modeImg2Vid').style.background = mode === 'img2vid' ? 'linear-gradient(135deg,#667eea,#764ba2)' : '#222';
+            document.getElementById('modeImg2Vid').style.color = mode === 'img2vid' ? '#fff' : '#888';
+            document.getElementById('vidImgPanel').style.display = mode === 'img2vid' ? 'block' : 'none';
+        }
+        
+        // 处理视频参考图上传
+        function handleVidUpload(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    videoUploadedImage = e.target.result;
+                    document.getElementById('vidPreviewSrc').src = videoUploadedImage;
+                    document.getElementById('vidUploadPreview').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
         
         // 加载 Prompt 模板
         function loadPrompts() {
