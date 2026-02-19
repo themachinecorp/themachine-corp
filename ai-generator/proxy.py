@@ -53,6 +53,11 @@ class ProxyHandler(SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(response.read())
             conn.close()
+        elif self.path == "/health":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"status": "ok"}).encode())
         else:
             # Serve static files
             super().do_GET()

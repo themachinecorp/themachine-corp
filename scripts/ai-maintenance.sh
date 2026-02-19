@@ -1,37 +1,45 @@
 #!/bin/bash
 # AI Generator 自动维护脚本
-# 每5分钟检查服务状态，自动重启
+# 每3分钟检查服务状态，自动重启
 
 LOG="/tmp/ai-maintenance.log"
+COMFY_DIR="$HOME/video-ai/ComfyUI"
+COMFY_PORT=8188
+GEN_PORT=8080
 
-echo "$(date) - 检查服务状态" >> $LOG
+echo "$(date '+%Y-%m-%d %H:%M:%S') - 检查服务状态" >> $LOG
 
 # 检查 ComfyUI
-if ! curl -s http://localhost:8188 > /dev/null 2>&1; then
-    echo "$(date) - ComfyUI 未运行，启动中..." >> $LOG
-    cd ~/video-ai/ComfyUI
+if ! curl -s http://localhost:$COMFY_PORT > /dev/null 2>&1; then
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - ComfyUI 未运行，启动中..." >> $LOG
+    pkill -f "python.*main.py.*8188" 2>/dev/null
+    sleep 2
+    cd "$COMFY_DIR"
     source venv/bin/activate
-    nohup python main.py --listen 0.0.0.0 --port 8188 > /tmp/comfy.log 2>&1 &
-    sleep 10
+    nohup python main.py --listen 0.0.0.0 --port $COMFY_PORT > /tmp/comfy.log 2>&1 &
+    for i in {1..30}; do
+        if curl -s http://localhost:$COMFY_PORT > /dev/null 2>&1; then
+            echo "$(date '+%Y-%m-%d %H:%M:%S') - ComfyUI 已启动" >> $LOG
+            break
+        fi
+        sleep 2
+    done
 fi
 
-# 检查 Proxy
-if ! curl -s http://localhost:8080 > /dev/null 2>&1; then
-    echo "$(date) - Proxy 未运行，启动中..." >> $LOG
+# 检查 AI Generator (Node.js)
+if ! curl -s http://localhost:$GEN_PORT/health > /dev/null 2>&1; then
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - AI Generator 未运行，启动中..." >> $LOG
+    pkill -f "node.*server.js" 2>/dev/null
+    sleep 1
     cd ~/.openclaw/workspace/ai-generator
-    nohup python3 proxy.py > /tmp/proxy.log 2>&1 &
-    sleep 3
+    setsid node server.js </dev/null >/tmp/ai-gen.log 2>&1 &
+    for i in {1..10}; do
+        if curl -s http://localhost:$GEN_PORT/health > /dev/null 2>&1; then
+            echo "$(date '+%Y-%m-%d %H:%M:%S') - AI Generator 已启动" >> $LOG
+            break
+        fi
+        sleep 1
+    done
 fi
 
-# 检查 Cloudflared
-if ! pgrep -f "cloudflared.*8080" > /dev/null; then
-    echo "$(date) - Cloudflared 未运行，启动隧道..." >> $LOG
-    nohup /tmp/cloudflared tunnel --url http://localhost:8080 > /tmp/cf.log 2>&1 &
-    sleep 15
-    URL=$(grep "https://" /tmp/cf.log | head -1 | awk '{print $NF}')
-    if [ -n "$URL" ]; then
-        echo "$(date) - 新URL: $URL" >> $LOG
-    fi
-fi
-
-echo "$(date) - 检查完成" >> $LOG
+echo "$(date '+%Y-%m-%d %H:%M:%S') - 检查完成" >> $LOG

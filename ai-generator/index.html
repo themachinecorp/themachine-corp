@@ -3,435 +3,1089 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 生成</title>
+    <title>AI 图像生成</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #000; color: #fff; min-height: 100vh; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0d0d0d;
+            color: #e5e5e5;
+            min-height: 100vh;
+        }
         
-        .header { position: fixed; top: 0; left: 0; right: 0; height: 56px; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 100; border-bottom: 1px solid #222; }
-        .header h1 { font-size: 18px; background: linear-gradient(90deg, #FFD700, #FF6B6B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .history-btn { color: #FFD700; font-size: 14px; background: none; border: none; cursor: pointer; }
+        /* 导航 */
+        .navbar {
+            background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+            border-bottom: 1px solid #2a2a2a;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .navbar-brand h1 {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .navbar-brand span {
+            font-size: 12px;
+            color: #666;
+            background: #222;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+        }
         
-        .main { padding: 56px 0 200px; }
+        /* 主布局 */
+        .container {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 20px;
+        }
         
-        /* History Panel */
-        .history-panel { display: none; position: fixed; inset: 0; background: #000; z-index: 200; overflow-y: auto; }
-        .history-panel.show { display: block; }
-        .history-header { position: sticky; top: 0; background: #111; padding: 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; }
-        .history-header h2 { font-size: 18px; }
-        .close-btn { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+        /* 左侧：设置面板 */
+        .settings-panel {
+            width: 400px;
+            flex-shrink: 0;
+        }
         
-        .history-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 16px; }
-        .history-item { position: relative; aspect-ratio: 1; background: #111; border-radius: 8px; overflow: hidden; cursor: pointer; }
-        .history-item img { width: 100%; height: 100%; object-fit: cover; }
-        .history-item .prompt { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .history-item .time { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+        .panel {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .panel-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #888;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
         
-        /* Current Result */
-        .result-area { min-height: 50vh; display: flex; align-items: center; justify-content: center; background: #0a0a0a; position: relative; }
-        .result-area img { max-width: 100%; max-height: 70vh; }
-        .result-placeholder { color: #333; font-size: 14px; text-align: center; padding: 40px; }
+        /* 模型选择 */
+        .model-select-wrapper {
+            position: relative;
+        }
+        .model-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .model-card:hover {
+            border-color: #555;
+        }
+        .model-card.selected {
+            border-color: #FF6B6B;
+            background: rgba(255, 107, 107, 0.1);
+        }
+        .model-card-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .model-card-info {
+            font-size: 12px;
+            color: #666;
+        }
         
-        /* Tasks */
-        .tasks { padding: 12px; }
-        .tasks-title { font-size: 12px; color: #666; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .task { background: #111; border-radius: 12px; padding: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; border: 1px solid #222; }
-        .task.completed { border-color: #2d5; }
-        .task.error { border-color: #f44; }
-        .task-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; background: #222; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-        .task-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
-        .task-info { flex: 1; min-width: 0; }
-        .task-prompt { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 6px; }
-        .task-progress { display: flex; align-items: center; gap: 8px; }
-        .progress-bar { flex: 1; height: 4px; background: #333; border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #FFD700, #FF6B6B); width: 0%; transition: width 0.3s; }
-        .progress-text { font-size: 12px; color: #888; min-width: 45px; text-align: right; }
-        .task-status { font-size: 11px; color: #666; margin-top: 4px; }
+        /* LoRA 选择 */
+        .lora-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .lora-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+        .lora-item:hover {
+            background: #1a1a1a;
+        }
+        .lora-item input {
+            accent-color: #FF6B6B;
+        }
+        .lora-name {
+            flex: 1;
+            font-size: 13px;
+        }
+        .lora-weight {
+            width: 60px;
+            padding: 4px 8px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+        }
         
-        /* Input Area */
-        .input-area { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, #000 50%, transparent); padding: 20px 16px; }
-        .input-box { background: #1a1a1a; border-radius: 16px; border: 1px solid #333; overflow: hidden; }
-        .prompt-input { width: 100%; padding: 14px; border: none; background: transparent; color: #fff; font-size: 14px; min-height: 50px; max-height: 80px; resize: none; }
-        .prompt-input::placeholder { color: #666; }
-        .prompt-input:focus { outline: none; }
+        /* 比例选择 */
+        .ratio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .ratio-btn {
+            padding: 10px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #888;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .ratio-btn:hover {
+            border-color: #555;
+        }
+        .ratio-btn.active {
+            border-color: #FF6B6B;
+            background: rgba(255, 107, 107, 0.1);
+            color: #fff;
+        }
         
-        .options { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid #222; overflow-x: auto; }
-        .option-btn { padding: 6px 12px; border-radius: 16px; border: 1px solid #333; background: #222; color: #999; font-size: 12px; white-space: nowrap; cursor: pointer; }
-        .option-btn.active { background: linear-gradient(135deg, #FFD700, #FF6B6B); color: #000; border-color: transparent; }
+        /* 高级设置 */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .setting-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .setting-label {
+            font-size: 12px;
+            color: #666;
+        }
+        .setting-input {
+            padding: 8px 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 13px;
+        }
+        .setting-input:focus {
+            outline: none;
+            border-color: #555;
+        }
         
-        .action-bar { display: flex; gap: 10px; padding: 12px 14px; }
-        .model-select { flex: 1; padding: 10px 12px; border-radius: 10px; border: 1px solid #333; background: #222; color: #fff; font-size: 13px; }
-        .generate-btn { padding: 10px 24px; border-radius: 10px; border: none; background: linear-gradient(135deg, #FFD700, #FF6B6B); color: #000; font-size: 14px; font-weight: 600; cursor: pointer; }
-        .generate-btn:disabled { opacity: 0.5; }
+        /* 提示词 */
+        .prompt-section {
+            margin-top: 16px;
+        }
+        .prompt-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+        .prompt-input:focus {
+            outline: none;
+            border-color: #555;
+        }
+        .prompt-input::placeholder {
+            color: #555;
+        }
         
-        .tips { text-align: center; padding: 10px; color: #444; font-size: 11px; }
+        .negative-prompt {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 12px;
+        }
+        
+        /* 生成按钮 */
+        .generate-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF9F6B 100%);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.1s, box-shadow 0.2s;
+        }
+        .generate-btn:hover {
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+        }
+        .generate-btn:active {
+            transform: scale(0.98);
+        }
+        .generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* 右侧：预览 */
+        .preview-panel {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .preview-container {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .preview-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #2a2a2a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .preview-title {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .preview-image-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: repeating-conic-gradient(#1a1a1a 0% 25%, #141414 0% 50%) 50% / 20px 20px;
+        }
+        .preview-image {
+            max-width: 100%;
+            max-height: 600px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            display: none;
+        }
+        .preview-image.show {
+            display: block;
+        }
+        .preview-placeholder {
+            text-align: center;
+            color: #444;
+        }
+        .preview-placeholder-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+        
+        /* 任务列表 */
+        .tasks-list {
+            padding: 16px;
+            border-top: 1px solid #2a2a2a;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .task-item.completed {
+            border-left: 3px solid #4ade80;
+        }
+        .task-item.error {
+            border-left: 3px solid #f87171;
+        }
+        .task-preview {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            background: #222;
+            object-fit: cover;
+        }
+        .task-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .task-prompt {
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .task-progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .progress-bar {
+            flex: 1;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6B6B, #FFE66D);
+            transition: width 0.3s;
+        }
+        .progress-text {
+            font-size: 11px;
+            color: #666;
+            min-width: 40px;
+        }
+        
+        /* 历史记录 */
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            padding: 20px;
+        }
+        .history-item {
+            aspect-ratio: 1;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s;
+        }
+        .history-item:hover {
+            transform: scale(1.02);
+        }
+        .history-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .history-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+            color: #aaa;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Tab */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .tab {
+            padding: 12px 20px;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab:hover {
+            color: #aaa;
+        }
+        .tab.active {
+            color: #fff;
+            border-bottom-color: #FF6B6B;
+        }
         
         /* Toast */
-        .toast { position: fixed; bottom: 180px; left: 50%; transform: translateX(-50%); background: #222; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13px; z-index: 300; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
-        .toast.show { opacity: 1; }
-        .toast.success { background: #2d5; color: #000; }
-        .toast.error { background: #f44; color: #fff; }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #4ade80;
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast.error {
+            background: #f87171;
+            color: #fff;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            .settings-panel {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>✨ AI 生成</h1>
-        <button class="history-btn" onclick="showHistory()">历史 (<span id="historyCount">0</span>)</button>
-    </div>
-    
-    <div class="main">
-        <div class="result-area" id="resultArea">
-            <div class="result-placeholder">输入描述，开始生成</div>
-            <img id="resultImg" style="display:none">
+    <!-- 导航 -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <h1>🎨 AI 生成</h1>
+            <span>v1.0</span>
         </div>
-        <div class="tasks" id="tasks"></div>
-    </div>
-    
-    <!-- History Panel -->
-    <div class="history-panel" id="historyPanel">
-        <div class="history-header">
-            <h2>生成历史</h2>
-            <button class="close-btn" onclick="hideHistory()">×</button>
+        <div class="nav-links">
+            <a href="#" class="active" onclick="showTab('image')">🖼️ 图像</a>
+            <a href="#" onclick="showTab('video')">🎬 视频</a>
+            <a href="#" onclick="showTab('history')">📜 历史</a>
         </div>
-        <div class="history-grid" id="historyGrid"></div>
-    </div>
+    </nav>
     
-    <div class="input-area">
-        <div class="input-box">
-            <textarea class="prompt-input" id="prompt" placeholder="描述你想要的图像..."></textarea>
-            
-            <div class="options">
-                <button class="option-btn active" onclick="setRatio(this, 512, 768)">竖图</button>
-                <button class="option-btn" onclick="setRatio(this, 768, 512)">横图</button>
-                <button class="option-btn" onclick="setRatio(this, 512, 512)">方图</button>
+    <!-- 图像生成 -->
+    <div class="container" id="imageTab" style="display:flex;">
+        <!-- 左侧设置 -->
+        <div class="settings-panel">
+            <!-- 模型选择 -->
+            <div class="panel">
+                <div class="panel-title">模型</div>
+                <div class="model-select-wrapper" id="modelList">
+                    <div class="model-card selected" onclick="selectModel('majicmixRealistic_v7.safetensors')">
+                        <div class="model-card-name">majicMIX Realistic</div>
+                        <div class="model-card-info">写真模型 · 2.1GB</div>
+                    </div>
+                </div>
             </div>
             
-            <div class="action-bar">
-                <select class="model-select" id="model">
-                    <option value="majicmixRealistic_v7.safetensors">🎨 majicMIX v7</option>
-                    <option value="majicflus_v10.safetensors">🌟 majicFlus</option>
-                </select>
-                <button class="generate-btn" onclick="generate()" id="generateBtn">生成</button>
+            <!-- LoRA -->
+            <div class="panel">
+                <div class="panel-title">LoRA</div>
+                <div class="lora-list" id="loraList">
+                    <label class="lora-item">
+                        <input type="checkbox" id="lora1" value="asian_girls_face.safetensors">
+                        <span class="lora-name">👩 Asian Girls Face</span>
+                        <input type="number" class="lora-weight" id="lora1-weight" value="0.5" min="0" max="2" step="0.1">
+                    </label>
+                </div>
+            </div>
+            
+            <!-- 比例 -->
+            <div class="panel">
+                <div class="panel-title">输出比例</div>
+                <div class="ratio-grid">
+                    <div class="ratio-btn active" onclick="setRatio(512, 768, this)">竖图<br><small>512×768</small></div>
+                    <div class="ratio-btn" onclick="setRatio(768, 512, this)">横图<br><small>768×512</small></div>
+                    <div class="ratio-btn" onclick="setRatio(512, 512, this)">方图<br><small>512×512</small></div>
+                    <div class="ratio-btn" onclick="setRatio(1024, 1024, this)">方形<br><small>1024×1024</small></div>
+                    <div class="ratio-btn" onclick="setRatio(1024, 768, this)">风景<br><small>1024×768</small></div>
+                    <div class="ratio-btn" onclick="setRatio(768, 1024, this)">人像<br><small>768×1024</small></div>
+                </div>
+            </div>
+            
+            <!-- 高级设置 -->
+            <div class="panel">
+                <div class="panel-title">高级设置</div>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <span class="setting-label">步数 (Steps)</span>
+                        <input type="number" class="setting-input" id="steps" value="25" min="1" max="100">
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">CFG 强度</span>
+                        <input type="number" class="setting-input" id="cfg" value="7" min="1" max="30">
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">采样器</span>
+                        <select class="setting-input" id="sampler">
+                            <option value="euler">Euler</option>
+                            <option value="euler_ancestral">Euler a</option>
+                            <option value="dpm_2">DPM++ 2M</option>
+                            <option value="dpm_sde">DPM++ SDE</option>
+                            <option value="ddim">DDIM</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">随机种子</span>
+                        <input type="number" class="setting-input" id="seed" placeholder="随机">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 提示词 -->
+            <div class="panel prompt-section">
+                <div class="panel-title">提示词</div>
+                <textarea class="prompt-input" id="prompt" placeholder="描述你想要的图像...&#10;例如: a beautiful woman, detailed face, soft lighting, professional photography"></textarea>
+                <textarea class="negative-prompt" id="negativePrompt" placeholder="负面提示词 (可选)&#10;例如: low quality, blurry, distorted"></textarea>
+            </div>
+            
+            <button class="generate-btn" onclick="generate()" id="generateBtn">🚀 开始生成</button>
+        </div>
+        
+        <!-- 右侧预览 -->
+        <div class="preview-panel">
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span class="preview-title">预览</span>
+                    <span id="currentModel" style="color:#666;font-size:12px;">majicMIX Realistic</span>
+                </div>
+                <div class="preview-image-area">
+                    <div class="preview-placeholder" id="previewPlaceholder">
+                        <div class="preview-placeholder-icon">🎨</div>
+                        <div>输入提示词，点击生成</div>
+                    </div>
+                    <img class="preview-image" id="previewImage">
+                </div>
+                <div class="tasks-list" id="tasksList"></div>
             </div>
         </div>
     </div>
     
-    <div class="tips">支持 Ctrl+Enter 快速生成 · 多个任务同时进行</div>
+    <!-- 视频生成 -->
+    <div class="container" id="videoTab" style="display:none;">
+        <div class="settings-panel">
+            <div class="panel">
+                <div class="panel-title">🎬 视频模型</div>
+                <div class="model-select-wrapper" id="videoModelList">
+                    <div class="model-card selected" onclick="selectVideoModel('svd_xt.safetensors')">
+                        <div class="model-card-name">SVD XT</div>
+                        <div class="model-card-info">Stable Video Diffusion · 6.9GB</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <div class="panel-title">提示词</div>
+                <textarea class="prompt-input" id="videoPrompt" placeholder="描述视频内容..."></textarea>
+            </div>
+            
+            <div class="panel">
+                <div class="panel-title">设置</div>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <span class="setting-label">帧数</span>
+                        <select class="setting-input" id="videoFrames">
+                            <option value="14">14 帧</option>
+                            <option value="25">25 帧</option>
+                            <option value="36">36 帧</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">帧率 FPS</span>
+                        <select class="setting-input" id="videoFps">
+                            <option value="8">8 FPS</option>
+                            <option value="12" selected>12 FPS</option>
+                            <option value="24">24 FPS</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">运动幅度</span>
+                        <select class="setting-input" id="videoMotion">
+                            <option value="1">低</option>
+                            <option value="5" selected>中</option>
+                            <option value="10">高</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="generateVideo()" id="videoGenerateBtn">🎬 生成视频</button>
+        </div>
+        
+        <div class="preview-panel">
+            <div class="preview-container">
+                <div class="preview-header">
+                    <span class="preview-title">视频预览</span>
+                    <span id="currentVideoModel" style="color:#666;font-size:12px;">SVD XT</span>
+                </div>
+                <div class="preview-image-area">
+                    <div class="preview-placeholder" id="videoPlaceholder">
+                        <div class="preview-placeholder-icon">🎬</div>
+                        <div>输入描述，点击生成视频</div>
+                    </div>
+                    <video class="preview-image" id="videoPreview" controls style="max-width:100%;max-height:500px;display:none;"></video>
+                </div>
+                <div class="tasks-list" id="videoTasksList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 历史记录 -->
+    <div class="container" id="historyTab" style="display:none;">
+        <div class="preview-panel">
+            <div class="preview-container">
+                <div class="tabs">
+                    <div class="tab active">生成历史</div>
+                </div>
+                <div class="history-grid" id="historyGrid"></div>
+            </div>
+        </div>
+    </div>
+    
     <div class="toast" id="toast"></div>
-
+    
     <script>
         let width = 512, height = 768;
-        let tasks = [];
-        let history = JSON.parse(localStorage.getItem('ai-history') || '[]');
-        let pollIntervals = {};
+        let selectedModel = 'majicmixRealistic_v7.safetensors';
+        let tasks = {};
+        let history = JSON.parse(localStorage.getItem('ai-gen-history') || '[]');
         
-        // Update history count
-        document.getElementById('historyCount').textContent = history.length;
+        // 显示提示
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = 'toast show' + (isError ? ' error' : '');
+            setTimeout(() => toast.className = 'toast', 3000);
+        }
         
-        function setRatio(btn, w, h) {
-            document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        // Tab 切换
+        function showTab(tab) {
+            document.getElementById('imageTab').style.display = tab === 'image' ? 'flex' : 'none';
+            document.getElementById('videoTab').style.display = tab === 'video' ? 'flex' : 'none';
+            document.getElementById('historyTab').style.display = tab === 'history' ? 'flex' : 'none';
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            event.target.classList.add('active');
+            if (tab === 'history') renderHistory();
+        }
+        
+        // 选择模型
+        function selectModel(model) {
+            selectedModel = model;
+            document.querySelectorAll('.model-card').forEach(c => c.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            document.getElementById('currentModel').textContent = event.currentTarget.querySelector('.model-card-name').textContent;
+        }
+        
+        // 设置比例
+        function setRatio(w, h, btn) {
             width = w; height = h;
+            document.querySelectorAll('.ratio-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
         }
         
-        function showHistory() {
-            document.getElementById('historyPanel').classList.add('show');
-            renderHistory();
-        }
-        
-        function hideHistory() {
-            document.getElementById('historyPanel').classList.remove('show');
-        }
-        
-        function formatTime(ts) {
-            const d = new Date(ts);
-            const now = new Date();
-            const diff = now - d;
-            
-            if (diff < 60000) return '刚刚';
-            if (diff < 3600000) return Math.floor(diff/60000) + '分钟前';
-            if (diff < 86400000) return Math.floor(diff/3600000) + '小时前';
-            return d.toLocaleDateString('zh-CN');
-        }
-        
-        function renderHistory() {
-            const grid = document.getElementById('historyGrid');
-            if (history.length === 0) {
-                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#666;padding:40px;">暂无历史记录</div>';
+        // 生成
+        async function generate() {
+            const prompt = document.getElementById('prompt').value.trim();
+            if (!prompt) {
+                showToast('请输入提示词', true);
                 return;
             }
-            grid.innerHTML = history.map((item, i) => `
-                <div class="history-item" onclick="showResult('${item.url}', '${item.prompt.replace(/'/g, "\\'")}')">
-                    <img src="${item.url}">
-                    <div class="time">${formatTime(item.time)}</div>
-                    <div class="prompt">${item.prompt}</div>
+            
+            const negativePrompt = document.getElementById('negativePrompt').value.trim();
+            const steps = parseInt(document.getElementById('steps').value) || 25;
+            const cfg = parseInt(document.getElementById('cfg').value) || 7;
+            const sampler = document.getElementById('sampler').value;
+            const seed = document.getElementById('seed').value || Math.floor(Math.random() * 1000000000);
+            
+            const btn = document.getElementById('generateBtn');
+            btn.disabled = true;
+            btn.textContent = '提交中...';
+            
+            // 检查 LoRA
+            const lorAs = [];
+            if (document.getElementById('lora1')?.checked) {
+                lorAs.push({
+                    name: document.getElementById('lora1').value,
+                    weight: parseFloat(document.getElementById('lora1-weight')?.value || 0.5)
+                });
+            }
+            
+            // 构建工作流 - 固定版本，正确处理 LoRA
+            const workflow = {
+                prompt: {
+                    "3": { inputs: { text: prompt, clip: ["4", 1] }, class_type: "CLIPTextEncode" },
+                    "4": { inputs: { ckpt_name: selectedModel }, class_type: "CheckpointLoaderSimple" },
+                    "8": { inputs: { width: width, height: height, batch_size: 1 }, class_type: "EmptyLatentImage" }
+                }
+            };
+            
+            // 如果有 LoRA，添加 LoRA Loader
+            let modelNode = "4";
+            if (lorAs.length > 0) {
+                lorAs.forEach((lora, idx) => {
+                    const loraNode = "lora_" + idx;
+                    workflow.prompt[loraNode] = {
+                        inputs: { 
+                            model: ["4", 0], 
+                            clip: ["4", 1], 
+                            lora_name: lora.name, 
+                            strength_model: lora.weight, 
+                            strength_clip: lora.weight 
+                        },
+                        class_type: "LoraLoader"
+                    };
+                    modelNode = loraNode;
+                });
+            }
+            
+            // 添加采样器和解码器
+            workflow.prompt["5"] = { 
+                inputs: { 
+                    seed: parseInt(seed), 
+                    steps: steps, cfg: cfg, sampler_name: sampler, scheduler: "normal", 
+                    positive: ["3", 0], 
+                    negative: negativePrompt ? ["3neg", 0] : ["3", 0], 
+                    model: [modelNode, 0], 
+                    latent_image: ["8", 0], 
+                    denoise: 1 
+                }, 
+                class_type: "KSampler" 
+            };
+            workflow.prompt["10"] = { inputs: { samples: ["5", 0], vae: ["4", 2] }, class_type: "VAEDecode" };
+            workflow.prompt["11"] = { inputs: { images: ["10", 0], filename_prefix: "output" }, class_type: "SaveImage" };
+            
+            // 添加负面提示词节点
+            if (negativePrompt) {
+                workflow.prompt["3neg"] = { 
+                    inputs: { text: negativePrompt, clip: ["4", 1] }, 
+                    class_type: "CLIPTextEncode" 
+                };
+            }
+            
+            try {
+                const res = await fetch('/prompt', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(workflow)
+                });
+                
+                const data = await res.json();
+                
+                if (data.prompt_id) {
+                    // 保留输入，不清空
+                    document.getElementById('seed').value = '';
+                    
+                    // 添加到任务列表
+                    tasks[data.prompt_id] = {
+                        id: data.prompt_id,
+                        prompt,
+                        status: 'running',
+                        progress: 0
+                    };
+                    renderTasks();
+                    
+                    // 开始轮询
+                    pollTask(data.prompt_id);
+                } else if (data.error) {
+                    showToast(data.error, true);
+                }
+                
+            } catch (e) {
+                showToast('提交失败: ' + e.message, true);
+            }
+            
+            btn.disabled = false;
+            btn.textContent = '🚀 开始生成';
+        }
+        
+        // 轮询任务
+        async function pollTask(promptId) {
+            while (true) {
+                try {
+                    const res = await fetch('/history/' + promptId);
+                    const data = await res.json();
+                    
+                    const taskData = data[promptId];
+                    if (taskData) {
+                        const status = taskData.status || {};
+                        
+                        if (status.exec_info && status.exec_info.progress !== undefined) {
+                            tasks[promptId].progress = Math.round(status.exec_info.progress * 100);
+                            renderTasks();
+                        }
+                        
+                        if (status.status_str === 'success') {
+                            const outputs = taskData.outputs || {};
+                            for (const nodeId in outputs) {
+                                const node = outputs[nodeId];
+                                if (node.images && node.images.length > 0) {
+                                    const img = node.images[0];
+                                    const url = '/view?filename=' + img.filename + '&type=output';
+                                    
+                                    // 显示结果
+                                    const previewImg = document.getElementById('previewImage');
+                                    previewImg.src = url;
+                                    previewImg.classList.add('show');
+                                    document.getElementById('previewPlaceholder').style.display = 'none';
+                                    
+                                    // 加入历史
+                                    addToHistory(url, tasks[promptId].prompt);
+                                    
+                                    tasks[promptId].status = 'completed';
+                                    tasks[promptId].progress = 100;
+                                    renderTasks();
+                                    showToast('✨ 生成完成!');
+                                    return;
+                                }
+                            }
+                        } else if (status.status_str === 'error') {
+                            tasks[promptId].status = 'error';
+                            renderTasks();
+                            showToast(status.error_message || '生成失败', true);
+                            return;
+                        }
+                    }
+                    
+                } catch (e) {
+                    console.error(e);
+                }
+                
+                await new Promise(r => setTimeout(r, 2000));
+            }
+        }
+        
+        // 渲染任务
+        function renderTasks() {
+            const list = document.getElementById('tasksList');
+            const running = Object.values(tasks).filter(t => t.status === 'running');
+            
+            if (running.length === 0) {
+                list.innerHTML = '';
+                return;
+            }
+            
+            list.innerHTML = running.map(t => `
+                <div class="task-item ${t.status}">
+                    <div class="task-preview" style="display:flex;align-items:center;justify-content:center;">⏳</div>
+                    <div class="task-info">
+                        <div class="task-prompt">${t.prompt}</div>
+                        <div class="task-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width:${t.progress || 0}%"></div></div>
+                            <span class="progress-text">${t.progress || 0}%</span>
+                        </div>
+                    </div>
                 </div>
             `).join('');
         }
         
-        function showResult(url, prompt) {
-            const img = document.getElementById('resultImg');
-            const placeholder = document.querySelector('.result-placeholder');
-            img.src = url;
-            img.style.display = 'block';
-            if (placeholder) placeholder.style.display = 'none';
-            hideHistory();
+        // 添加历史
+        function addToHistory(url, prompt) {
+            history.unshift({url, prompt, time: Date.now()});
+            if (history.length > 50) history.pop();
+            localStorage.setItem('ai-gen-history', JSON.stringify(history));
         }
         
-        function showToast(msg, type = '') {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.className = 'toast show ' + type;
-            setTimeout(() => toast.className = 'toast', 3000);
+        // 删除历史
+        function deleteHistory(index, event) {
+            event.stopPropagation();
+            if (confirm('确定删除这条记录？')) {
+                history.splice(index, 1);
+                localStorage.setItem('ai-gen-history', JSON.stringify(history));
+                renderHistory();
+            }
         }
         
-        function addToHistory(url, prompt, model) {
-            history.unshift({ 
-                url, 
-                prompt, 
-                model,
-                time: Date.now(),
-                width,
-                height
-            });
-            if (history.length > 100) history.pop();
-            localStorage.setItem('ai-history', JSON.stringify(history));
-            document.getElementById('historyCount').textContent = history.length;
+        // 清空历史
+        function clearHistory() {
+            if (confirm('确定清空所有历史记录？')) {
+                history = [];
+                localStorage.setItem('ai-gen-history', JSON.stringify(history));
+                renderHistory();
+            }
         }
         
-        function renderTasks() {
-            const el = document.getElementById('tasks');
-            const activeTasks = tasks.filter(t => !t.completed && !t.error);
-            
-            if (activeTasks.length === 0 && tasks.filter(t => t.completed || t.error).length === 0) {
-                el.innerHTML = '';
+        // 渲染历史
+        function renderHistory() {
+            const grid = document.getElementById('historyGrid');
+            if (history.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#555;padding:40px;">暂无历史记录</div>';
+                return;
+            }
+            grid.innerHTML = `
+                <div style="grid-column:1/-1;text-align:right;margin-bottom:10px;">
+                    <button onclick="clearHistory()" style="background:#f44;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;">清空全部</button>
+                </div>
+            ` + history.map((h, i) => `
+                <div class="history-item" onclick="viewHistory(${i})">
+                    <img src="${h.url}">
+                    <div class="overlay">
+                        <span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${h.prompt}</span>
+                        <button onclick="deleteHistory(${i}, event)" style="background:rgba(255,0,0,0.7);border:none;color:#fff;padding:2px 6px;border-radius:4px;cursor:pointer;margin-left:8px;">✕</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // 查看历史
+        function viewHistory(index) {
+            const h = history[index];
+            // 填充到输入框
+            document.getElementById('prompt').value = h.prompt;
+            // 显示图片
+            const previewImg = document.getElementById('previewImage');
+            previewImg.src = h.url;
+            previewImg.classList.add('show');
+            document.getElementById('previewPlaceholder').style.display = 'none';
+            // 切换到图像标签
+            document.getElementById('imageTab').style.display = 'flex';
+            document.getElementById('videoTab').style.display = 'none';
+            document.getElementById('historyTab').style.display = 'none';
+            document.querySelectorAll('.nav-links a')[0].classList.add('active');
+            document.querySelectorAll('.nav-links a')[1].classList.remove('active');
+            document.querySelectorAll('.nav-links a')[2].classList.remove('active');
+        }
+        
+        // 视频生成
+        let selectedVideoModel = 'svd_xt.safetensors';
+        
+        function selectVideoModel(model) {
+            selectedVideoModel = model;
+            document.querySelectorAll('#videoModelList .model-card').forEach(c => c.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            document.getElementById('currentVideoModel').textContent = event.currentTarget.querySelector('.model-card-name').textContent;
+        }
+        
+        async function generateVideo() {
+            const prompt = document.getElementById('videoPrompt').value.trim();
+            if (!prompt) {
+                showToast('请输入描述', true);
                 return;
             }
             
-            el.innerHTML = `
-                <div class="tasks-title">
-                    <span>生成任务 ${activeTasks.length > 0 ? `(${activeTasks.length}进行中)` : ''}</span>
-                    <span>${tasks.length} 个任务</span>
-                </div>
-            ` + tasks.map((t, i) => {
-                let statusText = t.status || '等待中';
-                let taskClass = '';
-                if (t.completed) { taskClass = 'completed'; statusText = '✅ 完成'; }
-                else if (t.error) { taskClass = 'error'; statusText = '❌ ' + (t.errorMsg || '失败'); }
-                
-                const preview = t.preview || (t.completed ? t.resultUrl : '');
-                
-                return `
-                    <div class="task ${taskClass}">
-                        <div class="task-img">
-                            ${preview ? `<img src="${preview}" onerror="this.parentElement.textContent='🖼'">` : '⏳'}
-                        </div>
-                        <div class="task-info">
-                            <div class="task-prompt">${t.prompt}</div>
-                            <div class="task-progress">
-                                <div class="progress-bar"><div class="progress-fill" style="width:${t.progress}%"></div></div>
-                                <span class="progress-text">${t.progress}%</span>
-                            </div>
-                            <div class="task-status">${statusText}</div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-        
-        function generate() {
-            const prompt = document.getElementById('prompt').value.trim();
-            const model = document.getElementById('model').value;
+            const frames = parseInt(document.getElementById('videoFrames').value);
+            const fps = parseInt(document.getElementById('videoFps').value);
+            const motion = parseInt(document.getElementById('videoMotion').value);
             
-            if (!prompt) { showToast('请输入描述', 'error'); return; }
+            const btn = document.getElementById('videoGenerateBtn');
+            btn.disabled = true;
+            btn.textContent = '生成中...';
             
-            const taskId = Date.now() + Math.random();
-            const task = { 
-                id: taskId, 
-                prompt, 
-                model,
-                progress: 0, 
-                preview: '',
-                status: '提交任务...',
-                retries: 0
-            };
-            tasks.push(task);
-            renderTasks();
-            
-            // Clear input
-            document.getElementById('prompt').value = '';
-            
-            submitTask(task);
-        }
-        
-        function submitTask(task) {
+            // SVD workflow
             const workflow = {
                 prompt: {
-                    "3": { inputs: { text: task.prompt, clip: ["4", 1] }, class_type: "CLIPTextEncode" },
-                    "4": { inputs: { ckpt_name: task.model }, class_type: "CheckpointLoaderSimple" },
-                    "5": { 
+                    "5": { inputs: { ckpt_name: selectedVideoModel }, class_type: "CheckpointLoaderSD" },
+                    "6": { inputs: { text: prompt, clip: ["5", 0] }, class_type: "CLIPTextEncode" },
+                    "3": { inputs: { width: 576, height: 1024, batch_size: 1 }, class_type: "EmptyLatentImage" },
+                    "4": { 
                         inputs: { 
                             seed: Math.floor(Math.random() * 1000000000), 
-                            steps: 25, cfg: 7, sampler_name: "euler", scheduler: "normal", 
-                            positive: ["3", 0], negative: ["3", 0], model: ["4", 0], latent_image: ["8", 0], denoise: 1 
+                            steps: 20, cfg: 1.0, sampler_name: "euler", scheduler: "normal",
+                            positive: ["6", 0], negative: ["6", 0], model: ["5", 1], latent_image: ["3", 0], denoise: 1 
                         }, class_type: "KSampler" 
                     },
-                    "8": { inputs: { width: width, height: height, batch_size: 1 }, class_type: "EmptyLatentImage" },
-                    "10": { inputs: { samples: ["5", 0], vae: ["4", 2] }, class_type: "VAEDecode" },
-                    "11": { inputs: { images: ["10", 0], filename_prefix: "output" }, class_type: "SaveImage" }
+                    "8": { inputs: { samples: ["4", 0], target_size: [1024, 576], crop: "center" }, class_type: "VAEDecodeTiled" },
+                    "10": { inputs: { images: ["8", 0], film_mode: true, loop_count: 0, manage_latent: true, frames: frames, fps: fps, motion_bucket_id: motion }, class_type: "SVDImg2Vid" },
+                    "11": { inputs: { images: ["10", 0], filename_prefix: "video" }, class_type: "SaveVideo" }
                 }
             };
             
-            task.status = '提交中...';
-            renderTasks();
-            
-            fetch('/prompt', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(workflow)
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.error) {
-                    throw new Error(data.error);
+            try {
+                const res = await fetch('/prompt', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(workflow)
+                });
+                
+                const data = await res.json();
+                
+                if (data.prompt_id) {
+                    document.getElementById('videoPrompt').value = '';
+                    showToast('视频生成中...', false);
+                    pollVideoTask(data.prompt_id);
+                } else if (data.error) {
+                    showToast(data.error, true);
                 }
-                task.promptId = data.prompt_id;
-                task.progress = 5;
-                task.status = '生成中...';
-                renderTasks();
-                startPolling(task);
-            })
-            .catch(e => {
-                console.error('Submit error:', e);
-                task.status = '提交失败';
-                task.error = true;
-                task.errorMsg = e.message || '连接失败';
-                renderTasks();
-                showToast('提交失败: ' + (e.message || '请检查服务'), 'error');
-            });
-        }
-        
-        function startPolling(task) {
-            // Clear any existing poll for this task
-            if (pollIntervals[task.id]) {
-                clearInterval(pollIntervals[task.id]);
+                
+            } catch (e) {
+                showToast('提交失败: ' + e.message, true);
             }
             
-            pollIntervals[task.id] = setInterval(() => {
-                checkTaskStatus(task);
-            }, 2000);
-            
-            // Initial check after a short delay
-            setTimeout(() => checkTaskStatus(task), 1000);
+            btn.disabled = false;
+            btn.textContent = '🎬 生成视频';
         }
         
-        function checkTaskStatus(task) {
-            if (!task.promptId) return;
-            
-            fetch('/history/' + task.promptId)
-            .then(res => res.json())
-            .then(data => {
-                const result = data[task.promptId];
-                
-                if (!result) {
-                    // Task might not be in history yet
-                    return;
-                }
-                
-                // Update progress based on status
-                if (result.status && result.status.exec_info) {
-                    const progress = result.status.exec_info.progress;
-                    if (progress !== undefined) {
-                        task.progress = Math.min(95, Math.round(progress * 100));
-                        task.status = '生成中...';
-                    }
-                }
-                
-                // Check for outputs
-                if (result.outputs) {
-                    for (const nodeId in result.outputs) {
-                        const node = result.outputs[nodeId];
-                        if (node.images && node.images.length > 0) {
-                            const img = node.images[0];
-                            const url = '/view?filename=' + img.filename + '&type=output';
-                            
-                            // Stop polling
-                            if (pollIntervals[task.id]) {
-                                clearInterval(pollIntervals[task.id]);
-                                delete pollIntervals[task.id];
+        async function pollVideoTask(promptId) {
+            while (true) {
+                try {
+                    const res = await fetch('/history/' + promptId);
+                    const data = await res.json();
+                    const taskData = data[promptId];
+                    
+                    if (taskData && taskData.status?.status_str === 'success') {
+                        const outputs = taskData.outputs || {};
+                        for (const nodeId in outputs) {
+                            const node = outputs[nodeId];
+                            if (node.images && node.images.length > 0) {
+                                const img = node.images[0];
+                                const url = '/view?filename=' + img.filename + '&type=output';
+                                
+                                const video = document.getElementById('videoPreview');
+                                video.src = url;
+                                video.style.display = 'block';
+                                document.getElementById('videoPlaceholder').style.display = 'none';
+                                
+                                showToast('✨ 视频生成完成!');
+                                return;
                             }
-                            
-                            // Update task
-                            task.progress = 100;
-                            task.completed = true;
-                            task.resultUrl = url;
-                            task.status = '完成';
-                            renderTasks();
-                            
-                            // Show result
-                            showResult(url, task.prompt);
-                            addToHistory(url, task.prompt, task.model);
-                            showToast('生成完成!', 'success');
-                            return;
                         }
+                    } else if (taskData?.status?.status_str === 'error') {
+                        showToast(taskData.status.error_message || '生成失败', true);
+                        return;
                     }
+                    
+                } catch (e) {
+                    console.error(e);
                 }
                 
-                // Check for errors
-                if (result.status && result.status.status === 'error') {
-                    if (pollIntervals[task.id]) {
-                        clearInterval(pollIntervals[task.id]);
-                        delete pollIntervals[task.id];
-                    }
-                    task.error = true;
-                    task.errorMsg = result.status.error_message || '生成失败';
-                    task.status = '失败';
-                    renderTasks();
-                    showToast('生成失败', 'error');
-                    return;
-                }
-                
-                renderTasks();
-            })
-            .catch(e => {
-                console.error('Poll error:', e);
-                // Retry logic
-                task.retries = (task.retries || 0) + 1;
-                if (task.retries > 10) {
-                    if (pollIntervals[task.id]) {
-                        clearInterval(pollIntervals[task.id]);
-                        delete pollIntervals[task.id];
-                    }
-                    task.error = true;
-                    task.errorMsg = '超时';
-                    task.status = '超时';
-                    renderTasks();
-                    showToast('任务超时', 'error');
-                }
-            });
+                await new Promise(r => setTimeout(r, 3000));
+            }
         }
         
-        // Keyboard shortcut
+        // Ctrl+Enter 快捷键
         document.getElementById('prompt').addEventListener('keydown', e => {
             if (e.key === 'Enter' && e.ctrlKey) generate();
-        });
-        
-        // Auto-refresh on page show (for morning check)
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) {
-                // Refresh - maybe check for new results
-                renderHistory();
-            }
-        });
-        
-        // Check for updates on page load
-        window.addEventListener('load', () => {
-            // Reconnect to any existing tasks
-            tasks.forEach(task => {
-                if (!task.completed && !task.error && task.promptId) {
-                    startPolling(task);
-                }
-            });
         });
     </script>
 </body>
