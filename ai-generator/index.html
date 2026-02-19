@@ -490,7 +490,7 @@
         </div>
         <div class="nav-links">
             <a href="#" class="active" onclick="showTab('image')">🖼️ 图像</a>
-            <a href="#" onclick="showTab('video')" >🎬 视频</a>
+            <a href="#" onclick="showTab('video')" style="display:none;">🎬 视频</a>
             <a href="#" onclick="showTab('history')">📜 历史</a>
         </div>
     </nav>
@@ -505,11 +505,15 @@
                 <div class="model-select-wrapper" id="modelList">
                     <div class="model-card selected" onclick="selectModel('majicmixRealistic_v7.safetensors')">
                         <div class="model-card-name">majicMIX Realistic</div>
-                        <div class="model-card-info">写真模型 · 2.0GB</div>
+                        <div class="model-card-info">📸 写真 · 2.0GB</div>
                     </div>
-                    <div class="model-card" style="opacity:0.5;" onclick="showToast('模型下载中...', true)">
-                        <div class="model-card-name">Realistic Vision V6</div>
-                        <div class="model-card-info">🚧 下载中...</div>
+                    <div class="model-card" onclick="selectModel('Counterfeit-V3.safetensors')">
+                        <div class="model-card-name">Counterfeit V3</div>
+                        <div class="model-card-info">🎭 动漫插画 · 1.8GB</div>
+                    </div>
+                    <div class="model-card" onclick="selectModel('meinaMix_v10.safetensors')">
+                        <div class="model-card-name">MeinaMix</div>
+                        <div class="model-card-info">🌸 动漫美女 · 2.1GB</div>
                     </div>
                 </div>
             </div>
@@ -564,6 +568,33 @@
                     <div class="setting-item">
                         <span class="setting-label">随机种子 <button onclick="document.getElementById('seed').value=Math.floor(Math.random()*1000000000)" style="background:#333;color:#888;border:none;padding:2px 6px;border-radius:4px;font-size:10px;cursor:pointer;">🎲</button></span>
                         <input type="number" class="setting-input" id="seed" placeholder="随机">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 生成模式选择 -->
+            <div class="panel">
+                <div class="panel-title">生成模式</div>
+                <div style="display:flex;gap:10px;">
+                    <button class="mode-btn active" id="modeTxt2Img" onclick="setMode('txt2img')" style="flex:1;padding:12px;background:linear-gradient(135deg,#667eea,#764ba2);border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;">✍️ 文生图</button>
+                    <button class="mode-btn" id="modeImg2Img" onclick="setMode('img2img')" style="flex:1;padding:12px;background:#222;border:1px solid #333;border-radius:8px;color:#888;font-weight:600;cursor:pointer;">🖼️ 图生图</button>
+                </div>
+            </div>
+            
+            <!-- 图生图：上传图片 -->
+            <div class="panel" id="img2imgPanel" style="display:none;">
+                <div class="panel-title">上传图片 (图生图模式)</div>
+                <div style="border:2px dashed #333;border-radius:12px;padding:30px;text-align:center;cursor:pointer;" onclick="document.getElementById('uploadImg').click()">
+                    <div style="font-size:32px;margin-bottom:10px;">📤</div>
+                    <div style="color:#666;">点击或拖拽上传图片</div>
+                    <input type="file" id="uploadImg" accept="image/*" style="display:none;" onchange="handleUpload(this)">
+                </div>
+                <div id="uploadPreview" style="display:none;margin-top:10px;text-align:center;">
+                    <img id="previewSrc" style="max-width:200px;max-height:200px;border-radius:8px;">
+                    <div style="margin-top:10px;">
+                        <label style="color:#888;font-size:12px;">强度 (Denoise):</label>
+                        <input type="range" id="denoiseStrength" min="0.1" max="0.9" step="0.1" value="0.7" style="width:100%;margin-top:5px;">
+                        <span id="denoiseValue" style="color:#667eea;font-size:12px;">0.7</span>
                     </div>
                 </div>
             </div>
@@ -687,6 +718,8 @@
     <script>
         let width = 512, height = 768;
         let selectedModel = 'majicmixRealistic_v7.safetensors';
+        let generateMode = 'txt2img'; // txt2img or img2img
+        let uploadedImage = null;
         let tasks = {};
         let history = JSON.parse(localStorage.getItem('ai-gen-history') || '[]');
         
@@ -734,6 +767,37 @@
             toast.className = 'toast show' + (isError ? ' error' : '');
             setTimeout(() => toast.className = 'toast', 3000);
         }
+        
+        // 切换生成模式
+        function setMode(mode) {
+            generateMode = mode;
+            document.getElementById('modeTxt2Img').className = mode === 'txt2img' ? 'mode-btn active' : 'mode-btn';
+            document.getElementById('modeImg2Img').className = mode === 'img2img' ? 'mode-btn active' : 'mode-btn';
+            document.getElementById('modeTxt2Img').style.background = mode === 'txt2img' ? 'linear-gradient(135deg,#667eea,#764ba2)' : '#222';
+            document.getElementById('modeTxt2Img').style.color = mode === 'txt2img' ? '#fff' : '#888';
+            document.getElementById('modeImg2Img').style.background = mode === 'img2img' ? 'linear-gradient(135deg,#667eea,#764ba2)' : '#222';
+            document.getElementById('modeImg2Img').style.color = mode === 'img2img' ? '#fff' : '#888';
+            document.getElementById('img2imgPanel').style.display = mode === 'img2img' ? 'block' : 'none';
+        }
+        
+        // 处理图片上传
+        function handleUpload(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage = e.target.result;
+                    document.getElementById('previewSrc').src = uploadedImage;
+                    document.getElementById('uploadPreview').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // 强度滑块
+        document.getElementById('denoiseStrength').addEventListener('input', function() {
+            document.getElementById('denoiseValue').textContent = this.value;
+        });
         
         // 加载 Prompt 模板
         function loadPrompts() {
