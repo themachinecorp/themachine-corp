@@ -22,24 +22,31 @@
         .close-btn { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
         
         .history-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 16px; }
-        .history-item { position: relative; aspect-ratio: 1; background: #111; border-radius: 8px; overflow: hidden; }
+        .history-item { position: relative; aspect-ratio: 1; background: #111; border-radius: 8px; overflow: hidden; cursor: pointer; }
         .history-item img { width: 100%; height: 100%; object-fit: cover; }
         .history-item .prompt { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .history-item .time { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 4px; font-size: 10px; }
         
         /* Current Result */
-        .result-area { min-height: 50vh; display: flex; align-items: center; justify-content: center; background: #0a0a0a; }
+        .result-area { min-height: 50vh; display: flex; align-items: center; justify-content: center; background: #0a0a0a; position: relative; }
         .result-area img { max-width: 100%; max-height: 70vh; }
+        .result-placeholder { color: #333; font-size: 14px; text-align: center; padding: 40px; }
         
         /* Tasks */
         .tasks { padding: 12px; }
-        .task { background: #111; border-radius: 12px; padding: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
-        .task-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; background: #222; }
-        .task-info { flex: 1; }
+        .tasks-title { font-size: 12px; color: #666; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .task { background: #111; border-radius: 12px; padding: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; border: 1px solid #222; }
+        .task.completed { border-color: #2d5; }
+        .task.error { border-color: #f44; }
+        .task-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; background: #222; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .task-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+        .task-info { flex: 1; min-width: 0; }
         .task-prompt { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 6px; }
         .task-progress { display: flex; align-items: center; gap: 8px; }
         .progress-bar { flex: 1; height: 4px; background: #333; border-radius: 2px; overflow: hidden; }
         .progress-fill { height: 100%; background: linear-gradient(90deg, #FFD700, #FF6B6B); width: 0%; transition: width 0.3s; }
-        .progress-text { font-size: 12px; color: #888; min-width: 40px; }
+        .progress-text { font-size: 12px; color: #888; min-width: 45px; text-align: right; }
+        .task-status { font-size: 11px; color: #666; margin-top: 4px; }
         
         /* Input Area */
         .input-area { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, #000 50%, transparent); padding: 20px 16px; }
@@ -58,16 +65,23 @@
         .generate-btn:disabled { opacity: 0.5; }
         
         .tips { text-align: center; padding: 10px; color: #444; font-size: 11px; }
+        
+        /* Toast */
+        .toast { position: fixed; bottom: 180px; left: 50%; transform: translateX(-50%); background: #222; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13px; z-index: 300; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        .toast.show { opacity: 1; }
+        .toast.success { background: #2d5; color: #000; }
+        .toast.error { background: #f44; color: #fff; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>✨ AI 生成</h1>
-        <button class="history-btn" onclick="showHistory()">历史</button>
+        <button class="history-btn" onclick="showHistory()">历史 (<span id="historyCount">0</span>)</button>
     </div>
     
     <div class="main">
         <div class="result-area" id="resultArea">
+            <div class="result-placeholder">输入描述，开始生成</div>
             <img id="resultImg" style="display:none">
         </div>
         <div class="tasks" id="tasks"></div>
@@ -102,12 +116,17 @@
         </div>
     </div>
     
-    <div class="tips">支持 Ctrl+Enter 快速生成</div>
+    <div class="tips">支持 Ctrl+Enter 快速生成 · 多个任务同时进行</div>
+    <div class="toast" id="toast"></div>
 
     <script>
         let width = 512, height = 768;
         let tasks = [];
         let history = JSON.parse(localStorage.getItem('ai-history') || '[]');
+        let pollIntervals = {};
+        
+        // Update history count
+        document.getElementById('historyCount').textContent = history.length;
         
         function setRatio(btn, w, h) {
             document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
@@ -124,11 +143,27 @@
             document.getElementById('historyPanel').classList.remove('show');
         }
         
+        function formatTime(ts) {
+            const d = new Date(ts);
+            const now = new Date();
+            const diff = now - d;
+            
+            if (diff < 60000) return '刚刚';
+            if (diff < 3600000) return Math.floor(diff/60000) + '分钟前';
+            if (diff < 86400000) return Math.floor(diff/3600000) + '小时前';
+            return d.toLocaleDateString('zh-CN');
+        }
+        
         function renderHistory() {
             const grid = document.getElementById('historyGrid');
+            if (history.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:#666;padding:40px;">暂无历史记录</div>';
+                return;
+            }
             grid.innerHTML = history.map((item, i) => `
-                <div class="history-item" onclick="showResult('${item.url}', '${item.prompt}')">
+                <div class="history-item" onclick="showResult('${item.url}', '${item.prompt.replace(/'/g, "\\'")}')">
                     <img src="${item.url}">
+                    <div class="time">${formatTime(item.time)}</div>
                     <div class="prompt">${item.prompt}</div>
                 </div>
             `).join('');
@@ -136,52 +171,104 @@
         
         function showResult(url, prompt) {
             const img = document.getElementById('resultImg');
+            const placeholder = document.querySelector('.result-placeholder');
             img.src = url;
             img.style.display = 'block';
+            if (placeholder) placeholder.style.display = 'none';
             hideHistory();
         }
         
-        function addToHistory(url, prompt) {
-            history.unshift({ url, prompt, time: Date.now() });
-            if (history.length > 50) history.pop();
+        function showToast(msg, type = '') {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = 'toast show ' + type;
+            setTimeout(() => toast.className = 'toast', 3000);
+        }
+        
+        function addToHistory(url, prompt, model) {
+            history.unshift({ 
+                url, 
+                prompt, 
+                model,
+                time: Date.now(),
+                width,
+                height
+            });
+            if (history.length > 100) history.pop();
             localStorage.setItem('ai-history', JSON.stringify(history));
+            document.getElementById('historyCount').textContent = history.length;
         }
         
         function renderTasks() {
             const el = document.getElementById('tasks');
-            el.innerHTML = tasks.map((t, i) => `
-                <div class="task">
-                    <img class="task-img" src="${t.preview || ''}" onerror="this.style.display='none'">
-                    <div class="task-info">
-                        <div class="task-prompt">${t.prompt}</div>
-                        <div class="task-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width:${t.progress}%"></div></div>
-                            <span class="progress-text">${t.progress}%</span>
+            const activeTasks = tasks.filter(t => !t.completed && !t.error);
+            
+            if (activeTasks.length === 0 && tasks.filter(t => t.completed || t.error).length === 0) {
+                el.innerHTML = '';
+                return;
+            }
+            
+            el.innerHTML = `
+                <div class="tasks-title">
+                    <span>生成任务 ${activeTasks.length > 0 ? `(${activeTasks.length}进行中)` : ''}</span>
+                    <span>${tasks.length} 个任务</span>
+                </div>
+            ` + tasks.map((t, i) => {
+                let statusText = t.status || '等待中';
+                let taskClass = '';
+                if (t.completed) { taskClass = 'completed'; statusText = '✅ 完成'; }
+                else if (t.error) { taskClass = 'error'; statusText = '❌ ' + (t.errorMsg || '失败'); }
+                
+                const preview = t.preview || (t.completed ? t.resultUrl : '');
+                
+                return `
+                    <div class="task ${taskClass}">
+                        <div class="task-img">
+                            ${preview ? `<img src="${preview}" onerror="this.parentElement.textContent='🖼'">` : '⏳'}
+                        </div>
+                        <div class="task-info">
+                            <div class="task-prompt">${t.prompt}</div>
+                            <div class="task-progress">
+                                <div class="progress-bar"><div class="progress-fill" style="width:${t.progress}%"></div></div>
+                                <span class="progress-text">${t.progress}%</span>
+                            </div>
+                            <div class="task-status">${statusText}</div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
         
         function generate() {
             const prompt = document.getElementById('prompt').value.trim();
             const model = document.getElementById('model').value;
             
-            if (!prompt) { alert('请输入描述'); return; }
+            if (!prompt) { showToast('请输入描述', 'error'); return; }
             
-            const taskId = Date.now();
-            const task = { id: taskId, prompt, progress: 0, preview: '' };
+            const taskId = Date.now() + Math.random();
+            const task = { 
+                id: taskId, 
+                prompt, 
+                model,
+                progress: 0, 
+                preview: '',
+                status: '提交任务...',
+                retries: 0
+            };
             tasks.push(task);
             renderTasks();
-            document.getElementById('generateBtn').disabled = true;
             
             // Clear input
             document.getElementById('prompt').value = '';
             
+            submitTask(task);
+        }
+        
+        function submitTask(task) {
             const workflow = {
                 prompt: {
-                    "3": { inputs: { text: prompt, clip: ["4", 1] }, class_type: "CLIPTextEncode" },
-                    "4": { inputs: { ckpt_name: model }, class_type: "CheckpointLoaderSimple" },
+                    "3": { inputs: { text: task.prompt, clip: ["4", 1] }, class_type: "CLIPTextEncode" },
+                    "4": { inputs: { ckpt_name: task.model }, class_type: "CheckpointLoaderSimple" },
                     "5": { 
                         inputs: { 
                             seed: Math.floor(Math.random() * 1000000000), 
@@ -195,6 +282,9 @@
                 }
             };
             
+            task.status = '提交中...';
+            renderTasks();
+            
             fetch('/prompt', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -202,55 +292,146 @@
             })
             .then(res => res.json())
             .then(data => {
+                if (data.error) {
+                    throw new Error(data.error);
+                }
                 task.promptId = data.prompt_id;
-                task.progress = 10;
+                task.progress = 5;
+                task.status = '生成中...';
                 renderTasks();
-                checkTaskStatus(task);
+                startPolling(task);
             })
             .catch(e => {
-                alert('连接失败: ' + e.message);
-                tasks = tasks.filter(t => t.id !== taskId);
+                console.error('Submit error:', e);
+                task.status = '提交失败';
+                task.error = true;
+                task.errorMsg = e.message || '连接失败';
                 renderTasks();
-                document.getElementById('generateBtn').disabled = false;
+                showToast('提交失败: ' + (e.message || '请检查服务'), 'error');
             });
         }
         
+        function startPolling(task) {
+            // Clear any existing poll for this task
+            if (pollIntervals[task.id]) {
+                clearInterval(pollIntervals[task.id]);
+            }
+            
+            pollIntervals[task.id] = setInterval(() => {
+                checkTaskStatus(task);
+            }, 2000);
+            
+            // Initial check after a short delay
+            setTimeout(() => checkTaskStatus(task), 1000);
+        }
+        
         function checkTaskStatus(task) {
+            if (!task.promptId) return;
+            
             fetch('/history/' + task.promptId)
             .then(res => res.json())
             .then(data => {
                 const result = data[task.promptId];
-                if (result && result.status) {
-                    task.progress = Math.min(95, Math.round((result.status.exec_info?.progress || 0) * 100));
-                    renderTasks();
+                
+                if (!result) {
+                    // Task might not be in history yet
+                    return;
                 }
                 
-                if (result && result.outputs) {
+                // Update progress based on status
+                if (result.status && result.status.exec_info) {
+                    const progress = result.status.exec_info.progress;
+                    if (progress !== undefined) {
+                        task.progress = Math.min(95, Math.round(progress * 100));
+                        task.status = '生成中...';
+                    }
+                }
+                
+                // Check for outputs
+                if (result.outputs) {
                     for (const nodeId in result.outputs) {
                         const node = result.outputs[nodeId];
-                        if (node.images) {
+                        if (node.images && node.images.length > 0) {
                             const img = node.images[0];
                             const url = '/view?filename=' + img.filename + '&type=output';
                             
+                            // Stop polling
+                            if (pollIntervals[task.id]) {
+                                clearInterval(pollIntervals[task.id]);
+                                delete pollIntervals[task.id];
+                            }
+                            
+                            // Update task
+                            task.progress = 100;
+                            task.completed = true;
+                            task.resultUrl = url;
+                            task.status = '完成';
+                            renderTasks();
+                            
                             // Show result
                             showResult(url, task.prompt);
-                            addToHistory(url, task.prompt);
-                            
-                            // Remove from tasks
-                            tasks = tasks.filter(t => t.id !== task.id);
-                            renderTasks();
-                            document.getElementById('generateBtn').disabled = false;
+                            addToHistory(url, task.prompt, task.model);
+                            showToast('生成完成!', 'success');
                             return;
                         }
                     }
                 }
-                setTimeout(() => checkTaskStatus(task), 1500);
+                
+                // Check for errors
+                if (result.status && result.status.status === 'error') {
+                    if (pollIntervals[task.id]) {
+                        clearInterval(pollIntervals[task.id]);
+                        delete pollIntervals[task.id];
+                    }
+                    task.error = true;
+                    task.errorMsg = result.status.error_message || '生成失败';
+                    task.status = '失败';
+                    renderTasks();
+                    showToast('生成失败', 'error');
+                    return;
+                }
+                
+                renderTasks();
             })
-            .catch(() => setTimeout(() => checkTaskStatus(task), 1500));
+            .catch(e => {
+                console.error('Poll error:', e);
+                // Retry logic
+                task.retries = (task.retries || 0) + 1;
+                if (task.retries > 10) {
+                    if (pollIntervals[task.id]) {
+                        clearInterval(pollIntervals[task.id]);
+                        delete pollIntervals[task.id];
+                    }
+                    task.error = true;
+                    task.errorMsg = '超时';
+                    task.status = '超时';
+                    renderTasks();
+                    showToast('任务超时', 'error');
+                }
+            });
         }
         
+        // Keyboard shortcut
         document.getElementById('prompt').addEventListener('keydown', e => {
             if (e.key === 'Enter' && e.ctrlKey) generate();
+        });
+        
+        // Auto-refresh on page show (for morning check)
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                // Refresh - maybe check for new results
+                renderHistory();
+            }
+        });
+        
+        // Check for updates on page load
+        window.addEventListener('load', () => {
+            // Reconnect to any existing tasks
+            tasks.forEach(task => {
+                if (!task.completed && !task.error && task.promptId) {
+                    startPolling(task);
+                }
+            });
         });
     </script>
 </body>
