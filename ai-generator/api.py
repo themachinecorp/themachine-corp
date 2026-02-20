@@ -91,11 +91,13 @@ class APIHandler(SimpleHTTPRequestHandler):
                 self.send_error(400, "No prompt")
                 return
             
-            width = data.get("width", 512)
-            height = data.get("height", 768)
+            width = data.get("width", 768)
+            height = data.get("height", 1024)
             model = data.get("model", "majicmixRealistic_v7.safetensors")
-            steps = data.get("steps", 25)
+            steps = data.get("steps", 30)
             cfg = data.get("cfg", 7)
+            negative_prompt = data.get("negative_prompt", "low quality, blurry, ugly, deformed, bad anatomy, worst quality, low resolution, bad hands, missing fingers")
+            sampler = data.get("sampler", "dpmpp_2m_karras")
             
             # 生成任务 ID
             task_id = str(uuid.uuid4())[:8]
@@ -104,6 +106,8 @@ class APIHandler(SimpleHTTPRequestHandler):
             task = {
                 "id": task_id,
                 "prompt": prompt,
+                "negative_prompt": negative_prompt,
+                "sampler": sampler,
                 "model": model,
                 "width": width,
                 "height": height,
@@ -161,28 +165,42 @@ def execute_generation(task_id):
         # 连接到 ComfyUI API
         conn = http.client.HTTPConnection("127.0.0.1", comfy_port)
         
-        # 构建工作流（简化版）
+        # 构建工作流（优化版）
         seed = int(time.time() * 1000) % 1000000000
+        
+        # 获取参数
+        prompt = task.get("prompt", "")
+        negative_prompt = task.get("negative_prompt", "low quality, blurry, ugly, deformed, bad anatomy, worst quality, low resolution")
+        sampler = task.get("sampler", "dpmpp_2m_karras")
+        steps = task.get("steps", 30)
+        cfg = task.get("cfg", 7)
+        width = task.get("width", 768)
+        height = task.get("height", 1024)
+        model = task.get("model", "majicmixRealistic_v7.safetensors")
         
         workflow = {
             "prompt": {
                 "3": {
-                    "inputs": {"text": task["prompt"], "clip": ["4", 1]},
+                    "inputs": {"text": prompt, "clip": ["4", 1]},
+                    "class_type": "CLIPTextEncode"
+                },
+                "3n": {
+                    "inputs": {"text": negative_prompt, "clip": ["4", 1]},
                     "class_type": "CLIPTextEncode"
                 },
                 "4": {
-                    "inputs": {"ckpt_name": task["model"]},
+                    "inputs": {"ckpt_name": model},
                     "class_type": "CheckpointLoaderSimple"
                 },
                 "5": {
                     "inputs": {
                         "seed": seed,
-                        "steps": 25,
-                        "cfg": 7,
-                        "sampler_name": "euler",
-                        "scheduler": "normal",
+                        "steps": steps,
+                        "cfg": cfg,
+                        "sampler_name": sampler,
+                        "scheduler": "karras",
                         "positive": ["3", 0],
-                        "negative": ["3", 0],
+                        "negative": ["3n", 0],
                         "model": ["4", 0],
                         "latent_image": ["8", 0],
                         "denoise": 1
@@ -191,8 +209,8 @@ def execute_generation(task_id):
                 },
                 "8": {
                     "inputs": {
-                        "width": task["width"],
-                        "height": task["height"],
+                        "width": width,
+                        "height": height,
                         "batch_size": 1
                     },
                     "class_type": "EmptyLatentImage"
