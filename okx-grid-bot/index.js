@@ -9,8 +9,8 @@ const path = require('path');
 
 // ============ 配置 ============
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 15, gridCount: 3, gridSpread: 0.001 },
-    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 15, gridCount: 3, gridSpread: 0.002 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 50, gridCount: 3, gridSpread: 0.002 },
+    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 50, gridCount: 3, gridSpread: 0.003 },
 ];
 
 const CONFIG = {
@@ -422,34 +422,38 @@ class MultiStrategyBot {
         // ============ 趋势/RSI 策略 ============
         // 强买信号且空仓时买入
         if ((signal === 'strong_buy' || signal === 'buy') && this.position <= 0) {
-            const sz = this.getDynamicSize(signal) / price;
+            const orderValue = 50;
+            const sz = orderValue / price;
             const result = await placeOrder(this.instId, 'buy', price, sz, signal);
             if (result.success) {
-                recordTrade(this.symbol, 'buy', sz, price, this.baseOrderValue, signal);
+                recordTrade(this.symbol, 'buy', sz, price, orderValue, signal);
                 this.position = 1;
             }
         }
         
         // 强卖信号且持多仓时卖出
         if ((signal === 'strong_sell' || signal === 'sell') && this.position >= 0) {
-            const sz = this.getDynamicSize(signal) / price;
+            const orderValue = 50;
+            const sz = orderValue / price;
             const result = await placeOrder(this.instId, 'sell', price, sz, signal);
             if (result.success) {
-                recordTrade(this.symbol, 'sell', sz, price, this.baseOrderValue, signal);
+                recordTrade(this.symbol, 'sell', sz, price, orderValue, signal);
                 this.position = -1;
             }
         }
         
-        // ============ 网格策略 ============
+        // 网格策略
         for (const grid of this.grids) {
             // 买单成交且价格回升时卖出
             if (grid.side === 'buy' && !grid.filled && price <= grid.price) {
                 // 只有在非下跌趋势时才执行网格买入
                 if (trend !== 'down' || signal === 'strong_buy') {
-                    const sz = this.baseOrderValue / grid.price;
+                    // 强制使用 50 USDT 订单
+                    const orderValue = 50;
+                    const sz = orderValue / grid.price;
                     const result = await placeOrder(this.instId, 'buy', grid.price, sz, 'grid');
                     if (result.success) {
-                        recordTrade(this.symbol, 'buy', sz, grid.price, this.baseOrderValue, 'grid');
+                        recordTrade(this.symbol, 'buy', sz, grid.price, orderValue, 'grid');
                         grid.filled = true;
                     }
                 }
@@ -459,10 +463,12 @@ class MultiStrategyBot {
             if (grid.side === 'sell' && grid.filled && price >= grid.price) {
                 // 只有在非上涨趋势时才执行网格卖出
                 if (trend !== 'up' || signal === 'strong_sell') {
-                    const sz = this.baseOrderValue / grid.price;
+                    // 强制使用 50 USDT 订单
+                    const orderValue = 50;
+                    const sz = orderValue / grid.price;
                     const result = await placeOrder(this.instId, 'sell', grid.price, sz, 'grid');
                     if (result.success) {
-                        recordTrade(this.symbol, 'sell', sz, grid.price, this.baseOrderValue, 'grid');
+                        recordTrade(this.symbol, 'sell', sz, grid.price, orderValue, 'grid');
                         grid.filled = false;
                     }
                 }
