@@ -5,3 +5,9 @@ crime-ai/
 # Logs
 *.log
 okx-grid-bot/*.log
+
+# AI Models (too large for git)
+ai-generator/models/
+video-ai/ComfyUI/models/
+*.safetensors
+*.ckpt
