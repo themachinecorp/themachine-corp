@@ -490,7 +490,7 @@
         </div>
         <div class="nav-links">
             <a href="#" class="active" onclick="showTab('image')">🖼️ 图像</a>
-            <a href="#" onclick="showTab('video')" style="display:none;">🎬 视频</a>
+            <a href="#" onclick="showTab('video')">🎬 视频</a>
             <a href="#" onclick="showTab('history')">📜 历史</a>
         </div>
     </nav>
@@ -503,6 +503,10 @@
             <div class="panel">
                 <div class="panel-title">模型</div>
                 <div class="model-select-wrapper" id="modelList">
+                    <div class="model-card" onclick="selectModel('sdxl_base_1.0.safetensors')">
+                        <div class="model-card-name">SDXL 1.0 ⭐</div>
+                        <div class="model-card-info">📸 写真 · 5.7GB</div>
+                    </div>
                     <div class="model-card selected" onclick="selectModel('majicmixRealistic_v7.safetensors')">
                         <div class="model-card-name">majicMIX Realistic</div>
                         <div class="model-card-info">📸 写真 · 2.0GB</div>

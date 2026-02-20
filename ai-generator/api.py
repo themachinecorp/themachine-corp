@@ -91,12 +91,12 @@ class APIHandler(SimpleHTTPRequestHandler):
                 self.send_error(400, "No prompt")
                 return
             
-            width = data.get("width", 768)
+            width = data.get("width", 1024)
             height = data.get("height", 1024)
-            model = data.get("model", "majicmixRealistic_v7.safetensors")
+            model = data.get("model", "sdxl_base_1.0.safetensors")
             steps = data.get("steps", 30)
-            cfg = data.get("cfg", 7)
-            negative_prompt = data.get("negative_prompt", "low quality, blurry, ugly, deformed, bad anatomy, worst quality, low resolution, bad hands, missing fingers")
+            cfg = data.get("cfg", 6)
+            negative_prompt = data.get("negative_prompt", "low quality, blurry, ugly, deformed, bad anatomy, worst quality, low resolution, bad hands, missing fingers, watermark, signature")
             sampler = data.get("sampler", "dpmpp_2m_karras")
             
             # 生成任务 ID
