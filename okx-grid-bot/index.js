@@ -9,8 +9,8 @@ const path = require('path');
 
 // ============ 配置 ============
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 5, gridCount: 3, gridSpread: 0.001 },
-    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 5, gridCount: 3, gridSpread: 0.002 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 10, gridCount: 3, gridSpread: 0.001 },
+    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 10, gridCount: 3, gridSpread: 0.002 },
 ];
 
 const CONFIG = {

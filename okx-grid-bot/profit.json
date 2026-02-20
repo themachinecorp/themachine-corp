@@ -2277,8 +2277,44 @@
       "amount": 0.000030343677037680324,
       "price": 65911.59,
       "value": 2
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-20T05:17:15.060Z",
+      "side": "sell",
+      "amount": 0.00007433750416290023,
+      "price": 67260.8,
+      "value": 5,
+      "strategy": "sell"
+    },
+    {
+      "pair": "ETH/USDT",
+      "time": "2026-02-20T05:17:55.059Z",
+      "side": "sell",
+      "amount": 0.002578741883409922,
+      "price": 1938.93,
+      "value": 5,
+      "strategy": "sell"
+    },
+    {
+      "pair": "ETH/USDT",
+      "time": "2026-02-20T05:20:12.178Z",
+      "side": "sell",
+      "amount": 0.005158122237180777,
+      "price": 1938.69,
+      "value": 10,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-20T05:20:32.215Z",
+      "side": "sell",
+      "amount": 0.0001486814188370437,
+      "price": 67257.9,
+      "value": 10,
+      "strategy": "sell"
     }
   ],
-  "totalProfit": -0.009986021962069819,
+  "totalProfit": 29.99001397803793,
   "startTime": 1771265135647
 }
