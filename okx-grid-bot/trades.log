@@ -351,3 +351,1852 @@
 [2026-02-21T16:05:16.193Z] 📥限价买入 0.0002924750555337012 @ 68381.9 buy
 [2026-02-21T16:05:16.465Z]    ✅ 成功! ID: 3328180774023290880
 [2026-02-21T16:05:16.466Z] 💰 BTC/USDT buy buy 0.000292 @ 68381.90, 累计: -119.12 USDT
+[2026-02-21T16:05:33.256Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68387.30 | 波动: 0.5%
+[2026-02-21T16:05:36.229Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68401.50 | 波动: 0.5%
+[2026-02-21T16:06:43.107Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖25 | 价格: 68355.60 | 波动: 0.5%
+[2026-02-21T16:06:46.238Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖18 | 价格: 68342.60 | 波动: 0.5%
+[2026-02-21T16:06:56.312Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68373.20 | 波动: 0.5%
+[2026-02-21T16:06:58.109Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68373.10 | 波动: 0.5%
+[2026-02-21T16:07:06.266Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68333.30 | 波动: 0.5%
+[2026-02-21T16:07:08.056Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖24 | 价格: 68333.30 | 波动: 0.5%
+[2026-02-21T16:07:26.202Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68327.90 | 波动: 0.5%
+[2026-02-21T16:07:31.249Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖27 | 价格: 68309.80 | 波动: 0.5%
+[2026-02-21T16:07:43.160Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68349.90 | 波动: 0.5%
+[2026-02-21T16:07:46.199Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68347.90 | 波动: 0.5%
+[2026-02-21T16:08:36.206Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买71+共振 | 价格: 68370.50 | 波动: 0.5%
+[2026-02-21T16:08:36.206Z] 📥限价卖出 0.00029252382240878744 @ 68370.5 strong_sell
+[2026-02-21T16:08:36.292Z] 📥限价卖出 0.00029252382240878744 @ 68370.5 strong_sell
+[2026-02-21T16:08:36.382Z]    ❌ 失败: undefined
+[2026-02-21T16:08:36.560Z]    ✅ 成功! ID: 3328187488097361920
+[2026-02-21T16:08:36.562Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68370.50, 累计: -99.12 USDT
+[2026-02-21T16:08:38.122Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买73+共振 | 价格: 68382.00 | 波动: 0.5%
+[2026-02-21T16:08:38.122Z] 📥限价卖出 0.0002924746278260361 @ 68382 strong_sell
+[2026-02-21T16:08:38.363Z]    ✅ 成功! ID: 3328187548897992704
+[2026-02-21T16:08:38.364Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68382.00, 累计: -79.12 USDT
+[2026-02-21T16:09:08.168Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68385.60 | 波动: 0.5%
+[2026-02-21T16:09:11.413Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68385.60 | 波动: 0.5%
+[2026-02-21T16:10:36.449Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买71+共振 | 价格: 68402.00 | 波动: 0.5%
+[2026-02-21T16:10:43.229Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买73+共振 | 价格: 68402.10 | 波动: 0.5%
+[2026-02-21T16:11:06.449Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68408.10 | 波动: 0.5%
+[2026-02-21T16:11:08.270Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68399.40 | 波动: 0.5%
+[2026-02-21T16:12:03.361Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖18 | 价格: 68386.80 | 波动: 0.5%
+[2026-02-21T16:12:03.361Z] 📥限价买入 0.0002924540993291103 @ 68386.8 buy
+[2026-02-21T16:12:03.592Z]    ✅ 成功! ID: 3328194435240517632
+[2026-02-21T16:12:03.594Z] 💰 BTC/USDT buy buy 0.000292 @ 68386.80, 累计: -99.12 USDT
+[2026-02-21T16:12:06.485Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖15 | 价格: 68379.30 | 波动: 0.5%
+[2026-02-21T16:12:06.485Z] 📥限价买入 0.0002924861763720892 @ 68379.3 buy
+[2026-02-21T16:12:06.784Z]    ✅ 成功! ID: 3328194542077829120
+[2026-02-21T16:12:06.785Z] 💰 BTC/USDT buy buy 0.000292 @ 68379.30, 累计: -119.12 USDT
+[2026-02-21T16:12:31.811Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68386.10 | 波动: 0.5%
+[2026-02-21T16:12:34.409Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68386.20 | 波动: 0.5%
+[2026-02-21T16:13:13.390Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68409.00 | 波动: 0.5%
+[2026-02-21T16:13:13.390Z] 📥限价卖出 0.0002923591925039103 @ 68409 strong_sell
+[2026-02-21T16:13:13.639Z]    ✅ 成功! ID: 3328196785527152640
+[2026-02-21T16:13:13.640Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68409.00, 累计: -99.12 USDT
+[2026-02-21T16:14:26.607Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68401.00 | 波动: 0.5%
+[2026-02-21T16:14:26.607Z] 📥限价卖出 0.0002923933860616073 @ 68401 strong_sell
+[2026-02-21T16:14:26.867Z]    ✅ 成功! ID: 3328199242785316864
+[2026-02-21T16:14:26.869Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68401.00, 累计: -79.12 USDT
+[2026-02-21T16:14:28.423Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68385.70 | 波动: 0.5%
+[2026-02-21T16:14:31.665Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68378.50 | 波动: 0.5%
+[2026-02-21T16:15:01.594Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖30 | 价格: 68344.10 | 波动: 0.5%
+[2026-02-21T16:15:01.594Z] 📥限价买入 0.0002926368186866167 @ 68344.1 buy
+[2026-02-21T16:15:01.843Z]    ✅ 成功! ID: 3328200416385130496
+[2026-02-21T16:15:01.845Z] 💰 BTC/USDT buy buy 0.000293 @ 68344.10, 累计: -99.12 USDT
+[2026-02-21T16:15:08.457Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68335.00 | 波动: 0.5%
+[2026-02-21T16:15:08.457Z] 📥限价买入 0.000292675788395405 @ 68335 buy
+[2026-02-21T16:15:08.690Z]    ✅ 成功! ID: 3328200645998108672
+[2026-02-21T16:15:08.691Z] 💰 BTC/USDT buy buy 0.000293 @ 68335.00, 累计: -119.12 USDT
+[2026-02-21T16:15:18.450Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68327.90 | 波动: 0.5%
+[2026-02-21T16:15:23.524Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖23 | 价格: 68325.10 | 波动: 0.5%
+[2026-02-21T16:15:43.505Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68332.30 | 波动: 0.5%
+[2026-02-21T16:15:47.667Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68335.00 | 波动: 0.5%
+[2026-02-21T16:15:48.496Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖26 | 价格: 68335.00 | 波动: 0.5%
+[2026-02-21T16:15:53.589Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68336.90 | 波动: 0.5%
+[2026-02-21T16:15:58.581Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68327.70 | 波动: 0.5%
+[2026-02-21T16:16:03.513Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68327.70 | 波动: 0.5%
+[2026-02-21T16:16:51.716Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖26 | 价格: 68287.20 | 波动: 0.5%
+[2026-02-21T16:16:54.679Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖26 | 价格: 68287.20 | 波动: 0.5%
+[2026-02-21T16:17:28.599Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68279.50 | 波动: 0.5%
+[2026-02-21T16:17:31.919Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68278.00 | 波动: 0.5%
+[2026-02-21T16:17:36.753Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖30 | 价格: 68261.90 | 波动: 0.5%
+[2026-02-21T16:17:53.608Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖27 | 价格: 68240.10 | 波动: 0.5%
+[2026-02-21T16:17:58.705Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68249.90 | 波动: 0.5%
+[2026-02-21T16:18:01.809Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68257.10 | 波动: 0.5%
+[2026-02-21T16:18:26.806Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68326.90 | 波动: 0.5%
+[2026-02-21T16:18:26.806Z] 📥限价卖出 0.00029271048445048733 @ 68326.9 strong_sell
+[2026-02-21T16:18:27.023Z]    ✅ 成功! ID: 3328207301083488256
+[2026-02-21T16:18:27.024Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68326.90, 累计: -99.12 USDT
+[2026-02-21T16:18:31.912Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68310.10 | 波动: 0.5%
+[2026-02-21T16:19:01.873Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买71+共振 | 价格: 68296.10 | 波动: 0.5%
+[2026-02-21T16:19:03.681Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买78+共振 | 价格: 68296.10 | 波动: 0.5%
+[2026-02-21T16:19:03.681Z] 📥限价卖出 0.00029284249027396875 @ 68296.1 strong_sell
+[2026-02-21T16:19:03.915Z]    ✅ 成功! ID: 3328208538973593600
+[2026-02-21T16:19:03.916Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68296.10, 累计: -79.12 USDT
+[2026-02-21T16:19:11.799Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68302.90 | 波动: 0.5%
+[2026-02-21T16:19:18.666Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68293.00 | 波动: 0.5%
+[2026-02-21T16:19:41.922Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖15 | 价格: 68270.00 | 波动: 0.5%
+[2026-02-21T16:19:41.922Z] 📥限价买入 0.00029295444558371175 @ 68270 buy
+[2026-02-21T16:19:42.155Z]    ✅ 成功! ID: 3328209821793083392
+[2026-02-21T16:19:42.156Z] 💰 BTC/USDT buy buy 0.000293 @ 68270.00, 累计: -99.12 USDT
+[2026-02-21T16:19:43.678Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖27 | 价格: 68270.00 | 波动: 0.5%
+[2026-02-21T16:19:43.678Z] 📥限价买入 0.00029295444558371175 @ 68270 buy
+[2026-02-21T16:19:43.905Z]    ✅ 成功! ID: 3328209880915992576
+[2026-02-21T16:19:43.908Z] 💰 BTC/USDT buy buy 0.000293 @ 68270.00, 累计: -119.12 USDT
+[2026-02-21T16:20:33.179Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68273.30 | 波动: 0.5%
+[2026-02-21T16:20:33.718Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68275.90 | 波动: 0.5%
+[2026-02-21T16:20:58.733Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买71+共振 | 价格: 68285.50 | 波动: 0.5%
+[2026-02-21T16:20:58.733Z] 📥限价卖出 0.0002928879483931435 @ 68285.5 strong_sell
+[2026-02-21T16:20:59.010Z]    ✅ 成功! ID: 3328212400585400320
+[2026-02-21T16:20:59.011Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68285.50, 累计: -99.12 USDT
+[2026-02-21T16:21:03.753Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68263.40 | 波动: 0.5%
+[2026-02-21T16:21:08.758Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68216.10 | 波动: 0.5%
+[2026-02-21T16:21:08.758Z] 📥限价买入 0.0002931859194530323 @ 68216.1 buy
+[2026-02-21T16:21:08.964Z]    ✅ 成功! ID: 3328212734988869632
+[2026-02-21T16:21:08.966Z] 💰 BTC/USDT buy buy 0.000293 @ 68216.10, 累计: -119.12 USDT
+[2026-02-21T16:21:11.902Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68216.00 | 波动: 0.5%
+[2026-02-21T16:21:13.991Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68218.60 | 波动: 0.5%
+[2026-02-21T16:21:16.888Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68234.80 | 波动: 0.5%
+[2026-02-21T16:21:41.949Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68220.10 | 波动: 0.5%
+[2026-02-21T16:22:08.796Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68204.10 | 波动: 0.5%
+[2026-02-21T16:22:18.825Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68174.50 | 波动: 0.5%
+[2026-02-21T16:22:21.971Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68182.30 | 波动: 0.5%
+[2026-02-21T16:22:26.944Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖25 | 价格: 68182.00 | 波动: 0.5%
+[2026-02-21T16:22:32.013Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68201.10 | 波动: 0.5%
+[2026-02-21T16:23:12.283Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖30 | 价格: 68152.20 | 波动: 0.5%
+[2026-02-21T16:23:13.864Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖24 | 价格: 68143.40 | 波动: 0.5%
+[2026-02-21T16:23:17.013Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68180.00 | 波动: 0.5%
+[2026-02-21T16:23:19.030Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68177.60 | 波动: 0.5%
+[2026-02-21T16:23:57.048Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68146.70 | 波动: 0.5%
+[2026-02-21T16:24:03.064Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68164.00 | 波动: 0.5%
+[2026-02-21T16:24:32.574Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖24 | 价格: 68129.20 | 波动: 0.5%
+[2026-02-21T16:24:42.116Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68138.00 | 波动: 0.5%
+[2026-02-21T16:24:44.136Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68137.90 | 波动: 0.5%
+[2026-02-21T16:24:48.894Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68169.00 | 波动: 0.5%
+[2026-02-21T16:25:39.282Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68167.10 | 波动: 0.5%
+[2026-02-21T16:25:39.282Z] 📥限价卖出 0.0002933966678940427 @ 68167.1 strong_sell
+[2026-02-21T16:25:39.602Z]    ✅ 成功! ID: 3328221815086604288
+[2026-02-21T16:25:39.603Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68167.10, 累计: -99.12 USDT
+[2026-02-21T16:25:50.016Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68155.00 | 波动: 0.5%
+[2026-02-21T16:26:03.990Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖24 | 价格: 68138.00 | 波动: 0.5%
+[2026-02-21T16:26:03.991Z] 📥限价买入 0.0002935219701194634 @ 68138 buy
+[2026-02-21T16:26:04.222Z]    ✅ 成功! ID: 3328222642136244224
+[2026-02-21T16:26:04.224Z] 💰 BTC/USDT buy buy 0.000294 @ 68138.00, 累计: -119.12 USDT
+[2026-02-21T16:26:19.018Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68167.10 | 波动: 0.5%
+[2026-02-21T16:27:22.298Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买89+共振 | 价格: 68188.40 | 波动: 0.5%
+[2026-02-21T16:27:22.298Z] 📥限价卖出 0.00029330501962210586 @ 68188.4 strong_sell
+[2026-02-21T16:27:22.547Z]    ✅ 成功! ID: 3328225270387793920
+[2026-02-21T16:27:22.548Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68188.40, 累计: -99.12 USDT
+[2026-02-21T16:27:24.079Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买92+共振 | 价格: 68188.50 | 波动: 0.5%
+[2026-02-21T16:27:24.079Z] 📥限价卖出 0.00029330458948356394 @ 68188.5 strong_sell
+[2026-02-21T16:27:24.322Z]    ✅ 成功! ID: 3328225329644920832
+[2026-02-21T16:27:24.324Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68188.50, 累计: -79.12 USDT
+[2026-02-21T16:28:22.544Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68205.00 | 波动: 0.5%
+[2026-02-21T16:28:24.196Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68205.00 | 波动: 0.5%
+[2026-02-21T16:29:32.352Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买75 | 价格: 68240.10 | 波动: 0.5%
+[2026-02-21T16:29:39.153Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买79 | 价格: 68250.00 | 波动: 0.5%
+[2026-02-21T16:30:27.395Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68263.00 | 波动: 0.5%
+[2026-02-21T16:30:35.233Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68254.60 | 波动: 0.5%
+[2026-02-21T16:31:02.649Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖17+共振 | 价格: 68219.00 | 波动: 0.5%
+[2026-02-21T16:31:02.650Z] 📥限价买入 0.00029317345607528695 @ 68219 strong_buy
+[2026-02-21T16:31:02.876Z]    ✅ 成功! ID: 3328232663570014208
+[2026-02-21T16:31:02.878Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68219.00, 累计: -99.12 USDT
+[2026-02-21T16:31:04.263Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖12+共振 | 价格: 68211.00 | 波动: 0.5%
+[2026-02-21T16:31:04.263Z] 📥限价买入 0.0002932078403776517 @ 68211 strong_buy
+[2026-02-21T16:31:04.525Z]    ✅ 成功! ID: 3328232718397956096
+[2026-02-21T16:31:04.526Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68211.00, 累计: -119.12 USDT
+[2026-02-21T16:31:07.385Z] 📥限价买入 0.00029330566483228417 @ 68188.25 grid
+[2026-02-21T16:31:08.640Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:31:17.500Z] 📥限价买入 0.00029330566483228417 @ 68188.25 grid
+[2026-02-21T16:31:17.981Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:31:22.461Z] 📥限价买入 0.00029330566483228417 @ 68188.25 grid
+[2026-02-21T16:31:22.710Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:31:27.432Z] 📥限价买入 0.00029330566483228417 @ 68188.25 grid
+[2026-02-21T16:31:27.684Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:31:32.407Z] 📥限价买入 0.00029330566483228417 @ 68188.25 grid
+[2026-02-21T16:31:32.658Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:31:37.507Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖16 | 价格: 68178.10 | 波动: 0.5%
+[2026-02-21T16:31:39.284Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖4 | 价格: 68174.30 | 波动: 0.5%
+[2026-02-21T16:32:17.493Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68149.30 | 波动: 0.5%
+[2026-02-21T16:32:23.526Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖10 | 价格: 68143.40 | 波动: 0.5%
+[2026-02-21T16:32:27.511Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68190.10 | 波动: 0.5%
+[2026-02-21T16:32:29.295Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68184.00 | 波动: 0.5%
+[2026-02-21T16:32:59.405Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买78+共振 | 价格: 68183.10 | 波动: 0.5%
+[2026-02-21T16:32:59.405Z] 📥限价卖出 0.00029332781877034045 @ 68183.1 strong_sell
+[2026-02-21T16:32:59.632Z]    ✅ 成功! ID: 3328236580982841344
+[2026-02-21T16:32:59.634Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68183.10, 累计: -99.12 USDT
+[2026-02-21T16:33:07.507Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68199.00 | 波动: 0.5%
+[2026-02-21T16:33:07.507Z] 📥限价卖出 0.0002932594319564803 @ 68199 strong_sell
+[2026-02-21T16:33:07.734Z]    ✅ 成功! ID: 3328236852807294976
+[2026-02-21T16:33:07.735Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68199.00, 累计: -79.12 USDT
+[2026-02-21T16:33:09.440Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68185.30 | 波动: 0.5%
+[2026-02-21T16:33:12.534Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68185.30 | 波动: 0.5%
+[2026-02-21T16:33:20.420Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68187.90 | 波动: 0.5%
+[2026-02-21T16:33:37.550Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68188.00 | 波动: 0.5%
+[2026-02-21T16:33:42.547Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68187.90 | 波动: 0.5%
+[2026-02-21T16:33:44.356Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68188.00 | 波动: 0.5%
+[2026-02-21T16:34:19.409Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买85+共振 | 价格: 68199.90 | 波动: 0.5%
+[2026-02-21T16:34:27.600Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买80+共振 | 价格: 68202.90 | 波动: 0.5%
+[2026-02-21T16:35:02.611Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买82 | 价格: 68228.10 | 波动: 0.5%
+[2026-02-21T16:35:09.347Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买87 | 价格: 68225.60 | 波动: 0.5%
+[2026-02-21T16:35:42.643Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68240.60 | 波动: 0.5%
+[2026-02-21T16:35:47.650Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买76 | 价格: 68240.60 | 波动: 0.5%
+[2026-02-21T16:36:02.722Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68240.00 | 波动: 0.5%
+[2026-02-21T16:36:07.645Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买81 | 价格: 68265.70 | 波动: 0.5%
+[2026-02-21T16:36:44.538Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68283.10 | 波动: 0.5%
+[2026-02-21T16:36:47.664Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68283.30 | 波动: 0.5%
+[2026-02-21T16:36:49.520Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买79 | 价格: 68283.30 | 波动: 0.5%
+[2026-02-21T16:36:53.717Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买81 | 价格: 68294.20 | 波动: 0.5%
+[2026-02-21T16:38:09.620Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68336.00 | 波动: 0.5%
+[2026-02-21T16:38:17.777Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68327.80 | 波动: 0.5%
+[2026-02-21T16:40:12.808Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买78 | 价格: 68363.50 | 波动: 0.5%
+[2026-02-21T16:40:14.718Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买78 | 价格: 68363.50 | 波动: 0.5%
+[2026-02-21T16:40:17.995Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68350.00 | 波动: 0.5%
+[2026-02-21T16:40:19.667Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68340.10 | 波动: 0.5%
+[2026-02-21T16:41:22.999Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖26+共振 | 价格: 68328.20 | 波动: 0.5%
+[2026-02-21T16:41:22.999Z] 📥限价买入 0.0002927049153936442 @ 68328.2 strong_buy
+[2026-02-21T16:41:24.321Z]    ✅ 成功! ID: 3328253515602681856
+[2026-02-21T16:41:24.322Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68328.20, 累计: -99.12 USDT
+[2026-02-21T16:41:27.980Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68328.90 | 波动: 0.5%
+[2026-02-21T16:41:29.849Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖27+共振 | 价格: 68329.00 | 波动: 0.5%
+[2026-02-21T16:41:29.849Z] 📥限价买入 0.00029270148838706845 @ 68329 strong_buy
+[2026-02-21T16:41:30.078Z]    ✅ 成功! ID: 3328253708440002560
+[2026-02-21T16:41:30.079Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68329.00, 累计: -119.12 USDT
+[2026-02-21T16:41:34.787Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68328.90 | 波动: 0.5%
+[2026-02-21T16:42:27.993Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买87 | 价格: 68338.00 | 波动: 0.5%
+[2026-02-21T16:42:27.993Z] 📥限价卖出 0.00029266294009189616 @ 68338 sell
+[2026-02-21T16:42:28.221Z]    ✅ 成功! ID: 3328255659697332224
+[2026-02-21T16:42:28.222Z] 💰 BTC/USDT sell sell 0.000293 @ 68338.00, 累计: -99.12 USDT
+[2026-02-21T16:42:29.801Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买85 | 价格: 68337.90 | 波动: 0.5%
+[2026-02-21T16:42:29.802Z] 📥限价卖出 0.0002926633683505054 @ 68337.9 sell
+[2026-02-21T16:42:30.023Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:42:34.902Z] 📥限价卖出 0.0002926633683505054 @ 68337.9 sell
+[2026-02-21T16:42:35.207Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:42:39.877Z] 📥限价卖出 0.0002926633683505054 @ 68337.9 sell
+[2026-02-21T16:42:40.113Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:42:44.856Z] 📥限价卖出 0.0002926633683505054 @ 68337.9 sell
+[2026-02-21T16:42:46.139Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:42:48.089Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68338.00 | 波动: 0.5%
+[2026-02-21T16:42:49.953Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68338.00 | 波动: 0.5%
+[2026-02-21T16:42:59.906Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68340.90 | 波动: 0.5%
+[2026-02-21T16:42:59.907Z] 📥限价卖出 0.00029265052113741554 @ 68340.9 sell
+[2026-02-21T16:43:00.138Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:43:03.259Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买72 | 价格: 68340.90 | 波动: 0.5%
+[2026-02-21T16:43:04.917Z] 📥限价卖出 0.00029265052113741554 @ 68340.9 sell
+[2026-02-21T16:43:05.185Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:43:09.990Z] 📥限价卖出 0.0002926500929164045 @ 68341 sell
+[2026-02-21T16:43:10.288Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:43:14.950Z] 📥限价卖出 0.0002925863019870999 @ 68355.9 sell
+[2026-02-21T16:43:15.193Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:43:19.931Z] 📥限价卖出 0.0002925867300214466 @ 68355.8 sell
+[2026-02-21T16:43:20.210Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:43:24.949Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68341.00 | 波动: 0.5%
+[2026-02-21T16:43:28.306Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68340.70 | 波动: 0.5%
+[2026-02-21T16:44:28.101Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖19+共振 | 价格: 68332.10 | 波动: 0.5%
+[2026-02-21T16:44:28.101Z] 📥限价买入 0.0002926882094945128 @ 68332.1 strong_buy
+[2026-02-21T16:44:28.319Z]    ✅ 成功! ID: 3328259689920159744
+[2026-02-21T16:44:28.320Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68332.10, 累计: -119.12 USDT
+[2026-02-21T16:44:29.995Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖20+共振 | 价格: 68332.00 | 波动: 0.5%
+[2026-02-21T16:44:39.538Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68332.10 | 波动: 0.5%
+[2026-02-21T16:44:41.033Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68332.00 | 波动: 0.5%
+[2026-02-21T16:45:00.034Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买70 | 价格: 68362.00 | 波动: 0.5%
+[2026-02-21T16:45:00.034Z] 📥限价卖出 0.000292560194259969 @ 68362 sell
+[2026-02-21T16:45:00.311Z]    ✅ 成功! ID: 3328260762655350784
+[2026-02-21T16:45:00.313Z] 💰 BTC/USDT sell sell 0.000293 @ 68362.00, 累计: -99.12 USDT
+[2026-02-21T16:45:03.180Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买77 | 价格: 68350.00 | 波动: 0.5%
+[2026-02-21T16:45:03.180Z] 📥限价卖出 0.0002926115581565472 @ 68350 sell
+[2026-02-21T16:45:03.441Z]    ✅ 成功! ID: 3328260867949158400
+[2026-02-21T16:45:03.443Z] 💰 BTC/USDT sell sell 0.000293 @ 68350.00, 累计: -79.12 USDT
+[2026-02-21T16:45:04.971Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68344.10 | 波动: 0.5%
+[2026-02-21T16:45:14.166Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68332.10 | 波动: 0.5%
+[2026-02-21T16:45:58.216Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖8+共振 | 价格: 68332.10 | 波动: 0.5%
+[2026-02-21T16:45:58.216Z] 📥限价买入 0.0002926882094945128 @ 68332.1 strong_buy
+[2026-02-21T16:45:58.459Z]    ✅ 成功! ID: 3328262714013343744
+[2026-02-21T16:45:58.460Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68332.10, 累计: -99.12 USDT
+[2026-02-21T16:46:00.137Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖26+共振 | 价格: 68332.10 | 波动: 0.5%
+[2026-02-21T16:46:00.137Z] 📥限价买入 0.0002926882094945128 @ 68332.1 strong_buy
+[2026-02-21T16:46:00.512Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:46:05.039Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68339.90 | 波动: 0.5%
+[2026-02-21T16:46:10.056Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖21+共振 | 价格: 68340.00 | 波动: 0.5%
+[2026-02-21T16:46:10.056Z] 📥限价买入 0.000292654375182909 @ 68340 strong_buy
+[2026-02-21T16:46:10.268Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:46:13.204Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68340.00 | 波动: 0.5%
+[2026-02-21T16:46:15.095Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68339.90 | 波动: 0.5%
+[2026-02-21T16:46:18.171Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买96 | 价格: 68339.90 | 波动: 0.5%
+[2026-02-21T16:46:18.171Z] 📥限价卖出 0.0002926548034164522 @ 68339.9 sell
+[2026-02-21T16:46:18.427Z]    ✅ 成功! ID: 3328263384229568512
+[2026-02-21T16:46:18.429Z] 💰 BTC/USDT sell sell 0.000293 @ 68339.90, 累计: -79.12 USDT
+[2026-02-21T16:46:20.063Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买95 | 价格: 68339.90 | 波动: 0.5%
+[2026-02-21T16:47:13.221Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68342.00 | 波动: 0.5%
+[2026-02-21T16:47:15.125Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68342.10 | 波动: 0.5%
+[2026-02-21T16:47:25.075Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买72 | 价格: 68345.00 | 波动: 0.5%
+[2026-02-21T16:47:28.237Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68345.10 | 波动: 0.5%
+[2026-02-21T16:47:43.253Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68345.00 | 波动: 0.5%
+[2026-02-21T16:47:48.295Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买81 | 价格: 68350.00 | 波动: 0.5%
+[2026-02-21T16:47:55.138Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68339.10 | 波动: 0.5%
+[2026-02-21T16:47:58.286Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68339.10 | 波动: 0.5%
+[2026-02-21T16:48:28.268Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68314.70 | 波动: 0.5%
+[2026-02-21T16:48:28.268Z] 📥限价买入 0.00029276275823505044 @ 68314.7 strong_buy
+[2026-02-21T16:48:28.503Z]    ✅ 成功! ID: 3328267748889419776
+[2026-02-21T16:48:28.504Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68314.70, 累计: -99.12 USDT
+[2026-02-21T16:48:31.162Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖27+共振 | 价格: 68313.00 | 波动: 0.5%
+[2026-02-21T16:48:31.162Z] 📥限价买入 0.00029277004376912155 @ 68313 strong_buy
+[2026-02-21T16:48:31.602Z]    ✅ 成功! ID: 3328267852773941248
+[2026-02-21T16:48:31.603Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68313.00, 累计: -119.12 USDT
+[2026-02-21T16:48:50.158Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68319.00 | 波动: 0.5%
+[2026-02-21T16:49:00.453Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖21+共振 | 价格: 68321.20 | 波动: 0.5%
+[2026-02-21T16:49:33.309Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖20 | 价格: 68319.00 | 波动: 0.5%
+[2026-02-21T16:49:35.165Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖21 | 价格: 68319.10 | 波动: 0.5%
+[2026-02-21T16:49:40.166Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买79+共振 | 价格: 68319.90 | 波动: 0.5%
+[2026-02-21T16:49:40.166Z] 📥限价卖出 0.0002927404753227098 @ 68319.9 strong_sell
+[2026-02-21T16:49:40.410Z]    ✅ 成功! ID: 3328270161587298304
+[2026-02-21T16:49:40.413Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68319.90, 累计: -99.12 USDT
+[2026-02-21T16:49:43.386Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68321.10 | 波动: 0.5%
+[2026-02-21T16:49:43.386Z] 📥限价卖出 0.0002927353335938678 @ 68321.1 strong_sell
+[2026-02-21T16:49:43.623Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:49:48.370Z] 📥限价卖出 0.00029273447665662097 @ 68321.3 strong_sell
+[2026-02-21T16:49:48.656Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:49:53.377Z] 📥限价卖出 0.00029273447665662097 @ 68321.3 strong_sell
+[2026-02-21T16:49:53.593Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:49:58.353Z] 📥限价卖出 0.00029273447665662097 @ 68321.3 strong_sell
+[2026-02-21T16:49:58.597Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:00.197Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68321.20 | 波动: 0.5%
+[2026-02-21T16:50:03.381Z] 📥限价卖出 0.00029269334956805783 @ 68330.9 strong_sell
+[2026-02-21T16:50:03.636Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:05.205Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买89+共振 | 价格: 68338.10 | 波动: 0.5%
+[2026-02-21T16:50:08.380Z] 📥限价卖出 0.0002926582293299151 @ 68339.1 strong_sell
+[2026-02-21T16:50:08.605Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:13.398Z] 📥限价卖出 0.0002926419569552946 @ 68342.9 strong_sell
+[2026-02-21T16:50:13.619Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:15.210Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买99 | 价格: 68342.90 | 波动: 0.5%
+[2026-02-21T16:50:18.404Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买94 | 价格: 68355.60 | 波动: 0.5%
+[2026-02-21T16:50:18.404Z] 📥限价卖出 0.0002925875860938972 @ 68355.6 sell
+[2026-02-21T16:50:23.443Z] 📥限价卖出 0.000292598715491639 @ 68353 sell
+[2026-02-21T16:50:23.699Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:28.400Z] 📥限价卖出 0.00029260214009205264 @ 68352.2 sell
+[2026-02-21T16:50:28.660Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:33.519Z] 📥限价卖出 0.00029260171201261697 @ 68352.3 sell
+[2026-02-21T16:50:33.555Z]    ❌ 失败: undefined
+[2026-02-21T16:50:33.774Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:38.391Z] 📥限价卖出 0.00029260171201261697 @ 68352.3 sell
+[2026-02-21T16:50:38.623Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:48.379Z] 📥限价卖出 0.0002926115581565472 @ 68350 sell
+[2026-02-21T16:50:48.589Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:53.398Z] 📥限价卖出 0.0002926115581565472 @ 68350 sell
+[2026-02-21T16:50:53.617Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:58.304Z] 📥限价卖出 0.0002926115581565472 @ 68350 sell
+[2026-02-21T16:50:58.368Z] 📥限价卖出 0.0002926115581565472 @ 68350 sell
+[2026-02-21T16:50:58.523Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:50:58.614Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:51:03.463Z] 📥限价卖出 0.0002926115581565472 @ 68350 sell
+[2026-02-21T16:51:03.680Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:51:08.446Z] 📥限价卖出 0.0002926119862647934 @ 68349.9 sell
+[2026-02-21T16:51:08.685Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:51:13.403Z] 📥限价卖出 0.0002926115581565472 @ 68350 sell
+[2026-02-21T16:51:13.610Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:51:18.426Z] 📥限价卖出 0.0002926115581565472 @ 68350 sell
+[2026-02-21T16:51:18.648Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:51:23.431Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68350.10 | 波动: 0.5%
+[2026-02-21T16:51:28.477Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖5+共振 | 价格: 68350.00 | 波动: 0.5%
+[2026-02-21T16:51:30.291Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖24+共振 | 价格: 68350.00 | 波动: 0.5%
+[2026-02-21T16:51:30.291Z] 📥限价买入 0.0002926115581565472 @ 68350 strong_buy
+[2026-02-21T16:51:30.502Z]    ✅ 成功! ID: 3328273855997370368
+[2026-02-21T16:51:30.504Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68350.00, 累计: -119.12 USDT
+[2026-02-21T16:51:35.289Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买78 | 价格: 68362.00 | 波动: 0.5%
+[2026-02-21T16:51:35.289Z] 📥限价卖出 0.000292560194259969 @ 68362 sell
+[2026-02-21T16:51:38.468Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买83 | 价格: 68362.00 | 波动: 0.5%
+[2026-02-21T16:51:38.468Z] 📥限价卖出 0.000292560194259969 @ 68362 sell
+[2026-02-21T16:51:38.671Z]    ✅ 成功! ID: 3328274130573287424
+[2026-02-21T16:51:38.673Z] 💰 BTC/USDT sell sell 0.000293 @ 68362.00, 累计: -99.12 USDT
+[2026-02-21T16:51:41.365Z] 📥限价卖出 0.000292560194259969 @ 68362 sell
+[2026-02-21T16:51:41.577Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:51:45.326Z] 📥限价卖出 0.000292560194259969 @ 68362 sell
+[2026-02-21T16:51:45.584Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:51:50.299Z] 📥限价卖出 0.00029256062221793134 @ 68361.9 sell
+[2026-02-21T16:51:50.459Z]    ❌ 失败: undefined
+[2026-02-21T16:51:50.541Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:51:55.389Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68357.10 | 波动: 0.5%
+[2026-02-21T16:52:05.286Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买70 | 价格: 68358.20 | 波动: 0.5%
+[2026-02-21T16:52:05.287Z] 📥限价卖出 0.00029257645754276736 @ 68358.2 sell
+[2026-02-21T16:52:05.528Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:52:10.328Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68358.10 | 波动: 0.5%
+[2026-02-21T16:52:15.430Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68358.90 | 波动: 0.5%
+[2026-02-21T16:52:15.430Z] 📥限价卖出 0.0002925734615390242 @ 68358.9 sell
+[2026-02-21T16:52:15.716Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:52:20.364Z] 📥限价卖出 0.0002925734615390242 @ 68358.9 sell
+[2026-02-21T16:52:20.586Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:52:25.335Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68357.10 | 波动: 0.5%
+[2026-02-21T16:52:28.543Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68357.00 | 波动: 0.5%
+[2026-02-21T16:52:45.488Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68357.00 | 波动: 0.5%
+[2026-02-21T16:52:48.523Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖24+共振 | 价格: 68357.10 | 波动: 0.5%
+[2026-02-21T16:52:48.523Z] 📥限价买入 0.00029258116567262214 @ 68357.1 strong_buy
+[2026-02-21T16:52:48.751Z]    ✅ 成功! ID: 3328276481765892096
+[2026-02-21T16:52:48.753Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68357.10, 累计: -119.12 USDT
+[2026-02-21T16:53:03.512Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68357.00 | 波动: 0.5%
+[2026-02-21T16:53:05.360Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68357.00 | 波动: 0.5%
+[2026-02-21T16:53:18.526Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买80 | 价格: 68364.90 | 波动: 0.5%
+[2026-02-21T16:53:18.526Z] 📥限价卖出 0.000292547784023673 @ 68364.9 sell
+[2026-02-21T16:53:18.766Z]    ✅ 成功! ID: 3328277488600178688
+[2026-02-21T16:53:18.767Z] 💰 BTC/USDT sell sell 0.000293 @ 68364.90, 累计: -99.12 USDT
+[2026-02-21T16:53:20.352Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买81 | 价格: 68364.90 | 波动: 0.5%
+[2026-02-21T16:53:20.352Z] 📥限价卖出 0.000292547784023673 @ 68364.9 sell
+[2026-02-21T16:53:20.605Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:53:25.403Z] 📥限价卖出 0.000292547784023673 @ 68364.9 sell
+[2026-02-21T16:53:25.653Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:53:28.540Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68359.00 | 波动: 0.5%
+[2026-02-21T16:53:30.375Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68359.00 | 波动: 0.5%
+[2026-02-21T16:54:28.588Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68361.00 | 波动: 0.5%
+[2026-02-21T16:54:28.588Z] 📥限价买入 0.0002925644738959348 @ 68361 strong_buy
+[2026-02-21T16:54:28.833Z]    ✅ 成功! ID: 3328279839591456768
+[2026-02-21T16:54:28.835Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68361.00, 累计: -119.12 USDT
+[2026-02-21T16:54:30.525Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68361.00 | 波动: 0.5%
+[2026-02-21T16:54:38.826Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68357.10 | 波动: 0.5%
+[2026-02-21T16:54:43.559Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖18+共振 | 价格: 68350.00 | 波动: 0.5%
+[2026-02-21T16:54:45.430Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68355.90 | 波动: 0.5%
+[2026-02-21T16:54:48.618Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68356.10 | 波动: 0.5%
+[2026-02-21T16:55:08.617Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68339.00 | 波动: 0.5%
+[2026-02-21T16:55:10.452Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68339.10 | 波动: 0.5%
+[2026-02-21T16:55:33.658Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖17 | 价格: 68326.00 | 波动: 0.5%
+[2026-02-21T16:55:35.488Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖11 | 价格: 68319.20 | 波动: 0.5%
+[2026-02-21T16:56:20.518Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68330.70 | 波动: 0.5%
+[2026-02-21T16:56:23.693Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68330.70 | 波动: 0.5%
+[2026-02-21T16:56:38.733Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买78+共振 | 价格: 68344.10 | 波动: 0.5%
+[2026-02-21T16:56:38.733Z] 📥限价卖出 0.0002926368186866167 @ 68344.1 strong_sell
+[2026-02-21T16:56:38.966Z]    ✅ 成功! ID: 3328284206398791680
+[2026-02-21T16:56:38.967Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68344.10, 累计: -99.12 USDT
+[2026-02-21T16:56:41.547Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买75+共振 | 价格: 68344.00 | 波动: 0.5%
+[2026-02-21T16:56:41.547Z] 📥限价卖出 0.00029263724686878144 @ 68344 strong_sell
+[2026-02-21T16:56:41.772Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:56:45.541Z] 📥限价卖出 0.0002925944348538491 @ 68354 strong_sell
+[2026-02-21T16:56:45.756Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:56:48.693Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68344.50 | 波动: 0.5%
+[2026-02-21T16:56:50.596Z] 📥限价卖出 0.0002926368186866167 @ 68344.1 strong_sell
+[2026-02-21T16:56:50.829Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:56:55.541Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68335.10 | 波动: 0.5%
+[2026-02-21T16:57:53.772Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖22 | 价格: 68326.00 | 波动: 0.5%
+[2026-02-21T16:57:53.772Z] 📥限价买入 0.0002927143400755203 @ 68326 buy
+[2026-02-21T16:57:53.989Z]    ✅ 成功! ID: 3328286723719389184
+[2026-02-21T16:57:53.991Z] 💰 BTC/USDT buy buy 0.000293 @ 68326.00, 累计: -119.12 USDT
+[2026-02-21T16:57:55.647Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖23 | 价格: 68326.10 | 波动: 0.5%
+[2026-02-21T16:58:05.640Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68326.10 | 波动: 0.5%
+[2026-02-21T16:58:08.760Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68326.10 | 波动: 0.5%
+[2026-02-21T16:58:40.669Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买78+共振 | 价格: 68332.00 | 波动: 0.5%
+[2026-02-21T16:58:40.669Z] 📥限价卖出 0.00029268863782707955 @ 68332 strong_sell
+[2026-02-21T16:58:40.918Z]    ✅ 成功! ID: 3328288298294665216
+[2026-02-21T16:58:40.920Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68332.00, 累计: -99.12 USDT
+[2026-02-21T16:58:43.841Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买77+共振 | 价格: 68332.00 | 波动: 0.5%
+[2026-02-21T16:58:43.841Z] 📥限价卖出 0.00029268863782707955 @ 68332 strong_sell
+[2026-02-21T16:58:44.074Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:58:45.809Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68331.90 | 波动: 0.5%
+[2026-02-21T16:58:48.859Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68326.10 | 波动: 0.5%
+[2026-02-21T16:59:33.859Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买73+共振 | 价格: 68333.60 | 波动: 0.5%
+[2026-02-21T16:59:33.859Z] 📥限价卖出 0.0002926817846564501 @ 68333.6 strong_sell
+[2026-02-21T16:59:34.074Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T16:59:38.864Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68328.00 | 波动: 0.5%
+[2026-02-21T17:00:00.763Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买76+共振 | 价格: 68333.00 | 波动: 0.5%
+[2026-02-21T17:00:05.729Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68331.30 | 波动: 0.5%
+[2026-02-21T17:00:15.748Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68310.40 | 波动: 0.5%
+[2026-02-21T17:00:15.748Z] 📥限价买入 0.0002927811870520448 @ 68310.4 buy
+[2026-02-21T17:00:15.968Z]    ✅ 成功! ID: 3328291487744090114
+[2026-02-21T17:00:15.969Z] 💰 BTC/USDT buy buy 0.000293 @ 68310.40, 累计: -119.12 USDT
+[2026-02-21T17:00:20.769Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68327.40 | 波动: 0.5%
+[2026-02-21T17:01:25.829Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买75+共振 | 价格: 68345.90 | 波动: 0.5%
+[2026-02-21T17:01:25.829Z] 📥限价卖出 0.0002926291116219115 @ 68345.9 strong_sell
+[2026-02-21T17:01:26.056Z]    ✅ 成功! ID: 3328293839674892288
+[2026-02-21T17:01:26.058Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68345.90, 累计: -99.12 USDT
+[2026-02-21T17:01:30.813Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68344.10 | 波动: 0.5%
+[2026-02-21T17:01:38.972Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买70+共振 | 价格: 68350.20 | 波动: 0.5%
+[2026-02-21T17:01:38.972Z] 📥限价卖出 0.0002926107019438129 @ 68350.2 strong_sell
+[2026-02-21T17:01:39.210Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:01:40.798Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买73+共振 | 价格: 68355.50 | 波动: 0.5%
+[2026-02-21T17:01:43.963Z] 📥限价卖出 0.0002925880141320011 @ 68355.5 strong_sell
+[2026-02-21T17:01:44.189Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:01:48.966Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买86 | 价格: 68355.50 | 波动: 0.5%
+[2026-02-21T17:01:48.966Z] 📥限价卖出 0.0002925880141320011 @ 68355.5 sell
+[2026-02-21T17:01:49.198Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:01:50.801Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买73 | 价格: 68355.50 | 波动: 0.5%
+[2026-02-21T17:01:53.988Z] 📥限价卖出 0.0002925982874222237 @ 68353.1 sell
+[2026-02-21T17:01:54.209Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:01:59.019Z] 📥限价卖出 0.0002925982874222237 @ 68353.1 sell
+[2026-02-21T17:01:59.259Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:02:03.987Z] 📥限价卖出 0.000292598715491639 @ 68353 sell
+[2026-02-21T17:02:04.212Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:02:08.985Z] 📥限价卖出 0.00029257003760987835 @ 68359.7 sell
+[2026-02-21T17:02:09.205Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:02:14.103Z] 📥限价卖出 0.00029257003760987835 @ 68359.7 sell
+[2026-02-21T17:02:14.333Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:02:19.004Z] 📥限价卖出 0.0002925696096243699 @ 68359.8 sell
+[2026-02-21T17:02:19.221Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:02:24.032Z] 📥限价卖出 0.0002925858739540055 @ 68356 sell
+[2026-02-21T17:02:24.249Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:02:29.023Z] 📥限价卖出 0.00029258544592216344 @ 68356.1 sell
+[2026-02-21T17:02:29.237Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:02:33.992Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68356.10 | 波动: 0.5%
+[2026-02-21T17:02:35.840Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68356.00 | 波动: 0.5%
+[2026-02-21T17:03:05.922Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖28+共振 | 价格: 68340.90 | 波动: 0.5%
+[2026-02-21T17:03:05.922Z] 📥限价买入 0.00029265052113741554 @ 68340.9 strong_buy
+[2026-02-21T17:03:06.138Z]    ✅ 成功! ID: 3328297198171545600
+[2026-02-21T17:03:06.140Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68340.90, 累计: -119.12 USDT
+[2026-02-21T17:03:09.045Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖24+共振 | 价格: 68337.00 | 波动: 0.5%
+[2026-02-21T17:04:15.942Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68337.90 | 波动: 0.5%
+[2026-02-21T17:04:19.128Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68337.90 | 波动: 0.5%
+[2026-02-21T17:04:24.136Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买75 | 价格: 68342.90 | 波动: 0.5%
+[2026-02-21T17:04:24.136Z] 📥限价卖出 0.0002926419569552946 @ 68342.9 sell
+[2026-02-21T17:04:24.355Z]    ✅ 成功! ID: 3328299822363009024
+[2026-02-21T17:04:24.356Z] 💰 BTC/USDT sell sell 0.000293 @ 68342.90, 累计: -99.12 USDT
+[2026-02-21T17:04:25.954Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买76 | 价格: 68342.90 | 波动: 0.5%
+[2026-02-21T17:04:25.954Z] 📥限价卖出 0.0002926419569552946 @ 68342.9 sell
+[2026-02-21T17:04:26.166Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:04:30.965Z] 📥限价卖出 0.0002926419569552946 @ 68342.9 sell
+[2026-02-21T17:04:31.207Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:04:35.971Z] 📥限价卖出 0.0002926419569552946 @ 68342.9 sell
+[2026-02-21T17:04:36.214Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:04:40.970Z] 📥限价卖出 0.0002926081333356742 @ 68350.8 sell
+[2026-02-21T17:04:41.243Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:04:45.987Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68331.20 | 波动: 0.5%
+[2026-02-21T17:04:49.157Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68328.00 | 波动: 0.5%
+[2026-02-21T17:04:55.947Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68309.10 | 波动: 0.5%
+[2026-02-21T17:04:59.153Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68309.00 | 波动: 0.5%
+[2026-02-21T17:04:59.153Z] 📥限价买入 0.0002927871876326692 @ 68309 buy
+[2026-02-21T17:04:59.440Z]    ✅ 成功! ID: 3328300998814949376
+[2026-02-21T17:04:59.442Z] 💰 BTC/USDT buy buy 0.000293 @ 68309.00, 累计: -119.12 USDT
+[2026-02-21T17:05:01.047Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68330.50 | 波动: 0.5%
+[2026-02-21T17:05:04.154Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68326.20 | 波动: 0.5%
+[2026-02-21T17:06:04.218Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买74+共振 | 价格: 68327.90 | 波动: 0.5%
+[2026-02-21T17:06:04.218Z] 📥限价卖出 0.0002927062005417992 @ 68327.9 strong_sell
+[2026-02-21T17:06:04.449Z]    ✅ 成功! ID: 3328303181362978816
+[2026-02-21T17:06:04.450Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68327.90, 累计: -99.12 USDT
+[2026-02-21T17:06:14.305Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68328.00 | 波动: 0.5%
+[2026-02-21T17:06:24.365Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖16 | 价格: 68313.80 | 波动: 0.5%
+[2026-02-21T17:06:24.366Z] 📥限价买入 0.00029276661523733126 @ 68313.8 buy
+[2026-02-21T17:06:24.607Z]    ✅ 成功! ID: 3328303857350565888
+[2026-02-21T17:06:24.608Z] 💰 BTC/USDT buy buy 0.000293 @ 68313.80, 累计: -119.12 USDT
+[2026-02-21T17:06:26.120Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖3 | 价格: 68313.30 | 波动: 0.5%
+[2026-02-21T17:07:54.326Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68211.90 | 波动: 0.5%
+[2026-02-21T17:08:01.191Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68218.90 | 波动: 0.5%
+[2026-02-21T17:08:41.204Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买70+共振 | 价格: 68254.70 | 波动: 0.5%
+[2026-02-21T17:08:41.204Z] 📥限价卖出 0.00029302011436575066 @ 68254.7 strong_sell
+[2026-02-21T17:08:41.450Z]    ✅ 成功! ID: 3328308449006149632
+[2026-02-21T17:08:41.452Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68254.70, 累计: -99.12 USDT
+[2026-02-21T17:08:44.414Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68279.30 | 波动: 0.5%
+[2026-02-21T17:08:44.414Z] 📥限价卖出 0.00029291454364646386 @ 68279.3 strong_sell
+[2026-02-21T17:08:45.748Z]    ✅ 成功! ID: 3328308593625751552
+[2026-02-21T17:08:45.750Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68279.30, 累计: -79.12 USDT
+[2026-02-21T17:09:54.420Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68276.00 | 波动: 0.5%
+[2026-02-21T17:09:59.414Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买83+共振 | 价格: 68276.00 | 波动: 0.5%
+[2026-02-21T17:10:01.267Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖21 | 价格: 68276.00 | 波动: 0.5%
+[2026-02-21T17:10:01.267Z] 📥限价买入 0.00029292870115413906 @ 68276 buy
+[2026-02-21T17:10:01.501Z]    ✅ 成功! ID: 3328311135206203392
+[2026-02-21T17:10:01.503Z] 💰 BTC/USDT buy buy 0.000293 @ 68276.00, 累计: -99.12 USDT
+[2026-02-21T17:10:04.427Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖23 | 价格: 68276.10 | 波动: 0.5%
+[2026-02-21T17:10:04.427Z] 📥限价买入 0.00029292827211864763 @ 68276.1 buy
+[2026-02-21T17:10:04.653Z]    ✅ 成功! ID: 3328311240902664192
+[2026-02-21T17:10:04.655Z] 💰 BTC/USDT buy buy 0.000293 @ 68276.10, 累计: -119.12 USDT
+[2026-02-21T17:10:10.390Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买94+共振 | 价格: 68290.20 | 波动: 0.5%
+[2026-02-21T17:10:10.390Z] 📥限价卖出 0.00029286779069324735 @ 68290.2 strong_sell
+[2026-02-21T17:10:10.618Z]    ✅ 成功! ID: 3328311441121959936
+[2026-02-21T17:10:10.620Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68290.20, 累计: -99.12 USDT
+[2026-02-21T17:10:11.230Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买95+共振 | 价格: 68290.20 | 波动: 0.5%
+[2026-02-21T17:10:11.230Z] 📥限价卖出 0.00029286779069324735 @ 68290.2 strong_sell
+[2026-02-21T17:10:11.460Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:10:16.374Z] 📥限价卖出 0.00029286779069324735 @ 68290.2 strong_sell
+[2026-02-21T17:10:16.600Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:10:19.477Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68282.10 | 波动: 0.5%
+[2026-02-21T17:10:21.352Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68276.90 | 波动: 0.5%
+[2026-02-21T17:11:01.354Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买71+共振 | 价格: 68295.60 | 波动: 0.5%
+[2026-02-21T17:11:01.354Z] 📥限价卖出 0.00029284463420776736 @ 68295.6 strong_sell
+[2026-02-21T17:11:01.592Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:11:04.483Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买74+共振 | 价格: 68299.90 | 波动: 0.5%
+[2026-02-21T17:11:06.290Z] 📥限价卖出 0.00029282619740292446 @ 68299.9 strong_sell
+[2026-02-21T17:11:06.491Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:11:11.341Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68286.30 | 波动: 0.5%
+[2026-02-21T17:11:14.462Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68289.00 | 波动: 0.5%
+[2026-02-21T17:12:14.516Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖9 | 价格: 68282.00 | 波动: 0.5%
+[2026-02-21T17:12:14.516Z] 📥限价买入 0.00029290296124893824 @ 68282 buy
+[2026-02-21T17:12:14.736Z]    ✅ 成功! ID: 3328315605830950912
+[2026-02-21T17:12:14.738Z] 💰 BTC/USDT buy buy 0.000293 @ 68282.00, 累计: -119.12 USDT
+[2026-02-21T17:12:16.342Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68282.00 | 波动: 0.5%
+[2026-02-21T17:12:26.383Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68281.90 | 波动: 0.5%
+[2026-02-21T17:12:31.383Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖19 | 价格: 68282.00 | 波动: 0.5%
+[2026-02-21T17:12:46.381Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买85+共振 | 价格: 68281.90 | 波动: 0.5%
+[2026-02-21T17:12:46.381Z] 📥限价卖出 0.00029290339021029003 @ 68281.9 strong_sell
+[2026-02-21T17:12:46.590Z]    ✅ 成功! ID: 3328316674975817728
+[2026-02-21T17:12:46.591Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68281.90, 累计: -99.12 USDT
+[2026-02-21T17:12:49.575Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买99+共振 | 价格: 68290.70 | 波动: 0.5%
+[2026-02-21T17:12:49.575Z] 📥限价卖出 0.00029286564642037644 @ 68290.7 strong_sell
+[2026-02-21T17:12:49.794Z]    ✅ 成功! ID: 3328316782249336832
+[2026-02-21T17:12:49.795Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68290.70, 累计: -79.12 USDT
+[2026-02-21T17:13:01.433Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68288.70 | 波动: 0.5%
+[2026-02-21T17:13:04.660Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68281.40 | 波动: 0.5%
+[2026-02-21T17:14:01.583Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68285.00 | 波动: 0.5%
+[2026-02-21T17:14:01.583Z] 📥限价买入 0.0002928900929926045 @ 68285 buy
+[2026-02-21T17:14:01.818Z]    ✅ 成功! ID: 3328319198839529472
+[2026-02-21T17:14:01.820Z] 💰 BTC/USDT buy buy 0.000293 @ 68285.00, 累计: -99.12 USDT
+[2026-02-21T17:14:04.654Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68285.00 | 波动: 0.5%
+[2026-02-21T17:14:04.654Z] 📥限价买入 0.0002928900929926045 @ 68285 buy
+[2026-02-21T17:14:04.905Z]    ✅ 成功! ID: 3328319302287843328
+[2026-02-21T17:14:04.906Z] 💰 BTC/USDT buy buy 0.000293 @ 68285.00, 累计: -119.12 USDT
+[2026-02-21T17:14:09.707Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68287.90 | 波动: 0.5%
+[2026-02-21T17:14:14.663Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买76+共振 | 价格: 68287.90 | 波动: 0.5%
+[2026-02-21T17:14:14.663Z] 📥限价卖出 0.0002928776547528918 @ 68287.9 strong_sell
+[2026-02-21T17:14:14.934Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:14:16.517Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68295.00 | 波动: 0.5%
+[2026-02-21T17:14:19.656Z] 📥限价卖出 0.00029284720696976354 @ 68295 strong_sell
+[2026-02-21T17:14:19.886Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:14:21.514Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买83 | 价格: 68294.90 | 波动: 0.5%
+[2026-02-21T17:14:21.514Z] 📥限价卖出 0.00029284763576782456 @ 68294.9 sell
+[2026-02-21T17:14:21.834Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:14:24.668Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68291.10 | 波动: 0.5%
+[2026-02-21T17:14:26.424Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68289.00 | 波动: 0.5%
+[2026-02-21T17:14:59.675Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68269.00 | 波动: 0.5%
+[2026-02-21T17:15:04.711Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68284.90 | 波动: 0.5%
+[2026-02-21T17:15:21.528Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68286.90 | 波动: 0.5%
+[2026-02-21T17:15:26.517Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68298.80 | 波动: 0.5%
+[2026-02-21T17:15:41.596Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68314.90 | 波动: 0.5%
+[2026-02-21T17:15:41.596Z] 📥限价卖出 0.0002927619011372336 @ 68314.9 sell
+[2026-02-21T17:15:41.850Z]    ✅ 成功! ID: 3328322555121590272
+[2026-02-21T17:15:41.851Z] 💰 BTC/USDT sell sell 0.000293 @ 68314.90, 累计: -99.12 USDT
+[2026-02-21T17:16:01.570Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68296.40 | 波动: 0.5%
+[2026-02-21T17:17:11.616Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买90 | 价格: 68313.90 | 波动: 0.5%
+[2026-02-21T17:17:14.790Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买91 | 价格: 68314.00 | 波动: 0.5%
+[2026-02-21T17:17:14.790Z] 📥限价卖出 0.0002927657581169306 @ 68314 sell
+[2026-02-21T17:17:15.018Z]    ✅ 成功! ID: 3328325681455128576
+[2026-02-21T17:17:15.020Z] 💰 BTC/USDT sell sell 0.000293 @ 68314.00, 累计: -79.12 USDT
+[2026-02-21T17:17:26.659Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68308.00 | 波动: 0.5%
+[2026-02-21T17:17:29.857Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68308.00 | 波动: 0.5%
+[2026-02-21T17:17:34.882Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖18+共振 | 价格: 68288.10 | 波动: 0.5%
+[2026-02-21T17:17:34.882Z] 📥限价买入 0.00029287679698219743 @ 68288.1 strong_buy
+[2026-02-21T17:17:35.099Z]    ✅ 成功! ID: 3328326355261677568
+[2026-02-21T17:17:35.101Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68288.10, 累计: -99.12 USDT
+[2026-02-21T17:17:36.684Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖18+共振 | 价格: 68288.00 | 波动: 0.5%
+[2026-02-21T17:17:36.684Z] 📥限价买入 0.00029287722586691657 @ 68288 strong_buy
+[2026-02-21T17:17:36.936Z]    ✅ 成功! ID: 3328326416699842560
+[2026-02-21T17:17:36.937Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68288.00, 累计: -119.12 USDT
+[2026-02-21T17:17:49.982Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68301.10 | 波动: 0.5%
+[2026-02-21T17:17:51.702Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68303.00 | 波动: 0.5%
+[2026-02-21T17:18:44.866Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买99 | 价格: 68312.90 | 波动: 0.5%
+[2026-02-21T17:18:44.866Z] 📥限价卖出 0.00029277047234124156 @ 68312.9 sell
+[2026-02-21T17:18:45.107Z]    ✅ 成功! ID: 3328328704139026432
+[2026-02-21T17:18:45.108Z] 💰 BTC/USDT sell sell 0.000293 @ 68312.90, 累计: -99.12 USDT
+[2026-02-21T17:18:46.706Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买99 | 价格: 68313.00 | 波动: 0.5%
+[2026-02-21T17:18:46.706Z] 📥限价卖出 0.00029277004376912155 @ 68313 sell
+[2026-02-21T17:18:46.929Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:18:51.729Z] 📥限价卖出 0.00029277047234124156 @ 68312.9 sell
+[2026-02-21T17:18:52.000Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:18:56.740Z] 📥限价卖出 0.00029277004376912155 @ 68313 sell
+[2026-02-21T17:18:57.005Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:19:01.737Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68301.90 | 波动: 0.5%
+[2026-02-21T17:19:04.983Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68292.10 | 波动: 0.5%
+[2026-02-21T17:19:09.954Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖10+共振 | 价格: 68292.10 | 波动: 0.5%
+[2026-02-21T17:19:09.954Z] 📥限价买入 0.0002928596426233781 @ 68292.1 strong_buy
+[2026-02-21T17:19:10.212Z]    ✅ 成功! ID: 3328329546422378496
+[2026-02-21T17:19:10.213Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68292.10, 累计: -119.12 USDT
+[2026-02-21T17:19:11.745Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖9+共振 | 价格: 68291.10 | 波动: 0.5%
+[2026-02-21T17:19:45.019Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖0 | 价格: 68277.10 | 波动: 0.5%
+[2026-02-21T17:19:46.875Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖1 | 价格: 68277.10 | 波动: 0.5%
+[2026-02-21T17:20:21.786Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68267.90 | 波动: 0.5%
+[2026-02-21T17:20:25.000Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68267.90 | 波动: 0.5%
+[2026-02-21T17:21:10.043Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买100+共振 | 价格: 68295.90 | 波动: 0.5%
+[2026-02-21T17:21:10.043Z] 📥限价卖出 0.00029284334784372126 @ 68295.9 strong_sell
+[2026-02-21T17:21:10.276Z]    ✅ 成功! ID: 3328333575202365440
+[2026-02-21T17:21:10.278Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68295.90, 累计: -99.12 USDT
+[2026-02-21T17:21:11.825Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买100+共振 | 价格: 68297.00 | 波动: 0.5%
+[2026-02-21T17:21:11.825Z] 📥限价卖出 0.0002928386312722374 @ 68297 strong_sell
+[2026-02-21T17:21:12.066Z]    ✅ 成功! ID: 3328333635331907584
+[2026-02-21T17:21:12.068Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68297.00, 累计: -79.12 USDT
+[2026-02-21T17:22:05.071Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68290.10 | 波动: 0.5%
+[2026-02-21T17:22:06.856Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68284.90 | 波动: 0.5%
+[2026-02-21T17:22:35.049Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖27 | 价格: 68290.90 | 波动: 0.5%
+[2026-02-21T17:22:35.049Z] 📥限价买入 0.00029286478872001984 @ 68290.9 buy
+[2026-02-21T17:22:35.293Z]    ✅ 成功! ID: 3328336427832401920
+[2026-02-21T17:22:35.294Z] 💰 BTC/USDT buy buy 0.000293 @ 68290.90, 累计: -99.12 USDT
+[2026-02-21T17:22:36.876Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖27 | 价格: 68291.00 | 波动: 0.5%
+[2026-02-21T17:22:36.876Z] 📥限价买入 0.0002928643598717254 @ 68291 buy
+[2026-02-21T17:22:37.096Z]    ✅ 成功! ID: 3328336488331042816
+[2026-02-21T17:22:37.098Z] 💰 BTC/USDT buy buy 0.000293 @ 68291.00, 累计: -119.12 USDT
+[2026-02-21T17:22:40.075Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68291.00 | 波动: 0.5%
+[2026-02-21T17:22:41.890Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68291.00 | 波动: 0.5%
+[2026-02-21T17:22:45.073Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖30 | 价格: 68289.00 | 波动: 0.5%
+[2026-02-21T17:22:50.083Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68289.10 | 波动: 0.5%
+[2026-02-21T17:23:16.934Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买77 | 价格: 68298.30 | 波动: 0.5%
+[2026-02-21T17:23:16.934Z] 📥限价卖出 0.0002928330573381768 @ 68298.3 sell
+[2026-02-21T17:23:17.162Z]    ✅ 成功! ID: 3328337832756469760
+[2026-02-21T17:23:17.163Z] 💰 BTC/USDT sell sell 0.000293 @ 68298.30, 累计: -99.12 USDT
+[2026-02-21T17:23:20.122Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买83 | 价格: 68298.20 | 波动: 0.5%
+[2026-02-21T17:23:20.122Z] 📥限价卖出 0.00029283348609480194 @ 68298.2 sell
+[2026-02-21T17:23:20.363Z]    ✅ 成功! ID: 3328337940097097728
+[2026-02-21T17:23:20.365Z] 💰 BTC/USDT sell sell 0.000293 @ 68298.20, 累计: -79.12 USDT
+[2026-02-21T17:23:25.125Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68290.00 | 波动: 0.5%
+[2026-02-21T17:23:26.951Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68290.00 | 波动: 0.5%
+[2026-02-21T17:23:30.120Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68274.10 | 波动: 0.5%
+[2026-02-21T17:23:30.120Z] 📥限价买入 0.0002929368530672685 @ 68274.1 strong_buy
+[2026-02-21T17:23:30.346Z]    ✅ 成功! ID: 3328338275205210113
+[2026-02-21T17:23:30.348Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68274.10, 累计: -99.12 USDT
+[2026-02-21T17:23:31.937Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖24+共振 | 价格: 68266.40 | 波动: 0.5%
+[2026-02-21T17:23:31.937Z] 📥限价买入 0.0002929698944136501 @ 68266.4 strong_buy
+[2026-02-21T17:23:32.156Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:23:36.963Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖22 | 价格: 68263.00 | 波动: 0.5%
+[2026-02-21T17:23:36.963Z] 📥限价买入 0.00029298448647144135 @ 68263 buy
+[2026-02-21T17:23:37.216Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:23:40.177Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖20 | 价格: 68257.00 | 波动: 0.5%
+[2026-02-21T17:23:42.005Z] 📥限价买入 0.00029301024070791276 @ 68257 buy
+[2026-02-21T17:23:42.200Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:23:46.931Z] 📥限价买入 0.0002930098114335358 @ 68257.1 buy
+[2026-02-21T17:23:47.154Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:23:51.929Z] 📥限价买入 0.00029302269021201654 @ 68254.1 buy
+[2026-02-21T17:23:52.146Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:23:56.997Z] 📥限价买入 0.00029303127669331786 @ 68252.1 buy
+[2026-02-21T17:23:57.210Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:24:01.925Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68262.00 | 波动: 0.5%
+[2026-02-21T17:24:06.987Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖30 | 价格: 68260.00 | 波动: 0.5%
+[2026-02-21T17:24:06.987Z] 📥限价买入 0.0002929973630237328 @ 68260 buy
+[2026-02-21T17:24:07.220Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:24:11.967Z] 📥限价买入 0.00029301453352086266 @ 68256 buy
+[2026-02-21T17:24:12.179Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:24:16.967Z] 📥限价买入 0.0002930141042339073 @ 68256.1 buy
+[2026-02-21T17:24:17.198Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:24:22.016Z] 📥限价买入 0.0002930141042339073 @ 68256.1 buy
+[2026-02-21T17:24:22.276Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:24:26.965Z] 📥限价买入 0.00029302311952413045 @ 68254 buy
+[2026-02-21T17:24:27.179Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:24:32.036Z] 📥限价买入 0.0002930317060305925 @ 68252 buy
+[2026-02-21T17:24:32.277Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:24:36.964Z] 📥限价买入 0.0002930317060305925 @ 68252 buy
+[2026-02-21T17:24:37.195Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:24:41.992Z] 📥限价买入 0.0002930398636778554 @ 68250.1 buy
+[2026-02-21T17:24:42.208Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:24:46.973Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68250.10 | 波动: 0.5%
+[2026-02-21T17:24:55.211Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68250.00 | 波动: 0.5%
+[2026-02-21T17:25:12.008Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖14 | 价格: 68251.00 | 波动: 0.5%
+[2026-02-21T17:25:12.009Z] 📥限价买入 0.0002930359994725352 @ 68251 buy
+[2026-02-21T17:25:12.224Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:25:16.978Z] 📥限价买入 0.0002930355701226793 @ 68251.1 buy
+[2026-02-21T17:25:17.195Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:25:22.000Z] 📥限价买入 0.0002930398636778554 @ 68250.1 buy
+[2026-02-21T17:25:22.225Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:25:27.005Z] 📥限价买入 0.0002930398636778554 @ 68250.1 buy
+[2026-02-21T17:25:27.296Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:25:32.105Z] 📥限价买入 0.00029308280615063573 @ 68240.1 buy
+[2026-02-21T17:25:32.330Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:25:37.011Z] 📥限价买入 0.0002930913961555201 @ 68238.1 buy
+[2026-02-21T17:25:37.230Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:25:42.060Z] 📥限价买入 0.00029311673960388205 @ 68232.2 buy
+[2026-02-21T17:25:42.281Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:25:47.038Z] 📥限价买入 0.00029311716919162677 @ 68232.1 buy
+[2026-02-21T17:25:47.257Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:25:52.032Z] 📥限价买入 0.0002931214651383313 @ 68231.1 buy
+[2026-02-21T17:25:52.245Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:25:55.190Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68227.00 | 波动: 0.5%
+[2026-02-21T17:25:57.054Z] 📥限价买入 0.00029313865018445746 @ 68227.1 buy
+[2026-02-21T17:25:57.294Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:26:02.058Z] 📥限价买入 0.00029313865018445746 @ 68227.1 buy
+[2026-02-21T17:26:02.295Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:26:07.019Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68240.00 | 波动: 0.5%
+[2026-02-21T17:26:10.259Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68251.00 | 波动: 0.5%
+[2026-02-21T17:27:22.110Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖24 | 价格: 68220.50 | 波动: 0.5%
+[2026-02-21T17:27:22.110Z] 📥限价买入 0.0002931670099163741 @ 68220.5 buy
+[2026-02-21T17:27:22.331Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:27:25.338Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖27 | 价格: 68220.50 | 波动: 0.5%
+[2026-02-21T17:27:27.109Z] 📥限价买入 0.00029317087757770494 @ 68219.6 buy
+[2026-02-21T17:27:27.327Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:27:32.136Z] 📥限价买入 0.00029319064721835376 @ 68215 buy
+[2026-02-21T17:27:32.362Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:27:37.104Z] 📥限价买入 0.0002932074105240936 @ 68211.1 buy
+[2026-02-21T17:27:37.326Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:27:42.110Z] 📥限价买入 0.0002932078403776517 @ 68211 buy
+[2026-02-21T17:27:42.328Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:27:47.135Z] 📥限价买入 0.00029320096287196204 @ 68212.6 buy
+[2026-02-21T17:27:47.347Z]    ❌ 失败: Order failed. Your available USDT balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:27:52.145Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68226.00 | 波动: 0.5%
+[2026-02-21T17:27:55.354Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68227.90 | 波动: 0.5%
+[2026-02-21T17:28:10.385Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买70+共振 | 价格: 68242.00 | 波动: 0.5%
+[2026-02-21T17:28:10.385Z] 📥限价卖出 0.00029307464611236483 @ 68242 strong_sell
+[2026-02-21T17:28:10.631Z]    ✅ 成功! ID: 3328347679572975616
+[2026-02-21T17:28:10.632Z] 💰 BTC/USDT sell strong_sell 0.000293 @ 68242.00, 累计: -79.12 USDT
+[2026-02-21T17:28:17.174Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买79+共振 | 价格: 68242.00 | 波动: 0.5%
+[2026-02-21T17:29:00.416Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买100 | 价格: 68320.80 | 波动: 0.5%
+[2026-02-21T17:29:02.211Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买100 | 价格: 68320.90 | 波动: 0.5%
+[2026-02-21T17:29:35.426Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68288.70 | 波动: 0.5%
+[2026-02-21T17:29:37.245Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68288.60 | 波动: 0.5%
+[2026-02-21T17:29:50.482Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖26+共振 | 价格: 68288.70 | 波动: 0.5%
+[2026-02-21T17:29:50.482Z] 📥限价买入 0.00029287422370026083 @ 68288.7 strong_buy
+[2026-02-21T17:29:50.692Z]    ✅ 成功! ID: 3328351037331431424
+[2026-02-21T17:29:50.694Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68288.70, 累计: -99.12 USDT
+[2026-02-21T17:29:52.237Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖20+共振 | 价格: 68288.70 | 波动: 0.5%
+[2026-02-21T17:29:52.237Z] 📥限价买入 0.00029287422370026083 @ 68288.7 strong_buy
+[2026-02-21T17:29:52.457Z]    ✅ 成功! ID: 3328351096555003904
+[2026-02-21T17:29:52.459Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68288.70, 累计: -119.12 USDT
+[2026-02-21T17:30:02.248Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68298.90 | 波动: 0.5%
+[2026-02-21T17:30:05.473Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68298.90 | 波动: 0.5%
+[2026-02-21T17:30:15.471Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖26+共振 | 价格: 68298.90 | 波动: 0.5%
+[2026-02-21T17:30:17.313Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖24+共振 | 价格: 68298.90 | 波动: 0.5%
+[2026-02-21T17:30:30.470Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68318.90 | 波动: 0.5%
+[2026-02-21T17:30:32.244Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68318.90 | 波动: 0.5%
+[2026-02-21T17:31:43.104Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖2+共振 | 价格: 68300.40 | 波动: 0.5%
+[2026-02-21T17:31:45.597Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖2+共振 | 价格: 68300.30 | 波动: 0.5%
+[2026-02-21T17:32:15.555Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68294.00 | 波动: 0.5%
+[2026-02-21T17:32:17.370Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68294.00 | 波动: 0.5%
+[2026-02-21T17:34:35.729Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买98 | 价格: 68299.90 | 波动: 0.5%
+[2026-02-21T17:34:35.729Z] 📥限价卖出 0.00029282619740292446 @ 68299.9 sell
+[2026-02-21T17:34:35.958Z]    ✅ 成功! ID: 3328360609202921472
+[2026-02-21T17:34:35.960Z] 💰 BTC/USDT sell sell 0.000293 @ 68299.90, 累计: -99.12 USDT
+[2026-02-21T17:34:37.530Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买100 | 价格: 68300.00 | 波动: 0.5%
+[2026-02-21T17:34:37.530Z] 📥限价卖出 0.00029282576866764275 @ 68300 sell
+[2026-02-21T17:34:37.783Z]    ✅ 成功! ID: 3328360670439759872
+[2026-02-21T17:34:37.785Z] 💰 BTC/USDT sell sell 0.000293 @ 68300.00, 累计: -79.12 USDT
+[2026-02-21T17:34:50.709Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖30+共振 | 价格: 68294.10 | 波动: 0.5%
+[2026-02-21T17:34:50.710Z] 📥限价买入 0.00029285106619751926 @ 68294.1 strong_buy
+[2026-02-21T17:34:50.931Z]    ✅ 成功! ID: 3328361111881867264
+[2026-02-21T17:34:50.933Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68294.10, 累计: -99.12 USDT
+[2026-02-21T17:34:52.545Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68294.10 | 波动: 0.5%
+[2026-02-21T17:35:05.722Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68304.40 | 波动: 0.5%
+[2026-02-21T17:35:15.812Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买78 | 价格: 68315.90 | 波动: 0.5%
+[2026-02-21T17:35:15.812Z] 📥限价卖出 0.00029275761572342606 @ 68315.9 sell
+[2026-02-21T17:35:16.071Z]    ✅ 成功! ID: 3328361955104743424
+[2026-02-21T17:35:16.073Z] 💰 BTC/USDT sell sell 0.000293 @ 68315.90, 累计: -79.12 USDT
+[2026-02-21T17:35:17.526Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买78 | 价格: 68315.90 | 波动: 0.5%
+[2026-02-21T17:35:25.775Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68311.80 | 波动: 0.5%
+[2026-02-21T17:35:27.581Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68311.90 | 波动: 0.5%
+[2026-02-21T17:36:15.795Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买70 | 价格: 68309.00 | 波动: 0.5%
+[2026-02-21T17:36:17.671Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68309.90 | 波动: 0.5%
+[2026-02-21T17:36:20.774Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68313.90 | 波动: 0.5%
+[2026-02-21T17:36:27.585Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68319.00 | 波动: 0.5%
+[2026-02-21T17:36:32.625Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买74 | 价格: 68324.90 | 波动: 0.5%
+[2026-02-21T17:36:37.615Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68324.90 | 波动: 0.5%
+[2026-02-21T17:36:40.818Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买74 | 价格: 68325.00 | 波动: 0.5%
+[2026-02-21T17:36:47.630Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买72 | 价格: 68324.10 | 波动: 0.5%
+[2026-02-21T17:38:05.903Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68361.90 | 波动: 0.5%
+[2026-02-21T17:38:17.701Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68361.90 | 波动: 0.5%
+[2026-02-21T17:39:00.927Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖28+共振 | 价格: 68361.10 | 波动: 0.5%
+[2026-02-21T17:39:00.927Z] 📥限价买入 0.0002925640459267039 @ 68361.1 strong_buy
+[2026-02-21T17:39:01.149Z]    ✅ 成功! ID: 3328369507536297984
+[2026-02-21T17:39:01.151Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68361.10, 累计: -99.12 USDT
+[2026-02-21T17:39:02.764Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖28+共振 | 价格: 68361.10 | 波动: 0.5%
+[2026-02-21T17:39:02.764Z] 📥限价买入 0.0002925640459267039 @ 68361.1 strong_buy
+[2026-02-21T17:39:02.988Z]    ✅ 成功! ID: 3328369569175789568
+[2026-02-21T17:39:02.990Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68361.10, 累计: -119.12 USDT
+[2026-02-21T17:39:07.740Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买73 | 价格: 68361.00 | 波动: 0.5%
+[2026-02-21T17:39:07.740Z] 📥限价卖出 0.0002925644738959348 @ 68361 sell
+[2026-02-21T17:39:07.963Z]    ✅ 成功! ID: 3328369736041979904
+[2026-02-21T17:39:07.965Z] 💰 BTC/USDT sell sell 0.000293 @ 68361.00, 累计: -99.12 USDT
+[2026-02-21T17:39:10.967Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买74 | 价格: 68361.10 | 波动: 0.5%
+[2026-02-21T17:39:10.967Z] 📥限价卖出 0.0002925640459267039 @ 68361.1 sell
+[2026-02-21T17:39:11.187Z]    ✅ 成功! ID: 3328369844288577536
+[2026-02-21T17:39:11.188Z] 💰 BTC/USDT sell sell 0.000293 @ 68361.10, 累计: -79.12 USDT
+[2026-02-21T17:39:12.809Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖21+共振 | 价格: 68361.10 | 波动: 0.5%
+[2026-02-21T17:39:12.809Z] 📥限价买入 0.0002925640459267039 @ 68361.1 strong_buy
+[2026-02-21T17:39:13.049Z]    ✅ 成功! ID: 3328369906599157760
+[2026-02-21T17:39:13.051Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68361.10, 累计: -99.12 USDT
+[2026-02-21T17:39:15.978Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖16+共振 | 价格: 68360.60 | 波动: 0.5%
+[2026-02-21T17:39:15.979Z] 📥限价买入 0.0002925661857853793 @ 68360.6 strong_buy
+[2026-02-21T17:39:16.190Z]    ✅ 成功! ID: 3328370012429836288
+[2026-02-21T17:39:16.192Z] 💰 BTC/USDT buy strong_buy 0.000293 @ 68360.60, 累计: -119.12 USDT
+[2026-02-21T17:39:35.994Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68361.90 | 波动: 0.5%
+[2026-02-21T17:39:37.811Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68361.90 | 波动: 0.5%
+[2026-02-21T17:39:56.008Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68355.10 | 波动: 0.5%
+[2026-02-21T17:39:57.799Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68355.00 | 波动: 0.5%
+[2026-02-21T17:41:21.052Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68354.00 | 波动: 0.5%
+[2026-02-21T17:41:22.892Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68354.10 | 波动: 0.5%
+[2026-02-21T17:41:32.873Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买98 | 价格: 68365.90 | 波动: 0.5%
+[2026-02-21T17:41:32.873Z] 📥限价卖出 0.00029254350487596887 @ 68365.9 sell
+[2026-02-21T17:41:33.137Z]    ✅ 成功! ID: 3328374607306645504
+[2026-02-21T17:41:33.138Z] 💰 BTC/USDT sell sell 0.000293 @ 68365.90, 累计: -99.12 USDT
+[2026-02-21T17:41:36.095Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买97 | 价格: 68366.00 | 波动: 0.5%
+[2026-02-21T17:41:36.095Z] 📥限价卖出 0.0002925430769680835 @ 68366 sell
+[2026-02-21T17:41:36.318Z]    ✅ 成功! ID: 3328374714211065856
+[2026-02-21T17:41:36.320Z] 💰 BTC/USDT sell sell 0.000293 @ 68366.00, 累计: -79.12 USDT
+[2026-02-21T17:43:06.127Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68401.50 | 波动: 0.5%
+[2026-02-21T17:43:07.961Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68401.50 | 波动: 0.5%
+[2026-02-21T17:43:32.989Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖27+共振 | 价格: 68398.20 | 波动: 0.5%
+[2026-02-21T17:43:32.989Z] 📥限价买入 0.00029240535569649497 @ 68398.2 strong_buy
+[2026-02-21T17:43:33.208Z]    ✅ 成功! ID: 3328378636321513472
+[2026-02-21T17:43:33.210Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68398.20, 累计: -99.12 USDT
+[2026-02-21T17:43:38.021Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68399.90 | 波动: 0.5%
+[2026-02-21T17:43:46.207Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖27+共振 | 价格: 68399.00 | 波动: 0.5%
+[2026-02-21T17:43:46.207Z] 📥限价买入 0.0002924019357008143 @ 68399 strong_buy
+[2026-02-21T17:43:46.418Z]    ✅ 成功! ID: 3328379079575560192
+[2026-02-21T17:43:46.419Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68399.00, 累计: -119.12 USDT
+[2026-02-21T17:43:47.964Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖20+共振 | 价格: 68399.00 | 波动: 0.5%
+[2026-02-21T17:44:16.211Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买80 | 价格: 68460.70 | 波动: 0.5%
+[2026-02-21T17:44:16.211Z] 📥限价卖出 0.00029213840933557504 @ 68460.7 sell
+[2026-02-21T17:44:16.446Z]    ✅ 成功! ID: 3328380087148044288
+[2026-02-21T17:44:16.448Z] 💰 BTC/USDT sell sell 0.000292 @ 68460.70, 累计: -99.12 USDT
+[2026-02-21T17:44:18.035Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买87 | 价格: 68466.20 | 波动: 0.5%
+[2026-02-21T17:44:18.035Z] 📥限价卖出 0.00029211494138713703 @ 68466.2 sell
+[2026-02-21T17:44:18.245Z]    ✅ 成功! ID: 3328380147478913024
+[2026-02-21T17:44:18.246Z] 💰 BTC/USDT sell sell 0.000292 @ 68466.20, 累计: -79.12 USDT
+[2026-02-21T17:44:43.032Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68437.70 | 波动: 0.5%
+[2026-02-21T17:44:46.251Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68431.90 | 波动: 0.5%
+[2026-02-21T17:45:26.260Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖15+共振 | 价格: 68413.90 | 波动: 0.5%
+[2026-02-21T17:45:26.260Z] 📥限价买入 0.0002923382528988992 @ 68413.9 strong_buy
+[2026-02-21T17:45:26.489Z]    ✅ 成功! ID: 3328382437401124864
+[2026-02-21T17:45:26.490Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68413.90, 累计: -99.12 USDT
+[2026-02-21T17:45:28.080Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖14+共振 | 价格: 68414.00 | 波动: 0.5%
+[2026-02-21T17:45:28.080Z] 📥限价买入 0.00029233782559125323 @ 68414 strong_buy
+[2026-02-21T17:45:28.302Z]    ✅ 成功! ID: 3328382498235310080
+[2026-02-21T17:45:28.304Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68414.00, 累计: -119.12 USDT
+[2026-02-21T17:46:13.129Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68400.00 | 波动: 0.5%
+[2026-02-21T17:46:16.327Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68411.00 | 波动: 0.5%
+[2026-02-21T17:46:46.332Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买77 | 价格: 68421.00 | 波动: 0.5%
+[2026-02-21T17:46:46.332Z] 📥限价卖出 0.0002923079171599363 @ 68421 sell
+[2026-02-21T17:46:46.544Z]    ✅ 成功! ID: 3328385124003831808
+[2026-02-21T17:46:46.545Z] 💰 BTC/USDT sell sell 0.000292 @ 68421.00, 累计: -99.12 USDT
+[2026-02-21T17:46:48.146Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买80 | 价格: 68421.00 | 波动: 0.5%
+[2026-02-21T17:46:48.146Z] 📥限价卖出 0.0002923079171599363 @ 68421 sell
+[2026-02-21T17:46:48.353Z]    ✅ 成功! ID: 3328385184502472704
+[2026-02-21T17:46:48.354Z] 💰 BTC/USDT sell sell 0.000292 @ 68421.00, 累计: -79.12 USDT
+[2026-02-21T17:47:26.380Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68420.90 | 波动: 0.5%
+[2026-02-21T17:47:28.215Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68420.90 | 波动: 0.5%
+[2026-02-21T17:47:48.216Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买92 | 价格: 68464.20 | 波动: 0.5%
+[2026-02-21T17:47:51.376Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买88 | 价格: 68458.90 | 波动: 0.5%
+[2026-02-21T17:48:21.442Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68443.10 | 波动: 0.5%
+[2026-02-21T17:48:23.238Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68443.10 | 波动: 0.5%
+[2026-02-21T17:49:01.453Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68440.90 | 波动: 0.5%
+[2026-02-21T17:49:01.453Z] 📥限价买入 0.0002922229251807034 @ 68440.9 strong_buy
+[2026-02-21T17:49:01.692Z]    ✅ 成功! ID: 3328389658415554560
+[2026-02-21T17:49:01.694Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68440.90, 累计: -99.12 USDT
+[2026-02-21T17:49:03.284Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖24+共振 | 价格: 68440.90 | 波动: 0.5%
+[2026-02-21T17:49:03.285Z] 📥限价买入 0.0002922229251807034 @ 68440.9 strong_buy
+[2026-02-21T17:49:03.508Z]    ✅ 成功! ID: 3328389719249739776
+[2026-02-21T17:49:03.510Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68440.90, 累计: -119.12 USDT
+[2026-02-21T17:49:06.459Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68447.60 | 波动: 0.5%
+[2026-02-21T17:49:08.281Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68447.70 | 波动: 0.5%
+[2026-02-21T17:49:16.468Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖26+共振 | 价格: 68435.30 | 波动: 0.5%
+[2026-02-21T17:49:23.289Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖25+共振 | 价格: 68435.20 | 波动: 0.5%
+[2026-02-21T17:49:31.482Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68433.60 | 波动: 0.5%
+[2026-02-21T17:49:38.323Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68430.10 | 波动: 0.5%
+[2026-02-21T17:50:03.307Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖30+共振 | 价格: 68418.40 | 波动: 0.5%
+[2026-02-21T17:50:06.510Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68415.20 | 波动: 0.5%
+[2026-02-21T17:50:08.304Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68421.00 | 波动: 0.5%
+[2026-02-21T17:50:11.524Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68416.60 | 波动: 0.5%
+[2026-02-21T17:50:16.524Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68416.70 | 波动: 0.5%
+[2026-02-21T17:50:18.348Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖22+共振 | 价格: 68416.60 | 波动: 0.5%
+[2026-02-21T17:50:58.382Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68410.90 | 波动: 0.5%
+[2026-02-21T17:51:01.561Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68410.90 | 波动: 0.5%
+[2026-02-21T17:51:03.366Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖15+共振 | 价格: 68411.00 | 波动: 0.5%
+[2026-02-21T17:51:11.606Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68416.60 | 波动: 0.5%
+[2026-02-21T17:51:13.368Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68417.00 | 波动: 0.5%
+[2026-02-21T17:51:16.575Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68416.90 | 波动: 0.5%
+[2026-02-21T17:51:33.380Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买81 | 价格: 68432.00 | 波动: 0.5%
+[2026-02-21T17:51:33.380Z] 📥限价卖出 0.0002922609305588029 @ 68432 sell
+[2026-02-21T17:51:33.587Z]    ✅ 成功! ID: 3328394755233112064
+[2026-02-21T17:51:33.589Z] 💰 BTC/USDT sell sell 0.000292 @ 68432.00, 累计: -99.12 USDT
+[2026-02-21T17:51:36.572Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买76 | 价格: 68432.00 | 波动: 0.5%
+[2026-02-21T17:51:36.572Z] 📥限价卖出 0.0002922609305588029 @ 68432 sell
+[2026-02-21T17:51:36.807Z]    ✅ 成功! ID: 3328394863110610944
+[2026-02-21T17:51:36.809Z] 💰 BTC/USDT sell sell 0.000292 @ 68432.00, 累计: -79.12 USDT
+[2026-02-21T17:52:43.468Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68433.10 | 波动: 0.5%
+[2026-02-21T17:52:46.632Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68433.20 | 波动: 0.5%
+[2026-02-21T17:52:48.456Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买85 | 价格: 68440.70 | 波动: 0.5%
+[2026-02-21T17:52:51.666Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买86 | 价格: 68440.70 | 波动: 0.5%
+[2026-02-21T17:53:11.675Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68428.40 | 波动: 0.5%
+[2026-02-21T17:53:13.459Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68428.50 | 波动: 0.5%
+[2026-02-21T17:53:58.487Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖16+共振 | 价格: 68430.60 | 波动: 0.5%
+[2026-02-21T17:53:58.487Z] 📥限价买入 0.00029226690983273564 @ 68430.6 strong_buy
+[2026-02-21T17:53:58.711Z]    ✅ 成功! ID: 3328399625155600384
+[2026-02-21T17:53:58.713Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68430.60, 累计: -99.12 USDT
+[2026-02-21T17:54:01.743Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖17+共振 | 价格: 68430.70 | 波动: 0.5%
+[2026-02-21T17:54:01.743Z] 📥限价买入 0.0002922664827336269 @ 68430.7 strong_buy
+[2026-02-21T17:54:01.966Z]    ✅ 成功! ID: 3328399733905514496
+[2026-02-21T17:54:01.968Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68430.70, 累计: -119.12 USDT
+[2026-02-21T17:54:16.746Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68434.90 | 波动: 0.5%
+[2026-02-21T17:54:18.534Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68435.00 | 波动: 0.5%
+[2026-02-21T17:54:21.754Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买97 | 价格: 68434.90 | 波动: 0.5%
+[2026-02-21T17:54:21.754Z] 📥限价卖出 0.00029224854569817447 @ 68434.9 sell
+[2026-02-21T17:54:21.971Z]    ✅ 成功! ID: 3328400404859936768
+[2026-02-21T17:54:21.975Z] 💰 BTC/USDT sell sell 0.000292 @ 68434.90, 累计: -99.12 USDT
+[2026-02-21T17:54:23.523Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买94 | 价格: 68434.90 | 波动: 0.5%
+[2026-02-21T17:54:23.523Z] 📥限价卖出 0.00029224854569817447 @ 68434.9 sell
+[2026-02-21T17:54:23.749Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:54:28.563Z] 📥限价卖出 0.00029224854569817447 @ 68434.9 sell
+[2026-02-21T17:54:28.791Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T17:54:31.757Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68420.10 | 波动: 0.5%
+[2026-02-21T17:54:33.536Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68420.10 | 波动: 0.5%
+[2026-02-21T17:54:46.753Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖28+共振 | 价格: 68418.00 | 波动: 0.5%
+[2026-02-21T17:54:46.753Z] 📥限价买入 0.0002923207343096846 @ 68418 strong_buy
+[2026-02-21T17:54:46.958Z]    ✅ 成功! ID: 3328401243989172224
+[2026-02-21T17:54:46.960Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68418.00, 累计: -119.12 USDT
+[2026-02-21T17:54:48.547Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖28+共振 | 价格: 68418.00 | 波动: 0.5%
+[2026-02-21T17:54:51.761Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68424.00 | 波动: 0.5%
+[2026-02-21T17:54:53.556Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68432.90 | 波动: 0.5%
+[2026-02-21T17:56:06.835Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68428.00 | 波动: 0.5%
+[2026-02-21T17:56:21.804Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68428.00 | 波动: 0.5%
+[2026-02-21T17:56:38.652Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖19+共振 | 价格: 68432.70 | 波动: 0.5%
+[2026-02-21T17:56:43.661Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68432.70 | 波动: 0.5%
+[2026-02-21T17:57:01.880Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买78 | 价格: 68439.00 | 波动: 0.5%
+[2026-02-21T17:57:01.880Z] 📥限价卖出 0.000292231037858531 @ 68439 sell
+[2026-02-21T17:57:02.098Z]    ✅ 成功! ID: 3328405778367340544
+[2026-02-21T17:57:02.100Z] 💰 BTC/USDT sell sell 0.000292 @ 68439.00, 累计: -99.12 USDT
+[2026-02-21T17:57:03.678Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买78 | 价格: 68439.00 | 波动: 0.5%
+[2026-02-21T17:57:03.678Z] 📥限价卖出 0.000292231037858531 @ 68439 sell
+[2026-02-21T17:57:03.904Z]    ✅ 成功! ID: 3328405838631100416
+[2026-02-21T17:57:03.905Z] 💰 BTC/USDT sell sell 0.000292 @ 68439.00, 累计: -79.12 USDT
+[2026-02-21T17:57:43.677Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68432.20 | 波动: 0.5%
+[2026-02-21T17:57:46.906Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68432.20 | 波动: 0.5%
+[2026-02-21T17:58:13.729Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖1+共振 | 价格: 68420.90 | 波动: 0.5%
+[2026-02-21T17:58:13.729Z] 📥限价买入 0.0002923083443801529 @ 68420.9 strong_buy
+[2026-02-21T17:58:13.966Z]    ✅ 成功! ID: 3328408189421051904
+[2026-02-21T17:58:13.967Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68420.90, 累计: -99.12 USDT
+[2026-02-21T17:58:16.945Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖1+共振 | 价格: 68420.10 | 波动: 0.5%
+[2026-02-21T17:58:16.945Z] 📥限价买入 0.00029231176218684273 @ 68420.1 strong_buy
+[2026-02-21T17:58:17.158Z]    ✅ 成功! ID: 3328408297097224192
+[2026-02-21T17:58:17.160Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68420.10, 累计: -119.12 USDT
+[2026-02-21T17:58:43.749Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖1 | 价格: 68401.00 | 波动: 0.5%
+[2026-02-21T17:58:46.972Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖1 | 价格: 68401.00 | 波动: 0.5%
+[2026-02-21T17:59:53.812Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买81+共振 | 价格: 68405.10 | 波动: 0.5%
+[2026-02-21T17:59:53.812Z] 📥限价卖出 0.0002923758608641753 @ 68405.1 strong_sell
+[2026-02-21T17:59:54.046Z]    ✅ 成功! ID: 3328411547582160896
+[2026-02-21T17:59:54.048Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68405.10, 累计: -99.12 USDT
+[2026-02-21T17:59:57.032Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买91+共振 | 价格: 68411.90 | 波动: 0.5%
+[2026-02-21T17:59:57.032Z] 📥限价卖出 0.00029234679931415444 @ 68411.9 strong_sell
+[2026-02-21T17:59:57.256Z]    ✅ 成功! ID: 3328411655459659776
+[2026-02-21T17:59:57.258Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68411.90, 累计: -79.12 USDT
+[2026-02-21T18:00:42.085Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买87 | 价格: 68436.00 | 波动: 0.5%
+[2026-02-21T18:00:43.834Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买87 | 价格: 68436.10 | 波动: 0.5%
+[2026-02-21T18:01:13.889Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68437.30 | 波动: 0.5%
+[2026-02-21T18:01:17.091Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖28+共振 | 价格: 68437.20 | 波动: 0.5%
+[2026-02-21T18:01:17.091Z] 📥限价买入 0.0002922387239688357 @ 68437.2 strong_buy
+[2026-02-21T18:01:17.323Z]    ✅ 成功! ID: 3328414341894594560
+[2026-02-21T18:01:17.325Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68437.20, 累计: -99.12 USDT
+[2026-02-21T18:01:18.874Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖22+共振 | 价格: 68437.30 | 波动: 0.5%
+[2026-02-21T18:01:18.874Z] 📥限价买入 0.00029223829695210066 @ 68437.3 strong_buy
+[2026-02-21T18:01:19.097Z]    ✅ 成功! ID: 3328414401420156928
+[2026-02-21T18:01:19.099Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68437.30, 累计: -119.12 USDT
+[2026-02-21T18:01:23.923Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68447.70 | 波动: 0.5%
+[2026-02-21T18:01:27.102Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买74 | 价格: 68450.60 | 波动: 0.5%
+[2026-02-21T18:01:27.102Z] 📥限价卖出 0.0002921815148442818 @ 68450.6 sell
+[2026-02-21T18:01:27.311Z]    ✅ 成功! ID: 3328414677204033536
+[2026-02-21T18:01:27.313Z] 💰 BTC/USDT sell sell 0.000292 @ 68450.60, 累计: -99.12 USDT
+[2026-02-21T18:01:28.914Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买74 | 价格: 68450.60 | 波动: 0.5%
+[2026-02-21T18:01:28.914Z] 📥限价卖出 0.0002921815148442818 @ 68450.6 sell
+[2026-02-21T18:01:29.147Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:01:33.911Z] 📥限价卖出 0.0002921810879947174 @ 68450.7 sell
+[2026-02-21T18:01:34.144Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:01:38.903Z] 📥限价卖出 0.0002921815148442818 @ 68450.6 sell
+[2026-02-21T18:01:39.109Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:01:43.912Z] 📥限价卖出 0.0002921815148442818 @ 68450.6 sell
+[2026-02-21T18:01:44.143Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:01:48.916Z] 📥限价卖出 0.0002921810879947174 @ 68450.7 sell
+[2026-02-21T18:01:49.145Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:01:53.933Z] 📥限价卖出 0.0002921810879947174 @ 68450.7 sell
+[2026-02-21T18:01:54.163Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:01:58.929Z] 📥限价卖出 0.0002921815148442818 @ 68450.6 sell
+[2026-02-21T18:01:59.157Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:02:04.293Z] 📥限价卖出 0.00029218791773741364 @ 68449.1 sell
+[2026-02-21T18:02:04.509Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:02:08.927Z] 📥限价卖出 0.00029218791773741364 @ 68449.1 sell
+[2026-02-21T18:02:09.124Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:02:13.919Z] 📥限价卖出 0.00029218791773741364 @ 68449.1 sell
+[2026-02-21T18:02:14.146Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:02:18.921Z] 📥限价卖出 0.00029218791773741364 @ 68449.1 sell
+[2026-02-21T18:02:19.151Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:02:23.948Z] 📥限价卖出 0.00029218791773741364 @ 68449.1 sell
+[2026-02-21T18:02:24.143Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T18:02:27.150Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68444.10 | 波动: 0.5%
+[2026-02-21T18:02:28.959Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68444.00 | 波动: 0.5%
+[2026-02-21T18:02:37.154Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖7+共振 | 价格: 68444.00 | 波动: 0.5%
+[2026-02-21T18:02:37.154Z] 📥限价买入 0.00029220968967330954 @ 68444 strong_buy
+[2026-02-21T18:02:37.368Z]    ✅ 成功! ID: 3328417027893321728
+[2026-02-21T18:02:37.370Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68444.00, 累计: -119.12 USDT
+[2026-02-21T18:02:38.954Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖4+共振 | 价格: 68444.10 | 波动: 0.5%
+[2026-02-21T18:03:57.246Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68436.90 | 波动: 0.5%
+[2026-02-21T18:04:02.247Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖16+共振 | 价格: 68417.10 | 波动: 0.5%
+[2026-02-21T18:04:12.221Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖14 | 价格: 68412.00 | 波动: 0.5%
+[2026-02-21T18:04:14.038Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖4 | 价格: 68412.00 | 波动: 0.5%
+[2026-02-21T18:04:27.251Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68417.90 | 波动: 0.5%
+[2026-02-21T18:04:39.066Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68428.00 | 波动: 0.5%
+[2026-02-21T18:05:54.110Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖10 | 价格: 68421.80 | 波动: 0.5%
+[2026-02-21T18:05:57.329Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖11 | 价格: 68421.90 | 波动: 0.5%
+[2026-02-21T18:06:04.157Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68430.90 | 波动: 0.5%
+[2026-02-21T18:06:07.359Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买85+共振 | 价格: 68430.90 | 波动: 0.5%
+[2026-02-21T18:06:07.359Z] 📥限价卖出 0.0002922656285391541 @ 68430.9 strong_sell
+[2026-02-21T18:06:07.580Z]    ✅ 成功! ID: 3328424081471135744
+[2026-02-21T18:06:07.581Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68430.90, 累计: -99.12 USDT
+[2026-02-21T18:06:09.148Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买99+共振 | 价格: 68430.90 | 波动: 0.5%
+[2026-02-21T18:06:09.148Z] 📥限价卖出 0.0002922656285391541 @ 68430.9 strong_sell
+[2026-02-21T18:06:09.375Z]    ✅ 成功! ID: 3328424141667786752
+[2026-02-21T18:06:09.377Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68430.90, 累计: -79.12 USDT
+[2026-02-21T18:06:37.411Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买100 | 价格: 68444.90 | 波动: 0.5%
+[2026-02-21T18:06:39.143Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买99 | 价格: 68446.20 | 波动: 0.5%
+[2026-02-21T18:07:12.848Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68423.50 | 波动: 0.5%
+[2026-02-21T18:07:14.172Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68421.20 | 波动: 0.5%
+[2026-02-21T18:07:27.415Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖30+共振 | 价格: 68421.20 | 波动: 0.5%
+[2026-02-21T18:07:27.415Z] 📥限价买入 0.0002923070627232495 @ 68421.2 strong_buy
+[2026-02-21T18:07:27.661Z]    ✅ 成功! ID: 3328426768409387008
+[2026-02-21T18:07:27.663Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68421.20, 累计: -99.12 USDT
+[2026-02-21T18:07:29.223Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68421.20 | 波动: 0.5%
+[2026-02-21T18:07:29.223Z] 📥限价买入 0.0002923070627232495 @ 68421.2 strong_buy
+[2026-02-21T18:07:29.442Z]    ✅ 成功! ID: 3328426828169830400
+[2026-02-21T18:07:29.444Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68421.20, 累计: -119.12 USDT
+[2026-02-21T18:07:37.465Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖15 | 价格: 68421.10 | 波动: 0.5%
+[2026-02-21T18:07:39.224Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖15 | 价格: 68421.10 | 波动: 0.5%
+[2026-02-21T18:08:22.458Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68420.10 | 波动: 0.5%
+[2026-02-21T18:08:24.260Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68420.10 | 波动: 0.5%
+[2026-02-21T18:08:49.296Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68407.10 | 波动: 0.5%
+[2026-02-21T18:08:52.494Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68407.00 | 波动: 0.5%
+[2026-02-21T18:08:54.272Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68407.10 | 波动: 0.5%
+[2026-02-21T18:08:57.505Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68407.00 | 波动: 0.5%
+[2026-02-21T18:09:12.538Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖0 | 价格: 68407.00 | 波动: 0.5%
+[2026-02-21T18:09:14.318Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖1 | 价格: 68407.00 | 波动: 0.5%
+[2026-02-21T18:10:02.555Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68399.00 | 波动: 0.5%
+[2026-02-21T18:10:04.362Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68398.90 | 波动: 0.5%
+[2026-02-21T18:11:04.413Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买77+共振 | 价格: 68405.40 | 波动: 0.5%
+[2026-02-21T18:11:04.414Z] 📥限价卖出 0.0002923745786151386 @ 68405.4 strong_sell
+[2026-02-21T18:11:04.649Z]    ✅ 成功! ID: 3328434049016487936
+[2026-02-21T18:11:04.651Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68405.40, 累计: -99.12 USDT
+[2026-02-21T18:11:07.607Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买85+共振 | 价格: 68405.50 | 波动: 0.5%
+[2026-02-21T18:11:07.607Z] 📥限价卖出 0.0002923741512012923 @ 68405.5 strong_sell
+[2026-02-21T18:11:07.806Z]    ✅ 成功! ID: 3328434155686027264
+[2026-02-21T18:11:07.810Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68405.50, 累计: -79.12 USDT
+[2026-02-21T18:11:17.635Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68405.50 | 波动: 0.5%
+[2026-02-21T18:11:19.410Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68405.50 | 波动: 0.5%
+[2026-02-21T18:11:57.668Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买93+共振 | 价格: 68407.00 | 波动: 0.5%
+[2026-02-21T18:11:59.457Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买74+共振 | 价格: 68406.90 | 波动: 0.5%
+[2026-02-21T18:12:47.695Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买100 | 价格: 68434.60 | 波动: 0.5%
+[2026-02-21T18:12:49.460Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买99 | 价格: 68434.70 | 波动: 0.5%
+[2026-02-21T18:13:22.725Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68436.90 | 波动: 0.5%
+[2026-02-21T18:13:24.515Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68436.90 | 波动: 0.5%
+[2026-02-21T18:14:07.821Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖25+共振 | 价格: 68414.80 | 波动: 0.5%
+[2026-02-21T18:14:07.821Z] 📥限价买入 0.00029233440717505566 @ 68414.8 strong_buy
+[2026-02-21T18:14:08.045Z]    ✅ 成功! ID: 3328440203167752192
+[2026-02-21T18:14:08.047Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68414.80, 累计: -99.12 USDT
+[2026-02-21T18:14:09.541Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖25+共振 | 价格: 68414.80 | 波动: 0.5%
+[2026-02-21T18:14:09.541Z] 📥限价买入 0.00029233440717505566 @ 68414.8 strong_buy
+[2026-02-21T18:14:09.737Z]    ✅ 成功! ID: 3328440260310949888
+[2026-02-21T18:14:09.739Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68414.80, 累计: -119.12 USDT
+[2026-02-21T18:14:12.780Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68428.80 | 波动: 0.5%
+[2026-02-21T18:14:14.564Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68428.00 | 波动: 0.5%
+[2026-02-21T18:14:19.563Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖27+共振 | 价格: 68428.00 | 波动: 0.5%
+[2026-02-21T18:14:22.803Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖28+共振 | 价格: 68428.10 | 波动: 0.5%
+[2026-02-21T18:14:32.822Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68424.10 | 波动: 0.5%
+[2026-02-21T18:14:34.562Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68421.00 | 波动: 0.5%
+[2026-02-21T18:14:54.641Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖28+共振 | 价格: 68413.40 | 波动: 0.5%
+[2026-02-21T18:14:57.847Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68413.10 | 波动: 0.5%
+[2026-02-21T18:15:02.825Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68414.00 | 波动: 0.5%
+[2026-02-21T18:15:19.624Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68413.20 | 波动: 0.5%
+[2026-02-21T18:15:22.855Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖6+共振 | 价格: 68413.10 | 波动: 0.5%
+[2026-02-21T18:15:24.587Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖2+共振 | 价格: 68413.20 | 波动: 0.5%
+[2026-02-21T18:15:27.859Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68420.90 | 波动: 0.5%
+[2026-02-21T18:15:29.597Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68420.90 | 波动: 0.5%
+[2026-02-21T18:16:04.650Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买97 | 价格: 68430.00 | 波动: 0.5%
+[2026-02-21T18:16:04.650Z] 📥限价卖出 0.00029226947245360223 @ 68430 sell
+[2026-02-21T18:16:04.862Z]    ✅ 成功! ID: 3328444122862280704
+[2026-02-21T18:16:04.863Z] 💰 BTC/USDT sell sell 0.000292 @ 68430.00, 累计: -99.12 USDT
+[2026-02-21T18:16:07.837Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买94 | 价格: 68430.00 | 波动: 0.5%
+[2026-02-21T18:16:07.837Z] 📥限价卖出 0.00029226947245360223 @ 68430 sell
+[2026-02-21T18:16:08.065Z]    ✅ 成功! ID: 3328444230370680832
+[2026-02-21T18:16:08.066Z] 💰 BTC/USDT sell sell 0.000292 @ 68430.00, 累计: -79.12 USDT
+[2026-02-21T18:17:22.970Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68433.10 | 波动: 0.5%
+[2026-02-21T18:17:24.735Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68433.10 | 波动: 0.5%
+[2026-02-21T18:18:03.003Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖14+共振 | 价格: 68430.10 | 波动: 0.5%
+[2026-02-21T18:18:03.003Z] 📥限价买入 0.0002922690453470037 @ 68430.1 strong_buy
+[2026-02-21T18:18:03.212Z]    ✅ 成功! ID: 3328448094096416768
+[2026-02-21T18:18:03.214Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68430.10, 累计: -99.12 USDT
+[2026-02-21T18:18:04.749Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖7+共振 | 价格: 68430.00 | 波动: 0.5%
+[2026-02-21T18:18:04.749Z] 📥限价买入 0.00029226947245360223 @ 68430 strong_buy
+[2026-02-21T18:18:04.966Z]    ✅ 成功! ID: 3328448152816672768
+[2026-02-21T18:18:04.968Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68430.00, 累计: -119.12 USDT
+[2026-02-21T18:19:04.786Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68437.00 | 波动: 0.5%
+[2026-02-21T18:19:08.065Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68436.90 | 波动: 0.5%
+[2026-02-21T18:19:09.794Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买81 | 价格: 68437.00 | 波动: 0.5%
+[2026-02-21T18:19:09.794Z] 📥限价卖出 0.00029223957800604935 @ 68437 sell
+[2026-02-21T18:19:10.011Z]    ✅ 成功! ID: 3328450335398256640
+[2026-02-21T18:19:10.012Z] 💰 BTC/USDT sell sell 0.000292 @ 68437.00, 累计: -99.12 USDT
+[2026-02-21T18:19:13.018Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买81 | 价格: 68437.00 | 波动: 0.5%
+[2026-02-21T18:19:13.018Z] 📥限价卖出 0.00029223957800604935 @ 68437 sell
+[2026-02-21T18:19:13.228Z]    ✅ 成功! ID: 3328450443443527680
+[2026-02-21T18:19:13.230Z] 💰 BTC/USDT sell sell 0.000292 @ 68437.00, 累计: -79.12 USDT
+[2026-02-21T18:20:29.880Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68484.00 | 波动: 0.5%
+[2026-02-21T18:20:33.095Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68446.50 | 波动: 0.5%
+[2026-02-21T18:21:43.181Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买91 | 价格: 68504.90 | 波动: 0.5%
+[2026-02-21T18:21:44.936Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买91 | 价格: 68504.90 | 波动: 0.5%
+[2026-02-21T18:22:13.208Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68517.10 | 波动: 0.5%
+[2026-02-21T18:22:14.968Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68517.10 | 波动: 0.5%
+[2026-02-21T18:22:33.234Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买73 | 价格: 68533.20 | 波动: 0.5%
+[2026-02-21T18:22:34.986Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买74 | 价格: 68534.00 | 波动: 0.5%
+[2026-02-21T18:23:03.234Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68533.90 | 波动: 0.5%
+[2026-02-21T18:23:05.015Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68533.90 | 波动: 0.5%
+[2026-02-21T18:23:18.239Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买85 | 价格: 68538.30 | 波动: 0.5%
+[2026-02-21T18:23:20.020Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买93 | 价格: 68551.60 | 波动: 0.5%
+[2026-02-21T18:23:30.009Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68536.70 | 波动: 0.5%
+[2026-02-21T18:23:33.244Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68530.70 | 波动: 0.5%
+[2026-02-21T18:24:13.302Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68518.10 | 波动: 0.5%
+[2026-02-21T18:24:13.302Z] 📥限价买入 0.0002918936748100137 @ 68518.1 strong_buy
+[2026-02-21T18:24:13.541Z]    ✅ 成功! ID: 3328460520208556032
+[2026-02-21T18:24:13.542Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68518.10, 累计: -99.12 USDT
+[2026-02-21T18:24:23.334Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68523.90 | 波动: 0.5%
+[2026-02-21T18:24:30.082Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖24+共振 | 价格: 68528.70 | 波动: 0.5%
+[2026-02-21T18:24:30.082Z] 📥限价买入 0.0002918485247786694 @ 68528.7 strong_buy
+[2026-02-21T18:24:30.293Z]    ✅ 成功! ID: 3328461082446618624
+[2026-02-21T18:24:30.295Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68528.70, 累计: -119.12 USDT
+[2026-02-21T18:24:35.081Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68528.70 | 波动: 0.5%
+[2026-02-21T18:25:20.147Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买91 | 价格: 68528.00 | 波动: 0.5%
+[2026-02-21T18:25:20.147Z] 📥限价卖出 0.0002918515059537707 @ 68528 sell
+[2026-02-21T18:25:20.384Z]    ✅ 成功! ID: 3328462763020345344
+[2026-02-21T18:25:20.385Z] 💰 BTC/USDT sell sell 0.000292 @ 68528.00, 累计: -99.12 USDT
+[2026-02-21T18:25:23.362Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买92 | 价格: 68528.00 | 波动: 0.5%
+[2026-02-21T18:25:23.362Z] 📥限价卖出 0.0002918515059537707 @ 68528 sell
+[2026-02-21T18:25:23.591Z]    ✅ 成功! ID: 3328462870595854336
+[2026-02-21T18:25:23.593Z] 💰 BTC/USDT sell sell 0.000292 @ 68528.00, 累计: -79.12 USDT
+[2026-02-21T18:25:35.127Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖27+共振 | 价格: 68528.10 | 波动: 0.5%
+[2026-02-21T18:25:35.127Z] 📥限价买入 0.00029185108006788454 @ 68528.1 strong_buy
+[2026-02-21T18:25:35.358Z]    ✅ 成功! ID: 3328463265430855680
+[2026-02-21T18:25:35.359Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68528.10, 累计: -99.12 USDT
+[2026-02-21T18:25:38.410Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖10+共振 | 价格: 68528.00 | 波动: 0.5%
+[2026-02-21T18:25:38.410Z] 📥限价买入 0.0002918515059537707 @ 68528 strong_buy
+[2026-02-21T18:25:38.632Z]    ✅ 成功! ID: 3328463375355174912
+[2026-02-21T18:25:38.634Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68528.00, 累计: -119.12 USDT
+[2026-02-21T18:26:05.198Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68528.60 | 波动: 0.5%
+[2026-02-21T18:26:08.378Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买87 | 价格: 68539.90 | 波动: 0.5%
+[2026-02-21T18:26:08.378Z] 📥限价卖出 0.00029180083425858517 @ 68539.9 sell
+[2026-02-21T18:26:08.603Z]    ✅ 成功! ID: 3328464381048610816
+[2026-02-21T18:26:08.604Z] 💰 BTC/USDT sell sell 0.000292 @ 68539.90, 累计: -99.12 USDT
+[2026-02-21T18:26:10.169Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买87 | 价格: 68541.00 | 波动: 0.5%
+[2026-02-21T18:26:10.169Z] 📥限价卖出 0.00029179615120876554 @ 68541 sell
+[2026-02-21T18:26:10.384Z]    ✅ 成功! ID: 3328464440708390912
+[2026-02-21T18:26:10.386Z] 💰 BTC/USDT sell sell 0.000292 @ 68541.00, 累计: -79.12 USDT
+[2026-02-21T18:26:28.543Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68522.40 | 波动: 0.5%
+[2026-02-21T18:26:30.161Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68522.40 | 波动: 0.5%
+[2026-02-21T18:26:53.412Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖27+共振 | 价格: 68502.10 | 波动: 0.5%
+[2026-02-21T18:26:53.413Z] 📥限价买入 0.0002919618522643831 @ 68502.1 strong_buy
+[2026-02-21T18:26:53.630Z]    ✅ 成功! ID: 3328465891870466048
+[2026-02-21T18:26:53.632Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68502.10, 累计: -99.12 USDT
+[2026-02-21T18:26:55.217Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖27+共振 | 价格: 68502.10 | 波动: 0.5%
+[2026-02-21T18:26:55.218Z] 📥限价买入 0.0002919618522643831 @ 68502.1 strong_buy
+[2026-02-21T18:26:55.460Z]    ✅ 成功! ID: 3328465953140858880
+[2026-02-21T18:26:55.462Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68502.10, 累计: -119.12 USDT
+[2026-02-21T18:28:30.320Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖16 | 价格: 68492.70 | 波动: 0.5%
+[2026-02-21T18:28:33.536Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖17 | 价格: 68493.10 | 波动: 0.5%
+[2026-02-21T18:29:40.390Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68490.10 | 波动: 0.5%
+[2026-02-21T18:29:43.609Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68491.90 | 波动: 0.5%
+[2026-02-21T18:30:03.623Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买73+共振 | 价格: 68506.10 | 波动: 0.5%
+[2026-02-21T18:30:03.623Z] 📥限价卖出 0.0002919448049151827 @ 68506.1 strong_sell
+[2026-02-21T18:30:03.827Z]    ✅ 成功! ID: 3328472273856323584
+[2026-02-21T18:30:03.828Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68506.10, 累计: -99.12 USDT
+[2026-02-21T18:30:05.375Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买82+共振 | 价格: 68495.10 | 波动: 0.5%
+[2026-02-21T18:30:05.375Z] 📥限价卖出 0.00029199168991650496 @ 68495.1 strong_sell
+[2026-02-21T18:30:05.598Z]    ✅ 成功! ID: 3328472333046341632
+[2026-02-21T18:30:05.600Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68495.10, 累计: -79.12 USDT
+[2026-02-21T18:30:53.668Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68502.90 | 波动: 0.5%
+[2026-02-21T18:31:18.685Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买92+共振 | 价格: 68502.90 | 波动: 0.5%
+[2026-02-21T18:31:33.683Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买95 | 价格: 68503.00 | 波动: 0.5%
+[2026-02-21T18:31:40.445Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买95 | 价格: 68503.00 | 波动: 0.5%
+[2026-02-21T18:32:53.744Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68527.10 | 波动: 0.5%
+[2026-02-21T18:32:58.749Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68533.00 | 波动: 0.5%
+[2026-02-21T18:33:08.761Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68534.10 | 波动: 0.5%
+[2026-02-21T18:33:10.525Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68522.10 | 波动: 0.5%
+[2026-02-21T18:34:13.825Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖24+共振 | 价格: 68504.20 | 波动: 0.5%
+[2026-02-21T18:34:13.826Z] 📥限价买入 0.0002919529021578239 @ 68504.2 strong_buy
+[2026-02-21T18:34:14.047Z]    ✅ 成功! ID: 3328480669745635328
+[2026-02-21T18:34:14.048Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68504.20, 累计: -99.12 USDT
+[2026-02-21T18:34:25.588Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖22+共振 | 价格: 68500.00 | 波动: 0.5%
+[2026-02-21T18:34:25.588Z] 📥限价买入 0.00029197080291970805 @ 68500 strong_buy
+[2026-02-21T18:34:25.811Z]    ✅ 成功! ID: 3328481064446418945
+[2026-02-21T18:34:25.813Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68500.00, 累计: -119.12 USDT
+[2026-02-21T18:34:28.822Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68503.00 | 波动: 0.5%
+[2026-02-21T18:34:30.603Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68512.00 | 波动: 0.5%
+[2026-02-21T18:34:58.861Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖25+共振 | 价格: 68500.10 | 波动: 0.5%
+[2026-02-21T18:35:13.879Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68506.00 | 波动: 0.5%
+[2026-02-21T18:35:28.886Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买70 | 价格: 68523.60 | 波动: 0.5%
+[2026-02-21T18:35:28.886Z] 📥限价卖出 0.0002918702461633656 @ 68523.6 sell
+[2026-02-21T18:35:29.095Z]    ✅ 成功! ID: 3328483187938648064
+[2026-02-21T18:35:29.096Z] 💰 BTC/USDT sell sell 0.000292 @ 68523.60, 累计: -99.12 USDT
+[2026-02-21T18:35:30.664Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68523.60 | 波动: 0.5%
+[2026-02-21T18:35:30.664Z] 📥限价卖出 0.0002918702461633656 @ 68523.6 sell
+[2026-02-21T18:35:30.870Z]    ✅ 成功! ID: 3328483247497764864
+[2026-02-21T18:35:30.872Z] 💰 BTC/USDT sell sell 0.000292 @ 68523.60, 累计: -79.12 USDT
+[2026-02-21T18:35:35.658Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68523.60 | 波动: 0.5%
+[2026-02-21T18:35:55.688Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买73 | 价格: 68542.00 | 波动: 0.5%
+[2026-02-21T18:36:28.941Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68535.20 | 波动: 0.5%
+[2026-02-21T18:36:30.707Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68535.20 | 波动: 0.5%
+[2026-02-21T18:36:33.951Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68538.00 | 波动: 0.5%
+[2026-02-21T18:36:35.732Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68537.90 | 波动: 0.5%
+[2026-02-21T18:36:38.940Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68538.40 | 波动: 0.5%
+[2026-02-21T18:36:40.714Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68538.40 | 波动: 0.5%
+[2026-02-21T18:38:14.020Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买72 | 价格: 68558.90 | 波动: 0.5%
+[2026-02-21T18:38:15.805Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买72 | 价格: 68558.90 | 波动: 0.5%
+[2026-02-21T18:38:19.015Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68557.20 | 波动: 0.5%
+[2026-02-21T18:38:20.806Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68545.90 | 波动: 0.5%
+[2026-02-21T18:38:40.828Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖30+共振 | 价格: 68539.00 | 波动: 0.5%
+[2026-02-21T18:38:40.828Z] 📥限价买入 0.00029180466595660865 @ 68539 strong_buy
+[2026-02-21T18:38:41.047Z]    ✅ 成功! ID: 3328489628980305920
+[2026-02-21T18:38:41.049Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68539.00, 累计: -99.12 USDT
+[2026-02-21T18:38:49.075Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖24+共振 | 价格: 68538.90 | 波动: 0.5%
+[2026-02-21T18:38:49.075Z] 📥限价买入 0.00029180509170704524 @ 68538.9 strong_buy
+[2026-02-21T18:38:49.284Z]    ✅ 成功! ID: 3328489905166835712
+[2026-02-21T18:38:49.285Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68538.90, 累计: -119.12 USDT
+[2026-02-21T18:39:09.069Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68537.60 | 波动: 0.5%
+[2026-02-21T18:39:10.860Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68543.00 | 波动: 0.5%
+[2026-02-21T18:40:04.102Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68545.00 | 波动: 0.5%
+[2026-02-21T18:40:04.102Z] 📥限价卖出 0.0002917791232037348 @ 68545 sell
+[2026-02-21T18:40:04.323Z]    ✅ 成功! ID: 3328492422990749696
+[2026-02-21T18:40:04.325Z] 💰 BTC/USDT sell sell 0.000292 @ 68545.00, 累计: -99.12 USDT
+[2026-02-21T18:40:05.917Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买74 | 价格: 68545.00 | 波动: 0.5%
+[2026-02-21T18:40:05.917Z] 📥限价卖出 0.0002917791232037348 @ 68545 sell
+[2026-02-21T18:40:06.126Z]    ✅ 成功! ID: 3328492483590053888
+[2026-02-21T18:40:06.128Z] 💰 BTC/USDT sell sell 0.000292 @ 68545.00, 累计: -79.12 USDT
+[2026-02-21T18:40:24.115Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68550.70 | 波动: 0.5%
+[2026-02-21T18:40:25.878Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68550.70 | 波动: 0.5%
+[2026-02-21T18:40:44.143Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买90 | 价格: 68550.70 | 波动: 0.5%
+[2026-02-21T18:40:45.956Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买98 | 价格: 68550.70 | 波动: 0.5%
+[2026-02-21T18:40:50.990Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68544.70 | 波动: 0.5%
+[2026-02-21T18:40:54.148Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68544.00 | 波动: 0.5%
+[2026-02-21T18:41:04.169Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买79 | 价格: 68561.80 | 波动: 0.5%
+[2026-02-21T18:41:06.063Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买80 | 价格: 68561.90 | 波动: 0.5%
+[2026-02-21T18:41:34.230Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68573.50 | 波动: 0.5%
+[2026-02-21T18:41:36.022Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68573.50 | 波动: 0.5%
+[2026-02-21T18:42:01.027Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68569.10 | 波动: 0.5%
+[2026-02-21T18:42:04.189Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68569.00 | 波动: 0.5%
+[2026-02-21T18:42:05.999Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68569.00 | 波动: 0.5%
+[2026-02-21T18:42:09.265Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68563.00 | 波动: 0.5%
+[2026-02-21T18:42:39.264Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖0+共振 | 价格: 68552.00 | 波动: 0.5%
+[2026-02-21T18:42:39.264Z] 📥限价买入 0.00029174932897654333 @ 68552 strong_buy
+[2026-02-21T18:42:39.510Z]    ✅ 成功! ID: 3328497630672150528
+[2026-02-21T18:42:39.512Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68552.00, 累计: -99.12 USDT
+[2026-02-21T18:42:41.019Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖1+共振 | 价格: 68552.00 | 波动: 0.5%
+[2026-02-21T18:42:41.019Z] 📥限价买入 0.00029174932897654333 @ 68552 strong_buy
+[2026-02-21T18:42:41.238Z]    ✅ 成功! ID: 3328497688251555840
+[2026-02-21T18:42:41.240Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68552.00, 累计: -119.12 USDT
+[2026-02-21T18:43:36.077Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68550.00 | 波动: 0.5%
+[2026-02-21T18:43:39.303Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68550.00 | 波动: 0.5%
+[2026-02-21T18:44:46.130Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖7+共振 | 价格: 68546.10 | 波动: 0.5%
+[2026-02-21T18:44:49.425Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖2+共振 | 价格: 68546.00 | 波动: 0.5%
+[2026-02-21T18:44:56.145Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买75 | 价格: 68558.20 | 波动: 0.5%
+[2026-02-21T18:44:56.145Z] 📥限价卖出 0.00029172294488478403 @ 68558.2 sell
+[2026-02-21T18:44:56.356Z]    ✅ 成功! ID: 3328502222059298817
+[2026-02-21T18:44:56.358Z] 💰 BTC/USDT sell sell 0.000292 @ 68558.20, 累计: -99.12 USDT
+[2026-02-21T18:44:59.371Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买75 | 价格: 68558.60 | 波动: 0.5%
+[2026-02-21T18:44:59.371Z] 📥限价卖出 0.00029172124284918303 @ 68558.6 sell
+[2026-02-21T18:44:59.608Z]    ✅ 成功! ID: 3328502331111202816
+[2026-02-21T18:44:59.610Z] 💰 BTC/USDT sell sell 0.000292 @ 68558.60, 累计: -79.12 USDT
+[2026-02-21T18:45:01.157Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68544.00 | 波动: 0.5%
+[2026-02-21T18:45:04.364Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68553.00 | 波动: 0.5%
+[2026-02-21T18:45:34.405Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖28+共振 | 价格: 68526.00 | 波动: 0.5%
+[2026-02-21T18:45:34.405Z] 📥限价买入 0.00029186002393252194 @ 68526 strong_buy
+[2026-02-21T18:45:34.626Z]    ✅ 成功! ID: 3328503506120302593
+[2026-02-21T18:45:34.627Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68526.00, 累计: -99.12 USDT
+[2026-02-21T18:45:39.395Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖21 | 价格: 68512.40 | 波动: 0.5%
+[2026-02-21T18:45:41.197Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖22 | 价格: 68511.00 | 波动: 0.5%
+[2026-02-21T18:45:41.197Z] 📥限价买入 0.00029192392462524267 @ 68511 buy
+[2026-02-21T18:45:41.422Z]    ✅ 成功! ID: 3328503734189776896
+[2026-02-21T18:45:41.423Z] 💰 BTC/USDT buy buy 0.000292 @ 68511.00, 累计: -119.12 USDT
+[2026-02-21T18:46:44.463Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68537.90 | 波动: 0.5%
+[2026-02-21T18:46:46.253Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68542.90 | 波动: 0.5%
+[2026-02-21T18:46:49.459Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买79+共振 | 价格: 68542.90 | 波动: 0.5%
+[2026-02-21T18:46:49.459Z] 📥限价卖出 0.0002917880626585686 @ 68542.9 strong_sell
+[2026-02-21T18:46:49.658Z]    ✅ 成功! ID: 3328506024212652032
+[2026-02-21T18:46:49.660Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68542.90, 累计: -99.12 USDT
+[2026-02-21T18:46:51.244Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买81+共振 | 价格: 68542.90 | 波动: 0.5%
+[2026-02-21T18:46:51.244Z] 📥限价卖出 0.0002917880626585686 @ 68542.9 strong_sell
+[2026-02-21T18:46:51.450Z]    ✅ 成功! ID: 3328506083973095424
+[2026-02-21T18:46:51.452Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68542.90, 累计: -79.12 USDT
+[2026-02-21T18:47:19.524Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买85 | 价格: 68587.00 | 波动: 0.5%
+[2026-02-21T18:47:21.260Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买84 | 价格: 68587.10 | 波动: 0.5%
+[2026-02-21T18:48:14.528Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68612.00 | 波动: 0.5%
+[2026-02-21T18:48:16.303Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68612.00 | 波动: 0.5%
+[2026-02-21T18:48:54.562Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买70 | 价格: 68614.00 | 波动: 0.5%
+[2026-02-21T18:48:56.375Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买72 | 价格: 68613.90 | 波动: 0.5%
+[2026-02-21T18:49:04.575Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68627.30 | 波动: 0.5%
+[2026-02-21T18:49:06.391Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68627.30 | 波动: 0.5%
+[2026-02-21T18:50:09.653Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖30+共振 | 价格: 68609.40 | 波动: 0.5%
+[2026-02-21T18:50:09.653Z] 📥限价买入 0.00029150524563689527 @ 68609.4 strong_buy
+[2026-02-21T18:50:09.881Z]    ✅ 成功! ID: 3328512742145482752
+[2026-02-21T18:50:09.883Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68609.40, 累计: -99.12 USDT
+[2026-02-21T18:50:14.671Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68609.30 | 波动: 0.5%
+[2026-02-21T18:51:11.503Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买71 | 价格: 68628.00 | 波动: 0.5%
+[2026-02-21T18:51:14.708Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买70 | 价格: 68627.90 | 波动: 0.5%
+[2026-02-21T18:51:14.708Z] 📥限价卖出 0.0002914266646655369 @ 68627.9 sell
+[2026-02-21T18:51:14.942Z]    ✅ 成功! ID: 3328514925129719808
+[2026-02-21T18:51:14.943Z] 💰 BTC/USDT sell sell 0.000291 @ 68627.90, 累计: -79.12 USDT
+[2026-02-21T18:51:16.489Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68626.70 | 波动: 0.5%
+[2026-02-21T18:51:21.506Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买93 | 价格: 68626.70 | 波动: 0.5%
+[2026-02-21T18:51:34.711Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖12+共振 | 价格: 68626.70 | 波动: 0.5%
+[2026-02-21T18:51:34.711Z] 📥限价买入 0.00029143176052469377 @ 68626.7 strong_buy
+[2026-02-21T18:51:34.924Z]    ✅ 成功! ID: 3328515596117696512
+[2026-02-21T18:51:34.926Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68626.70, 累计: -99.12 USDT
+[2026-02-21T18:51:36.515Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖20+共振 | 价格: 68626.70 | 波动: 0.5%
+[2026-02-21T18:51:36.515Z] 📥限价买入 0.00029143176052469377 @ 68626.7 strong_buy
+[2026-02-21T18:51:36.742Z]    ✅ 成功! ID: 3328515656717000704
+[2026-02-21T18:51:36.744Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68626.70, 累计: -119.12 USDT
+[2026-02-21T18:52:56.602Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68605.70 | 波动: 0.5%
+[2026-02-21T18:52:59.778Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68605.70 | 波动: 0.5%
+[2026-02-21T18:53:01.570Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买73 | 价格: 68605.70 | 波动: 0.5%
+[2026-02-21T18:53:01.570Z] 📥限价卖出 0.0002915209669167431 @ 68605.7 sell
+[2026-02-21T18:53:01.779Z]    ✅ 成功! ID: 3328518510420779008
+[2026-02-21T18:53:01.781Z] 💰 BTC/USDT sell sell 0.000292 @ 68605.70, 累计: -99.12 USDT
+[2026-02-21T18:53:04.818Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买97 | 价格: 68605.60 | 波动: 0.5%
+[2026-02-21T18:53:04.818Z] 📥限价卖出 0.0002915213918397332 @ 68605.6 sell
+[2026-02-21T18:53:05.039Z]    ✅ 成功! ID: 3328518619975999488
+[2026-02-21T18:53:05.040Z] 💰 BTC/USDT sell sell 0.000292 @ 68605.60, 累计: -79.12 USDT
+[2026-02-21T18:53:24.822Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68596.30 | 波动: 0.5%
+[2026-02-21T18:53:31.607Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68598.80 | 波动: 0.5%
+[2026-02-21T18:54:44.877Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买75 | 价格: 68606.90 | 波动: 0.5%
+[2026-02-21T18:54:46.669Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买75 | 价格: 68607.00 | 波动: 0.5%
+[2026-02-21T18:55:11.682Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68632.70 | 波动: 0.5%
+[2026-02-21T18:55:14.899Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68632.60 | 波动: 0.5%
+[2026-02-21T18:55:26.724Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买75 | 价格: 68632.70 | 波动: 0.5%
+[2026-02-21T18:55:29.924Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买74 | 价格: 68632.70 | 波动: 0.5%
+[2026-02-21T18:55:59.932Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68637.20 | 波动: 0.5%
+[2026-02-21T18:56:01.723Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68637.20 | 波动: 0.5%
+[2026-02-21T18:56:49.990Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖25+共振 | 价格: 68625.10 | 波动: 0.5%
+[2026-02-21T18:56:49.990Z] 📥限价买入 0.0002914385552807937 @ 68625.1 strong_buy
+[2026-02-21T18:56:50.199Z]    ✅ 成功! ID: 3328526174588592128
+[2026-02-21T18:56:50.200Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68625.10, 累计: -99.12 USDT
+[2026-02-21T18:56:51.789Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖15+共振 | 价格: 68625.00 | 波动: 0.5%
+[2026-02-21T18:56:51.790Z] 📥限价买入 0.00029143897996357013 @ 68625 strong_buy
+[2026-02-21T18:56:52.011Z]    ✅ 成功! ID: 3328526235322114048
+[2026-02-21T18:56:52.013Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68625.00, 累计: -119.12 USDT
+[2026-02-21T18:57:41.826Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68625.10 | 波动: 0.5%
+[2026-02-21T18:57:45.028Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68625.10 | 波动: 0.5%
+[2026-02-21T18:58:01.849Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖20+共振 | 价格: 68619.10 | 波动: 0.5%
+[2026-02-21T18:58:05.043Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖16+共振 | 价格: 68616.70 | 波动: 0.5%
+[2026-02-21T18:58:25.055Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖0 | 价格: 68561.80 | 波动: 0.5%
+[2026-02-21T18:58:26.859Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖1 | 价格: 68561.90 | 波动: 0.5%
+[2026-02-21T18:59:25.146Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买77+共振 | 价格: 68575.50 | 波动: 0.5%
+[2026-02-21T18:59:25.146Z] 📥限价卖出 0.00029164934998651123 @ 68575.5 strong_sell
+[2026-02-21T18:59:25.397Z]    ✅ 成功! ID: 3328531382035111936
+[2026-02-21T18:59:25.398Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68575.50, 累计: -99.12 USDT
+[2026-02-21T18:59:26.928Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买77+共振 | 价格: 68575.50 | 波动: 0.5%
+[2026-02-21T18:59:26.928Z] 📥限价卖出 0.00029164934998651123 @ 68575.5 strong_sell
+[2026-02-21T18:59:27.155Z]    ✅ 成功! ID: 3328531441090912256
+[2026-02-21T18:59:27.157Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68575.50, 累计: -79.12 USDT
+[2026-02-21T18:59:41.920Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖8 | 价格: 68575.40 | 波动: 0.5%
+[2026-02-21T18:59:41.921Z] 📥限价买入 0.0002916497752838482 @ 68575.4 buy
+[2026-02-21T18:59:42.134Z]    ✅ 成功! ID: 3328531943870521344
+[2026-02-21T18:59:42.136Z] 💰 BTC/USDT buy buy 0.000292 @ 68575.40, 累计: -99.12 USDT
+[2026-02-21T18:59:45.128Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖5 | 价格: 68575.50 | 波动: 0.5%
+[2026-02-21T18:59:45.128Z] 📥限价买入 0.00029164934998651123 @ 68575.5 buy
+[2026-02-21T18:59:45.364Z]    ✅ 成功! ID: 3328532051982901248
+[2026-02-21T18:59:45.366Z] 💰 BTC/USDT buy buy 0.000292 @ 68575.50, 累计: -119.12 USDT
+[2026-02-21T19:00:01.968Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68583.60 | 波动: 0.5%
+[2026-02-21T19:00:05.175Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买91+共振 | 价格: 68585.00 | 波动: 0.5%
+[2026-02-21T19:00:05.175Z] 📥限价卖出 0.0002916089523948385 @ 68585 strong_sell
+[2026-02-21T19:00:05.395Z]    ✅ 成功! ID: 3328532724313055232
+[2026-02-21T19:00:05.396Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68585.00, 累计: -99.12 USDT
+[2026-02-21T19:00:06.955Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买91+共振 | 价格: 68587.20 | 波动: 0.5%
+[2026-02-21T19:00:06.955Z] 📥限价卖出 0.0002915995987589521 @ 68587.2 strong_sell
+[2026-02-21T19:00:07.159Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:11.981Z] 📥限价卖出 0.00029159874845817164 @ 68587.4 strong_sell
+[2026-02-21T19:00:12.219Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:16.936Z] 📥限价卖出 0.00029159789816235004 @ 68587.6 strong_sell
+[2026-02-21T19:00:17.159Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:21.966Z] 📥限价卖出 0.00029156644070267514 @ 68595 strong_sell
+[2026-02-21T19:00:22.203Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:26.967Z] 📥限价卖出 0.0002915957724444911 @ 68588.1 strong_sell
+[2026-02-21T19:00:27.190Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:31.973Z] 📥限价卖出 0.0002915961975855835 @ 68588 strong_sell
+[2026-02-21T19:00:32.184Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:36.982Z] 📥限价卖出 0.0002915957724444911 @ 68588.1 strong_sell
+[2026-02-21T19:00:37.196Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:41.964Z] 📥限价卖出 0.0002915961975855835 @ 68588 strong_sell
+[2026-02-21T19:00:42.169Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:46.964Z] 📥限价卖出 0.0002915957724444911 @ 68588.1 strong_sell
+[2026-02-21T19:00:47.166Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:51.958Z] 📥限价卖出 0.0002915961975855835 @ 68588 strong_sell
+[2026-02-21T19:00:52.166Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:00:56.997Z] 📥限价卖出 0.0002915961975855835 @ 68588 strong_sell
+[2026-02-21T19:00:57.233Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:01:01.975Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68572.40 | 波动: 0.5%
+[2026-02-21T19:01:05.181Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68571.00 | 波动: 0.5%
+[2026-02-21T19:01:15.204Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖15 | 价格: 68570.70 | 波动: 0.5%
+[2026-02-21T19:01:15.205Z] 📥限价买入 0.0002916697656579268 @ 68570.7 buy
+[2026-02-21T19:01:15.415Z]    ✅ 成功! ID: 3328535073928601600
+[2026-02-21T19:01:15.416Z] 💰 BTC/USDT buy buy 0.000292 @ 68570.70, 累计: -119.12 USDT
+[2026-02-21T19:01:17.010Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖25 | 价格: 68570.70 | 波动: 0.5%
+[2026-02-21T19:02:35.246Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68543.00 | 波动: 0.5%
+[2026-02-21T19:02:37.050Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68543.00 | 波动: 0.5%
+[2026-02-21T19:03:05.304Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68530.80 | 波动: 0.5%
+[2026-02-21T19:03:07.069Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68530.90 | 波动: 0.5%
+[2026-02-21T19:03:10.327Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68530.80 | 波动: 0.5%
+[2026-02-21T19:03:12.121Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68530.80 | 波动: 0.5%
+[2026-02-21T19:03:25.312Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖5 | 价格: 68531.60 | 波动: 0.5%
+[2026-02-21T19:03:27.127Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖5 | 价格: 68531.60 | 波动: 0.5%
+[2026-02-21T19:03:42.106Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68543.60 | 波动: 0.5%
+[2026-02-21T19:03:45.418Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68547.80 | 波动: 0.5%
+[2026-02-21T19:04:15.376Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68546.10 | 波动: 0.5%
+[2026-02-21T19:04:15.376Z] 📥限价卖出 0.00029177444085075587 @ 68546.1 strong_sell
+[2026-02-21T19:04:15.594Z]    ✅ 成功! ID: 3328541120001040384
+[2026-02-21T19:04:15.596Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68546.10, 累计: -99.12 USDT
+[2026-02-21T19:04:17.126Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买75+共振 | 价格: 68549.90 | 波动: 0.5%
+[2026-02-21T19:04:17.126Z] 📥限价卖出 0.0002917582666057865 @ 68549.9 strong_sell
+[2026-02-21T19:04:17.347Z]    ✅ 成功! ID: 3328541178519969793
+[2026-02-21T19:04:17.349Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68549.90, 累计: -79.12 USDT
+[2026-02-21T19:05:05.446Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68560.00 | 波动: 0.5%
+[2026-02-21T19:05:07.222Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68560.10 | 波动: 0.5%
+[2026-02-21T19:05:10.400Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68560.00 | 波动: 0.5%
+[2026-02-21T19:05:12.178Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68560.10 | 波动: 0.5%
+[2026-02-21T19:05:17.220Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68553.70 | 波动: 0.5%
+[2026-02-21T19:05:22.207Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买78+共振 | 价格: 68577.90 | 波动: 0.5%
+[2026-02-21T19:06:07.222Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买74 | 价格: 68590.00 | 波动: 0.5%
+[2026-02-21T19:06:10.506Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买82 | 价格: 68590.00 | 波动: 0.5%
+[2026-02-21T19:06:55.554Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68590.00 | 波动: 0.5%
+[2026-02-21T19:06:57.295Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68589.90 | 波动: 0.5%
+[2026-02-21T19:07:37.326Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买87 | 价格: 68591.00 | 波动: 0.5%
+[2026-02-21T19:07:40.547Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买82 | 价格: 68591.00 | 波动: 0.5%
+[2026-02-21T19:10:35.707Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68650.70 | 波动: 0.5%
+[2026-02-21T19:10:37.469Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68650.60 | 波动: 0.5%
+[2026-02-21T19:11:00.744Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖29+共振 | 价格: 68625.90 | 波动: 0.5%
+[2026-02-21T19:11:00.744Z] 📥限价买入 0.00029143515786313916 @ 68625.9 strong_buy
+[2026-02-21T19:11:00.982Z]    ✅ 成功! ID: 3328554722229575680
+[2026-02-21T19:11:00.984Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68625.90, 累计: -99.12 USDT
+[2026-02-21T19:11:02.529Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖27+共振 | 价格: 68625.90 | 波动: 0.5%
+[2026-02-21T19:11:02.529Z] 📥限价买入 0.00029143515786313916 @ 68625.9 strong_buy
+[2026-02-21T19:11:02.735Z]    ✅ 成功! ID: 3328554781218267136
+[2026-02-21T19:11:02.737Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68625.90, 累计: -119.12 USDT
+[2026-02-21T19:11:40.747Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68627.60 | 波动: 0.5%
+[2026-02-21T19:11:42.571Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68627.60 | 波动: 0.5%
+[2026-02-21T19:13:00.850Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖20+共振 | 价格: 68624.00 | 波动: 0.5%
+[2026-02-21T19:13:02.627Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖2+共振 | 价格: 68624.10 | 波动: 0.5%
+[2026-02-21T19:13:15.860Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68651.90 | 波动: 0.5%
+[2026-02-21T19:13:17.645Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68651.90 | 波动: 0.5%
+[2026-02-21T19:13:25.850Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买70 | 价格: 68651.90 | 波动: 0.5%
+[2026-02-21T19:13:25.850Z] 📥限价卖出 0.000291324784893062 @ 68651.9 sell
+[2026-02-21T19:13:26.088Z]    ✅ 成功! ID: 3328559591581638656
+[2026-02-21T19:13:26.089Z] 💰 BTC/USDT sell sell 0.000291 @ 68651.90, 累计: -99.12 USDT
+[2026-02-21T19:13:27.681Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买70 | 价格: 68651.90 | 波动: 0.5%
+[2026-02-21T19:13:27.681Z] 📥限价卖出 0.000291324784893062 @ 68651.9 sell
+[2026-02-21T19:13:27.898Z]    ✅ 成功! ID: 3328559652046725120
+[2026-02-21T19:13:27.900Z] 💰 BTC/USDT sell sell 0.000291 @ 68651.90, 累计: -79.12 USDT
+[2026-02-21T19:13:40.904Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68638.50 | 波动: 0.5%
+[2026-02-21T19:13:42.651Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68638.20 | 波动: 0.5%
+[2026-02-21T19:14:00.891Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买72 | 价格: 68647.10 | 波动: 0.5%
+[2026-02-21T19:14:02.684Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买72 | 价格: 68647.10 | 波动: 0.5%
+[2026-02-21T19:14:05.917Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68629.40 | 波动: 0.5%
+[2026-02-21T19:14:07.690Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68629.50 | 波动: 0.5%
+[2026-02-21T19:14:25.942Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖19+共振 | 价格: 68618.00 | 波动: 0.5%
+[2026-02-21T19:14:25.942Z] 📥限价买入 0.000291468710833892 @ 68618 strong_buy
+[2026-02-21T19:14:26.171Z]    ✅ 成功! ID: 3328561607297032192
+[2026-02-21T19:14:26.173Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68618.00, 累计: -99.12 USDT
+[2026-02-21T19:14:27.706Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖18+共振 | 价格: 68617.00 | 波动: 0.5%
+[2026-02-21T19:14:27.706Z] 📥限价买入 0.00029147295859626625 @ 68617 strong_buy
+[2026-02-21T19:14:27.929Z]    ✅ 成功! ID: 3328561666319278080
+[2026-02-21T19:14:27.931Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68617.00, 累计: -119.12 USDT
+[2026-02-21T19:15:12.784Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖17 | 价格: 68601.00 | 波动: 0.5%
+[2026-02-21T19:15:15.936Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖22 | 价格: 68601.00 | 波动: 0.5%
+[2026-02-21T19:16:02.808Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68587.10 | 波动: 0.5%
+[2026-02-21T19:16:05.984Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68587.00 | 波动: 0.5%
+[2026-02-21T19:16:15.992Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖2 | 价格: 68587.00 | 波动: 0.5%
+[2026-02-21T19:16:17.799Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖2 | 价格: 68587.00 | 波动: 0.5%
+[2026-02-21T19:16:42.841Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68589.30 | 波动: 0.5%
+[2026-02-21T19:16:46.034Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68589.20 | 波动: 0.5%
+[2026-02-21T19:16:47.832Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买89+共振 | 价格: 68589.30 | 波动: 0.5%
+[2026-02-21T19:16:47.832Z] 📥限价卖出 0.0002915906708480769 @ 68589.3 strong_sell
+[2026-02-21T19:16:48.034Z]    ✅ 成功! ID: 3328566367999844352
+[2026-02-21T19:16:48.036Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68589.30, 累计: -99.12 USDT
+[2026-02-21T19:16:51.031Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买89+共振 | 价格: 68589.20 | 波动: 0.5%
+[2026-02-21T19:16:51.031Z] 📥限价卖出 0.00029159109597429335 @ 68589.2 strong_sell
+[2026-02-21T19:16:51.263Z]    ✅ 成功! ID: 3328566476179333120
+[2026-02-21T19:16:51.265Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68589.20, 累计: -79.12 USDT
+[2026-02-21T19:19:22.977Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68593.10 | 波动: 0.5%
+[2026-02-21T19:19:26.169Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68592.00 | 波动: 0.5%
+[2026-02-21T19:19:41.177Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖10 | 价格: 68590.00 | 波动: 0.5%
+[2026-02-21T19:19:41.177Z] 📥限价买入 0.000291587694999271 @ 68590 buy
+[2026-02-21T19:19:41.417Z]    ✅ 成功! ID: 3328572185197502464
+[2026-02-21T19:19:41.419Z] 💰 BTC/USDT buy buy 0.000292 @ 68590.00, 累计: -99.12 USDT
+[2026-02-21T19:19:47.983Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖11 | 价格: 68590.00 | 波动: 0.5%
+[2026-02-21T19:19:47.983Z] 📥限价买入 0.000291587694999271 @ 68590 buy
+[2026-02-21T19:19:48.215Z]    ✅ 成功! ID: 3328572413334085632
+[2026-02-21T19:19:48.216Z] 💰 BTC/USDT buy buy 0.000292 @ 68590.00, 累计: -119.12 USDT
+[2026-02-21T19:19:56.218Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68590.90 | 波动: 0.5%
+[2026-02-21T19:20:03.019Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68600.60 | 波动: 0.5%
+[2026-02-21T19:20:38.036Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买74+共振 | 价格: 68600.10 | 波动: 0.5%
+[2026-02-21T19:20:38.036Z] 📥限价卖出 0.00029154476451200505 @ 68600.1 strong_sell
+[2026-02-21T19:20:38.261Z]    ✅ 成功! ID: 3328574092666298368
+[2026-02-21T19:20:38.263Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68600.10, 累计: -99.12 USDT
+[2026-02-21T19:20:43.040Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68598.10 | 波动: 0.5%
+[2026-02-21T19:20:53.033Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖23 | 价格: 68564.00 | 波动: 0.5%
+[2026-02-21T19:20:53.033Z] 📥限价买入 0.00029169826731229216 @ 68564 buy
+[2026-02-21T19:20:53.254Z]    ✅ 成功! ID: 3328574596083441664
+[2026-02-21T19:20:53.256Z] 💰 BTC/USDT buy buy 0.000292 @ 68564.00, 累计: -119.12 USDT
+[2026-02-21T19:20:56.258Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖29 | 价格: 68564.00 | 波动: 0.5%
+[2026-02-21T19:21:01.248Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68562.70 | 波动: 0.5%
+[2026-02-21T19:21:06.239Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖21 | 价格: 68562.80 | 波动: 0.5%
+[2026-02-21T19:22:11.301Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68562.80 | 波动: 0.5%
+[2026-02-21T19:22:13.122Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68562.80 | 波动: 0.5%
+[2026-02-21T19:22:31.317Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖20 | 价格: 68561.80 | 波动: 0.5%
+[2026-02-21T19:22:33.116Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖15 | 价格: 68561.00 | 波动: 0.5%
+[2026-02-21T19:23:01.338Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68558.90 | 波动: 0.5%
+[2026-02-21T19:23:03.163Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68558.90 | 波动: 0.5%
+[2026-02-21T19:23:33.181Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68583.70 | 波动: 0.5%
+[2026-02-21T19:23:33.181Z] 📥限价卖出 0.00029161447982538124 @ 68583.7 strong_sell
+[2026-02-21T19:23:33.404Z]    ✅ 成功! ID: 3328579969624399872
+[2026-02-21T19:23:33.406Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68583.70, 累计: -99.12 USDT
+[2026-02-21T19:23:36.398Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68584.50 | 波动: 0.5%
+[2026-02-21T19:23:36.398Z] 📥限价卖出 0.0002916110783048648 @ 68584.5 strong_sell
+[2026-02-21T19:23:36.619Z]    ✅ 成功! ID: 3328580077468344320
+[2026-02-21T19:23:36.621Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68584.50, 累计: -79.12 USDT
+[2026-02-21T19:24:53.228Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买98 | 价格: 68596.00 | 波动: 0.5%
+[2026-02-21T19:24:56.451Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买90 | 价格: 68596.00 | 波动: 0.5%
+[2026-02-21T19:25:06.431Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖26+共振 | 价格: 68591.10 | 波动: 0.5%
+[2026-02-21T19:25:06.431Z] 📥限价买入 0.0002915830187881518 @ 68591.1 strong_buy
+[2026-02-21T19:25:06.638Z]    ✅ 成功! ID: 3328583098038312960
+[2026-02-21T19:25:06.640Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68591.10, 累计: -99.12 USDT
+[2026-02-21T19:25:08.261Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖26+共振 | 价格: 68591.00 | 波动: 0.5%
+[2026-02-21T19:25:08.261Z] 📥限价买入 0.0002915834438920558 @ 68591 strong_buy
+[2026-02-21T19:25:08.493Z]    ✅ 成功! ID: 3328583160214675457
+[2026-02-21T19:25:08.495Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68591.00, 累计: -119.12 USDT
+[2026-02-21T19:25:33.268Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖9 | 价格: 68579.30 | 波动: 0.5%
+[2026-02-21T19:25:36.464Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖9 | 价格: 68578.90 | 波动: 0.5%
+[2026-02-21T19:25:51.478Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68589.20 | 波动: 0.5%
+[2026-02-21T19:25:53.297Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68589.20 | 波动: 0.5%
+[2026-02-21T19:26:13.327Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买79 | 价格: 68644.80 | 波动: 0.5%
+[2026-02-21T19:26:13.327Z] 📥限价卖出 0.0002913549169055777 @ 68644.8 sell
+[2026-02-21T19:26:13.555Z]    ✅ 成功! ID: 3328585343400239104
+[2026-02-21T19:26:13.556Z] 💰 BTC/USDT sell sell 0.000291 @ 68644.80, 累计: -99.12 USDT
+[2026-02-21T19:26:16.552Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买78 | 价格: 68621.80 | 波动: 0.5%
+[2026-02-21T19:26:16.552Z] 📥限价卖出 0.0002914525704659452 @ 68621.8 sell
+[2026-02-21T19:26:16.767Z]    ✅ 成功! ID: 3328585451177074688
+[2026-02-21T19:26:16.769Z] 💰 BTC/USDT sell sell 0.000291 @ 68621.80, 累计: -79.12 USDT
+[2026-02-21T19:26:18.295Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68621.80 | 波动: 0.5%
+[2026-02-21T19:26:33.326Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买73 | 价格: 68621.80 | 波动: 0.5%
+[2026-02-21T19:27:03.395Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68615.50 | 波动: 0.5%
+[2026-02-21T19:27:16.587Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68615.50 | 波动: 0.5%
+[2026-02-21T19:27:23.390Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖16+共振 | 价格: 68615.50 | 波动: 0.5%
+[2026-02-21T19:27:23.390Z] 📥限价买入 0.0002914793304719779 @ 68615.5 strong_buy
+[2026-02-21T19:27:23.624Z]    ✅ 成功! ID: 3328587694391517184
+[2026-02-21T19:27:23.625Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68615.50, 累计: -99.12 USDT
+[2026-02-21T19:27:28.403Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68615.60 | 波动: 0.5%
+[2026-02-21T19:27:46.619Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖1+共振 | 价格: 68614.00 | 波动: 0.5%
+[2026-02-21T19:27:46.619Z] 📥限价买入 0.00029148570262628617 @ 68614 strong_buy
+[2026-02-21T19:27:46.834Z]    ✅ 成功! ID: 3328588473290547200
+[2026-02-21T19:27:46.836Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68614.00, 累计: -119.12 USDT
+[2026-02-21T19:27:48.397Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖3+共振 | 价格: 68614.00 | 波动: 0.5%
+[2026-02-21T19:28:13.458Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68610.00 | 波动: 0.5%
+[2026-02-21T19:28:16.625Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68609.90 | 波动: 0.5%
+[2026-02-21T19:29:11.687Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买83 | 价格: 68622.00 | 波动: 0.5%
+[2026-02-21T19:29:11.687Z] 📥限价卖出 0.00029145172102241265 @ 68622 sell
+[2026-02-21T19:29:11.917Z]    ✅ 成功! ID: 3328591328437166080
+[2026-02-21T19:29:11.918Z] 💰 BTC/USDT sell sell 0.000291 @ 68622.00, 累计: -99.12 USDT
+[2026-02-21T19:29:13.473Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买83 | 价格: 68622.00 | 波动: 0.5%
+[2026-02-21T19:29:13.473Z] 📥限价卖出 0.00029145172102241265 @ 68622 sell
+[2026-02-21T19:29:13.693Z]    ✅ 成功! ID: 3328591387761401856
+[2026-02-21T19:29:13.695Z] 💰 BTC/USDT sell sell 0.000291 @ 68622.00, 累计: -79.12 USDT
+[2026-02-21T19:29:31.711Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68618.20 | 波动: 0.5%
+[2026-02-21T19:29:33.497Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68618.20 | 波动: 0.5%
+[2026-02-21T19:29:36.696Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖4+共振 | 价格: 68618.10 | 波动: 0.5%
+[2026-02-21T19:29:36.696Z] 📥限价买入 0.000291468286064464 @ 68618.1 strong_buy
+[2026-02-21T19:29:36.924Z]    ✅ 成功! ID: 3328592167230857216
+[2026-02-21T19:29:36.925Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68618.10, 累计: -99.12 USDT
+[2026-02-21T19:29:38.489Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖2+共振 | 价格: 68618.20 | 波动: 0.5%
+[2026-02-21T19:29:38.489Z] 📥限价买入 0.00029146786129627416 @ 68618.2 strong_buy
+[2026-02-21T19:29:38.699Z]    ✅ 成功! ID: 3328592227159072768
+[2026-02-21T19:29:38.701Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68618.20, 累计: -119.12 USDT
+[2026-02-21T19:31:01.792Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖27 | 价格: 68591.80 | 波动: 0.5%
+[2026-02-21T19:31:03.573Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖26 | 价格: 68590.70 | 波动: 0.5%
+[2026-02-21T19:31:11.804Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68584.70 | 波动: 0.5%
+[2026-02-21T19:31:13.618Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68584.70 | 波动: 0.5%
+[2026-02-21T19:31:33.594Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68586.70 | 波动: 0.5%
+[2026-02-21T19:31:36.798Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖26 | 价格: 68584.60 | 波动: 0.5%
+[2026-02-21T19:32:18.668Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68574.00 | 波动: 0.5%
+[2026-02-21T19:32:21.864Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68574.00 | 波动: 0.5%
+[2026-02-21T19:32:33.643Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖14 | 价格: 68574.00 | 波动: 0.5%
+[2026-02-21T19:32:36.834Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖14 | 价格: 68574.00 | 波动: 0.5%
+[2026-02-21T19:32:46.842Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68578.00 | 波动: 0.5%
+[2026-02-21T19:32:48.661Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68578.00 | 波动: 0.5%
+[2026-02-21T19:33:11.876Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买77+共振 | 价格: 68585.90 | 波动: 0.5%
+[2026-02-21T19:33:11.877Z] 📥限价卖出 0.00029160512583490197 @ 68585.9 strong_sell
+[2026-02-21T19:33:12.068Z]    ✅ 成功! ID: 3328599386701783040
+[2026-02-21T19:33:12.070Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68585.90, 累计: -99.12 USDT
+[2026-02-21T19:33:13.688Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买79+共振 | 价格: 68585.90 | 波动: 0.5%
+[2026-02-21T19:33:13.688Z] 📥限价卖出 0.00029160512583490197 @ 68585.9 strong_sell
+[2026-02-21T19:33:13.908Z]    ✅ 成功! ID: 3328599448106393600
+[2026-02-21T19:33:13.910Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68585.90, 累计: -79.12 USDT
+[2026-02-21T19:34:16.934Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68595.00 | 波动: 0.5%
+[2026-02-21T19:34:18.729Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68593.70 | 波动: 0.5%
+[2026-02-21T19:36:08.819Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖11+共振 | 价格: 68600.60 | 波动: 0.5%
+[2026-02-21T19:36:08.819Z] 📥限价买入 0.0002915426395687501 @ 68600.6 strong_buy
+[2026-02-21T19:36:09.047Z]    ✅ 成功! ID: 3328605324527624192
+[2026-02-21T19:36:09.048Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68600.60, 累计: -99.12 USDT
+[2026-02-21T19:36:12.055Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖8+共振 | 价格: 68598.10 | 波动: 0.5%
+[2026-02-21T19:36:12.055Z] 📥限价买入 0.00029155326459479194 @ 68598.1 strong_buy
+[2026-02-21T19:36:12.290Z]    ✅ 成功! ID: 3328605433378201600
+[2026-02-21T19:36:12.291Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68598.10, 累计: -119.12 USDT
+[2026-02-21T19:36:18.843Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68602.70 | 波动: 0.5%
+[2026-02-21T19:36:22.033Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68617.60 | 波动: 0.5%
+[2026-02-21T19:36:28.891Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买87 | 价格: 68617.70 | 波动: 0.5%
+[2026-02-21T19:36:28.892Z] 📥限价卖出 0.0002914699851496043 @ 68617.7 sell
+[2026-02-21T19:36:29.111Z]    ✅ 成功! ID: 3328605997897965568
+[2026-02-21T19:36:29.113Z] 💰 BTC/USDT sell sell 0.000291 @ 68617.70, 累计: -99.12 USDT
+[2026-02-21T19:36:32.066Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买79 | 价格: 68617.60 | 波动: 0.5%
+[2026-02-21T19:36:32.066Z] 📥限价卖出 0.0002914704099239845 @ 68617.6 sell
+[2026-02-21T19:36:32.296Z]    ✅ 成功! ID: 3328606104701722624
+[2026-02-21T19:36:32.298Z] 💰 BTC/USDT sell sell 0.000291 @ 68617.60, 累计: -79.12 USDT
+[2026-02-21T19:37:48.917Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68645.00 | 波动: 0.5%
+[2026-02-21T19:37:52.132Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68636.10 | 波动: 0.5%
+[2026-02-21T19:38:17.169Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖21+共振 | 价格: 68626.40 | 波动: 0.5%
+[2026-02-21T19:38:17.169Z] 📥限价买入 0.0002914330345173286 @ 68626.4 strong_buy
+[2026-02-21T19:38:17.391Z]    ✅ 成功! ID: 3328609631104753664
+[2026-02-21T19:38:17.392Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68626.40, 累计: -99.12 USDT
+[2026-02-21T19:38:18.922Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖0+共振 | 价格: 68626.30 | 波动: 0.5%
+[2026-02-21T19:38:18.922Z] 📥限价买入 0.0002914334591840154 @ 68626.3 strong_buy
+[2026-02-21T19:38:19.127Z]    ✅ 成功! ID: 3328609689355247616
+[2026-02-21T19:38:19.128Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68626.30, 累计: -119.12 USDT
+[2026-02-21T19:39:52.241Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68605.30 | 波动: 0.5%
+[2026-02-21T19:39:54.042Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买97 | 价格: 68615.00 | 波动: 0.5%
+[2026-02-21T19:39:54.043Z] 📥限价卖出 0.0002914814544924579 @ 68615 sell
+[2026-02-21T19:39:54.276Z]    ✅ 成功! ID: 3328612882025897984
+[2026-02-21T19:39:54.277Z] 💰 BTC/USDT sell sell 0.000291 @ 68615.00, 累计: -99.12 USDT
+[2026-02-21T19:39:57.234Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买98 | 价格: 68622.60 | 波动: 0.5%
+[2026-02-21T19:39:57.234Z] 📥限价卖出 0.0002914491727215232 @ 68622.6 sell
+[2026-02-21T19:39:57.459Z]    ✅ 成功! ID: 3328612988796100608
+[2026-02-21T19:39:57.461Z] 💰 BTC/USDT sell sell 0.000291 @ 68622.60, 累计: -79.12 USDT
+[2026-02-21T19:41:02.274Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68613.10 | 波动: 0.5%
+[2026-02-21T19:41:04.103Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68610.20 | 波动: 0.5%
+[2026-02-21T19:41:07.303Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖25+共振 | 价格: 68610.00 | 波动: 0.5%
+[2026-02-21T19:41:07.303Z] 📥限价买入 0.0002915026963999417 @ 68610 strong_buy
+[2026-02-21T19:41:07.520Z]    ✅ 成功! ID: 3328615339619606528
+[2026-02-21T19:41:07.521Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68610.00, 累计: -99.12 USDT
+[2026-02-21T19:41:09.083Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖26+共振 | 价格: 68610.00 | 波动: 0.5%
+[2026-02-21T19:41:09.083Z] 📥限价买入 0.0002915026963999417 @ 68610 strong_buy
+[2026-02-21T19:41:09.289Z]    ✅ 成功! ID: 3328615399044505600
+[2026-02-21T19:41:09.290Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68610.00, 累计: -119.12 USDT
+[2026-02-21T19:41:42.316Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖4 | 价格: 68602.00 | 波动: 0.5%
+[2026-02-21T19:41:44.107Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖4 | 价格: 68602.10 | 波动: 0.5%
+[2026-02-21T19:43:09.207Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买83+共振 | 价格: 68623.30 | 波动: 0.5%
+[2026-02-21T19:43:09.208Z] 📥限价卖出 0.00029144619976013975 @ 68623.3 strong_sell
+[2026-02-21T19:43:09.460Z]    ✅ 成功! ID: 3328619431247044608
+[2026-02-21T19:43:09.461Z] 💰 BTC/USDT sell strong_sell 0.000291 @ 68623.30, 累计: -99.12 USDT
+[2026-02-21T19:43:12.410Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68603.80 | 波动: 0.5%
+[2026-02-21T19:43:14.185Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68603.80 | 波动: 0.5%
+[2026-02-21T19:44:17.456Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买72+共振 | 价格: 68612.20 | 波动: 0.5%
+[2026-02-21T19:44:17.456Z] 📥限价卖出 0.00029149334957922937 @ 68612.2 strong_sell
+[2026-02-21T19:44:17.663Z]    ✅ 成功! ID: 3328621719759970304
+[2026-02-21T19:44:17.665Z] 💰 BTC/USDT sell strong_sell 0.000291 @ 68612.20, 累计: -79.12 USDT
+[2026-02-21T19:44:22.468Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68612.30 | 波动: 0.5%
+[2026-02-21T19:44:44.298Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买97+共振 | 价格: 68615.00 | 波动: 0.5%
+[2026-02-21T19:44:47.486Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买97+共振 | 价格: 68615.00 | 波动: 0.5%
+[2026-02-21T19:44:57.492Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买98 | 价格: 68637.70 | 波动: 0.5%
+[2026-02-21T19:44:59.300Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买100 | 价格: 68639.00 | 波动: 0.5%
+[2026-02-21T19:45:02.520Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68618.80 | 波动: 0.5%
+[2026-02-21T19:45:04.307Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68617.70 | 波动: 0.5%
+[2026-02-21T19:46:07.538Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖8+共振 | 价格: 68615.40 | 波动: 0.5%
+[2026-02-21T19:46:07.538Z] 📥限价买入 0.0002914797552735975 @ 68615.4 strong_buy
+[2026-02-21T19:46:07.731Z]    ✅ 成功! ID: 3328625413431844864
+[2026-02-21T19:46:07.733Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68615.40, 累计: -99.12 USDT
+[2026-02-21T19:46:09.349Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖7+共振 | 价格: 68615.40 | 波动: 0.5%
+[2026-02-21T19:46:09.349Z] 📥限价买入 0.0002914797552735975 @ 68615.4 strong_buy
+[2026-02-21T19:46:09.572Z]    ✅ 成功! ID: 3328625474769346560
+[2026-02-21T19:46:09.574Z] 💰 BTC/USDT buy strong_buy 0.000291 @ 68615.40, 累计: -119.12 USDT
+[2026-02-21T19:46:14.381Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68615.40 | 波动: 0.5%
+[2026-02-21T19:46:17.561Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68615.40 | 波动: 0.5%
+[2026-02-21T19:46:44.375Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖14+共振 | 价格: 68615.40 | 波动: 0.5%
+[2026-02-21T19:46:47.588Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖19+共振 | 价格: 68615.40 | 波动: 0.5%
+[2026-02-21T19:46:54.388Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68615.40 | 波动: 0.5%
+[2026-02-21T19:46:57.597Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买94 | 价格: 68621.00 | 波动: 0.5%
+[2026-02-21T19:46:57.597Z] 📥限价卖出 0.00029145596828959063 @ 68621 sell
+[2026-02-21T19:46:57.806Z]    ✅ 成功! ID: 3328627093233819648
+[2026-02-21T19:46:57.808Z] 💰 BTC/USDT sell sell 0.000291 @ 68621.00, 累计: -99.12 USDT
+[2026-02-21T19:46:59.402Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买97 | 价格: 68621.00 | 波动: 0.5%
+[2026-02-21T19:46:59.402Z] 📥限价卖出 0.00029145596828959063 @ 68621 sell
+[2026-02-21T19:46:59.626Z]    ✅ 成功! ID: 3328627154269331456
+[2026-02-21T19:46:59.627Z] 💰 BTC/USDT sell sell 0.000291 @ 68621.00, 累计: -79.12 USDT
+[2026-02-21T19:47:04.374Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68610.00 | 波动: 0.5%
+[2026-02-21T19:47:07.582Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68610.00 | 波动: 0.5%
+[2026-02-21T19:47:14.394Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68602.10 | 波动: 0.5%
+[2026-02-21T19:47:14.394Z] 📥限价买入 0.00029153626492483463 @ 68602.1 strong_buy
+[2026-02-21T19:47:14.636Z]    ✅ 成功! ID: 3328627657753583616
+[2026-02-21T19:47:14.637Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68602.10, 累计: -99.12 USDT
+[2026-02-21T19:47:17.643Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖23+共振 | 价格: 68602.00 | 波动: 0.5%
+[2026-02-21T19:47:17.643Z] 📥限价买入 0.000291536689892423 @ 68602 strong_buy
+[2026-02-21T19:47:17.880Z]    ✅ 成功! ID: 3328627766704824322
+[2026-02-21T19:47:17.882Z] 💰 BTC/USDT buy strong_buy 0.000292 @ 68602.00, 累计: -119.12 USDT
+[2026-02-21T19:47:34.453Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖23 | 价格: 68602.00 | 波动: 0.5%
+[2026-02-21T19:47:42.651Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖23 | 价格: 68602.00 | 波动: 0.5%
+[2026-02-21T19:47:47.676Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68612.60 | 波动: 0.5%
+[2026-02-21T19:47:49.464Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68612.60 | 波动: 0.5%
+[2026-02-21T19:48:24.497Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买85 | 价格: 68611.00 | 波动: 0.5%
+[2026-02-21T19:48:24.497Z] 📥限价卖出 0.0002914984477707656 @ 68611 sell
+[2026-02-21T19:48:24.715Z]    ✅ 成功! ID: 3328630009449504768
+[2026-02-21T19:48:24.717Z] 💰 BTC/USDT sell sell 0.000291 @ 68611.00, 累计: -99.12 USDT
+[2026-02-21T19:48:27.694Z] [BTC/USDT] 📊 信号: sell EMA↑+RSI超买79 | 价格: 68610.00 | 波动: 0.5%
+[2026-02-21T19:48:27.694Z] 📥限价卖出 0.0002915026963999417 @ 68610 sell
+[2026-02-21T19:48:27.915Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:48:32.697Z] 📥限价卖出 0.0002915022715314509 @ 68610.1 sell
+[2026-02-21T19:48:32.912Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:48:37.715Z] 📥限价卖出 0.0002915022715314509 @ 68610.1 sell
+[2026-02-21T19:48:37.919Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:48:42.708Z] 📥限价卖出 0.0002915026963999417 @ 68610 sell
+[2026-02-21T19:48:42.940Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:48:47.705Z] 📥限价卖出 0.0002915026963999417 @ 68610 sell
+[2026-02-21T19:48:47.917Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:48:52.703Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68607.00 | 波动: 0.5%
+[2026-02-21T19:48:54.516Z] [BTC/USDT] 📊 信号: hold EMA↑ | 价格: 68607.00 | 波动: 0.5%
+[2026-02-21T19:48:57.693Z] [BTC/USDT] 📊 信号: strong_buy EMA↑+RSI超卖5+共振 | 价格: 68607.00 | 波动: 0.5%
+[2026-02-21T19:48:59.521Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖3 | 价格: 68607.00 | 波动: 0.5%
+[2026-02-21T19:48:59.521Z] 📥限价买入 0.0002915154430305945 @ 68607 buy
+[2026-02-21T19:48:59.746Z]    ✅ 成功! ID: 3328631185029029888
+[2026-02-21T19:48:59.748Z] 💰 BTC/USDT buy buy 0.000292 @ 68607.00, 累计: -119.12 USDT
+[2026-02-21T19:49:02.740Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖5 | 价格: 68607.00 | 波动: 0.5%
+[2026-02-21T19:51:34.637Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68547.00 | 波动: 0.5%
+[2026-02-21T19:51:37.872Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68547.00 | 波动: 0.5%
+[2026-02-21T19:52:27.895Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68539.20 | 波动: 0.5%
+[2026-02-21T19:52:29.679Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖28 | 价格: 68539.20 | 波动: 0.5%
+[2026-02-21T19:52:39.709Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68539.10 | 波动: 0.5%
+[2026-02-21T19:52:42.913Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68539.10 | 波动: 0.5%
+[2026-02-21T19:53:22.941Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买96+共振 | 价格: 68539.10 | 波动: 0.5%
+[2026-02-21T19:53:22.941Z] 📥限价卖出 0.00029180424020741445 @ 68539.1 strong_sell
+[2026-02-21T19:53:23.171Z]    ✅ 成功! ID: 3328640023870398464
+[2026-02-21T19:53:23.172Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68539.10, 累计: -99.12 USDT
+[2026-02-21T19:53:24.745Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买96+共振 | 价格: 68539.10 | 波动: 0.5%
+[2026-02-21T19:53:24.745Z] 📥限价卖出 0.00029180424020741445 @ 68539.1 strong_sell
+[2026-02-21T19:53:24.968Z]    ✅ 成功! ID: 3328640084167712768
+[2026-02-21T19:53:24.969Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68539.10, 累计: -79.12 USDT
+[2026-02-21T19:54:44.795Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68542.10 | 波动: 0.5%
+[2026-02-21T19:54:48.015Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68539.10 | 波动: 0.5%
+[2026-02-21T19:55:58.059Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买92+共振 | 价格: 68551.00 | 波动: 0.5%
+[2026-02-21T19:56:14.883Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买90+共振 | 价格: 68551.10 | 波动: 0.5%
+[2026-02-21T19:56:29.904Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68551.00 | 波动: 0.5%
+[2026-02-21T19:56:33.110Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖15 | 价格: 68551.00 | 波动: 0.5%
+[2026-02-21T19:56:33.110Z] 📥限价买入 0.0002917535849221747 @ 68551 buy
+[2026-02-21T19:56:33.337Z]    ✅ 成功! ID: 3328646404748959744
+[2026-02-21T19:56:33.339Z] 💰 BTC/USDT buy buy 0.000292 @ 68551.00, 累计: -99.12 USDT
+[2026-02-21T19:56:34.915Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖15 | 价格: 68551.00 | 波动: 0.5%
+[2026-02-21T19:56:34.915Z] 📥限价买入 0.0002917535849221747 @ 68551 buy
+[2026-02-21T19:56:35.145Z]    ✅ 成功! ID: 3328646465448927232
+[2026-02-21T19:56:35.147Z] 💰 BTC/USDT buy buy 0.000292 @ 68551.00, 累计: -119.12 USDT
+[2026-02-21T19:56:48.155Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68551.00 | 波动: 0.5%
+[2026-02-21T19:56:49.892Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68551.00 | 波动: 0.5%
+[2026-02-21T19:58:34.959Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买99+共振 | 价格: 68571.30 | 波动: 0.5%
+[2026-02-21T19:58:34.959Z] 📥限价卖出 0.00029166721354269206 @ 68571.3 strong_sell
+[2026-02-21T19:58:35.170Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:58:38.239Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买85+共振 | 价格: 68552.90 | 波动: 0.5%
+[2026-02-21T19:58:38.239Z] 📥限价卖出 0.0002917454987316365 @ 68552.9 strong_sell
+[2026-02-21T19:58:38.454Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:58:40.002Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68553.00 | 波动: 0.5%
+[2026-02-21T19:58:43.210Z] 📥限价卖出 0.0002917408174577705 @ 68554 strong_sell
+[2026-02-21T19:58:43.432Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:58:48.225Z] 📥限价卖出 0.0002917408174577705 @ 68554 strong_sell
+[2026-02-21T19:58:48.454Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:58:53.294Z] 📥限价卖出 0.0002917403918948684 @ 68554.1 strong_sell
+[2026-02-21T19:58:53.504Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:58:58.238Z] 📥限价卖出 0.0002917408174577705 @ 68554 strong_sell
+[2026-02-21T19:58:58.459Z]    ❌ 失败: Order failed. Your available BTC balance is insufficient, and your available margin (in USD) is too low for borrowing. 
+[2026-02-21T19:59:03.232Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68551.00 | 波动: 0.5%
+[2026-02-21T19:59:38.242Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖14 | 价格: 68534.10 | 波动: 0.5%
+[2026-02-21T19:59:45.031Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖3 | 价格: 68534.00 | 波动: 0.5%
+[2026-02-21T19:59:55.045Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68545.20 | 波动: 0.5%
+[2026-02-21T19:59:58.289Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68547.10 | 波动: 0.5%
+[2026-02-21T20:00:45.068Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买85+共振 | 价格: 68545.10 | 波动: 0.5%
+[2026-02-21T20:00:45.068Z] 📥限价卖出 0.00029177869752907207 @ 68545.1 strong_sell
+[2026-02-21T20:00:45.271Z]    ✅ 成功! ID: 3328654858385448960
+[2026-02-21T20:00:45.273Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68545.10, 累计: -99.12 USDT
+[2026-02-21T20:01:05.097Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68545.10 | 波动: 0.5%
+[2026-02-21T20:01:10.090Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖8 | 价格: 68545.10 | 波动: 0.5%
+[2026-02-21T20:01:10.090Z] 📥限价买入 0.00029177869752907207 @ 68545.1 buy
+[2026-02-21T20:01:10.315Z]    ✅ 成功! ID: 3328655698621980672
+[2026-02-21T20:01:10.317Z] 💰 BTC/USDT buy buy 0.000292 @ 68545.10, 累计: -119.12 USDT
+[2026-02-21T20:01:13.319Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖4 | 价格: 68545.10 | 波动: 0.5%
+[2026-02-21T20:01:18.334Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68545.10 | 波动: 0.5%
+[2026-02-21T20:01:20.131Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68545.10 | 波动: 0.5%
+[2026-02-21T20:01:28.364Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖2 | 价格: 68531.40 | 波动: 0.5%
+[2026-02-21T20:01:30.135Z] [BTC/USDT] 📊 信号: buy EMA↓+RSI超卖1 | 价格: 68531.40 | 波动: 0.5%
+[2026-02-21T20:02:38.409Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68514.50 | 波动: 0.5%
+[2026-02-21T20:02:45.198Z] [BTC/USDT] 📊 信号: hold EMA↓ | 价格: 68510.00 | 波动: 0.5%
+[2026-02-21T20:03:55.270Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买71+共振 | 价格: 68523.70 | 波动: 0.5%
+[2026-02-21T20:03:55.270Z] 📥限价卖出 0.00029186982022278427 @ 68523.7 strong_sell
+[2026-02-21T20:03:55.512Z]    ✅ 成功! ID: 3328661241478602752
+[2026-02-21T20:03:55.513Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68523.70, 累计: -99.12 USDT
+[2026-02-21T20:03:58.478Z] [BTC/USDT] 📊 信号: strong_sell EMA↓+RSI超买71+共振 | 价格: 68523.90 | 波动: 0.5%
+[2026-02-21T20:03:58.478Z] 📥限价卖出 0.00029186896834535104 @ 68523.9 strong_sell
+[2026-02-21T20:03:58.712Z]    ✅ 成功! ID: 3328661348886339584
+[2026-02-21T20:03:58.714Z] 💰 BTC/USDT sell strong_sell 0.000292 @ 68523.90, 累计: -79.12 USDT
