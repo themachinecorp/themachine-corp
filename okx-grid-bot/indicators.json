@@ -1,10 +1,10 @@
 {
   "symbol": "ETH/USDT",
-  "lastPrice": 1966.71,
-  "trend": "up",
+  "lastPrice": 1967.43,
+  "trend": "down",
   "signal": "hold",
-  "reason": "EMA↑",
-  "rsi": 53.29428989751146,
+  "reason": "EMA↓",
+  "rsi": 53.14285714285733,
   "volatility": 0.005,
-  "updated": "2026-02-20T16:05:01.851Z"
+  "updated": "2026-02-21T00:04:49.612Z"
 }
