@@ -6309,8 +6309,323 @@
       "price": 68451.6,
       "value": 20,
       "strategy": "buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:32:51.537Z",
+      "side": "sell",
+      "amount": 0.00029200661102967367,
+      "price": 68491.6,
+      "value": 20,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:32:59.926Z",
+      "side": "sell",
+      "amount": 0.00029197890160457,
+      "price": 68498.1,
+      "value": 20,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:34:31.626Z",
+      "side": "buy",
+      "amount": 0.00029189793496805903,
+      "price": 68517.1,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:34:34.745Z",
+      "side": "buy",
+      "amount": 0.00029189793496805903,
+      "price": 68517.1,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:35:14.420188+00:00",
+      "side": "sell",
+      "amount": 0.00062213199154215,
+      "price": 68517.1,
+      "value": 42.626679877692645,
+      "reason": "跌破均线"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:37:49.938Z",
+      "side": "sell",
+      "amount": 0.00029195460689771956,
+      "price": 68503.8,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:37:53.267Z",
+      "side": "sell",
+      "amount": 0.00029195460689771956,
+      "price": 68503.8,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:40:41.950Z",
+      "side": "buy",
+      "amount": 0.00029182638081299916,
+      "price": 68533.9,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:41:13.003Z",
+      "side": "sell",
+      "amount": 0.00029175443612620126,
+      "price": 68550.8,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:46:02.869Z",
+      "side": "buy",
+      "amount": 0.0002914003388985941,
+      "price": 68634.1,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:46:32.315Z",
+      "side": "buy",
+      "amount": 0.00029151459322053665,
+      "price": 68607.2,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:47:20.571Z",
+      "side": "sell",
+      "amount": 0.00029125648045669016,
+      "price": 68668,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:47:22.331Z",
+      "side": "sell",
+      "amount": 0.0002912314576571303,
+      "price": 68673.9,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:48:30.560Z",
+      "side": "buy",
+      "amount": 0.0002913078118559367,
+      "price": 68655.9,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:48:32.430Z",
+      "side": "buy",
+      "amount": 0.0002913073875553484,
+      "price": 68656,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:49:45.617Z",
+      "side": "sell",
+      "amount": 0.00029113395218707106,
+      "price": 68696.9,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:49:47.520Z",
+      "side": "sell",
+      "amount": 0.0002911178488719911,
+      "price": 68700.7,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:50:55.989Z",
+      "side": "buy",
+      "amount": 0.00029136552825298684,
+      "price": 68642.3,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:51:02.544Z",
+      "side": "buy",
+      "amount": 0.00029136510378425,
+      "price": 68642.4,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:51:42.631Z",
+      "side": "sell",
+      "amount": 0.00029132902846138944,
+      "price": 68650.9,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:51:50.717Z",
+      "side": "sell",
+      "amount": 0.00029132860409899347,
+      "price": 68651,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:53:00.840Z",
+      "side": "buy",
+      "amount": 0.00029138717779862814,
+      "price": 68637.2,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:53:02.637Z",
+      "side": "buy",
+      "amount": 0.00029138717779862814,
+      "price": 68637.2,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:54:45.882Z",
+      "side": "sell",
+      "amount": 0.00029145639302311687,
+      "price": 68620.9,
+      "value": 20,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:54:53.126Z",
+      "side": "sell",
+      "amount": 0.0002914478985877892,
+      "price": 68622.9,
+      "value": 20,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:55:22.777Z",
+      "side": "buy",
+      "amount": 0.0002915026963999417,
+      "price": 68610,
+      "value": 20,
+      "strategy": "buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:56:10.797Z",
+      "side": "buy",
+      "amount": 0.00029149717320616284,
+      "price": 68611.3,
+      "value": 20,
+      "strategy": "buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:56:32.806Z",
+      "side": "sell",
+      "amount": 0.00029146956037646207,
+      "price": 68617.8,
+      "value": 20,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:58:03.012Z",
+      "side": "buy",
+      "amount": 0.00029142156898458524,
+      "price": 68629.1,
+      "value": 20,
+      "strategy": "buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:58:11.100Z",
+      "side": "sell",
+      "amount": 0.00029136510378425,
+      "price": 68642.4,
+      "value": 20,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T15:59:57.703Z",
+      "side": "buy",
+      "amount": 0.0002914177473408131,
+      "price": 68630,
+      "value": 20,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T16:03:54.247Z",
+      "side": "sell",
+      "amount": 0.00029228613058467453,
+      "price": 68426.1,
+      "value": 20,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T16:03:56.358Z",
+      "side": "sell",
+      "amount": 0.00029223274584810324,
+      "price": 68438.6,
+      "value": 20,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T16:05:08.258Z",
+      "side": "buy",
+      "amount": 0.0002925075649768992,
+      "price": 68374.3,
+      "value": 20,
+      "strategy": "buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-21T16:05:16.465Z",
+      "side": "buy",
+      "amount": 0.0002924750555337012,
+      "price": 68381.9,
+      "value": 20,
+      "strategy": "buy"
     }
   ],
-  "totalProfit": -161.74390681556883,
+  "totalProfit": -119.11722693787618,
   "startTime": 1771265135647
 }
