@@ -14,9 +14,13 @@ async function postToX() {
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 900 });
     
-    console.log('Navigating to x.com...');
+    console.log('1. Navigating to x.com...');
     await page.goto('https://x.com/home', { waitUntil: 'networkidle0', timeout: 60000 });
     await new Promise(r => setTimeout(r, 5000));
+    
+    // Screenshot 1: Check if logged in
+    await page.screenshot({ path: '/home/themachine/.openclaw/workspace/x-debug/1-home.png' });
+    console.log('1. Screenshot saved');
     
     // Check login
     const loginCheck = await page.$('a[href="/login"]');
@@ -26,11 +30,13 @@ async function postToX() {
         process.exit(1);
     }
     
-    console.log('Logged in! Pressing keyboard shortcut...');
-    
-    // Press 'N' for new post
+    console.log('2. Pressing N for new post...');
     await page.keyboard.press('n');
     await new Promise(r => setTimeout(r, 3000));
+    
+    // Screenshot 2: After pressing N
+    await page.screenshot({ path: '/home/themachine/.openclaw/workspace/x-debug/2-compose.png' });
+    console.log('2. Screenshot saved');
     
     // Type message
     const message = `In a world of infinite information,
@@ -41,49 +47,57 @@ But because truth speaks louder when you're ready to hear it.
 
 #THEMATHINK`;
     
-    await page.keyboard.type(message, { delay: 50 });
-    console.log('Message typed');
+    await page.keyboard.type(message, { delay: 30 });
+    console.log('3. Message typed');
     
     await new Promise(r => setTimeout(r, 2000));
     
-    // Click the post button directly - try multiple ways
-    const postClicked = await page.evaluate(() => {
-        // Method 1: Find button with "Post" text
+    // Screenshot 3: After typing
+    await page.screenshot({ path: '/home/themachine/.openclaw/workspace/x-debug/3-typed.png' });
+    console.log('3. Screenshot saved');
+    
+    // Try clicking the post button using JavaScript evaluation
+    const clickResult = await page.evaluate(() => {
+        // Find all buttons and divs with role="button"
         const buttons = Array.from(document.querySelectorAll('button, div[role="button"]'));
-        for (const b of buttons) {
-            const text = (b.textContent || '').toLowerCase().trim();
-            const aria = (b.getAttribute('aria-label') || '').toLowerCase();
-            // Match "Post" or "Tweet" but not "Reply" or "Retweet"
-            if ((text === 'post' || text === 'tweet') && !aria.includes('reply')) {
-                b.click();
-                return 'clicked button: ' + text;
+        
+        for (const btn of buttons) {
+            const text = (btn.textContent || '').toLowerCase().trim();
+            const aria = (btn.getAttribute('aria-label') || '').toLowerCase();
+            
+            // Match exactly "Post" (not "Reply", "Retweet", etc.)
+            if (text === 'post' || aria === 'post') {
+                console.log('Found post button:', text, aria);
+                btn.click();
+                return 'clicked: ' + text;
             }
         }
         
-        // Method 2: keyboard shortcut Ctrl+Enter
-        return 'need ctrl+enter';
+        // Try Ctrl+Enter
+        return 'ctrl+enter';
     });
     
-    console.log('Post click result:', postClicked);
+    console.log('4. Click result:', clickResult);
     
-    if (postClicked === 'need ctrl+enter') {
+    if (clickResult === 'ctrl+enter') {
         await page.keyboard.down('Control');
         await page.keyboard.press('Enter');
         await page.keyboard.up('Control');
-        console.log('Pressed Ctrl+Enter');
     }
     
     await new Promise(r => setTimeout(r, 3000));
     
-    // Check if post was sent - look for success indicator or new tweet
-    const success = await page.evaluate(() => {
-        // Check if the compose modal is gone
+    // Screenshot 4: After posting
+    await page.screenshot({ path: '/home/themachine/.openclaw/workspace/x-debug/4-after-post.png' });
+    console.log('4. Screenshot saved');
+    
+    // Check if modal is closed
+    const modalCheck = await page.evaluate(() => {
         const modal = document.querySelector('[data-testid="tweetTextarea_0"]');
-        if (!modal) return 'modal closed - likely posted';
-        return 'modal still open - failed';
+        return modal ? 'modal still open' : 'modal closed';
     });
     
-    console.log('Success check:', success);
+    console.log('5. Modal check:', modalCheck);
     
     await new Promise(r => setTimeout(r, 2000));
     await browser.close();
