@@ -9,8 +9,7 @@ const path = require('path');
 
 // ============ 配置 ============
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 50, gridCount: 3, gridSpread: 0.002 },
-    { symbol: 'ETH/USDT', instId: 'ETH-USDT', baseOrderValue: 50, gridCount: 3, gridSpread: 0.003 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 5, gridCount: 2, gridSpread: 0.0005 },
 ];
 
 const CONFIG = {
@@ -264,11 +263,12 @@ async function placeOrder(instId, side, px, sz, strategy = 'grid') {
         instId,
         tdMode: 'cash',
         side,
-        ordType: 'market',
-        sz: sz.toString()
+        ordType: 'limit',
+        sz: sz.toString(),
+        px: px.toString()
     };
     
-    writeLog(`📥${side === 'buy' ? '市价买入' : '市价卖出'} ${sz} ${strategy}`);
+    writeLog(`📥${side === 'buy' ? '限价买入' : '限价卖出'} ${sz} @ ${px} ${strategy}`);
     
     if (CONFIG.testMode) {
         writeLog(`   [模拟] ${side === 'buy' ? '买入' : '卖出'} ${sz}`);
@@ -329,7 +329,7 @@ class MultiStrategyBot {
         this.indicator.addPrice(midPrice);
         
         this.grids = [];
-        const spread = 0.005;
+        const spread = this.gridSpread;
         
         for (let i = 1; i <= this.gridCount / 2; i++) {
             const buyGridPrice = buyPrice * (1 - spread * i);
@@ -422,7 +422,7 @@ class MultiStrategyBot {
         // ============ 趋势/RSI 策略 ============
         // 强买信号且空仓时买入
         if ((signal === 'strong_buy' || signal === 'buy') && this.position <= 0) {
-            const orderValue = 50;
+            const orderValue = this.baseOrderValue;
             const sz = orderValue / price;
             const result = await placeOrder(this.instId, 'buy', price, sz, signal);
             if (result.success) {
@@ -433,7 +433,7 @@ class MultiStrategyBot {
         
         // 强卖信号且持多仓时卖出
         if ((signal === 'strong_sell' || signal === 'sell') && this.position >= 0) {
-            const orderValue = 50;
+            const orderValue = this.baseOrderValue;
             const sz = orderValue / price;
             const result = await placeOrder(this.instId, 'sell', price, sz, signal);
             if (result.success) {
@@ -449,7 +449,7 @@ class MultiStrategyBot {
                 // 只有在非下跌趋势时才执行网格买入
                 if (trend !== 'down' || signal === 'strong_buy') {
                     // 强制使用 50 USDT 订单
-                    const orderValue = 50;
+                    const orderValue = this.baseOrderValue;
                     const sz = orderValue / grid.price;
                     const result = await placeOrder(this.instId, 'buy', grid.price, sz, 'grid');
                     if (result.success) {
@@ -464,7 +464,7 @@ class MultiStrategyBot {
                 // 只有在非上涨趋势时才执行网格卖出
                 if (trend !== 'up' || signal === 'strong_sell') {
                     // 强制使用 50 USDT 订单
-                    const orderValue = 50;
+                    const orderValue = this.baseOrderValue;
                     const sz = orderValue / grid.price;
                     const result = await placeOrder(this.instId, 'sell', grid.price, sz, 'grid');
                     if (result.success) {
@@ -479,12 +479,33 @@ class MultiStrategyBot {
         process.stdout.write(`\r[${this.symbol}] ${price.toFixed(2)} | ${signal} | ${rsi ? rsi.toFixed(0) : '--'} | ${filled}/${this.gridCount}格 | P:${this.position > 0 ? '多' : this.position < 0 ? '空' : '空'}`);
     }
     
+    // Place initial grid orders
+    async placeInitialOrders() {
+        const ticker = await getTicker(this.instId);
+        if (!ticker) return;
+        
+        const mid = ticker.last;
+        const spread = this.gridSpread;
+        
+        // Place buy order at mid * (1 - spread)
+        const buyPrice = mid * (1 - spread);
+        const buySz = this.baseOrderValue / buyPrice;
+        await placeOrder(this.instId, 'buy', buyPrice, buySz, 'initial');
+        
+        // Place sell order at mid * (1 + spread)
+        const sellPrice = mid * (1 + spread);
+        const sellSz = this.baseOrderValue / sellPrice;
+        await placeOrder(this.instId, 'sell', sellPrice, sellSz, 'initial');
+    }
+    
     start() {
         this.initGrids().then(ok => {
             if (ok) {
                 writeLog(`========== ${this.symbol} 多策略机器人启动 ==========`);
                 writeLog(`[${this.symbol}] EMA周期: ${CONFIG.emaPeriod}/${CONFIG.emaTrendPeriod}, RSI: ${CONFIG.rsiPeriod}, 超卖: ${CONFIG.rsiOversold}, 超买: ${CONFIG.rsiOverbought}`);
                 this.running = true;
+                // Place initial orders
+                this.placeInitialOrders();
                 setInterval(() => this.tick(), CONFIG.checkInterval);
             }
         });

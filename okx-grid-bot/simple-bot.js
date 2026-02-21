@@ -16,8 +16,8 @@ const CONFIG = {
 };
 
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', orderValue: 20 },
-    { symbol: 'ETH/USDT', instId: 'ETH-USDT', orderValue: 20 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', orderValue: 10 },
+    { symbol: 'ETH/USDT', instId: 'ETH-USDT', orderValue: 10 },
 ];
 
 const LOG_FILE = path.join(__dirname, 'trades.log');
