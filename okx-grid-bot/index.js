@@ -9,7 +9,7 @@ const path = require('path');
 
 // ============ 配置 ============
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 5, gridCount: 2, gridSpread: 0.0005 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 20, gridCount: 2, gridSpread: 0.005 },
 ];
 
 const CONFIG = {
