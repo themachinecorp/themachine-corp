@@ -1,14 +1,12 @@
-mystic-ai/
+# Ignore project folders
 mystic-ai/
 crime-ai/
-
-# Logs
+dashboard/
+ai-content-site/
+atn-project/
+okx-grid-bot/
+themachine-corp/
+themathink-ai/
+.git/
+node_modules/
 *.log
-okx-grid-bot/*.log
-
-# AI Models (too large for git)
-ai-generator/models/
-video-ai/ComfyUI/models/
-*.safetensors
-*.ckpt
-.vercel
