@@ -9,7 +9,7 @@ const path = require('path');
 
 // ============ 配置 ============
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 20, gridCount: 2, gridSpread: 0.005 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 3, gridCount: 2, gridSpread: 0.005 },
 ];
 
 const CONFIG = {
@@ -261,11 +261,12 @@ async function getTicker(instId) {
 async function placeOrder(instId, side, px, sz, strategy = 'grid') {
     const body = {
         instId,
-        tdMode: 'cash',
+        tdMode: 'cash',       // 现货模式
         side,
         ordType: 'limit',
         sz: sz.toString(),
-        px: px.toString()
+        px: px.toString(),
+        lever: '1'            // 强制1倍杠杆（禁用杠杆）
     };
     
     writeLog(`📥${side === 'buy' ? '限价买入' : '限价卖出'} ${sz} @ ${px} ${strategy}`);

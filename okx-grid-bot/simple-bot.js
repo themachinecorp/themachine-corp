@@ -129,7 +129,7 @@ async function getTicker(instId) {
 
 async function placeOrder(instId, side, sz) {
     const body = {
-        instId, tdMode: 'cash', side, ordType: 'market', sz: sz.toString()
+        instId, tdMode: 'cash', lever: '1', side, ordType: 'market', sz: sz.toString()
     };
     log(`📥 ${side} ${sz} ${instId}`);
     
