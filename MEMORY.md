@@ -1,6 +1,31 @@
 # 长期记忆
 
-## 关于用户
+## THEMACHINE Corp. Multi-Agent (2026-02-22)
+
+### Agent 配置
+- 配置文件: workspace/agents/
+- 启动脚本: workspace/scripts/spawn.js
+- 架构: workspace/MULTI_AGENT.md
+
+### 使用方式
+```bash
+# 启动 CFO
+node scripts/spawn.js cfo "今日交易报告"
+
+# 启动 CTO  
+node scripts/spawn.js cto "检查服务状态"
+
+# 查看所有 Agent
+node scripts/spawn.js list
+```
+
+### 可用 Agent
+- cfo: 交易主管
+- cto: 技术运维
+- cpo: 产品主管
+- cmo: 品牌主管
+- sec: 安全主管
+- dev: 开发主管
 - 用户名：660028 (Feishu)
 - 项目：Mystic AI - AI 占卜/塔罗牌网页应用
 - **沟通渠道**：Telegram (@THEMACHINEHF) - 2026-02-05 从飞书迁移

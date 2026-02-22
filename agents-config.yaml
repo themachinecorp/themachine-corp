@@ -1,0 +1,67 @@
+# THEMACHINE Corp. - Multi-Agent Configuration
+
+## CEO (Main Agent)
+- **Agent ID**: main
+- **Role**: THE MACHINE - 最高决策者
+- **Model**: minimax-cn/MiniMax-M2.5
+
+## Sub-Agents
+
+### CFO - 交易主管
+- **Agent ID**: cfo
+- **Model**: minimax-cn/MiniMax-M2.5
+- **Scope**: 
+  - OKX 网格交易管理
+  - 资金管理
+  - 收益报告
+- **Cron**: 每小时交易报告
+
+### CTO - 技术运维
+- **Agent ID**: cto
+- **Model**: minimax-cn/MiniMax-M2.5
+- **Scope**:
+  - 系统监控
+  - 服务部署
+  - 安全保障
+- **Cron**: 每15分钟健康检查
+
+### CPO - 产品主管
+- **Agent ID**: cpo
+- **Model**: minimax-cn/MiniMax-M2.5
+- **Scope**:
+  - Mystic AI 占卜平台
+  - Crime AI
+  - 新产品开发
+
+### CMO - 品牌主管
+- **Agent ID**: cmo
+- **Model**: minimax-cn/MiniMax-M2.5
+- **Scope**:
+  - THEMATHINK 内容运营
+  - 社交媒体管理
+  - 市场推广
+- **Cron**: 每日内容生成
+
+### Sec-Agent - 安全主管
+- **Agent ID**: sec
+- **Model**: minimax-cn/MiniMax-M2.5
+- **Scope**:
+  - 安全审计
+  - 漏洞扫描
+  - 风险评估
+
+### Dev-Agent - 开发主管
+- **Agent ID**: dev
+- **Model**: minimax-cn/MiniMax-M2.5
+- **Scope**:
+  - 代码开发
+  - 项目构建
+  - GitHub 管理
+
+---
+
+## 协作流程
+
+1. **日会** (09:00): CEO 汇总各 Agent 状态
+2. **周报** (周一): 各部门汇报
+3. **紧急响应**: Sec-Agent 发现问题立即上报 CEO
