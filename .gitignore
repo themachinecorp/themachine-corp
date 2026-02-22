@@ -7,6 +7,21 @@ atn-project/
 okx-grid-bot/
 themachine-corp/
 themathink-ai/
-.git/
-node_modules/
+ai-generator/
+theword-ai/
+
+# Ignore generated files
 *.log
+__pycache__/
+node_modules/
+.vercel/
+*.pyc
+
+# Temp files
+.DS_Store
+*.swp
+*~
+
+# Backup files
+*.bak
+*.backup
