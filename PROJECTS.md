@@ -21,7 +21,11 @@
 - 状态：运行中
 - URL：https://themachine-dashboard.vercel.app
 
-## 监控系统 (新增)
+### 5. THEMATHINK AI
+- 状态：开发中
+- 功能：AI Twitter 内容生成工具
+- 定位：CreatorBuddy 竞品
+- 特性：多种风格、每日5条免费
 
 位置：~/.openclaw/workspace/monitoring/
 
