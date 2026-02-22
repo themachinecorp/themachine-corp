@@ -11,3 +11,4 @@ ai-generator/models/
 video-ai/ComfyUI/models/
 *.safetensors
 *.ckpt
+.vercel

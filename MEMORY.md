@@ -1,5 +1,8 @@
 # 长期记忆
 
+## 安全规范
+- **所有 skill 安装前必须经过 security-auditor 审查**
+
 ## THEMACHINE Corp. Multi-Agent (2026-02-22)
 
 ### Agent 配置
