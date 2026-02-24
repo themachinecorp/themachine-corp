@@ -9,7 +9,7 @@ const path = require('path');
 
 // ============ 配置 ============
 const TRADING_PAIRS = [
-    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 3, gridCount: 2, gridSpread: 0.005 },
+    { symbol: 'BTC/USDT', instId: 'BTC-USDT', baseOrderValue: 2, gridCount: 1, gridSpread: 0.003 },
 ];
 
 const CONFIG = {
@@ -23,8 +23,8 @@ const CONFIG = {
     emaPeriod: 26,           // EMA 周期
     emaTrendPeriod: 100,     // 长周期EMA判断趋势
     rsiPeriod: 14,           // RSI 周期
-    rsiOversold: 30,        // RSI 超卖阈值
-    rsiOverbought: 70,      // RSI 超买阈值
+    rsiOversold: 25,        // RSI 超卖阈值
+    rsiOverbought: 75,       // RSI 超买阈值
     volatilityPeriod: 20,     // 波动率计算周期
     minVolatility: 0.005,   // 最小波动率
     maxVolatility: 0.05,    // 最大波动率
