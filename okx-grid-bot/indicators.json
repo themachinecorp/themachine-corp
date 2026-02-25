@@ -1,10 +1,10 @@
 {
   "symbol": "BTC/USDT",
-  "lastPrice": 65495.9,
+  "lastPrice": 65544.3,
   "trend": "up",
   "signal": "hold",
   "reason": "EMA↑",
-  "rsi": 63.00000000000485,
+  "rsi": 47.94520547945327,
   "volatility": 0.005,
-  "updated": "2026-02-25T09:48:39.001Z"
+  "updated": "2026-02-25T09:59:14.638Z"
 }
