@@ -23841,8 +23841,35 @@
       "price": 65464.6,
       "value": 2,
       "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T04:25:30.381Z",
+      "side": "buy",
+      "amount": 0.000030514784413048123,
+      "price": 65542,
+      "value": 2,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T04:28:44.057Z",
+      "side": "sell",
+      "amount": 0.000030502684236212788,
+      "price": 65568,
+      "value": 2,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T04:32:39.081Z",
+      "side": "buy",
+      "amount": 0.000030490547168114204,
+      "price": 65594.1,
+      "value": 2,
+      "strategy": "strong_buy"
     }
   ],
-  "totalProfit": -116.11722693787618,
+  "totalProfit": -118.11722693787618,
   "startTime": 1771265135647
 }
