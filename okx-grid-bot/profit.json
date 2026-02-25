@@ -26379,6 +26379,168 @@
       "price": 68541.5,
       "value": 2,
       "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T17:34:20.378Z",
+      "side": "sell",
+      "amount": 0.000029176124593722465,
+      "price": 68549.2,
+      "value": 2,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T17:44:30.846Z",
+      "side": "buy",
+      "amount": 0.00002913162981272732,
+      "price": 68653.9,
+      "value": 2,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T17:49:51.083Z",
+      "side": "sell",
+      "amount": 0.000029096580278919815,
+      "price": 68736.6,
+      "value": 2,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T17:52:41.272Z",
+      "side": "buy",
+      "amount": 0.000029079319660237232,
+      "price": 68777.4,
+      "value": 2,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T17:59:31.639Z",
+      "side": "sell",
+      "amount": 0.000029100432868938924,
+      "price": 68727.5,
+      "value": 2,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:02:11.747Z",
+      "side": "buy",
+      "amount": 0.00002915728166663022,
+      "price": 68593.5,
+      "value": 2,
+      "strategy": "buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:05:05.978Z",
+      "side": "sell",
+      "amount": 0.000029203475213550414,
+      "price": 68485,
+      "value": 2,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:15:26.448Z",
+      "side": "buy",
+      "amount": 0.000029064317882257543,
+      "price": 68812.9,
+      "value": 2,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:20:26.774Z",
+      "side": "sell",
+      "amount": 0.000029035414495059626,
+      "price": 68881.4,
+      "value": 2,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:24:57.027Z",
+      "side": "buy",
+      "amount": 0.000029008840444125346,
+      "price": 68944.5,
+      "value": 2,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:26:17.083Z",
+      "side": "sell",
+      "amount": 0.000028985885323141892,
+      "price": 68999.1,
+      "value": 2,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:30:37.300Z",
+      "side": "buy",
+      "amount": 0.000028880074048509862,
+      "price": 69251.9,
+      "value": 2,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:35:27.548Z",
+      "side": "sell",
+      "amount": 0.00002882770688564193,
+      "price": 69377.7,
+      "value": 2,
+      "strategy": "sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:45:53.091Z",
+      "side": "buy",
+      "amount": 0.000028841758251266517,
+      "price": 69343.9,
+      "value": 2,
+      "strategy": "strong_buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:52:43.411Z",
+      "side": "sell",
+      "amount": 0.00002883090673201672,
+      "price": 69370,
+      "value": 2,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:54:33.519Z",
+      "side": "buy",
+      "amount": 0.000028855365366636272,
+      "price": 69311.2,
+      "value": 2,
+      "strategy": "buy"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T18:56:23.650Z",
+      "side": "sell",
+      "amount": 0.000028825670989556458,
+      "price": 69382.6,
+      "value": 2,
+      "strategy": "strong_sell"
+    },
+    {
+      "pair": "BTC/USDT",
+      "time": "2026-02-25T19:02:18.973Z",
+      "side": "buy",
+      "amount": 0.00002889755815633579,
+      "price": 69210,
+      "value": 2,
+      "strategy": "buy"
     }
   ],
   "totalProfit": -132.11722693787618,
