@@ -1,0 +1,37 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Deploy to Cloudflare Pages
+        run: |
+          wrangler pages deploy themachine-corp \
+            --project-name=themachine-corp \
+            --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Verify Deploy
+        run: |
+          sleep 5
+          curl -sf https://themachine-corp.pages.dev/forge || exit 1
+          curl -sf https://themachine-corp.pages.dev/social || exit 1
+          curl -sf https://themachine-corp.pages.dev/shortform || exit 1
+          echo "All pages verified!"
