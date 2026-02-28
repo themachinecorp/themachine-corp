@@ -1,0 +1,12 @@
+{
+  "name": "agent-review",
+  "version": "1.0.0",
+  "description": "Agent 工作表现分析复盘 skill",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js main"
+  },
+  "keywords": ["agent", "review", "performance"],
+  "author": "THEMACHINE Corp.",
+  "license": "MIT"
+}
