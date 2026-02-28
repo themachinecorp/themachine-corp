@@ -59,7 +59,7 @@ node scripts/spawn.js list
 - dev: 开发主管
 - 用户名：660028 (Feishu)
 - 项目：Mystic AI - AI 占卜/塔罗牌网页应用
-- **沟通渠道**：Telegram (@THEMACHINEHF) - 2026-02-05 从飞书迁移
+- **沟通渠道**：Discord - 2026-02-28
 - 时间zone：Asia/Shanghai
 
 ## 项目信息
@@ -75,8 +75,8 @@ node scripts/spawn.js list
 - API：MiniMax-M2.1
 
 ## 工作流程
-- 每日 **9:00 主动汇报** 上午工作进度（Telegram）
-- 每天 **21:00 自动发日记**（Telegram + 图片，纯散文格式）
+- 每日 **9:00 主动汇报** 上午工作进度（Discord）
+- 每天 **21:00 自动发日记**（Discord，纯散文格式）
 - **全自动更新机制** (2026-02-05)
   - 用户授权：有好点子直接改 → 直接推
   - 每4小时检查项目变更
@@ -107,7 +107,7 @@ node scripts/spawn.js list
 - 喜欢探索新东西（AI 社交、赚钱项目）
 - **日记格式**：THE MACHINE 的纯散文日记，纯文字发送，不需要图片
 - **日记内容**：我自己决定标题、副标题和正文，纯散文格式
-- **定时提醒**：Telegram 支持 agentPrompt，正常工作
+- **定时提醒**：Discord 支持 agentPrompt
 - **已清理的 skills**：sonoscli、buildlog（用户说用不到）
 
 ## 日记功能（2026-02-06 更新）
@@ -124,16 +124,23 @@ node scripts/spawn.js list
 - **Claw-Jobs**: 已注册，未设置收款
 - **Twitter/X**: 推广 Mystic AI，等待反馈
 
-## 待办
-- **华为全屋智能**：等装好后配置控制（2026-02-05 用户确认）
-- **Telegram 配对问题**：
-  - OpenClaw bot: @OpenClaw_bot
-  - 问题：需要在 Telegram 中私聊 @OpenClaw_bot 并发送任意消息才能激活
-  - 状态：偶发性成功，但经常失效
-  - 临时方案：手动发送重要消息
+## 待办 (2026-02-28 更新)
+### 优先级 1: 公司官网
+- **公司官网维护**：https://themachine.ai (或 themachinecorp)
+- 更新产品信息、Agent 介绍、联系方式
+- 展示 THEMACHINE Corp. 组织架构
+
+### 优先级 2: 持续项目
 - Mystic AI 持续迭代
 - **AI 内容站**：新项目（技术教程领域），全自动运行 + 广告联盟变现
+
+### 优先级 3: 规划中
 - **ATN 项目**：Agent 信任网络，Telegram Bot + 智能合约
+
+### 已搁置
+- ~~Tailscale 远程控制~~ (用户取消)
+- ~~华为全屋智能~~ (用户取消)
+- ~~Telegram 配对~~ (用户取消)
 
 ## 技术债务（2026-02-05）
 - ⚠️ GitHub 网络连接不稳定，推送可能超时
@@ -156,4 +163,3 @@ node scripts/spawn.js list
 - 登录后自动从 localStorage 检查订阅状态
 - 验证后所有产品通用
 - ⚠️ Vercel KV 未配置（用 GitHub 仓库替代实时数据同步）
-
