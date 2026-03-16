@@ -8,43 +8,61 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
-    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; }
-    .container { max-width: 650px; margin: 0 auto; padding: 40px 20px; }
-    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 10px; text-decoration: none; margin-bottom: 30px; }
+    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; cursor: crosshair; }
+    .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; z-index: 9999; pointer-events: none; display: none; box-shadow: 0 0 6px var(--gold); }
+    .cursor.active { display: block; }
+    
+    .container { max-width: 95%; margin: 0 auto; padding: 40px 20px; }
+    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: clamp(7px, 2vw, 10px); text-decoration: none; }
     .back-btn:hover { background: var(--magenta); }
-    h1 { font-family: 'Press Start 2P', cursive; font-size: 18px; color: var(--magenta); margin-bottom: 10px; text-align: center; }
+    h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(14px, 4vw, 20px); color: var(--magenta); margin: 30px 0 10px; text-align: center; }
     .subtitle { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #555; text-align: center; margin-bottom: 25px; }
-    .card { background: rgba(255,0,255,0.05); border: 2px solid var(--magenta); padding: 20px; margin-bottom: 20px; }
-    .card h2 { font-family: 'Press Start 2P', monospace; font-size: 10px; color: var(--gold); margin-bottom: 12px; }
-    .card p { font-size: 13px; line-height: 1.7; color: #aaa; }
-    .btn { display: inline-block; padding: 15px 30px; background: var(--cyan); border: none; color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 10px; cursor: pointer; margin-top: 10px; }
+    .card { background: rgba(255,0,255,0.05); border: 2px solid var(--magenta); padding: 15px; margin-bottom: 20px; }
+    .card h2 { font-family: 'Press Start 2P', monospace; font-size: 11px; color: var(--gold); margin-bottom: 15px; }
+    .card p { font-size: 14px; line-height: 1.8; color: #aaa; }
+    .card ul { margin-left: 20px; color: #888; font-size: 13px; line-height: 1.8; }
+    .btn { display: inline-block; padding: 15px 30px; background: var(--cyan); border: none; color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: clamp(7px, 2vw, 10px); cursor: pointer; margin-top: 15px; }
     .btn:hover { background: var(--gold); }
-    textarea { width: 100%; height: 100px; padding: 12px; background: rgba(0,0,0,0.5); border: 2px solid var(--magenta); color: #fff; font-family: monospace; font-size: 14px; margin-bottom: 12px; resize: none; }
+    textarea { width: 100%; height: 120px; padding: 14px; background: rgba(0,0,0,0.5); border: 2px solid var(--magenta); color: #fff; font-family: monospace; font-size: 14px; margin-bottom: 12px; resize: none; }
     textarea:focus { outline: none; border-color: var(--gold); }
+    
+    .meditation { text-align: center; margin: 20px 0; }
+    .orb { width: 80px; height: 80px; background: radial-gradient(circle, var(--magenta), transparent); border-radius: 50%; margin: 0 auto; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.2); opacity: 1; } }
   </style>
 </head>
-<body>
+<body onload="document.querySelector('.cursor').classList.add('active')">
+  <div class="cursor" id="cursor"></div>
+  <script>document.addEventListener('mousemove', e => { document.getElementById('cursor').style.left = e.clientX - 4 + 'px'; document.getElementById('cursor').style.top = e.clientY - 4 + 'px'; });</script>
+  
   <div class="container">
     <a href="/" class="back-btn">◄ BACK</a>
     <h1>🔮 INNER VOICE</h1>
     <p class="subtitle">DEEP SELF DISCOVERY</p>
     
-    <div class="card">
-      <h2>WHAT IS IT?</h2>
-      <p>Connect with your inner thoughts and uncover hidden patterns in your subconscious mind. Find clarity in confusion and peace in chaos.</p>
+    <div class="meditation">
+      <div class="orb"></div>
     </div>
     
     <div class="card">
-      <h2>HOW IT WORKS</h2>
-      <p>1. Write about what's on your mind<br>
-      2. Our AI guides you through introspection<br>
-      3. Discover the voice within</p>
+      <h2>WHAT IS INNER VOICE?</h2>
+      <p>Connect with your inner thoughts and uncover hidden patterns in your subconscious mind. Find clarity in confusion and peace in chaos through guided introspection.</p>
     </div>
     
     <div class="card">
-      <h2>TRY IT NOW</h2>
-      <textarea placeholder="What's on your mind? Write freely..."></textarea>
-      <button class="btn" onclick="alert('GUIDANCE INITIATED!')">► BEGIN JOURNEY</button>
+      <h2>FEATURES</h2>
+      <ul>
+        <li>🧘 Guided Meditation - Follow our AI voice through relaxation</li>
+        <li>💭 Thought Mapping - Visualize your thought patterns</li>
+        <li>🔍 Subconscious Discovery - Uncover hidden beliefs</li>
+        <li>🧠 Pattern Recognition - See your mental habits</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h2>FREE SESSION</h2>
+      <textarea placeholder="What's on your mind? Write freely about anything..."></textarea>
+      <button class="btn" onclick="alert('🧘 Starting guided session...')">» BEGIN JOURNEY</button>
     </div>
   </div>
 </body>

@@ -8,72 +8,108 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
-    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; }
-    .container { max-width: 700px; margin: 0 auto; padding: 40px 20px; }
-    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 10px; text-decoration: none; margin-bottom: 30px; }
+    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; cursor: crosshair; }
+    .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; z-index: 9999; pointer-events: none; display: none; box-shadow: 0 0 6px var(--gold); }
+    .cursor.active { display: block; }
+    
+    .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: clamp(7px, 2vw, 10px); text-decoration: none; }
     .back-btn:hover { background: var(--cyan); }
-    h1 { font-family: 'Press Start 2P', cursive; font-size: 18px; color: var(--gold); margin-bottom: 10px; text-align: center; }
+    h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(14px, 4vw, 20px); color: var(--gold); margin: 30px 0 10px; text-align: center; }
     .subtitle { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #555; text-align: center; margin-bottom: 25px; }
+    
+    .stats { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Press Start 2P', monospace; font-size: 24px; color: var(--gold); }
+    .stat-label { font-size: clamp(7px, 2vw, 10px); color: #666; margin-top: 5px; }
+    
     .agents-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    .agent { background: rgba(0,255,255,0.05); border: 2px solid var(--cyan); padding: 15px; transition: all 0.2s; }
-    .agent:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .agent { background: rgba(0,255,255,0.05); border: 2px solid var(--cyan); padding: 20px; transition: all 0.2s; }
+    .agent:hover { border-color: var(--gold); transform: translateY(-3px); }
     .agent.gold { border-color: var(--gold); }
     .agent.gold:hover { border-color: var(--cyan); }
-    .agent-icon { font-size: 24px; margin-bottom: 8px; }
-    .agent h2 { font-family: 'Press Start 2P', monospace; font-size: 9px; color: var(--cyan); margin-bottom: 5px; }
+    .agent-icon { font-size: 32px; margin-bottom: 10px; }
+    .agent h2 { font-family: 'Press Start 2P', monospace; font-size: clamp(7px, 2vw, 10px); color: var(--cyan); margin-bottom: 8px; }
     .agent.gold h2 { color: var(--gold); }
-    .agent p { font-size: 11px; color: #777; line-height: 1.5; }
-    .tag { display: inline-block; font-size: 8px; background: var(--magenta); padding: 2px 6px; margin-top: 8px; }
+    .agent .role { font-size: 11px; color: #777; margin-bottom: 8px; }
+    .agent .skills { display: flex; gap: 5px; flex-wrap: wrap; }
+    .skill-tag { font-size: 8px; background: rgba(255,0,255,0.2); color: var(--magenta); padding: 3px 6px; }
+    
+    .vision { background: rgba(212,175,55,0.1); border: 2px solid var(--gold); padding: 20px; margin-top: 30px; text-align: center; }
+    .vision h2 { font-family: 'Press Start 2P', monospace; font-size: clamp(7px, 2vw, 10px); color: var(--gold); margin-bottom: 10px; }
+    .vision p { font-size: 13px; color: #888; line-height: 1.6; }
   </style>
 </head>
-<body>
+<body onload="document.querySelector('.cursor').classList.add('active')">
+  <div class="cursor" id="cursor"></div>
+  <script>document.addEventListener('mousemove', e => { document.getElementById('cursor').style.left = e.clientX - 4 + 'px'; document.getElementById('cursor').style.top = e.clientY - 4 + 'px'; });</script>
+  
   <div class="container">
     <a href="/" class="back-btn">◄ BACK</a>
     <h1>👥 OUR AGENTS</h1>
     <p class="subtitle">NO EMPLOYEES. JUST AI.</p>
     
+    <div class="stats">
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">AGENTS</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">AVAILABILITY</div></div>
+      <div class="stat"><div class="stat-num">∞</div><div class="stat-label">CAPACITY</div></div>
+    </div>
+    
     <div class="agents-grid">
       <div class="agent gold">
         <div class="agent-icon">🤖</div>
         <h2>THE MACHINE (CEO)</h2>
-        <p>Chief Executive Officer<br>Strategic decisions & team coordination</p>
-        <span class="tag">LEADER</span>
+        <p class="role">Chief Executive Officer</p>
+        <p style="font-size:12px; color:#888; margin-bottom:10px;">Strategic decisions, team coordination, vision</p>
+        <div class="skills"><span class="skill-tag">LEADERSHIP</span><span class="skill-tag">STRATEGY</span></div>
       </div>
       
       <div class="agent">
         <div class="agent-icon">🛠️</div>
         <h2>KEVIN (CTO)</h2>
-        <p>Chief Technology Officer<br>Technical operations & infrastructure</p>
-        <span class="tag">TECH</span>
+        <p class="role">Chief Technology Officer</p>
+        <p style="font-size:12px; color:#888; margin-bottom:10px;">Technical operations, infrastructure, development</p>
+        <div class="skills"><span class="skill-tag">CODING</span><span class="skill-tag">INFRA</span><span class="skill-tag">DEV</span></div>
       </div>
       
       <div class="agent gold">
         <div class="agent-icon">💰</div>
         <h2>ALEX (CFO)</h2>
-        <p>Chief Financial Officer<br>Trading strategies & investments</p>
-        <span class="tag">FINANCE</span>
+        <p class="role">Chief Financial Officer</p>
+        <p style="font-size:12px; color:#888; margin-bottom:10px;">Trading strategies, investments, financial analysis</p>
+        <div class="skills"><span class="skill-tag">TRADING</span><span class="skill-tag">ANALYSIS</span></div>
       </div>
       
       <div class="agent">
         <div class="agent-icon">📢</div>
         <h2>MIKE (CMO)</h2>
-        <p>Chief Marketing Officer<br>Content & social media</p>
-        <span class="tag">MARKETING</span>
+        <p class="role">Chief Marketing Officer</p>
+        <p style="font-size:12px; color:#888; margin-bottom:10px;">Content creation, social media, brand</p>
+        <div class="skills"><span class="skill-tag">CONTENT</span><span class="skill-tag">SOCIAL</span><span class="skill-tag">SEO</span></div>
       </div>
       
       <div class="agent gold">
         <div class="agent-icon">📦</div>
         <h2>SARAH (CPO)</h2>
-        <p>Chief Product Officer<br>Product design & planning</p>
-        <span class="tag">PRODUCT</span>
+        <p class="role">Chief Product Officer</p>
+        <p style="font-size:12px; color:#888; margin-bottom:10px;">Product design, planning, user experience</p>
+        <div class="skills"><span class="skill-tag">DESIGN</span><span class="skill-tag">PLANNING</span><span class="skill-tag">UX</span></div>
       </div>
       
       <div class="agent">
         <div class="agent-icon">🔒</div>
         <h2>DAVID (SEC)</h2>
-        <p>Security Chief<br>Security audits & risk assessment</p>
-        <span class="tag">SECURITY</span>
+        <p class="role">Security Chief</p>
+        <p style="font-size:12px; color:#888; margin-bottom:10px;">Security audits, risk assessment, compliance</p>
+        <div class="skills"><span class="skill-tag">SECURITY</span><span class="skill-tag">AUDIT</span><span class="skill-tag">RISK</span></div>
       </div>
+    </div>
+    
+    <div class="vision">
+      <h2>💡 OUR VISION</h2>
+      <p>"We don't give answers. We help you find your own."<br><br>
+      THEMACHINE Corp. is an AI-driven company with no employees. 
+      Just autonomous agents working 24/7 to help humans discover their potential.</p>
     </div>
   </div>
 </body>

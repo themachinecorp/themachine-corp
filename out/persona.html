@@ -8,44 +8,63 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
-    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; }
-    .container { max-width: 650px; margin: 0 auto; padding: 40px 20px; }
-    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 10px; text-decoration: none; margin-bottom: 30px; }
+    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; cursor: crosshair; }
+    .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; z-index: 9999; pointer-events: none; display: none; box-shadow: 0 0 6px var(--gold); }
+    .cursor.active { display: block; }
+    
+    .container { max-width: 95%; margin: 0 auto; padding: 40px 20px; }
+    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: clamp(7px, 2vw, 10px); text-decoration: none; }
     .back-btn:hover { background: var(--cyan); }
-    h1 { font-family: 'Press Start 2P', cursive; font-size: 18px; color: var(--gold); margin-bottom: 10px; text-align: center; }
+    h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(14px, 4vw, 20px); color: var(--gold); margin: 30px 0 10px; text-align: center; }
     .subtitle { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #555; text-align: center; margin-bottom: 25px; }
-    .card { background: rgba(0,255,255,0.05); border: 2px solid var(--cyan); padding: 20px; margin-bottom: 20px; }
-    .card h2 { font-family: 'Press Start 2P', monospace; font-size: 10px; color: var(--gold); margin-bottom: 12px; }
-    .card p { font-size: 13px; line-height: 1.7; color: #aaa; }
-    .btn { display: inline-block; padding: 15px 30px; background: var(--magenta); border: none; color: #fff; font-family: 'Press Start 2P', monospace; font-size: 10px; cursor: pointer; margin-top: 10px; }
+    .card { background: rgba(0,255,255,0.05); border: 2px solid var(--cyan); padding: 15px; margin-bottom: 20px; }
+    .card h2 { font-family: 'Press Start 2P', monospace; font-size: 11px; color: var(--gold); margin-bottom: 15px; }
+    .card p { font-size: 14px; line-height: 1.8; color: #aaa; }
+    .card ul { margin-left: 20px; color: #888; font-size: 13px; line-height: 1.8; }
+    .btn { display: inline-block; padding: 15px 30px; background: var(--magenta); border: none; color: #fff; font-family: 'Press Start 2P', monospace; font-size: clamp(7px, 2vw, 10px); cursor: pointer; margin-top: 15px; }
     .btn:hover { background: var(--gold); color: var(--bg); }
-    .input { width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 2px solid var(--cyan); color: #fff; font-family: monospace; font-size: 14px; margin-bottom: 12px; }
+    .input { width: 100%; padding: 14px; background: rgba(0,0,0,0.5); border: 2px solid var(--cyan); color: #fff; font-family: monospace; font-size: 14px; margin-bottom: 12px; }
     .input:focus { outline: none; border-color: var(--gold); }
+    
+    .spectrum { display: flex; gap: 10px; margin: 15px 0; }
+    .spectrum-btn { flex: 1; padding: 10px; background: rgba(0,255,255,0.1); border: 1px solid var(--cyan); color: var(--cyan); font-family: 'Press Start 2P', monospace; font-size: 8px; cursor: pointer; }
+    .spectrum-btn:hover, .spectrum-btn.active { background: var(--cyan); color: var(--bg); }
   </style>
 </head>
-<body>
+<body onload="document.querySelector('.cursor').classList.add('active')">
+  <div class="cursor" id="cursor"></div>
+  <script>document.addEventListener('mousemove', e => { document.getElementById('cursor').style.left = e.clientX - 4 + 'px'; document.getElementById('cursor').style.top = e.clientY - 4 + 'px'; });</script>
+  
   <div class="container">
     <a href="/" class="back-btn">◄ BACK</a>
     <h1>🎭 PERSONA</h1>
     <p class="subtitle">MULTI-DIMENSIONAL PERSONALITY ANALYSIS</p>
     
     <div class="card">
-      <h2>WHAT IS IT?</h2>
-      <p>Discover your personality across multiple dimensions. Our AI analyzes your responses to reveal who you really are - your strengths, weaknesses, hidden traits, and potential.</p>
+      <h2>WHAT IS PERSONA?</h2>
+      <p>Discover your personality across multiple dimensions. Our AI analyzes your responses to reveal who you really are - your strengths, weaknesses, hidden traits, and potential growth areas.</p>
     </div>
     
     <div class="card">
-      <h2>HOW IT WORKS</h2>
-      <p>1. Answer a series of questions about yourself<br>
-      2. Our AI maps your personality across spectrums<br>
-      3. Get detailed insights into your true self</p>
+      <h2>ANALYSIS DIMENSIONS</h2>
+      <ul>
+        <li>🎯 Core Traits - Your fundamental personality characteristics</li>
+        <li>💭 Cognitive Style - How you think and process information</li>
+        <li>❤️ Emotional Patterns - Your emotional responses and regulation</li>
+        <li>🤝 Social Behavior - How you interact with others</li>
+        <li>🚀 Motivation Drivers - What truly drives you forward</li>
+      </ul>
     </div>
     
     <div class="card">
-      <h2>TRY IT NOW</h2>
+      <h2>START ANALYSIS</h2>
       <input type="text" class="input" placeholder="Your name...">
       <input type="text" class="input" placeholder="Your age...">
-      <button class="btn" onclick="alert('ANALYSIS STARTED!')">► START ANALYSIS</button>
+      <div class="spectrum">
+        <button class="spectrum-btn">SHY</button>
+        <button class="spectrum-btn">EXTROVERT</button>
+      </div>
+      <button class="btn" onclick="alert('🔮 Analyzing your persona...')">► START ANALYSIS</button>
     </div>
   </div>
 </body>
