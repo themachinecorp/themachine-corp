@@ -3,70 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THEMATHINK | 8-Bit World</title>
+  <title>THEMACHINE CORP. | 8-Bit World</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
-    html, body { background: var(--bg); transition: opacity 0.3s; color: #fff; font-family: 'Courier New', monospace; height: 100%; overflow: hidden; cursor: crosshair; }
+    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; height: 100%; overflow: hidden; cursor: crosshair; }
     .pixel-bg { position: fixed; inset: 0; background-image: linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px); background-size: 8px 8px; z-index: 0; }
-    .game-world { position: relative; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; }
-    .pixel-logo { font-family: 'Press Start 2P', cursive; font-size: clamp(24px, 6vw, 48px); text-align: center; line-height: 1.8; margin-bottom: 20px; text-shadow: 4px 4px 0 var(--gold), -1px -1px 0 var(--cyan); animation: bounce 1s infinite; cursor: pointer; }
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .health-bar { display: flex; gap: 4px; margin-bottom: 30px; }
-    .heart { width: 20px; height: 20px; background: var(--magenta); clip-path: path('M10 4 C6 0 0 2 0 7 C0 12 10 18 10 18 C10 18 20 12 20 7 C20 2 14 0 10 4'); animation: beat 0.5s infinite; }
+    .game-world { position: relative; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; opacity: 0; transition: opacity 0.5s; }
+    .game-world.loaded { opacity: 1; }
+    
+    .pixel-logo { font-family: 'Press Start 2P', cursive; font-size: clamp(18px, 4.5vw, 38px); text-align: center; line-height: 1.5; text-shadow: 3px 3px 0 var(--gold), -1px -1px 0 var(--cyan); animation: bounce 1s infinite; cursor: pointer; }
+    .pixel-logo span { display: block; font-size: clamp(9px, 2vw, 12px); color: var(--cyan); margin-top: 8px; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    
+    .tagline { font-family: 'Press Start 2P', monospace; font-size: clamp(6px, 1.5vw, 8px); color: #666; margin-bottom: 20px; text-align: center; }
+    .tagline2 { font-family: 'Press Start 2P', monospace; font-size: clamp(5px, 1.2vw, 7px); color: #444; margin-bottom: 15px; text-align: center; }
+    
+    .health-bar { display: flex; gap: 5px; margin-bottom: 20px; }
+    .heart { width: 16px; height: 16px; background: var(--magenta); clip-path: path('M8 2 C4 0 0 2 0 5 C0 9 8 15 8 15 C8 15 16 9 16 5 C16 2 12 0 8 2'); animation: beat 0.6s infinite; }
     .heart:nth-child(2) { animation-delay: 0.1s; } .heart:nth-child(3) { animation-delay: 0.2s; } .heart:nth-child(4) { animation-delay: 0.3s; } .heart:nth-child(5) { animation-delay: 0.4s; }
-    @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
-    .pixel-menu { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 400px; width: 90%; }
-    .menu-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 20px 24px; background: rgba(0,255,255,0.05); border: 3px solid var(--cyan); color: var(--cyan); font-family: 'Press Start 2P', monospace; font-size: 10px; cursor: pointer; transition: all 0.1s; text-transform: uppercase; text-decoration: none; }
-    .menu-btn:hover { background: var(--cyan); color: var(--bg); transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--magenta); }
+    @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+    
+    .pixel-menu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 400px; width: 85%; }
+    .menu-btn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 10px; background: rgba(0,255,255,0.05); border: 2px solid var(--cyan); color: var(--cyan); font-family: 'Press Start 2P', monospace; font-size: 7px; cursor: pointer; transition: all 0.1s; text-transform: uppercase; text-decoration: none; }
+    .menu-btn:hover { background: var(--cyan); color: var(--bg); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--magenta); }
     .menu-btn.gold { border-color: var(--gold); color: var(--gold); }
-    .menu-btn.gold:hover { background: var(--gold); color: var(--bg); box-shadow: 8px 8px 0 var(--cyan); }
-    @keyframes floatPixel { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(20deg); } }
-    .player { position: fixed; font-size: 40px; cursor: pointer; z-index: 100; animation: idle 0.5s steps(2) infinite; pointer-events: none; }
-    @keyframes idle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-    .enemy { position: absolute; font-size: 30px; animation: enemyMove 4s linear infinite; cursor: pointer; transition: transform 0.2s; }
-    .enemy:hover { transform: scale(1.3) rotate(20deg); }
-    @keyframes enemyMove { 0% { left: -50px; } 100% { left: 110%; } }
-    .hud { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; left: 0; right: 0; padding: 15px 20px; background: rgba(0,0,0,0.8); border-top: 3px solid var(--cyan); display: flex; justify-content: space-between; font-family: 'Press Start 2P', monospace; font-size: 10px; z-index: 100; }
-    .hud-item { display: flex; align-items: center; gap: 8px; }
+    .menu-btn.gold:hover { background: var(--gold); color: var(--bg); box-shadow: 4px 4px 0 var(--cyan); }
+    .menu-btn.magenta { border-color: var(--magenta); color: var(--magenta); }
+    .menu-btn.magenta:hover { background: var(--magenta); color: var(--bg); box-shadow: 4px 4px 0 var(--gold); }
+    
+    .cursor { position: fixed; width: 10px; height: 10px; background: #d4af37; border-radius: 50%; z-index: 1000; pointer-events: none; display: none; box-shadow: 0 0 8px #d4af37, 0 0 15px #d4af37; }
+    .cursor.active { display: block; }
+    
+    .hud { position: fixed; bottom: 0; left: 0; right: 0; padding: 10px 16px; background: rgba(0,0,0,0.85); border-top: 2px solid var(--cyan); display: flex; justify-content: space-between; font-family: 'Press Start 2P', monospace; font-size: 8px; z-index: 1000; opacity: 0; transition: opacity 0.5s; }
+    .hud.loaded { opacity: 1; }
+    .hud-item { display: flex; align-items: center; gap: 5px; }
     .hud-label { color: var(--cyan); }
     .hud-value { color: var(--gold); }
-    .score { position: fixed; top: 20px; right: 20px; z-index: 1000; top: 20px; right: 20px; font-family: 'Press Start 2P', monospace; font-size: 16px; color: var(--gold); text-shadow: 2px 2px 0 var(--magenta); z-index: 100; }
-    .sparkle { position: absolute; width: 8px; height: 8px; background: var(--gold); pointer-events: none; animation: sparkle 0.5s forwards; }
+    
+    .score { position: fixed; top: 15px; right: 15px; font-family: 'Press Start 2P', monospace; font-size: 12px; color: var(--gold); text-shadow: 1px 1px 0 var(--magenta); z-index: 1000; opacity: 0; transition: opacity 0.5s; }
+    .score.loaded { opacity: 1; }
+    
+    .marquee { position: fixed; top: 12px; left: 0; font-family: 'Press Start 2P', monospace; font-size: 8px; color: var(--magenta); white-space: nowrap; animation: scroll 12s linear infinite; z-index: 1000; opacity: 0; transition: opacity 0.5s; }
+    .marquee.loaded { opacity: 1; }
+    @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+    
+    .sparkle { position: absolute; width: 5px; height: 5px; background: var(--gold); pointer-events: none; animation: sparkle 0.3s forwards; }
     @keyframes sparkle { to { transform: translate(var(--tx), var(--ty)); opacity: 0; } }
+    
+    .footer-decor { position: fixed; bottom: 45px; left: 0; right: 0; display: flex; justify-content: space-around; font-size: 16px; opacity: 0; transition: opacity 0.5s; }
+    .footer-decor.loaded { opacity: 0.5; }
+    .footer-decor span { animation: blink 1s infinite; }
+    .footer-decor span:nth-child(2) { animation-delay: 0.3s; }
+    .footer-decor span:nth-child(3) { animation-delay: 0.6s; }
+    @keyframes blink { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+    
+    .tip { position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%); font-family: 'Press Start 2P', monospace; font-size: 7px; color: #444; opacity: 0; transition: opacity 0.5s; }
+    .tip.loaded { opacity: 1; }
+    
+    .loader { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.4s; }
+    .loader.hidden { opacity: 0; pointer-events: none; }
+    .loader-title { font-family: 'Press Start 2P'; font-size: 20px; color: var(--gold); }
+    .loader-text { font-family: 'Press Start 2P', monospace; font-size: 10px; color: var(--cyan); margin-top: 15px; }
   </style>
 </head>
-<body onload="document.body.style.opacity=1">
-  <style>body{opacity:0;transition:opacity 0.5s} </style>
-<body>
+<body onload="init()">
+  <div class="loader" id="loader">
+    <div class="loader-title">◈</div>
+    <div class="loader-text">LOADING...</div>
+  </div>
+  
   <div class="pixel-bg"></div>
-  <div class="score">SCORE: <span id="scoreVal">0000</span></div>
-  <div class="game-world">
-    <div class="pixel-logo">THEMACHINE CORP.<br><span style="font-size: 14px; color: var(--cyan);">8-BIT WORLD</span></div>
-    <div class="health-bar"><div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div></div>
+  <div class="marquee" id="marquee">★ WELCOME TO THEMACHINE CORP. ★ NO EMPLOYEES. JUST AI. ★ THE MACHINE THAT THINKS ★</div>
+  <div class="score" id="score">SCORE: <span id="scoreVal">0000</span></div>
+  
+  <div class="game-world" id="gameWorld">
+    <div class="pixel-logo">THEMACHINE CORP.<span>8-BIT WORLD</span></div>
+    <div class="tagline">THE MACHINE THAT THINKS</div>
+    <div class="tagline2">"We don't give answers. We help you find your own."</div>
+    <div class="health-bar">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+    </div>
     <div class="pixel-menu">
       <a href="/persona/" class="menu-btn gold">🎭 Persona</a>
       <a href="/innervoice/" class="menu-btn">🔮 Voice</a>
       <a href="/lifemosaic/" class="menu-btn gold">🧩 Life</a>
-      <a href="/tools.html" class="menu-btn">🧰 Tools</a>
-      <a href="/predict.html" class="menu-btn">📊 Predict</a>
+      <a href="/tools.html" class="menu-btn magenta">🧰 Tools</a>
       <a href="/team.html" class="menu-btn gold">👥 Team</a>
     </div>
   </div>
-  <div class="player" id="player">🤖</div>
-  <div class="hud">
+  
+  <div class="footer-decor" id="footerDecor">
+    <span>◈</span><span>◈</span><span>◈</span>
+  </div>
+  
+  <div class="tip" id="tip">[ CLICK TO PLAY ]</div>
+  
+  <div class="cursor" id="cursor"></div>
+  
+  <div class="hud" id="hud">
     <div class="hud-item"><span class="hud-label">HP</span><span class="hud-value">♥♥♥♥♥</span></div>
-    <div class="hud-item"><span class="hud-label">AGENTS</span><span class="hud-value">5</span></div>
+    <div class="hud-item"><span class="hud-label">AGENTS</span><span class="hud-value">6</span></div>
     <div class="hud-item"><span class="hud-label">LVL</span><span class="hud-value">99</span></div>
     <div class="hud-item"><span class="hud-label">GOLD</span><span class="hud-value">∞</span></div>
   </div>
+  
   <script>
-    const player = document.getElementById('player');
-    document.addEventListener('mousemove', (e) => { player.style.left = (e.clientX - 20) + 'px'; player.style.top = (e.clientY - 20) + 'px'; });
-    document.addEventListener('click', (e) => { if(e.target.tagName !== 'A') { createSparkle(e.clientX, e.clientY); incrementScore(); } });
-    function createSparkle(x, y) { for (let i = 0; i < 8; i++) { const sparkle = document.createElement('div'); sparkle.className = 'sparkle'; sparkle.style.left = x + 'px'; sparkle.style.top = y + 'px'; sparkle.style.setProperty('--tx', (Math.random() - 0.5) * 100 + 'px'); sparkle.style.setProperty('--ty', (Math.random() - 0.5) * 100 + 'px'); sparkle.style.background = Math.random() > 0.5 ? '#d4af37' : '#00ffff'; document.body.appendChild(sparkle); setTimeout(() => sparkle.remove(), 500); } }
-    let score = 0; function incrementScore() { score += 10; document.getElementById('scoreVal').textContent = score.toString().padStart(4, '0'); }
+    var gameScore = 0;
+    
+    function init() {
+      setTimeout(showContent, 500);
+    }
+    
+    function showContent() {
+      document.getElementById('loader').classList.add('hidden');
+      document.getElementById('gameWorld').classList.add('loaded');
+      document.getElementById('hud').classList.add('loaded');
+      document.getElementById('score').classList.add('loaded');
+      document.getElementById('marquee').classList.add('loaded');
+      document.getElementById('footerDecor').classList.add('loaded');
+      document.getElementById('cursor').classList.add('active');
+      setTimeout(function() {
+        document.getElementById('tip').classList.add('loaded');
+      }, 500);
+    }
+    
+    document.addEventListener('mousemove', function(e) {
+      document.getElementById('cursor').style.left = (e.clientX - 5) + 'px';
+      document.getElementById('cursor').style.top = (e.clientY - 5) + 'px';
+    });
+    
+    document.addEventListener('click', function(e) {
+      if(e.target.tagName !== 'A') {
+        createSparkle(e.clientX, e.clientY);
+        gameScore += 10;
+        document.getElementById('scoreVal').textContent = gameScore.toString().padStart(4, '0');
+      }
+    });
+    
+    function createSparkle(x, y) { 
+      for (var i = 0; i < 6; i++) { 
+        var sparkle = document.createElement('div'); 
+        sparkle.className = 'sparkle'; 
+        sparkle.style.left = x + 'px'; 
+        sparkle.style.top = y + 'px'; 
+        sparkle.style.setProperty('--tx', (Math.random() - 0.5) * 60 + 'px'); 
+        sparkle.style.setProperty('--ty', (Math.random() - 0.5) * 60 + 'px'); 
+        sparkle.style.background = Math.random() > 0.5 ? '#d4af37' : '#00ffff'; 
+        document.body.appendChild(sparkle); 
+        setTimeout(function() { sparkle.remove(); }, 300); 
+      } 
+    }
   </script>
 </body>
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Mosaic | THEMACHINE CORP.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
+    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; }
+    .container { max-width: 650px; margin: 0 auto; padding: 40px 20px; }
+    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 10px; text-decoration: none; margin-bottom: 30px; }
+    .back-btn:hover { background: var(--cyan); }
+    h1 { font-family: 'Press Start 2P', cursive; font-size: 18px; color: var(--cyan); margin-bottom: 10px; text-align: center; }
+    .subtitle { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #555; text-align: center; margin-bottom: 25px; }
+    .card { background: rgba(0,255,255,0.05); border: 2px solid var(--cyan); padding: 20px; margin-bottom: 20px; }
+    .card h2 { font-family: 'Press Start 2P', monospace; font-size: 10px; color: var(--gold); margin-bottom: 12px; }
+    .card p { font-size: 13px; line-height: 1.7; color: #aaa; }
+    .btn { display: inline-block; padding: 15px 30px; background: var(--magenta); border: none; color: #fff; font-family: 'Press Start 2P', monospace; font-size: 10px; cursor: pointer; margin-top: 10px; }
+    .btn:hover { background: var(--gold); color: var(--bg); }
+    .input { width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 2px solid var(--cyan); color: #fff; font-family: monospace; font-size: 14px; margin-bottom: 12px; }
+    .input:focus { outline: none; border-color: var(--gold); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-btn">◄ BACK</a>
+    <h1>🧩 LIFE MOSAIC</h1>
+    <p class="subtitle">PIECE TOGETHER YOUR LIFE STORY</p>
+    
+    <div class="card">
+      <h2>WHAT IS IT?</h2>
+      <p>Visualize your life journey as a beautiful mosaic of interconnected moments, choices, relationships, and outcomes. See the bigger picture.</p>
+    </div>
+    
+    <div class="card">
+      <h2>HOW IT WORKS</h2>
+      <p>1. Input key life events and milestones<br>
+      2. Map your relationships and connections<br>
+      3. See your life's beautiful tapestry</p>
+    </div>
+    
+    <div class="card">
+      <h2>TRY IT NOW</h2>
+      <input type="text" class="input" placeholder="Recent achievement...">
+      <input type="text" class="input" placeholder="Important relationship...">
+      <button class="btn" onclick="alert('MOSAIC GENERATED!')">► CREATE MOSAIC</button>
+    </div>
+  </div>
+</body>
+</html>
