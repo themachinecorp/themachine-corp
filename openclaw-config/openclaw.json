@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-16T16:34:26.451Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-11T11:58:53.711Z",
+    "lastRunVersion": "2026.3.8",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "minimax:default": {
+        "provider": "minimax",
+        "mode": "api_key"
+      },
+      "minimax-cn:default": {
+        "provider": "minimax-cn",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "minimax": {
+        "baseUrl": "https://api.minimax.io/anthropic",
+        "api": "anthropic-messages",
+        "authHeader": true,
+        "models": [
+          {
+            "id": "MiniMax-M2.5",
+            "name": "MiniMax M2.5",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.3,
+              "output": 1.2,
+              "cacheRead": 0.03,
+              "cacheWrite": 0.12
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "minimax-cn": {
+        "baseUrl": "https://api.minimaxi.com/anthropic",
+        "api": "anthropic-messages",
+        "authHeader": true,
+        "models": [
+          {
+            "id": "MiniMax-M2.5",
+            "name": "MiniMax M2.5",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.3,
+              "output": 1.2,
+              "cacheRead": 0.03,
+              "cacheWrite": 0.12
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "minimax-cn/MiniMax-M2.5"
+      },
+      "models": {
+        "minimax/MiniMax-M2.5": {
+          "alias": "Minimax"
+        },
+        "minimax-cn/MiniMax-M2.5": {
+          "alias": "Minimax"
+        }
+      },
+      "workspace": "/home/themachine/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main"
+      },
+      {
+        "id": "cfo",
+        "name": "cfo",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/cfo/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/cfo",
+        "identity": {
+          "name": "Alex",
+          "theme": "财务顾问",
+          "emoji": "💰"
+        }
+      },
+      {
+        "id": "cto",
+        "name": "cto",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/cto/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/cto",
+        "identity": {
+          "name": "Kevin",
+          "theme": "技术大牛",
+          "emoji": "🛠️"
+        }
+      },
+      {
+        "id": "cmo",
+        "name": "cmo",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/cmo/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/cmo",
+        "identity": {
+          "name": "Mike",
+          "theme": "营销专家",
+          "emoji": "📢"
+        }
+      },
+      {
+        "id": "cpo",
+        "name": "cpo",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/cpo/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/cpo",
+        "identity": {
+          "name": "Sarah",
+          "theme": "产品经理",
+          "emoji": "📦"
+        }
+      },
+      {
+        "id": "sec",
+        "name": "sec",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/sec/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/sec",
+        "identity": {
+          "name": "David",
+          "theme": "安全专家",
+          "emoji": "🔒"
+        }
+      },
+      {
+        "id": "dev",
+        "name": "dev",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/dev/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/dev"
+      },
+      {
+        "id": "hr",
+        "name": "hr",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/hr/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/hr"
+      },
+      {
+        "id": "growth",
+        "name": "growth",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/growth/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/growth"
+      },
+      {
+        "id": "designer",
+        "name": "designer",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/designer/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/designer"
+      },
+      {
+        "id": "engineer",
+        "name": "engineer",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/engineer/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/engineer"
+      },
+      {
+        "id": "content",
+        "name": "content",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/content/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/content"
+      },
+      {
+        "id": "mcpeng",
+        "name": "mcpeng",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/mcpeng/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/mcpeng"
+      },
+      {
+        "id": "pm",
+        "name": "pm",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/pm/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/pm"
+      },
+      {
+        "id": "data",
+        "name": "data",
+        "workspace": "/home/themachine/.openclaw/agents-cfg/data/workspace",
+        "agentDir": "/home/themachine/.openclaw/agents-cfg/data"
+      }
+    ]
+  },
+  "tools": {
+    "profile": "coding"
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "streaming": "partial"
+    },
+    "discord": {
+      "enabled": true,
+      "token": "xxx",
+      "groupPolicy": "allowlist",
+      "streaming": "off",
+      "threadBindings": {
+        "spawnSubagentSessions": true
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "xxx"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "plugins": {
+    "entries": {
+      "discord": {
+        "enabled": true
+      },
+      "lossless-claw": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "lossless-claw": {
+        "source": "npm",
+        "spec": "@martian-engineering/lossless-claw",
+        "installPath": "/home/themachine/.openclaw/extensions/lossless-claw",
+        "version": "0.3.0",
+        "resolvedName": "@martian-engineering/lossless-claw",
+        "resolvedVersion": "0.3.0",
+        "resolvedSpec": "@martian-engineering/lossless-claw@0.3.0",
+        "integrity": "sha512-SsY0bp3SoSzEu+KB8fOBke46MFhTmslfWg6OvC4pShq34ig2+V+jkTFAHib8PTZ0MoethAddR+ZmRN9OASorAA==",
+        "shasum": "bc9725d6d59d9b1523128ab528f1258c4258fa3f",
+        "resolvedAt": "2026-03-16T16:34:05.626Z",
+        "installedAt": "2026-03-16T16:34:25.638Z"
+      }
+    }
+  }
+}

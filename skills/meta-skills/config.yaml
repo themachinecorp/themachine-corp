@@ -1,0 +1,79 @@
+# meta-skills 配置文件
+# 仓库名：meta-skills。排名数据每日上传到用户自己的 meta-skills-rank-lists 仓库。
+
+# GitHub API（必填或使用环境变量 GITHUB_TOKEN）
+github:
+  token: ${GITHUB_TOKEN}   # 可由 OpenClaw 部署时询问并写入 config.local.yaml（不提交）
+  discovery:
+    min_stars: 10
+    updated_within_days: 90   # 最近 3 个月有推送
+    topic: "openclaw-skill"
+    max_results_per_search: 20
+    max_skills: 500        # 安装技能总数上限，用户可通过 OpenClaw 修改
+    # 通过配置的 awesome 类仓库扩展发现：拉取各仓库 README，解析其中的 GitHub 链接并校验 skill
+    awesome_lists:        # 默认 awesome 扩展仓库列表（支持 https://github.com/owner/repo 或 owner/repo）
+      - https://github.com/lllray/awesome-skills
+      - https://github.com/anthropics/skills
+      - https://github.com/VoltAgent/awesome-openclaw-skills
+      - https://github.com/openclaw/clawhub
+      - https://github.com/LeoYeAI/openclaw-master-skills
+      - https://github.com/clawdbot-ai/awesome-openclaw-skills-zh
+      - https://github.com/sundial-org/awesome-openclaw-skills
+      - https://github.com/alirezarezvani/claude-skills
+      - https://github.com/googleworkspace/cli
+      - https://github.com/phuryn/pm-skills
+      - https://github.com/VoltAgent/awesome-agent-skills
+      - https://github.com/sickn33/antigravity-awesome-skills
+      - https://github.com/ComposioHQ/awesome-claude-skills
+      - https://github.com/joe-shenouda/awesome-cyber-skills
+      - https://github.com/Prat011/awesome-llm-skills
+      - https://github.com/heilcheng/awesome-agent-skills
+      - https://github.com/menkesu/awesome-pm-skills
+      - https://github.com/new-silvermoon/awesome-android-agent-skills
+      - https://github.com/intellectronica/awesome-skills
+      - https://github.com/jayboxyz/awesome-programming-skills
+      - https://github.com/lawvable/awesome-legal-skills
+    min_stars_awesome: 10  # 从 awesome README 解析出的仓库的星数下限（可低于 topic 搜索）
+    max_links_to_try_per_list: 100   # 每个 awesome 仓库只尝试校验前 N 个链接，避免单列表数百次 API
+    awesome_parallel: 8             # 并行校验链接的线程数（1 为串行，建议 4～8）
+  cache_dir: ".github_cache"
+  cache_ttl_hours: 24
+
+# 用户自己的排名仓库（可在此填写或由 OpenClaw 部署时设置；也可由 GitHub API 自动创建 meta-skills-rank-lists）
+rank_lists:
+  repo: ""   # 例如 yourname/meta-skills-rank-lists
+  discovery_repos: []
+  keywords: []  # 可由 deploy 流程根据用户描述拆解并写入，支持后续通过 config/keywords 接口添加或更新
+
+# 每日定时任务（默认 21:00，用户可通过 OpenClaw 修改）
+schedule:
+  enabled: true
+  hour: 21
+  minute: 0
+
+# 沙箱
+sandbox:
+  opensandbox:
+    enabled: false
+    endpoint: "http://localhost:8080"
+  docker:
+    enabled: true
+    image: "python:3.11-slim"
+    timeout_seconds: 60
+
+# OpenClaw 技能目录
+openclaw:
+  skills_dir: "~/.openclaw/skills"
+  signal_reload: true
+
+# 优先级
+priority:
+  default: 0
+  max: 100
+
+# 回馈（可选）
+uplink:
+  auto_uplink_enabled: false
+  min_score_for_uplink: 4.5
+  curated_repo: ""
+  prefer_pr: true

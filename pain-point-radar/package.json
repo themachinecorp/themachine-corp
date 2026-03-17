@@ -1,0 +1,27 @@
+{
+  "name": "pain-point-radar",
+  "version": "1.0.0",
+  "description": "自动扫描 HN/GitHub/HuggingFace/Reddit 等数据源，识别用户痛点",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "scan": "node scripts/scan.js",
+    "scan:hn": "node scripts/scan-hn.js",
+    "report": "node scripts/report.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": ["pain-point", "radar", "hn", "github"],
+  "author": "THEMACHINE",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "rss-parser": "^3.13.0",
+    "better-sqlite3": "^9.4.0",
+    "dotenv": "^16.3.0",
+    "uuid": "^9.0.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

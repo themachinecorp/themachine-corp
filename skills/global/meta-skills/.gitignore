@@ -1,0 +1,11 @@
+config.local.yaml
+.github_cache/
+*.db
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+rank_data.json
+
+reports/

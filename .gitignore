@@ -1,0 +1,14 @@
+# 依赖
+node_modules/
+__pycache__/
+*.pyc
+
+# Git
+.git/
+.gitignore (保留)
+
+# 敏感
+*.key
+*.pem
+*.token
+.env

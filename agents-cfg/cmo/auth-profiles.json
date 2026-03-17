@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "profiles": {
+    "minimax:default": {
+      "type": "api_key",
+      "provider": "minimax",
+      "key": "sk-cp-EPvi6iGNrl0nmdsYE0c7Kcpw3CmCYduh_Caxoin8qz4pGrpjTGN6FR9V5JrAiU8I9-W1_VgJ9XJkMkeEvviyk1j4IsNoD_bRxSVme-995aTZYk8jSX7-nWg"
+    },
+    "minimax-cn:default": {
+      "type": "api_key",
+      "provider": "minimax-cn",
+      "key": "sk-cp-EPvi6iGNrl0nmdsYE0c7Kcpw3CmCYduh_Caxoin8qz4pGrpjTGN6FR9V5JrAiU8I9-W1_VgJ9XJkMkeEvviyk1j4IsNoD_bRxSVme-995aTZYk8jSX7-nWg"
+    }
+  },
+  "usageStats": {
+    "minimax:default": {
+      "errorCount": 0,
+      "lastUsed": 1773230328618
+    },
+    "minimax-cn:default": {
+      "errorCount": 0,
+      "lastUsed": 1773622160283
+    }
+  }
+}
