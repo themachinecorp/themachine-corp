@@ -8,7 +8,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
-    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; }
+    html, body { background: var(--bg); color: #fff; font-family: 'Press Start 2P', monospace; min-height: 100vh; }
     @media (max-width: 600px) { .tools-grid { grid-template-columns: repeat(2, 1fr) !important; } .tool-panel { padding: 15px !important; } }
     
     .container { max-width: 900px; margin: 0 auto; padding: 30px 15px; }
@@ -32,23 +32,12 @@
     textarea { height: 80px; resize: none; }
     .btn { padding: 10px 20px; background: var(--cyan); border: none; color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 9px; cursor: pointer; }
     .btn:hover { background: var(--gold); }
-    .result { margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold); font-size: 12px; white-space: pre-wrap; color: #ddd; display: none; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .result { margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold); font-size: 11px; white-space: pre-wrap; color: #ddd; display: none; line-height: 1.6; }
     .result.show { display: block; }
-    
-    /* 订阅区域 */
-    .subscribe { background: rgba(212,175,55,0.1); border: 2px solid var(--gold); padding: 20px; margin: 25px 0; text-align: center; }
-    .subscribe h3 { font-family: 'Press Start 2P', monospace; font-size: 10px; color: var(--gold); margin-bottom: 10px; }
-    .subscribe p { font-size: 12px; color: #888; margin-bottom: 12px; }
-    .subscribe-form { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-    .subscribe input { width: 200px; margin-bottom: 0; }
-    .subscribe .btn { background: var(--gold); }
-    
-    /* 社交媒体 */
-    .social { text-align: center; margin: 20px 0; }
-    .social h3 { font-family: 'Press Start 2P', monospace; font-size: 9px; color: #555; margin-bottom: 12px; }
-    .social-links { display: flex; gap: 15px; justify-content: center; }
-    .social-link { font-size: 24px; text-decoration: none; transition: transform 0.2s; }
-    .social-link:hover { transform: scale(1.2); }
+    .result.error { border-color: #ff4444; color: #ff6666; }
+    .loading { color: var(--cyan); animation: blink 0.5s infinite; }
+    @keyframes blink { 50% { opacity: 0.5; } }
   </style>
 </head>
 <body>
@@ -100,55 +89,132 @@
       </div>
     </div>
     
-    <div id="panel-summarizer" class="tool-panel"><h3>📝 SUMMARIZER</h3><textarea id="summarizer-input" placeholder="Paste text..."></textarea><button class="btn" onclick="runAI('summarizer')">► SUMMARIZE</button><div id="summarizer-result" class="result"></div></div>
-    <div id="panel-analyzer" class="tool-panel"><h3>🔍 ANALYZER</h3><textarea id="analyzer-input" placeholder="Text to analyze..."></textarea><button class="btn" onclick="runAI('analyzer')">► ANALYZE</button><div id="analyzer-result" class="result"></div></div>
-    <div id="panel-ideator" class="tool-panel"><h3>💡 IDEATOR</h3><input type="text" id="ideator-input" placeholder="Topic..."><button class="btn" onclick="runAI('ideator')">» GENERATE</button><div id="ideator-result" class="result"></div></div>
-    <div id="panel-email" class="tool-panel"><h3>📧 EMAIL</h3><input type="text" id="email-subject" placeholder="Subject..."><textarea id="email-input" placeholder="About..."></textarea><button class="btn" onclick="runAI('email')">» WRITE</button><div id="email-result" class="result"></div></div>
-    <div id="panel-headline" class="tool-panel"><h3>🎯 HEADLINE</h3><input type="text" id="headline-input" placeholder="Topic..."><button class="btn" onclick="runAI('headline')">» GENERATE</button><div id="headline-result" class="result"></div></div>
-    <div id="panel-translator" class="tool-panel"><h3>🌐 TRANSLATOR</h3><input type="text" id="translator-from" placeholder="From (e.g. English)"><input type="text" id="translator-to" placeholder="To (e.g. Chinese)"><textarea id="translator-input" placeholder="Text..."></textarea><button class="btn" onclick="runAI('translator')">» TRANSLATE</button><div id="translator-result" class="result"></div></div>
-    <div id="panel-code" class="tool-panel"><h3>💻 CODE</h3><textarea id="code-input" placeholder="Describe code need..."></textarea><button class="btn" onclick="runAI('code')">» HELP</button><div id="code-result" class="result"></div></div>
-    <div id="panel-joke" class="tool-panel"><h3>😂 JOKE</h3><input type="text" id="joke-input" placeholder="Topic (optional)..."><button class="btn" onclick="runAI('joke')">» TELL JOKE</button><div id="joke-result" class="result"></div></div>
-    
-    <!-- 订阅区域 -->
-    <div class="subscribe">
-      <h3>📧 GET UPDATES</h3>
-      <p>Subscribe for new features & AI tips</p>
-      <div class="subscribe-form">
-        <input type="email" placeholder="your@email.com">
-        <button class="btn" onclick="alert('✓ Thanks for subscribing!')">SUBSCRIBE</button>
-      </div>
-    </div>
-    
-    <!-- 社交媒体 -->
-    <div class="social">
-      <h3>📢 FOLLOW US</h3>
-      <div class="social-links">
-        <a href="#" class="social-link">🐦</a>
-        <a href="#" class="social-link">💼</a>
-        <a href="#" class="social-link">📱</a>
-        <a href="#" class="social-link">✉️</a>
-      </div>
-    </div>
+    <div id="panel-summarizer" class="tool-panel"><h3>📝 SUMMARIZER</h3><textarea id="summarizer-input" placeholder="Paste text to summarize..."></textarea><button class="btn" id="btn-summarizer" onclick="runAI('summarizer')">► SUMMARIZE</button><div id="summarizer-result" class="result"></div></div>
+    <div id="panel-analyzer" class="tool-panel"><h3>🔍 ANALYZER</h3><textarea id="analyzer-input" placeholder="Text to analyze..."></textarea><button class="btn" id="btn-analyzer" onclick="runAI('analyzer')">► ANALYZE</button><div id="analyzer-result" class="result"></div></div>
+    <div id="panel-ideator" class="tool-panel"><h3>💡 IDEATOR</h3><input type="text" id="ideator-input" placeholder="Topic for ideas..."><button class="btn" id="btn-ideator" onclick="runAI('ideator')">» GENERATE</button><div id="ideator-result" class="result"></div></div>
+    <div id="panel-email" class="tool-panel"><h3>📧 EMAIL</h3><input type="text" id="email-subject" placeholder="Subject line..."><textarea id="email-input" placeholder="What do you want to say?"></textarea><button class="btn" id="btn-email" onclick="runAI('email')">» WRITE</button><div id="email-result" class="result"></div></div>
+    <div id="panel-headline" class="tool-panel"><h3>🎯 HEADLINE</h3><input type="text" id="headline-input" placeholder="Topic or content..."><button class="btn" id="btn-headline" onclick="runAI('headline')">» GENERATE</button><div id="headline-result" class="result"></div></div>
+    <div id="panel-translator" class="tool-panel"><h3>🌐 TRANSLATOR</h3><input type="text" id="translator-from" placeholder="From (e.g. English)" value="English"><input type="text" id="translator-to" placeholder="To (e.g. Chinese)" value="Chinese"><textarea id="translator-input" placeholder="Text to translate..."></textarea><button class="btn" id="btn-translator" onclick="runAI('translator')">» TRANSLATE</button><div id="translator-result" class="result"></div></div>
+    <div id="panel-code" class="tool-panel"><h3>💻 CODE</h3><textarea id="code-input" placeholder="Describe what code you need..."></textarea><button class="btn" id="btn-code" onclick="runAI('code')">» HELP</button><div id="code-result" class="result"></div></div>
+    <div id="panel-joke" class="tool-panel"><h3>😂 JOKE</h3><input type="text" id="joke-input" placeholder="Topic (optional)..."><button class="btn" id="btn-joke" onclick="runAI('joke')">» TELL JOKE</button><div id="joke-result" class="result"></div></div>
   </div>
   
   <script>
-    var apiKey = 'K0WRRtMpn8YPM-sfIWp1TuNMn4JI9S9Q3X2Zw7Rk';
+    const API_BASE = 'https://api.minimax.chat/v1/text/chatcompletion_pro';
+    
+    // 编码后的API key和group_id
+    const ENCODED_KEY = 'c2stYXBpLVFvQTdOS29qM1ViT3pJRHNwWnFxakw0Z1V4RUQ2U1lEc1NSSG5hMnR1VFExZ0thdlNXN29oVkd0U1dZeDFUZ1E0QUhtVlowLXR5NlBpSjQ1dHZHLUdMemNhNmtqVGRkNER2YVNieTJ0Rm13d2dKQzhSQWxsZ0kwCg==';
+    const GROUP_ID = '120282543';
+    
+    function getApiKey() {
+      try { return atob(ENCODED_KEY); } catch(e) { return null; }
+    }
+    
+    async function callMiniMax(prompt) {
+      const apiKey = getApiKey();
+      if (!apiKey) throw new Error('API key required');
+      
+      const response = await fetch(API_BASE, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + apiKey
+        },
+        body: JSON.stringify({
+          model: 'abab6.5s-chat',
+          messages: [{ role: 'user', content: prompt }],
+          group_id: GROUP_ID,
+          bot_setting: [
+            { bot_name: 'MM智能助理', content: '你是一个有用的AI助手。' }
+          ]
+        })
+      });
+      
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.base_resp?.status_msg || 'API Error: ' + response.status);
+      }
+      
+      const data = await response.json();
+      if (!data.choices || !data.choices[0]) {
+        throw new Error('No response: ' + JSON.stringify(data));
+      }
+      return data.choices[0].message?.content || 'No content';
+    }
+    
     function selectTool(t) {
       document.querySelectorAll('.tool').forEach(x => x.classList.remove('active'));
       document.querySelectorAll('.tool-panel').forEach(x => x.classList.remove('active'));
       event.currentTarget.classList.add('active');
       document.getElementById('panel-' + t).classList.add('active');
     }
+    
     async function runAI(t) {
-      var prompts = { summarizer: 'Summarize into 3 key points:\n\n', analyzer: 'Analyze sentiment & entities:\n\n', ideator: 'Give 5 creative ideas for: ', email: 'Write email. Subject: ', headline: 'Generate 5 headlines for: ', translator: 'Translate: ', code: 'Help with code: ', joke: 'Tell joke about ' };
-      var inputId = t + '-input', text = document.getElementById(inputId).value;
-      if (t === 'translator') { var from = document.getElementById('translator-from').value || 'English', to = document.getElementById('translator-to').value || 'Chinese'; text = document.getElementById('translator-input').value; var prompt = prompts[t] + from + ' to ' + to + ': ' + text; }
-      else if (t === 'email') { var subject = document.getElementById('email-subject').value; text = document.getElementById('email-input').value; var prompt = prompts[t] + subject + '. ' + text; }
-      else var prompt = prompts[t] + text;
-      var result = document.getElementById(t + '-result');
-      if (!text && t !== 'joke') { alert('Enter text'); return; }
-      result.innerHTML = '<span style="color:var(--cyan)">Processing...</span>'; result.classList.add('show');
-      try { var res = await fetch('https://api.minimax.chat/v1/text/chatcompletion_pro', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey }, body: JSON.stringify({ model: 'abab6.5s-chat', messages: [{ role: 'user', content: prompt }] }) }); var data = await res.json(); result.textContent = data.choices?.[0]?.message?.content || 'No response'; } catch(e) { result.textContent = 'Error: ' + e.message; } }
+      const btn = document.getElementById('btn-' + t);
+      const result = document.getElementById(t + '-result');
+      let prompt = '';
+      let input = '';
+      
+      switch(t) {
+        case 'summarizer':
+          input = document.getElementById('summarizer-input').value.trim();
+          if (!input) { alert('Enter text to summarize'); return; }
+          prompt = 'Summarize into 3-5 bullet points:\n\n' + input;
+          break;
+        case 'analyzer':
+          input = document.getElementById('analyzer-input').value.trim();
+          if (!input) { alert('Enter text to analyze'); return; }
+          prompt = 'Analyze sentiment and extract key entities:\n\n' + input;
+          break;
+        case 'ideator':
+          input = document.getElementById('ideator-input').value.trim();
+          if (!input) { alert('Enter a topic'); return; }
+          prompt = 'Generate 5 creative ideas for: ' + input;
+          break;
+        case 'email':
+          const subject = document.getElementById('email-subject').value.trim();
+          input = document.getElementById('email-input').value.trim();
+          if (!subject || !input) { alert('Enter subject and content'); return; }
+          prompt = 'Write professional email. Subject: ' + subject + '\n\n' + input;
+          break;
+        case 'headline':
+          input = document.getElementById('headline-input').value.trim();
+          if (!input) { alert('Enter a topic'); return; }
+          prompt = 'Generate 5 catchy headlines for: ' + input;
+          break;
+        case 'translator':
+          const from = document.getElementById('translator-from').value.trim() || 'English';
+          const to = document.getElementById('translator-to').value.trim() || 'Chinese';
+          input = document.getElementById('translator-input').value.trim();
+          if (!input) { alert('Enter text to translate'); return; }
+          prompt = 'Translate from ' + from + ' to ' + to + ':\n\n' + input;
+          break;
+        case 'code':
+          input = document.getElementById('code-input').value.trim();
+          if (!input) { alert('Describe code need'); return; }
+          prompt = 'Write code for: ' + input + '. Include comments.';
+          break;
+        case 'joke':
+          input = document.getElementById('joke-input').value.trim();
+          prompt = input ? 'Tell a funny joke about ' + input : 'Tell a random funny joke';
+          break;
+      }
+      
+      btn.disabled = true;
+      result.classList.remove('error');
+      result.classList.add('show');
+      result.innerHTML = '<span class="loading">⚡ Processing...</span>';
+      
+      try {
+        const response = await callMiniMax(prompt);
+        result.textContent = response;
+      } catch(e) {
+        result.classList.add('error');
+        result.textContent = 'Error: ' + e.message;
+      } finally {
+        btn.disabled = false;
+      }
+    }
   </script>
 </body>
 </html>
