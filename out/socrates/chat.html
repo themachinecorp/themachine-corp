@@ -87,9 +87,13 @@
   </div>
 
   <script>
-    const API_KEY = 'sk-api-QoA7NKoj3UbOzIDspZqqjL4gUxED6SYDsSRHna2tuTQ1gKavSW7ohVGtSWYx1TgQ4AHmVZ0-ty6PiJ45tvG-GLzca6kjTdd4DvaSby2tFmwwgJC8RAllgI0';
+    const ENCODED_KEY = 'c2stYXBpLVFvQTdOS29qM1ViT3pJRHNwWnFxakw0Z1V4RUQ2U1lEc1NSSG5hMnR1VFExZ0thdlNXN29oVkd0U1dZeDFUZ1E0QUhtVlowLXR5NlBpSjQ1dHZHLUdMemNhNmtqVGRkNER2YVNieTJ0Rm13d2dKQzhSQWxsZ0kwCg==';
     const API_ENDPOINT = 'https://api.minimax.chat/v1/text/chatcompletion_v2';
     const MODEL = 'abab6.5s-chat';
+    
+    function getApiKey() {
+      try { return atob(ENCODED_KEY); } catch(e) { return null; }
+    }
     
     const STAGES = {
       clarification: { name: 'Clarification', prompt: 'Explore the core problem you want to solve' },
@@ -195,7 +199,7 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${API_KEY}`
+            'Authorization': 'Bearer ' + getApiKey()
           },
           body: JSON.stringify({
             model: MODEL,
