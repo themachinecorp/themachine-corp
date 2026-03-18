@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOCRATES - 个人思维报告</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root { --bg:#0d0d12; --gold:#d4af37; --cyan:#00ffff; --magenta:#ff00ff; }
+    html,body { background:var(--bg); color:#fff; font-family:'Press Start 2P',monospace; min-height:100vh; overflow-x:hidden; }
+    .wrapper { min-height:100vh; display:flex; flex-direction:column; }
+    
+    @media (max-width:600px) {
+      .header{font-size:clamp(10px,2vw,14px)!important;padding:10px!important}
+      .container{padding:15px!important}
+      .report-title{font-size:clamp(14px,3vw,22px)!important;margin-bottom:20px!important}
+      .section{padding:15px!important;margin-bottom:15px!important}
+      .section-title{font-size:clamp(11px,2vw,15px)!important;margin-bottom:12px!important}
+      .section-content{font-size:clamp(9px,1.5vw,12px)!important;line-height:1.8!important}
+      .action-btn{padding:12px 20px!important;font-size:clamp(9px,1.5vw,11px)!important}
+    }
+    
+    .header{background:rgba(0,0,0,0.8);border-bottom:2px solid var(--gold);padding:15px 20px;display:flex;justify-content:space-between;align-items:center;font-size:clamp(9px,1.5vw,12px)}
+    .logo{color:var(--gold)}
+    .back-link{color:#555;text-decoration:none;transition:color 0.2s}
+    .back-link:hover{color:var(--gold)}
+    
+    .container{max-width:800px;margin:0 auto;padding:30px 20px;width:100%}
+    .report-title{font-size:clamp(18px,3vw,28px);color:var(--gold);text-align:center;margin-bottom:30px;text-shadow:2px 2px 0 var(--cyan)}
+    
+    .section{background:rgba(0,255,255,0.03);border:2px solid var(--cyan);padding:20px;margin-bottom:20px}
+    .section.gold{border-color:var(--gold);background:rgba(212,175,55,0.03)}
+    .section.magenta{border-color:var(--magenta);background:rgba(255,0,255,0.03)}
+    
+    .section-title{font-size:clamp(12px,2vw,16px);color:var(--cyan);margin-bottom:15px;display:flex;align-items:center;gap:10px}
+    .section.gold .section-title{color:var(--gold)}
+    .section.magenta .section-title{color:var(--magenta)}
+    
+    .section-icon{font-size:1.2em}
+    
+    .section-content{font-size:clamp(10px,1.5vw,13px);line-height:2;word-wrap:break-word}
+    
+    .dialogue-history{background:rgba(0,0,0,0.3);border:1px solid #333;padding:15px;margin-top:15px;max-height:300px;overflow-y:auto}
+    .dialogue-item{padding:10px 0;border-bottom:1px solid #222;font-size:clamp(8px,1.2vw,10px);line-height:1.8}
+    .dialogue-item:last-child{border-bottom:none}
+    .dialogue-role{color:var(--gold);margin-bottom:5px}
+    .dialogue-role.ai{color:var(--magenta)}
+    
+    .actions{display:flex;gap:15px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+    .action-btn{padding:15px 30px;background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Press Start 2P',monospace;font-size:clamp(10px,1.5vw,12px);cursor:pointer;transition:all 0.2s;text-decoration:none}
+    .action-btn:hover{background:var(--gold);color:var(--bg)}
+    .action-btn.cyan{border-color:var(--cyan);color:var(--cyan)}
+    .action-btn.cyan:hover{background:var(--cyan)}
+    
+    .timestamp{text-align:center;color:#555;font-size:clamp(8px,1.2vw,10px);margin-top:20px}
+    
+    .empty-state{text-align:center;padding:50px 20px;color:#666}
+    .empty-state .icon{font-size:50px;margin-bottom:20px}
+    
+    .hud{position:fixed;bottom:0;left:0;right:0;padding:10px 15px;background:rgba(0,0,0,0.9);border-top:2px solid var(--cyan);display:flex;justify-content:space-between;font-size:clamp(7px,1.2vw,10px)}
+    .hud-item{display:flex;gap:6px}
+    .hud-label{color:var(--cyan)}
+    .hud-value{color:var(--gold)}
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="chat.html" class="back-link">← 返回对话</a>
+    <div class="logo">SOCRATES</div>
+  </div>
+  
+  <div class="container" id="report">
+    <!-- 报告内容 -->
+  </div>
+  
+  <div class="hud">
+    <div class="hud-item"><span class="hud-label">MODE:</span><span class="hud-value">REPORT</span></div>
+    <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">COMPLETE</span></div>
+  </div>
+
+  <script>
+    async function generateReport() {
+      const stored = localStorage.getItem('socrates_report_data');
+      if (!stored) {
+        renderEmpty();
+        return;
+      }
+      
+      const dialogue = JSON.parse(stored);
+      const reportContainer = document.getElementById('report');
+      
+      // 使用AI生成报告
+      const report = await createReport(dialogue);
+      
+      renderReport(dialogue, report);
+    }
+    
+    async function createReport(dialogue) {
+      const userMessages = dialogue.messages
+        .filter(m => m.role === 'user')
+        .map(m => m.content);
+      
+      const aiMessages = dialogue.messages
+        .filter(m => m.role === 'assistant')
+        .map(m => m.content);
+      
+      const prompt = `基于以下对话记录，生成一份《个人思维报告》。
+
+用户初始问题: ${dialogue.initialQuestion}
+
+对话记录:
+${userMessages.map((u, i) => `用户: ${u}\nAI: ${aiMessages[i] || ''}`).join('\n\n')}
+
+请按以下格式生成报告（用中文）:
+
+## 核心问题
+[一句话概括用户最核心的困惑]
+
+## 关键矛盾
+[分析用户面临的主要矛盾或冲突点]
+
+## 内在资源
+[识别用户可能拥有的优势、资源或能力]
+
+## 下一步行动
+[基于对话，给出具体的、可执行的建议]
+
+请直接输出这四个部分的内容，不要添加其他说明。`;
+      
+      const API_KEY = 'sk-api-QoA7NKoj3UbOzIDspZqqjL4gUxED6SYDsSRHna2tuTQ1gKavSW7ohVGtSWYx1TgQ4AHmVZ0-ty6PiJ45tvG-GLzca6kjTdd4DvaSby2tFmwwgJC8RAllgI0';
+      const API_ENDPOINT = 'https://api.minimax.chat/v1/text/chatcompletion_v2';
+      
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${API_KEY}`
+          },
+          body: JSON.stringify({
+            model: 'abab6.5s-chat',
+            messages: [
+              { role: 'system', content: '你是一位专业的思维教练，擅长分析用户的困惑并生成有价值的思维报告。' },
+              { role: 'user', content: prompt }
+            ],
+            temperature: 0.7,
+            max_tokens: 1500
+          })
+        });
+        
+        const data = await response.json();
+        if (data.choices && data.choices[0]) {
+          return data.choices[0].message.content;
+        }
+      } catch (err) {
+        console.error('报告生成失败', err);
+      }
+      
+      // 如果API失败，返回默认报告
+      return `## 核心问题
+${dialogue.initialQuestion}
+
+## 关键矛盾
+在对话过程中，你开始探索自己的困惑。这是一个很好的开始，深入思考是解决问题的第一步。
+
+## 内在资源
+通过与SOCRATES的对话，你已经展现出愿意面对困惑、寻求答案的勇气。这是改变的重要起点。
+
+## 下一步行动
+1. 继续思考对话中提到的问题
+2. 尝试将大问题分解为小步骤
+3. 记录你的想法和发现`;
+    }
+    
+    function renderReport(dialogue, report) {
+      const container = document.getElementById('report');
+      
+      // 解析报告内容
+      const sections = {
+        core: '',
+        contradiction: '',
+        resources: '',
+        action: ''
+      };
+      
+      const lines = report.split('\n');
+      let currentSection = '';
+      
+      lines.forEach(line => {
+        if (line.includes('核心问题')) currentSection = 'core';
+        else if (line.includes('关键矛盾')) currentSection = 'contradiction';
+        else if (line.includes('内在资源')) currentSection = 'resources';
+        else if (line.includes('下一步行动')) currentSection = 'action';
+        else if (currentSection && line.trim()) {
+          sections[currentSection] += line.trim() + '\n';
+        }
+      });
+      
+      // 清理内容
+      Object.keys(sections).forEach(k => {
+        sections[k] = sections[k].replace(/^#+ /, '').trim();
+      });
+      
+      const date = new Date(dialogue.createdAt).toLocaleDateString('zh-CN');
+      
+      container.innerHTML = `
+        <div class="report-title">📊 个人思维报告</div>
+        
+        <div class="section">
+          <div class="section-title"><span class="section-icon">🎯</span> 核心问题</div>
+          <div class="section-content">${sections.core || dialogue.initialQuestion}</div>
+        </div>
+        
+        <div class="section gold">
+          <div class="section-title"><span class="section-icon">⚡</span> 关键矛盾</div>
+          <div class="section-content">${sections.contradiction || '在探索中...'}</div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title"><span class="section-icon">💎</span> 内在资源</div>
+          <div class="section-content">${sections.resources || '等待发现...'}</div>
+        </div>
+        
+        <div class="section magenta">
+          <div class="section-title"><span class="section-icon">🚀</span> 下一步行动</div>
+          <div class="section-content">${sections.action || '开始行动吧！'}</div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title"><span class="section-icon">💬</span> 对话回顾</div>
+          <div class="dialogue-history">
+            ${dialogue.messages.filter(m => m.role !== 'system').map(m => `
+              <div class="dialogue-item">
+                <div class="dialogue-role ${m.role === 'assistant' ? 'ai' : ''}">${m.role === 'assistant' ? '◈ SOCRATES' : '▸ 你'}</div>
+                <div>${m.content}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        
+        <div class="actions">
+          <a href="index.html" class="action-btn">重新开始</a>
+          <button class="action-btn cyan" onclick="copyReport()">复制报告</button>
+        </div>
+        
+        <div class="timestamp">生成时间: ${date}</div>
+      `;
+    }
+    
+    function renderEmpty() {
+      document.getElementById('report').innerHTML = `
+        <div class="empty-state">
+          <div class="icon">📭</div>
+          <div>暂无报告数据</div>
+          <a href="index.html" class="action-btn" style="display:inline-block;margin-top:20px">开始对话</a>
+        </div>
+      `;
+    }
+    
+    function copyReport() {
+      const container = document.getElementById('report');
+      const text = container.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('报告已复制到剪贴板！');
+      });
+    }
+    
+    // 初始化
+    generateReport();
+  </script>
+</body>
+</html>
