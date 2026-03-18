@@ -1,0 +1,16 @@
+#!/bin/bash
+# X Automation - Post tweet
+
+CONTENT="$1"
+if [ -z "$CONTENT" ]; then
+  echo "Usage: x-post <content>"
+  exit 1
+fi
+
+agent-browser open https://x.com
+agent-browser wait "[data-testid='tweetButton']"
+agent-browser click "[data-testid='tweetButton']"
+agent-browser wait "[data-testid='tweetTextarea']"
+agent-browser type "[data-testid='tweetTextarea']" "$CONTENT"
+agent-browser click "[data-testid='tweetButtonInline']"
+echo "Tweet posted!"
