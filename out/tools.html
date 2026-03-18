@@ -67,6 +67,16 @@
     
     function getApiKey() { try { return atob(ENCODED_KEY); } catch(e) { return null; } }
     
+    function isChinese(text) {
+      return /[\u4e00-\u9fa5]/.test(text);
+    }
+    
+    function getLanguageInstruction(text) {
+      return isChinese(text) 
+        ? '请用中文回复。' 
+        : 'Please respond in English.';
+    }
+    
     async function callMiniMax(prompt) {
       const apiKey = getApiKey();
       if (!apiKey) throw new Error('API key required');
@@ -115,15 +125,21 @@
       
       if (!inputs[t] && t !== 'joke') { alert('Enter text'); return; }
       
+      // 检测用户输入的语言
+      const userText = t === 'email' 
+        ? (inputs[t] + ' ' + document.getElementById('email-subject').value)
+        : (inputs[t] || '');
+      const langInstruction = getLanguageInstruction(userText);
+      
       switch(t) {
-        case 'summarizer': prompt = 'Summarize into 3-5 bullet points:\n\n' + inputs.summarizer; break;
-        case 'analyzer': prompt = 'Analyze sentiment and extract key entities:\n\n' + inputs.analyzer; break;
-        case 'ideator': prompt = 'Generate 5 creative ideas for: ' + inputs.ideator; break;
-        case 'email': prompt = 'Write professional email. Subject: ' + document.getElementById('email-subject').value + '\n\n' + inputs.email; break;
-        case 'headline': prompt = 'Generate 5 catchy headlines for: ' + inputs.headline; break;
-        case 'translator': prompt = 'Translate from ' + (document.getElementById('translator-from').value || 'English') + ' to ' + (document.getElementById('translator-to').value || 'Chinese') + ':\n\n' + inputs.translator; break;
-        case 'code': prompt = 'Write code for: ' + inputs.code + '. Include comments.'; break;
-        case 'joke': prompt = inputs.joke ? 'Tell a funny joke about ' + inputs.joke : 'Tell a random funny joke'; break;
+        case 'summarizer': prompt = `${langInstruction} Summarize into 3-5 bullet points:\n\n` + inputs.summarizer; break;
+        case 'analyzer': prompt = `${langInstruction} Analyze sentiment and extract key entities:\n\n` + inputs.analyzer; break;
+        case 'ideator': prompt = `${langInstruction} Generate 5 creative ideas for: ` + inputs.ideator; break;
+        case 'email': prompt = `${langInstruction} Write professional email. Subject: ` + document.getElementById('email-subject').value + '\n\n' + inputs.email; break;
+        case 'headline': prompt = `${langInstruction} Generate 5 catchy headlines for: ` + inputs.headline; break;
+        case 'translator': prompt = `Translate from ` + (document.getElementById('translator-from').value || 'English') + ' to ' + (document.getElementById('translator-to').value || 'Chinese') + ':\n\n' + inputs.translator; break;
+        case 'code': prompt = `${langInstruction} Write code for: ` + inputs.code + '. Include comments.'; break;
+        case 'joke': prompt = inputs.joke ? `${langInstruction} Tell a funny joke about ` + inputs.joke : `${langInstruction} Tell a random funny joke`; break;
       }
       
       btn.disabled = true;

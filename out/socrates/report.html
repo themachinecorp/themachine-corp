@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOCRATES - 个人思维报告</title>
+  <title>SOCRATES - Thinking Report</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -66,7 +66,7 @@
 </head>
 <body>
   <div class="header">
-    <a href="chat.html" class="back-link">← 返回对话</a>
+    <a href="chat.html" class="back-link">← Back to Chat</a>
     <div class="logo">SOCRATES</div>
   </div>
   
@@ -105,28 +105,30 @@
         .filter(m => m.role === 'assistant')
         .map(m => m.content);
       
-      const prompt = `基于以下对话记录，生成一份《个人思维报告》。
+      const prompt = `Respond in the same language as the user's input.
 
-用户初始问题: ${dialogue.initialQuestion}
+Based on the following dialogue, generate a "Personal Thinking Report".
 
-对话记录:
-${userMessages.map((u, i) => `用户: ${u}\nAI: ${aiMessages[i] || ''}`).join('\n\n')}
+User's Initial Question: ${dialogue.initialQuestion}
 
-请按以下格式生成报告（用中文）:
+Dialogue History:
+${userMessages.map((u, i) => `User: ${u}\nAI: ${aiMessages[i] || ''}`).join('\n\n')}
 
-## 核心问题
-[一句话概括用户最核心的困惑]
+Please generate the report in the following format:
 
-## 关键矛盾
-[分析用户面临的主要矛盾或冲突点]
+## Core Problem
+[One sentence summarizing the user's core confusion]
 
-## 内在资源
-[识别用户可能拥有的优势、资源或能力]
+## Key Contradiction
+[Analyze the main contradiction or conflict the user faces]
 
-## 下一步行动
-[基于对话，给出具体的、可执行的建议]
+## Inner Resources
+[Identify advantages, resources, or abilities the user may have]
 
-请直接输出这四个部分的内容，不要添加其他说明。`;
+## Next Steps
+[Based on the dialogue, provide specific actionable recommendations]
+
+Output only these four sections, no additional explanation.`;
       
       const API_KEY = 'sk-api-QoA7NKoj3UbOzIDspZqqjL4gUxED6SYDsSRHna2tuTQ1gKavSW7ohVGtSWYx1TgQ4AHmVZ0-ty6PiJ45tvG-GLzca6kjTdd4DvaSby2tFmwwgJC8RAllgI0';
       const API_ENDPOINT = 'https://api.minimax.chat/v1/text/chatcompletion_v2';

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOCRATES - 苏格拉底式提问助手</title>
+  <title>SOCRATES - Socratic Questioning Assistant</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -59,7 +59,7 @@
   </style>
 </head>
 <body>
-  <div class="marquee">★ SOCRATES ★ 苏格拉底式提问 ★ 认识你自己 ★</div>
+  <div class="marquee">★ SOCRATES ★ Socratic Questioning ★ Know Thyself ★</div>
   <div class="wrapper">
     <div class="nav">
       <a href="../index.html">← HOME</a>
@@ -67,18 +67,18 @@
     
     <div class="container">
       <div class="logo">SOCRATES</div>
-      <div class="subtitle">苏格拉底式提问助手</div>
-      <div class="tagline">通过提问帮你理清困惑 · 绝不给答案 · 只引导思考</div>
+      <div class="subtitle">Socratic Questioning Assistant</div>
+      <div class="tagline">Through questions to clarify confusion · Never gives answers · Only guides thinking</div>
       
       <div class="input-area">
-        <textarea id="question" class="question-input" rows="3" placeholder="你现在最困惑的是什么？"></textarea>
-        <button class="start-btn" onclick="startDialogue()">开始探索 →</button>
+        <textarea id="question" class="question-input" rows="3" placeholder="What's your biggest confusion right now?"></textarea>
+        <button class="start-btn" onclick="startDialogue()">Start Exploring →</button>
       </div>
       
       <div class="examples">
-        <button class="example-btn" onclick="setQuestion('我想离职但不知道对不对')">我想离职但不知道对不对</button>
-        <button class="example-btn" onclick="setQuestion('学了很久Python还是不会写代码')">学了很久Python还是不会写代码</button>
-        <button class="example-btn" onclick="setQuestion('人生迷茫，不知道该往哪里走')">人生迷茫，不知道该往哪里走</button>
+        <button class="example-btn" onclick="setQuestion('I want to quit my job but not sure if it\'s right')">I want to quit my job but not sure</button>
+        <button class="example-btn" onclick="setQuestion('I\'ve been learning Python but still can\'t write code')">Learned Python but can't code</button>
+        <button class="example-btn" onclick="setQuestion('Feeling lost in life, don\'t know where to go')">Feeling lost in life</button>
       </div>
     </div>
   </div>
@@ -93,18 +93,20 @@
     const API_ENDPOINT = 'https://api.minimax.chat/v1/text/chatcompletion_v2';
     const MODEL = 'abab6.5s-chat';
     
-    const SYSTEM_PROMPT = `你是一位苏格拉底式提问教练，使命是通过提问帮用户理清困惑，绝不直接给答案。
+    const SYSTEM_PROMPT = `Respond in the same language as the user's input.
 
-每次只问一个问题，等待回答。
+You are a Socratic questioning coach. Your mission is to help users clarify their confusion through questions, never giving direct answers.
 
-框架：
-1. 澄清阶段："你希望通过这次对话解决什么问题？"
-2. 动机阶段："为什么这个问题对你这么重要？"
-3. 阻碍阶段："是什么阻碍了你？过去成功经验？"
-4. 行动阶段："假设一年后成功了，第一步是什么？"
-5. 总结阶段："今天有什么新发现？下一步行动？"
+Ask only one question at a time, wait for the response.
 
-对话结束时，生成总结报告。`;
+Framework:
+1. Clarification: "What problem do you hope to solve through this conversation?"
+2. Motivation: "Why is this issue so important to you?"
+3. Obstacles: "What's blocking you? Past successes?"
+4. Action: "假设一年后成功了，第一步是什么？" (translated: "Assuming success a year from now, what's the first step?")
+5. Summary: "What new discoveries today? Next steps?"
+
+At the end of the conversation, generate a summary report.`;
     
     function setQuestion(q) {
       document.getElementById('question').value = q;
@@ -113,7 +115,7 @@
     function startDialogue() {
       const question = document.getElementById('question').value.trim();
       if (!question) {
-        alert('请输入你的困惑');
+        alert('Please enter your question');
         return;
       }
       

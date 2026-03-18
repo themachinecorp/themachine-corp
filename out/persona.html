@@ -103,12 +103,22 @@
       return /[\u4e00-\u9fa5]/.test(text);
     }
     
+    function getLanguageInstruction(text) {
+      return isChinese(text) 
+        ? '请用中文回复。' 
+        : 'Please respond in English.';
+    }
+    
     async function analyzePersona() {
       const name = document.getElementById('name').value.trim();
       const age = document.getElementById('age').value.trim();
       const occupation = document.getElementById('occupation').value.trim();
       const hobby = document.getElementById('hobby').value.trim();
       const value = document.getElementById('value').value.trim();
+      
+      // 检测用户输入的语言
+      const userInput = `${name} ${age} ${occupation} ${hobby} ${value}`;
+      const langInstruction = getLanguageInstruction(userInput);
       
       if (!name || !age || !occupation) {
         alert('Please fill in at least name, age, and occupation!');
@@ -125,7 +135,7 @@
       resultContent.innerHTML = '<div class="loading">🔮 SCANNING YOUR AURA...</div>';
       resultDiv.classList.add('show');
       
-      const prompt = `You are an expert personality analyst. Analyze this person's persona based on the following information:
+      const prompt = `${langInstruction} You are an expert personality analyst. Analyze this person's persona based on the following information:
 
 Name: ${name}
 Age: ${age}
@@ -134,7 +144,7 @@ Hobby: ${hobby || 'Not specified'}
 Values: ${value || 'Not specified'}
 Social Style: ${selectedSpectrum || 'Not specified'}
 
-Provide a detailed personality analysis in English with the following sections:
+Provide a detailed personality analysis with the following sections:
 
 ## 🎯 CORE TRAITS
 [List 5 key personality traits with brief explanations]

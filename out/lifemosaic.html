@@ -81,6 +81,16 @@
   <script>
     const API_KEY = 'sk-api-QoA7NKoj3UbOzIDspZqqjL4gUxED6SYDsSRHna2tuTQ1gKavSW7ohVGtSWYx1TgQ4AHmVZ0-ty6PiJ45tvG-GLzca6kjTdd4DvaSby2tFmwwgJC8RAllgI0';
     
+    function isChinese(text) {
+      return /[\u4e00-\u9fa5]/.test(text);
+    }
+    
+    function getLanguageInstruction(text) {
+      return isChinese(text) 
+        ? '请用中文回复。' 
+        : 'Please respond in English.';
+    }
+    
     async function createMosaic() {
       const achievement = document.getElementById('achievement').value.trim();
       const relationship = document.getElementById('relationship').value.trim();
@@ -90,6 +100,10 @@
         alert('Please fill in at least one field!');
         return;
       }
+      
+      // 检测用户输入的语言
+      const userInput = `${achievement} ${relationship} ${moment}`;
+      const langInstruction = getLanguageInstruction(userInput);
       
       const btn = document.getElementById('mosaicBtn');
       const resultDiv = document.getElementById('result');
@@ -101,13 +115,13 @@
       resultContent.innerHTML = '<div class="loading">🎨 PIECING TOGETHER YOUR LIFE...</div>';
       resultDiv.classList.add('show');
       
-      const prompt = `You are a life narrative architect. Create a beautiful "Life Mosaic" for this person based on their experiences:
+      const prompt = `${langInstruction} You are a life narrative architect. Create a "Life Mosaic" for this person based on their experiences:
 
 Recent Achievement: ${achievement || 'Not specified'}
 Important Relationship: ${relationship || 'Not specified'}
 Life-changing Moment: ${moment || 'Not specified'}
 
-Create a poetic, insightful mosaic in English with these sections:
+Create a poetic, insightful mosaic with these sections:
 
 ## 🎯 CENTER PIECE
 [The core theme that ties their life together]

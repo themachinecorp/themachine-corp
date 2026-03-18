@@ -77,6 +77,16 @@
   <script>
     const API_KEY = 'sk-api-QoA7NKoj3UbOzIDspZqqjL4gUxED6SYDsSRHna2tuTQ1gKavSW7ohVGtSWYx1TgQ4AHmVZ0-ty6PiJ45tvG-GLzca6kjTdd4DvaSby2tFmwwgJC8RAllgI0';
     
+    function isChinese(text) {
+      return /[\u4e00-\u9fa5]/.test(text);
+    }
+    
+    function getLanguageInstruction(text) {
+      return isChinese(text) 
+        ? '请用中文回复。' 
+        : 'Please respond in English.';
+    }
+    
     async function startJourney() {
       const thoughts = document.getElementById('thoughts').value.trim();
       
@@ -84,6 +94,9 @@
         alert('Please share your thoughts first!');
         return;
       }
+      
+      // 检测用户输入的语言
+      const langInstruction = getLanguageInstruction(thoughts);
       
       const btn = document.getElementById('journeyBtn');
       const resultDiv = document.getElementById('result');
@@ -95,11 +108,11 @@
       resultContent.innerHTML = '<div class="loading">🔮 DIVING INTO YOUR SUBCONSCIOUS...</div>';
       resultDiv.classList.add('show');
       
-      const prompt = `You are a wise meditation guide and subconscious analyst. The user has shared their inner thoughts:
+      const prompt = `${langInstruction} You are a wise meditation guide and subconscious analyst. The user has shared their inner thoughts:
 
 "${thoughts}"
 
-Provide a deeply insightful, empathetic response in English that:
+Provide a deeply insightful, empathetic response that:
 
 1. 🧘 Reflects back what you sense beneath their words
 2. 💭 Offers gentle insights into hidden patterns or beliefs
