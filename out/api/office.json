@@ -1,0 +1,47 @@
+{
+  "updated": "2026-03-19T15:54:01.907Z",
+  "system": {
+    "cpu": {
+      "1m": 0.26,
+      "5m": 0.11,
+      "15m": 0.1
+    },
+    "memory": {
+      "total": 15779,
+      "used": 3386,
+      "free": 12393,
+      "percent": 21.5
+    }
+  },
+  "agents": {
+    "TM": {
+      "status": "active",
+      "task": "coordinating"
+    },
+    "Kevin": {
+      "status": "active",
+      "task": "coding"
+    },
+    "Alex": {
+      "status": "active",
+      "task": "trading"
+    },
+    "Mike": {
+      "status": "active",
+      "task": "content"
+    },
+    "Sarah": {
+      "status": "active",
+      "task": "product"
+    },
+    "David": {
+      "status": "active",
+      "task": "security"
+    }
+  },
+  "tasks": {
+    "activeProcesses": 4,
+    "sessions": 0,
+    "pending": 0
+  }
+}
