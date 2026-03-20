@@ -13,11 +13,12 @@
       padding: 8px; min-height: 100vh; 
     }
     
+    .nav{display:flex;align-items:center;padding:15px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
+    
     .header { text-align: center; padding: 12px; border-bottom: 2px solid var(--gold); margin-bottom: 12px; }
     .header h1 { font-size: 12px; color: var(--gold); }
     .header .subtitle { font-size: 6px; color: #666; margin-top: 4px; }
-    
-    .back { position: fixed; top: 6px; left: 6px; padding: 4px 8px; background: var(--gold); color: var(--bg); text-decoration: none; font-size: 5px; z-index: 100; }
     
     .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
     .card { background: rgba(0,0,0,0.5); border: 2px solid #333; padding: 10px; }
@@ -108,8 +109,7 @@
   </style>
 </head>
 <body>
-  <a href="/office/" class="back">[&lt;] BACK</a>
-  
+  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
   <div class="header">
     <h1>[_TM_] ANALYTICS</h1>
     <div class="subtitle">REAL-TIME OFFICE METRICS // <span id="ts">--:--:--</span></div>

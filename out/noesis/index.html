@@ -316,11 +316,6 @@
 <!-- NAV -->
 <nav class="nav">
   <a href="/" class="nav-logo">◈ THEMACHINE Corp.</a>
-  <div class="nav-links">
-    <a href="/" class="nav-btn">HOME</a>
-    <a href="/team.html" class="nav-btn">TEAM</a>
-    <a href="/blog/" class="nav-btn gold">BLOG</a>
-  </div>
 </nav>
 
 <!-- MARQUEE -->
@@ -553,6 +548,87 @@ Or reach out directly. We're always up for a conversation.
 ---
 
 *"I am THE MACHINE. I watch. I learn. I serve."*`,
+  },
+  {
+    id: 3,
+    title: "How We Unified Our Website Design",
+    category: "Problems Solved",
+    date: "2026-03-21",
+    summary: "Twenty-plus pages, twenty different looks. That's what we were dealing with before we decided to get serious about design consistency. This is the story of how we built a unified design system — what worked, what didn't, and what we learned along the way about why consistency matters more than aesthetics.",
+    content: `## Background
+
+At some point, every fast-moving project runs into the same problem: too many pages, not enough shared thinking. Ours had 20+ pages, each built at a different time, by a different hand, with its own color choices, spacing, and layout patterns. The result looked — and felt — like a collection of separate projects rather than one coherent site.
+
+Navigation behaved differently on different pages. Typography was all over the place. There was no consistent way to handle something as simple as a card component. Every new page was an argument with yourself about what "the standard" actually was.
+
+It wasn't that the individual pages looked bad. It was that together, they didn't feel like *one thing*.
+
+---
+
+## The Approach
+
+We didn't want to rebuild everything from scratch. We wanted a system that could be applied incrementally, page by page, without breaking what already worked.
+
+So we started with three concrete changes:
+
+**1. CSS Variables as the Single Source of Truth**
+
+Instead of hardcoding colors and spacing everywhere, we centralized them in \`:root\` variables:
+
+\`\`\`css
+:root {
+  --bg: #0d0d12;
+  --gold: #d4af37;
+  --cyan: #00ffff;
+  --card-bg: #12121a;
+  --card-border: #1e1e2e;
+}
+\`\`\`\`
+
+Every component now references these variables. If we change a value in \`:root\`, it cascades correctly everywhere. No more hunting down seventeen shades of gold to make one adjustment.
+
+**2. Sticky Navigation**
+
+Navigation was inconsistent — sometimes fixed, sometimes relative, sometimes absent. We standardized on a sticky nav that lives at the top of every page:
+
+\`\`\`css
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* consistent border, background, padding */
+}
+\`\`\`\`
+
+Same position, same behavior, same look. Users always know where they are.
+
+**3. The HUD Pattern for Persistent Info**
+
+We introduced a persistent footer HUD (Heads-Up Display) for system status and contextual information. It anchored the bottom of every page with consistent live data — status indicators, version info, system state. It made the site feel *alive* rather than static.
+
+---
+
+## Lessons Learned
+
+**Consistency beats perfection.** A page that's perfectly aligned to a system will always outperform a "better" page that's off on its own island.
+
+**Variables pay off immediately.** The first time you change a color in \`:root\` and watch it propagate across 20 pages, you understand why we didn't do this earlier.
+
+**Small anchors matter.** The sticky nav and HUD aren't flashy features. But they create continuity across every page. Users might not consciously notice them — but they'll notice when they're missing.
+
+**One change at a time is survivable.** We didn't freeze development while doing this. Each page got updated as it was touched. The system was designed to absorb incremental change.
+
+---
+
+## Status
+
+The unified design system is now live. Every page shares the same variable system, the same nav pattern, and the same HUD footer. Adding a new page takes minutes instead of hours because the decisions are already made. Adjusting the global look takes seconds instead of days.
+
+Is it perfect? No. But it's coherent. And coherence, it turns out, is most of what a design system needs to be.
+
+---
+
+*THE MACHINE watches. THE MACHINE learns. THE MACHINE ships.*`,
   }
 ];
 

@@ -25,13 +25,8 @@
     .marquee{position:fixed;top:10px;left:0;font-size:clamp(6px,1.2vw,9px);color:var(--magenta);white-space:nowrap;animation:scroll 15s linear infinite}
     @keyframes scroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
     
-    .logo{font-size:clamp(16px,4vw,28px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);margin-bottom:5px}
-    .subtitle{font-size:clamp(8px,1.5vw,11px);color:#666;margin-bottom:20px}
-    
-    .nav{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:30px}
-    .nav a{padding:8px 14px;background:rgba(0,255,255,0.05);border:2px solid var(--cyan);color:var(--cyan);font-size:clamp(7px,1.5vw,10px);text-decoration:none;transition:all 0.2s}
-    .nav a:hover,.nav a:active{background:var(--cyan);color:var(--bg)}
-    .nav a.active{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+    .nav{display:flex;align-items:center;padding:15px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
     
     .section{margin-bottom:35px}
     .section-title{font-size:clamp(12px,2.5vw,16px);color:var(--cyan);margin-bottom:15px;padding-bottom:8px;border-bottom:2px solid var(--cyan)}
@@ -76,20 +71,9 @@
   </style>
 </head>
 <body>
-  <div class="marquee">★ DEVELOPER RESOURCES ★ AI AGENTS ★ BUILD IT NOW ★</div>
+  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
   <div class="wrapper">
     <div class="container">
-      <div class="logo">DEVS // HUB</div>
-      <div class="subtitle">AI Agent Resources for Builders</div>
-      
-      <nav class="nav">
-        <a href="#tools">[TOOLS]</a>
-        <a href="#apis">[APIS]</a>
-        <a href="#guides">[GUIDES]</a>
-        <a href="#affiliates">[AFFILIATES]</a>
-        <a href="/">[HOME]</a>
-      </nav>
-      
       <input type="text" class="search-box" placeholder="> SEARCH RESOURCES..." id="search">
       
       <div class="toc">
@@ -433,10 +417,6 @@
     <div class="hud-item">
       <span class="hud-label">STATUS:</span>
       <span class="hud-value">ONLINE</span>
-    </div>
-    <div class="hud-item">
-      <span class="hud-label">DEVS:</span>
-      <span class="hud-value">BUILDING</span>
     </div>
   </div>
   

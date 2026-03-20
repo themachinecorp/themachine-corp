@@ -24,10 +24,8 @@
       .action-btn{padding:10px 12px!important;font-size:clamp(7px,1vw,9px)!important}
     }
     
-    .header{background:rgba(0,0,0,0.8);border-bottom:2px solid var(--cyan);padding:12px 15px;display:flex;justify-content:space-between;align-items:center;font-size:clamp(9px,1.5vw,12px)}
-    .logo{color:var(--gold)}
-    .back-link{color:#555;text-decoration:none;transition:color 0.2s}
-    .back-link:hover{color:var(--gold)}
+    .nav{display:flex;align-items:center;padding:15px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
     
     .stage-indicator{background:rgba(255,0,255,0.1);border:2px solid var(--magenta);color:var(--magenta);padding:8px 12px;font-size:clamp(7px,1.2vw,9px);margin:10px 15px}
     
@@ -58,17 +56,14 @@
       .action-btn{padding:8px 12px;font-size:clamp(6px,1vw,8px)}
     }
     
-    .hud{position:fixed;bottom:0;left:0;right:0;padding:10px 15px;background:rgba(0,0,0,0.9);border-top:2px solid var(--cyan);display:flex;justify-content:space-between;font-size:clamp(7px,1.2vw,10px);pointer-events:none}
+    .hud{position:fixed;bottom:0;left:0;right:0;padding:8px 15px;background:rgba(0,0,0,0.9);border-top:2px solid var(--cyan);display:flex;justify-content:space-between;font-size:clamp(6px,1.2vw,9px)}
     .hud-item{display:flex;gap:6px}
     .hud-label{color:var(--cyan)}
     .hud-value{color:var(--gold)}
   </style>
 </head>
 <body>
-  <div class="header">
-    <a href="index.html" class="back-link">← Start Over</a>
-    <div class="logo">SOCRATES</div>
-  </div>
+  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
   
   <div class="stage-indicator" id="stage">阶段: 澄清</div>
   
@@ -298,5 +293,10 @@ Respond in the same language as the user's input.`
     loadDialogue();
   window.onload = loadDialogue;
 </script>
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">SOCRATES CHAT</span></div>
+    <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
+  </div>
 </body>
 </html>

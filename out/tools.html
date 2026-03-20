@@ -9,10 +9,19 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
     html, body { background: var(--bg); color: #fff; font-family: 'Press Start 2P', monospace; min-height: 100vh; }
-    @media (max-width: 600px) { .tools-grid { grid-template-columns: repeat(2, 1fr) !important; } .tool-panel { padding: 15px !important; } }
-    .container { max-width: 900px; margin: 0 auto; padding: 30px 15px; }
-    .back-btn { display: inline-block; padding: 10px 18px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 9px; text-decoration: none; margin-bottom: 20px; }
-    h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(14px, 4vw, 18px); color: var(--magenta); margin: 20px 0 8px; text-align: center; }
+
+    /* NAV - Unified style */
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
+
+    /* HUD - Unified style */
+    .hud{position:fixed;bottom:0;left:0;right:0;padding:8px 15px;background:rgba(0,0,0,0.9);border-top:2px solid var(--cyan);display:flex;justify-content:space-between;font-size:clamp(6px,1.2vw,9px)}
+    .hud-item{display:flex;gap:6px}
+    .hud-label{color:var(--cyan)}
+    .hud-value{color:var(--gold)}
+
+    @media (max-width: 600px) { .tools-grid { grid-template-columns: repeat(2, 1fr) !important; } .tool-panel { padding: 15px !important; } .nav{flex-direction:column;gap:8px;text-align:center} }
+    .container { max-width: 900px; margin: 0 auto; padding: 60px 15px 70px; }
     .subtitle { font-family: 'Press Start 2P', monospace; font-size: clamp(6px, 1.5vw, 8px); color: #555; text-align: center; margin-bottom: 20px; }
     .tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 25px; }
     .tool { background: rgba(255,0,255,0.05); border: 2px solid var(--magenta); padding: 12px; cursor: pointer; transition: all 0.2s; text-align: center; }
@@ -38,8 +47,12 @@
   </style>
 </head>
 <body>
+<!-- NAV - Unified header -->
+<nav class="nav">
+  <a href="/" class="nav-logo">◈ THEMACHINE Corp.</a>
+</nav>
+
   <div class="container">
-    <a href="/" class="back-btn">◄ BACK</a>
     <h1>🧰 AI TOOLBOX</h1>
     <p class="subtitle">FREE AI-POWERED UTILITIES</p>
     <div class="tools-grid">
@@ -125,7 +138,6 @@
       
       if (!inputs[t] && t !== 'joke') { alert('Enter text'); return; }
       
-      // 检测用户输入的语言
       const userText = t === 'email' 
         ? (inputs[t] + ' ' + document.getElementById('email-subject').value)
         : (inputs[t] || '');
@@ -152,5 +164,12 @@
       finally { btn.disabled = false; }
     }
   </script>
+
+<!-- HUD -->
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">TOOLS v1.0</span></div>
+  <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
+</div>
 </body>
 </html>

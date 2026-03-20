@@ -81,6 +81,15 @@
     .cta-btn.secondary { background: transparent; border: 2px solid var(--cyan); color: var(--cyan); }
     .cta-btn.secondary:hover { background: var(--cyan); color: var(--bg); }
     
+    /* NAV - Unified style */
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
+    .nav-links{display:flex;gap:10px}
+    .nav-btn{font-family:'Press Start 2P',monospace;font-size:clamp(7px,1.2vw,10px);color:var(--cyan);text-decoration:none;padding:5px 8px;border:1px solid var(--cyan);transition:all 0.2s}
+    .nav-btn:hover{background:var(--cyan);color:var(--bg)}
+    .nav-btn.gold{color:var(--gold);border-color:var(--gold)}
+    .nav-btn.gold:hover{background:var(--gold);color:var(--bg)}
+
     /* HUD */
     .hud { position: fixed; bottom: 0; left: 0; right: 0; padding: 8px 15px; background: rgba(0,0,0,0.9); border-top: 2px solid var(--cyan); display: flex; justify-content: space-between; font-size: clamp(7px, 1.2vw, 9px); }
     .hud-item { display: flex; gap: 6px; }
@@ -93,8 +102,10 @@
   </style>
 </head>
 <body>
-  <div class="marquee">★ THEMATHINK DEMO ★ AI PRODUCTS ★ SOCRATES AI ★ AI TOOLBOX ★ TRY NOW ★</div>
-  <a href="/" class="back">← HOME</a>
+<!-- NAV - Unified header -->
+<nav class="nav">
+  <a href="/" class="nav-logo">◈ THEMACHINE Corp.</a>
+</nav>
   
   <div class="container">
     <!-- Hero -->
@@ -264,9 +275,10 @@
     </div>
   </div>
   
-  <div class="hud">
-    <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ALL SYSTEMS ONLINE</span></div>
-    <div class="hud-item"><span class="hud-label">AGENTS:</span><span class="hud-value">6 ACTIVE</span></div>
-  </div>
+  <!-- HUD -->
+<div class="hud">
+  <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">DEMO v1.0</span></div>
+  <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
+</div>
 </body>
 </html>

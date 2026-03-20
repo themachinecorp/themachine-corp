@@ -9,9 +9,9 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
     html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; }
+    .nav{display:flex;align-items:center;padding:15px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
     .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
-    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 10px; text-decoration: none; margin-bottom: 30px; }
-    .back-btn:hover { background: var(--cyan); }
     h1 { font-family: 'Press Start 2P', cursive; font-size: 18px; color: var(--magenta); margin-bottom: 20px; text-align: center; }
     .card { background: rgba(255,0,255,0.05); border: 2px solid var(--magenta); padding: 20px; margin-bottom: 20px; }
     .card h2 { font-family: 'Press Start 2P', monospace; font-size: 10px; color: var(--gold); margin-bottom: 15px; }
@@ -19,8 +19,9 @@
   </style>
 </head>
 <body>
+  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
   <div class="container">
-    <a href="/" class="back-btn">◄ BACK</a>
+    
     <h1>📊 PREDICT</h1>
     <div class="card">
       <h2>AI PREDICTION<br>ENGINE</h2>
@@ -31,5 +32,10 @@
       <p>Input your question or scenario. Our AI will analyze historical data and patterns to provide insightful predictions.</p>
     </div>
   </div>
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">PREDICT v1.0</span></div>
+  <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
+</div>
 </body>
 </html>

@@ -8,7 +8,9 @@
   <style>
     :root { --bg0: #0a0f0e; --bg1: #131f1d; --bg2: #1a2926; --ink: #e8f5f1; --muted: #7a9a8f; --accent: #ff8c42; --accent2: #2dd4a8; --danger: #ff4757; --warn: #ffa502; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html,body { background: var(--bg0); color: var(--ink); font-family: 'VT323',monospace; height: 100vh; overflow: hidden; }
+    html,body { background: var(--bg0); color: var(--ink); font-family: 'Press Start 2P',monospace; height: 100vh; overflow: hidden; }
+    .nav{display:flex;align-items:center;padding:12px 20px;border-bottom:2px solid #00ffff;background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(16px,2vw,22px);color:#d4af37;text-shadow:2px 2px 0 #00ffff;text-decoration:none}
     .header { background: var(--bg1); padding: 12px 24px; border-bottom: 3px solid var(--accent2); display: flex; justify-content: space-between; align-items: center; }
     .header h1 { font-size: 28px; color: var(--accent); letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,140,66,0.3); }
     .header .time { font-size: 20px; color: var(--accent2); }
@@ -42,6 +44,7 @@
   </style>
 </head>
 <body>
+  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
   <div class="scan-line"></div>
   <div class="header">
     <h1>⬡ THEMACHINE LIBRARY</h1>
@@ -134,5 +137,10 @@
     setInterval(load, 3000);
     setInterval(() => document.getElementById('clock').textContent = new Date().toLocaleTimeString(), 1000);
   </script>
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">LIBRARY v1.0</span></div>
+  <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
+</div>
 </body>
 </html>

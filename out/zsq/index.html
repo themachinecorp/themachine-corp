@@ -44,6 +44,10 @@
     
     .container { max-width: 900px; margin: 0 auto; padding: 20px; }
     
+    /* Nav */
+    .nav{display:flex;align-items:center;padding:15px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
+    
     /* Header */
     .header { 
       text-align: center; 
@@ -325,9 +329,8 @@
   </style>
 </head>
 <body>
+  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
   <div class="container">
-    <a href="/" class="back-link">[&lt;] BACK TO HOMEPAGE</a>
-    
     <div class="header">
       <h1>知识星球</h1>
       <div class="subtitle">SOCRATES AI - QUESTION AS ANSWER</div>
@@ -457,5 +460,10 @@
       <p style="margin-top: 10px;">Built with questions. Powered by curiosity.</p>
     </div>
   </div>
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">ZSQ v1.0</span></div>
+  <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
+</div>
 </body>
 </html>

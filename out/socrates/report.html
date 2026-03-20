@@ -21,10 +21,8 @@
       .action-btn{padding:12px 20px!important;font-size:clamp(9px,1.5vw,11px)!important}
     }
     
-    .header{background:rgba(0,0,0,0.8);border-bottom:2px solid var(--gold);padding:15px 20px;display:flex;justify-content:space-between;align-items:center;font-size:clamp(9px,1.5vw,12px)}
-    .logo{color:var(--gold)}
-    .back-link{color:#555;text-decoration:none;transition:color 0.2s}
-    .back-link:hover{color:var(--gold)}
+    .nav{display:flex;align-items:center;padding:15px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
     
     .container{max-width:800px;margin:0 auto;padding:30px 20px;width:100%}
     .report-title{font-size:clamp(18px,3vw,28px);color:var(--gold);text-align:center;margin-bottom:30px;text-shadow:2px 2px 0 var(--cyan)}
@@ -65,18 +63,16 @@
   </style>
 </head>
 <body>
-  <div class="header">
-    <a href="chat.html" class="back-link">← Back to Chat</a>
-    <div class="logo">SOCRATES</div>
-  </div>
+  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
   
   <div class="container" id="report">
     <!-- 报告内容 -->
   </div>
   
+  <!-- HUD -->
   <div class="hud">
-    <div class="hud-item"><span class="hud-label">MODE:</span><span class="hud-value">REPORT</span></div>
-    <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">COMPLETE</span></div>
+    <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">REPORT v1.0</span></div>
+    <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
   </div>
 
   <script>
