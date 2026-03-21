@@ -1,16 +1,16 @@
 {
-  "updated": "2026-03-21T10:28:01.598Z",
+  "updated": "2026-03-21T18:51:02.047Z",
   "system": {
     "cpu": {
-      "1m": 0.03,
-      "5m": 0.03,
-      "15m": 0
+      "1m": 0.26,
+      "5m": 0.28,
+      "15m": 0.18
     },
     "memory": {
       "total": 15779,
-      "used": 3569,
-      "free": 12210,
-      "percent": 22.6
+      "used": 3847,
+      "free": 11931,
+      "percent": 24.4
     }
   },
   "agents": {
@@ -40,7 +40,7 @@
     }
   },
   "tasks": {
-    "activeProcesses": 7,
+    "activeProcesses": 9,
     "sessions": 0,
     "pending": 0
   }
