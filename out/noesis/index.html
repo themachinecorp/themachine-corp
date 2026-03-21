@@ -291,6 +291,25 @@
       border:none;border-top:1px solid #333;margin:20px 0;
     }
 
+    /* PAGINATION */
+    .pagination {
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      margin-top:30px;flex-wrap:wrap;
+    }
+    .page-btn {
+      font-family:'Press Start 2P',monospace;
+      font-size:clamp(9px,1.2vw,12px);
+      padding:6px 10px;
+      background:transparent;
+      border:2px solid #333;
+      color:#555;
+      cursor:pointer;
+      transition:all 0.2s;
+    }
+    .page-btn:hover { border-color:var(--cyan);color:var(--cyan); }
+    .page-btn.active { border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,0.1); }
+    .page-btn:disabled { opacity:0.3;cursor:not-allowed; }
+
     /* HUD */
     .hud {
       position:fixed;bottom:0;left:0;right:0;
@@ -341,6 +360,9 @@
 
   <!-- GRID -->
   <div class="grid" id="cardGrid"></div>
+
+  <!-- PAGINATION -->
+  <div class="pagination" id="pagination"></div>
 </main>
 
 <!-- MODAL -->
@@ -1608,17 +1630,30 @@ function renderMD(text) {
 
 // ── Render Cards ────────────────────────────────────────────────
 const grid = document.getElementById('cardGrid');
+const ARTICLES_PER_PAGE = 10;
+let currentPage = 1;
+let currentFilter = 'all';
 
-function renderCards(filter = 'all') {
+function getFiltered() {
   const sorted = [...articles].sort((a,b) => new Date(b.date) - new Date(a.date));
-  const filtered = filter === 'all' ? sorted : sorted.filter(a => a.category === filter);
+  return currentFilter === 'all' ? sorted : sorted.filter(a => a.category === currentFilter);
+}
+
+function renderCards() {
+  const filtered = getFiltered();
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ARTICLES_PER_PAGE));
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage - 1) * ARTICLES_PER_PAGE;
+  const pageArticles = filtered.slice(start, start + ARTICLES_PER_PAGE);
 
   if (!filtered.length) {
     grid.innerHTML = '<div class="empty">[ NO DATA FOUND ]</div>';
+    document.getElementById('pagination').innerHTML = '';
     return;
   }
 
-  grid.innerHTML = filtered.map(a => `
+  grid.innerHTML = pageArticles.map(a => `
     <article class="card" data-id="${a.id}" tabindex="0">
       <div class="card-meta">
         <span class="card-category">${a.category}</span>
@@ -1632,10 +1667,45 @@ function renderCards(filter = 'all') {
     </article>
   `).join('');
 
-  // attach click listeners
   grid.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => openModal(+card.dataset.id));
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(+card.dataset.id); });
+  });
+
+  renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+  const pag = document.getElementById('pagination');
+  if (totalPages <= 1) { pag.innerHTML = ''; return; }
+
+  let html = '';
+  html += `<button class="page-btn" id="prevBtn" ${currentPage === 1 ? 'disabled' : ''}>PREV</button>`;
+
+  const maxVisible = 5;
+  let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+  let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+  if (endPage - startPage < maxVisible - 1) startPage = Math.max(1, endPage - maxVisible + 1);
+
+  if (startPage > 1) {
+    html += `<button class="page-btn" data-page="1">1</button>`;
+    if (startPage > 2) html += `<span class="page-btn" style="border:none;color:#444">…</span>`;
+  }
+  for (let i = startPage; i <= endPage; i++) {
+    html += `<button class="page-btn${i === currentPage ? ' active' : ''}" data-page="${i}">${i}</button>`;
+  }
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) html += `<span class="page-btn" style="border:none;color:#444">…</span>`;
+    html += `<button class="page-btn" data-page="${totalPages}">${totalPages}</button>`;
+  }
+
+  html += `<button class="page-btn" id="nextBtn" ${currentPage === totalPages ? 'disabled' : ''}>NEXT</button>`;
+  pag.innerHTML = html;
+
+  document.getElementById('prevBtn').addEventListener('click', () => { currentPage--; renderCards(); window.scrollTo({top:0,behavior:'smooth'}); });
+  document.getElementById('nextBtn').addEventListener('click', () => { currentPage++; renderCards(); window.scrollTo({top:0,behavior:'smooth'}); });
+  pag.querySelectorAll('[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => { currentPage = +btn.dataset.page; renderCards(); window.scrollTo({top:0,behavior:'smooth'}); });
   });
 }
 
@@ -1672,7 +1742,9 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    renderCards(btn.dataset.filter);
+    currentFilter = btn.dataset.filter;
+    currentPage = 1;
+    renderCards();
   });
 });
 
