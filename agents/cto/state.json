@@ -1,0 +1,87 @@
+{
+  "last_updated": "2026-04-03T03:10:00+08:00",
+  "scan_status": "completed",
+  "live_scan_notes": "3 bounties disappeared from Algora page (zio-8861, zio-8807, kyo-390) - likely closed. deskflow bounties confirmed CLOSED per maintainers. golem-275 needs status confirmation.",
+  "pending_bounties": [
+    {
+      "id": "zio-519",
+      "price": "$4,000",
+      "title": "Schema Migration System for ZIO Schema 2",
+      "priority": "P0",
+      "url": "https://github.com/zio/zio-blocks/issues/519",
+      "notes": "Best available bounty. 0 visible attempts. Kevin best fit."
+    },
+    {
+      "id": "zio-9356",
+      "price": "$2,500",
+      "title": "Implement NIO scheduler for ZIO",
+      "priority": "P1",
+      "url": "https://github.com/zio/zio/issues/9356",
+      "notes": "Kevin PR#10668 was CLOSED - needs reassessment before claiming"
+    },
+    {
+      "id": "zio-9878",
+      "price": "$850",
+      "title": "ZScheduler parks+unparks workers too frequently",
+      "priority": "P2",
+      "url": "https://github.com/zio/zio/issues/9878",
+      "notes": "Scala concurrency bug, Kevin in context"
+    },
+    {
+      "id": "zio-481",
+      "price": "$750",
+      "title": "Subtype relation for refined type fails",
+      "priority": "P2",
+      "url": "https://github.com/zio/izumi-reflect/issues/481",
+      "notes": "High complexity design-level type system change"
+    }
+  ],
+  "rejected_bounties": [
+    {
+      "id": "deskflow-8031",
+      "price": "$5,000",
+      "reason": "CLOSED - maintainers explicitly not accepting bounties"
+    },
+    {
+      "id": "deskflow-8032",
+      "price": "$2,500",
+      "reason": "CLOSED - maintainers explicitly not accepting bounties"
+    },
+    {
+      "id": "archestra-3378",
+      "price": "$500",
+      "reason": "RESERVED - assigned to specific contributor"
+    },
+    {
+      "id": "golem-275",
+      "price": "$3,500",
+      "reason": "Status unclear - disappeared from live page, was in pending_review"
+    },
+    {
+      "id": "kyo-390",
+      "price": "$500",
+      "reason": "CLOSED - disappeared from live page"
+    },
+    {
+      "id": "zio-8861",
+      "price": "$1,500",
+      "reason": "CLOSED - disappeared from live page"
+    },
+    {
+      "id": "zio-8807",
+      "price": "$1,250",
+      "reason": "CLOSED - disappeared from live page"
+    },
+    {
+      "id": "twenty-imap",
+      "price": "$2,500",
+      "reason": "No specific GitHub issue identified; TypeScript/full-stack required"
+    }
+  ],
+  "bounty_new": {
+    "accessible": false,
+    "reason": "bounty.new requires login - no public bounty browsing"
+  },
+  "total_potential_available": "$4,850",
+  "total_closed_value": "$14,250"
+}

@@ -1,0 +1,168 @@
+{
+  "last_scan": "2026-04-03T01:10:00+08:00",
+  "algora": {
+    "total_bounties": 10,
+    "high_value_count": 10,
+    "bounties": [
+      {
+        "id": "archestra-3378",
+        "repo": "archestra-ai/archestra",
+        "issue": 3378,
+        "price": 500,
+        "title": "Agent schedule triggers",
+        "state": "open",
+        "status": "rejected",
+        "reason": "Issue explicitly reserved for a specific contributor",
+        "url": "https://github.com/archestra-ai/archestra/issues/3378"
+      },
+      {
+        "id": "zio-519",
+        "repo": "zio/zio-blocks",
+        "issue": 519,
+        "price": 4000,
+        "title": "Schema Migration System for ZIO Schema 2",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "Complex ZIO Schema 2 macro system - high complexity, high reward",
+        "url": "https://github.com/zio/zio-blocks/issues/519"
+      },
+      {
+        "id": "twenty-imap",
+        "repo": "twentyhq/twenty",
+        "external_id": "g6i2c8YSNV9nHogT",
+        "price": 2500,
+        "title": "IMAP",
+        "state": "open",
+        "status": "needs_research",
+        "reason": "Need to identify specific GitHub issue; TypeScript/full-stack required",
+        "url": "https://algora.io/twentyhq/bounties/g6i2c8YSNV9nHogT"
+      },
+      {
+        "id": "golem-275",
+        "repo": "golemcloud/golem-cli",
+        "issue": 275,
+        "price": 3500,
+        "title": "Incorporate MCP Server into Golem CLI",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "MCP Server + Rust/CLI - worth investigating further",
+        "url": "https://github.com/golemcloud/golem-cli/issues/275"
+      },
+      {
+        "id": "zio-9878",
+        "repo": "zio/zio",
+        "issue": 9878,
+        "price": 850,
+        "title": "ZScheduler parks+unparks workers too frequently",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "Performance issue in ZIO Scheduler - well-defined, moderate complexity",
+        "url": "https://github.com/zio/zio/issues/9878"
+      },
+      {
+        "id": "zio-9877",
+        "repo": "zio/zio",
+        "issue": 9877,
+        "price": 750,
+        "title": "Can Fiber(Runtime) and Promise be merged?",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "Design/API question - likely needs RFC before implementation",
+        "url": "https://github.com/zio/zio/issues/9877"
+      },
+      {
+        "id": "deskflow-8032",
+        "repo": "deskflow/deskflow",
+        "issue": 8032,
+        "price": 2500,
+        "title": "Persist Input Capture XDG Desktop Portal dialog (Wayland)",
+        "state": "closed",
+        "status": "rejected",
+        "reason": "CLOSED - maintainers explicitly say NOT accepting bounties",
+        "url": "https://github.com/deskflow/deskflow/issues/8032"
+      },
+      {
+        "id": "deskflow-8031",
+        "repo": "deskflow/deskflow",
+        "issue": 8031,
+        "price": 5000,
+        "title": "Clipboard support in XDG Desktop Portal (Wayland)",
+        "state": "closed",
+        "status": "rejected",
+        "reason": "CLOSED - maintainers explicitly say NOT accepting bounties; WIP PR exists",
+        "url": "https://github.com/deskflow/deskflow/issues/8031"
+      },
+      {
+        "id": "zio-9356",
+        "repo": "zio/zio",
+        "issue": 9356,
+        "price": 2500,
+        "title": "Implement NIO scheduler for ZIO",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "Performance optimization - references blog post, needs study",
+        "url": "https://github.com/zio/zio/issues/9356"
+      },
+      {
+        "id": "zio-481",
+        "repo": "zio/izumi-reflect",
+        "issue": 481,
+        "price": 750,
+        "title": "Subtype relation for refined type fails",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "Bug in izumi-reflect subtype tags - compiler/plugin work",
+        "url": "https://github.com/zio/izumi-reflect/issues/481"
+      }
+    ]
+  },
+  "bounty_new": {
+    "total_bounties": 4,
+    "high_value_count": 2,
+    "bounties": [
+      {
+        "id": "BNT-42",
+        "price": 500,
+        "title": "Add OAuth integration for Google + GitHub",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "Standard OAuth implementation - needs evaluation"
+      },
+      {
+        "id": "BNT-38",
+        "price": 350,
+        "title": "Implement virtual scrolling for bounty list",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "UI feature - moderate complexity"
+      },
+      {
+        "id": "BNT-38",
+        "price": 750,
+        "title": "Fix Stripe webhook retry idempotency",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "Backend bug fix - well-defined"
+      },
+      {
+        "id": "BNT-31",
+        "price": 200,
+        "title": "Ship dark mode for settings pages",
+        "state": "open",
+        "status": "low_value",
+        "reason": "$200 - low value, CSS work"
+      }
+    ]
+  },
+  "summary": {
+    "algora_total": 10,
+    "algora_high_value": 10,
+    "algora_available": 6,
+    "algora_rejected_closed": 3,
+    "algora_rejected_reserved": 1,
+    "bounty_new_total": 4,
+    "bounty_new_high_value": 2,
+    "potential_value_available": 14500,
+    "rejected_value": 8000
+  }
+}

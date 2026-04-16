@@ -1,0 +1,26 @@
+{
+  "scanTime": "2026-04-02T15:10:00Z",
+  "algora": {
+    "totalListings": 19,
+    "highValue": 9,
+    "bounties": [
+      {"repo": "zio/zio", "issue": "9356", "price": "$5,000", "title": "Implement NIO scheduler for ZIO", "status": "open"},
+      {"repo": "zio/zio", "issue": "9878", "price": "$3,500", "title": "ZScheduler parks+unparks workers too frequently", "status": "open"},
+      {"repo": "golemcloud/golem-cli", "issue": "275", "price": "$2,500", "status": "open"},
+      {"repo": "deskflow/deskflow", "issue": "8031", "price": "$2,500", "title": "Clipboard support in XDG Desktop Portal (Wayland)", "status": "closed_not_accepting"},
+      {"repo": "izumi-reflect", "issue": "481", "price": "$2,500", "status": "unclear"},
+      {"repo": "zio/zio", "issue": "9877", "price": "$850", "status": "open"},
+      {"repo": "deskflow/deskflow", "issue": "8032", "price": "$750", "status": "open"},
+      {"repo": "archestra-ai/archestra", "issue": "3378", "price": "$500", "status": "unclear"},
+      {"repo": "zio/zio-blocks", "issue": "519", "price": "$500", "title": "Schema Migration System for ZIO Schema 2", "status": "open"}
+    ]
+  },
+  "bounty_new": {
+    "totalListings": "~10",
+    "highValue": 0,
+    "maxPrice": "$16",
+    "note": "不值做"
+  },
+  "action": "scan_complete",
+  "next_steps": "检查zio/zio #9356($5k)和#9878($3.5k)是否可接单"
+}

@@ -1,0 +1,49 @@
+#!/bin/bash
+# THEMACHINE Spec Manager
+
+SPEC_DIR="$(dirname "$0")/../SPEC"
+CMD="${1:-help}"
+
+case "$CMD" in
+  ls|list)
+    echo "=== Changes ==="
+    ls -1 "$SPEC_DIR/changes/" 2>/dev/null || echo "No changes"
+    echo ""
+    echo "=== Archive ==="
+    ls -1 "$SPEC_DIR/archive/" 2>/dev/null || echo "No archived"
+    ;;
+  cat)
+    cat "$SPEC_DIR/spec.md"
+    ;;
+  new)
+    NAME="$2"
+    if [ -z "$NAME" ]; then
+      echo "Usage: spec new <name>"
+      exit 1
+    fi
+    DATE=$(date +%Y-%m-%d)
+    mkdir -p "$SPEC_DIR/changes/$DATE-$NAME"
+    cp -r "$SPEC_DIR/changes/template/"* "$SPEC_DIR/changes/$DATE-$NAME/"
+    echo "Created: $SPEC_DIR/changes/$DATE-$NAME"
+    ;;
+  archive)
+    NAME="$2"
+    if [ -z "$NAME" ]; then
+      echo "Usage: spec archive <change-name>"
+      exit 1
+    fi
+    mv "$SPEC_DIR/changes/$NAME" "$SPEC_DIR/archive/"
+    echo "Archived: $NAME"
+    ;;
+  help|*)
+    echo "THEMACHINE Spec Manager"
+    echo ""
+    echo "Usage: spec <command>"
+    echo ""
+    echo "Commands:"
+    echo "  ls, list    - List all changes"
+    echo "  cat         - Show current spec"
+    echo "  new <name>  - Create new change proposal"
+    echo "  archive     - Archive a change"
+    ;;
+esac

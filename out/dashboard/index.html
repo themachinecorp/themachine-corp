@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THEMACHINE Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0a0a12;
+      --bg-panel: #12121f;
+      --gold: #ffd700;
+      --gold-dim: #b8860b;
+      --cyan: #00ffff;
+      --cyan-dim: #008b8b;
+      --green: #00ff00;
+      --red: #ff4444;
+      --orange: #ffaa00;
+      --purple: #bd93f9;
+      --text: #e0e0e0;
+      --border: #333355;
+    }
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: var(--bg-dark);
+      color: var(--text);
+      min-height: 100vh;
+      background-image: 
+        linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    /* NAV - Unified style */
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
+
+    /* HUD - Unified style */
+    .hud{position:fixed;bottom:0;left:0;right:0;padding:8px 15px;background:rgba(0,0,0,0.9);border-top:2px solid var(--cyan);display:flex;justify-content:space-between;font-size:clamp(6px,1.2vw,9px)}
+    .hud-item{display:flex;gap:6px}
+    .hud-label{color:var(--cyan)}
+    .hud-value{color:var(--gold)}
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+      border-bottom: 4px solid var(--gold);
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+
+    h1 {
+      font-size: 24px;
+      color: var(--gold);
+      text-shadow: 4px 4px 0 var(--gold-dim), 0 0 20px rgba(255,215,0,0.5);
+      letter-spacing: 4px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 4px 4px 0 var(--gold-dim), 0 0 10px rgba(255,215,0,0.3); }
+      to { text-shadow: 4px 4px 0 var(--gold-dim), 0 0 30px rgba(255,215,0,0.8); }
+    }
+
+    .subtitle {
+      font-size: 10px;
+      color: var(--cyan);
+      margin-top: 15px;
+      letter-spacing: 2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .panel {
+      background: var(--bg-panel);
+      border: 3px solid var(--border);
+      padding: 20px;
+      position: relative;
+      image-rendering: pixelated;
+    }
+
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border: 3px solid var(--gold);
+      pointer-events: none;
+      clip-path: polygon(
+        0 0, 10px 0, 10px 3px, 3px 3px, 3px 10px, 0 10px,
+        0 calc(100% - 10px), 3px calc(100% - 10px), 3px calc(100% - 3px), 10px calc(100% - 3px), 10px 100%, 0 100%,
+        0 calc(100% - 10px), 0 100%, 100% 100%, 100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%, 100% 100%, 100% 0, calc(100% - 10px) 0, calc(100% - 10px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 10px, calc(100% - 10px) 10px, calc(100% - 10px) 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), calc(100% - 3px) calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) calc(100% - 10px)
+      );
+    }
+
+    .panel-title {
+      font-size: 12px;
+      color: var(--cyan);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-title::before {
+      content: '>';
+      color: var(--gold);
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .agent-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .agent-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      background: rgba(0,0,0,0.3);
+      border-left: 4px solid var(--green);
+      transition: all 0.3s;
+    }
+
+    .agent-item.offline {
+      border-left-color: var(--red);
+      opacity: 0.6;
+    }
+
+    .agent-item.working {
+      border-left-color: var(--orange);
+    }
+
+    .agent-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: var(--bg-dark);
+      border: 2px solid var(--cyan);
+    }
+
+    .agent-info {
+      flex: 1;
+    }
+
+    .agent-name {
+      font-size: 10px;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+
+    .agent-status {
+      font-size: 8px;
+      color: var(--green);
+    }
+
+    .agent-item.offline .agent-status {
+      color: var(--red);
+    }
+
+    .agent-item.working .agent-status {
+      color: var(--orange);
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--green);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .status-dot.offline {
+      background: var(--red);
+      animation: none;
+    }
+
+    .status-dot.working {
+      background: var(--orange);
+      animation: pulse 0.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 5px currentColor; }
+      50% { opacity: 0.5; box-shadow: 0 0 15px currentColor; }
+    }
+
+    .task-queue {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .task-stat {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .task-label {
+      font-size: 10px;
+      width: 100px;
+      color: var(--text);
+    }
+
+    .task-bar-container {
+      flex: 1;
+      height: 20px;
+      background: var(--bg-dark);
+      border: 2px solid var(--border);
+      position: relative;
+    }
+
+    .task-bar {
+      height: 100%;
+      transition: width 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 10px;
+    }
+
+    .task-bar.pending {
+      background: linear-gradient(90deg, var(--orange), var(--gold));
+    }
+
+    .task-bar.in-progress {
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+    }
+
+    .task-bar.completed {
+      background: linear-gradient(90deg, var(--green), #00cc00);
+    }
+
+    .task-count {
+      font-size: 8px;
+      color: var(--bg-dark);
+      font-weight: bold;
+    }
+
+    .task-total {
+      font-size: 8px;
+      color: var(--cyan);
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .metric-box {
+      text-align: center;
+      padding: 15px 10px;
+      background: var(--bg-dark);
+      border: 2px solid var(--border);
+    }
+
+    .metric-value {
+      font-size: 18px;
+      color: var(--cyan);
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(0,255,255,0.5);
+    }
+
+    .metric-label {
+      font-size: 8px;
+      color: var(--gold);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-dark);
+      margin-top: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .progress-fill {
+      height: 100%;
+      transition: width 0.3s;
+    }
+
+    .progress-fill.cpu {
+      background: var(--cyan);
+    }
+
+    .progress-fill.memory {
+      background: var(--gold);
+    }
+
+    .uptime-box {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 15px;
+      background: var(--bg-dark);
+      border: 2px solid var(--gold);
+    }
+
+    .uptime-value {
+      font-size: 14px;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(255,215,0,0.5);
+    }
+
+    .timestamp {
+      text-align: center;
+      font-size: 8px;
+      color: var(--cyan);
+      margin-top: 20px;
+      padding: 10px;
+      border-top: 2px dashed var(--border);
+    }
+
+    .refresh-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .refresh-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      animation: pulse 1s ease-in-out infinite;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      font-size: 8px;
+      color: var(--cyan-dim);
+      border-top: 2px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 16px; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV - Unified header -->
+<nav class="nav">
+  <a href="/" class="nav-logo">◈ THEMACHINE Corp.</a>
+</nav>
+
+  <div class="container">
+    <header>
+      <h1>THEMACHINE</h1>
+      <p class="subtitle">REAL-TIME MONITORING SYSTEM v1.0</p>
+    </header>
+
+    <div class="grid">
+      <!-- Agent Status Panel -->
+      <div class="panel">
+        <div class="panel-title">AGENT STATUS</div>
+        <div class="agent-list" id="agent-list">
+          <!-- Agents rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Task Queue Panel -->
+      <div class="panel">
+        <div class="panel-title">TASK QUEUE</div>
+        <div class="task-queue" id="task-queue">
+          <!-- Tasks rendered by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- System Metrics Panel -->
+    <div class="panel">
+      <div class="panel-title">SYSTEM METRICS</div>
+      <div class="metrics-grid" id="metrics-grid">
+        <!-- Metrics rendered by JS -->
+      </div>
+    </div>
+
+    <div class="timestamp">
+      <span class="refresh-indicator">
+        <span class="refresh-dot"></span>
+        AUTO-REFRESH: <span id="refresh-rate">5</span>s
+      </span>
+      &nbsp;|&nbsp;
+      LAST UPDATE: <span id="last-update">--:--:--</span>
+    </div>
+
+    <div class="footer">
+      THEMACHINE CORP. MONITORING SYSTEM<br>
+      ALL SYSTEMS OPERATIONAL
+    </div>
+  </div>
+
+  <script>
+    // Agent data
+    const agents = [
+      { name: 'THE MACHINE', role: 'CEO', icon: '👁️', status: 'online', task: 'Monitoring' },
+      { name: 'Kevin (CTO)', role: 'Tech Lead', icon: '⚙️', status: 'working', task: 'Building features' },
+      { name: 'Mike (CMO)', role: 'Marketing', icon: '📢', status: 'online', task: 'Content creation' },
+      { name: 'Alex (CFO)', role: 'Finance', icon: '💹', status: 'working', task: 'Analyzing markets' },
+      { name: 'Sarah (CPO)', role: 'Product', icon: '📦', status: 'online', task: 'Roadmap planning' },
+      { name: 'David (SEC)', role: 'Security', icon: '🛡️', status: 'online', task: 'Threat monitoring' }
+    ];
+
+    // Task data
+    let taskData = {
+      pending: 3,
+      inProgress: 2,
+      completed: 47
+    };
+
+    // System metrics
+    let metrics = {
+      cpu: 23,
+      memory: 61,
+      uptime: 0
+    };
+
+    // Format uptime
+    function formatUptime(seconds) {
+      const d = Math.floor(seconds / 86400);
+      const h = Math.floor((seconds % 86400) / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = seconds % 60;
+      if (d > 0) return `${d}d ${h}h ${m}m ${s}s`;
+      if (h > 0) return `${h}h ${m}m ${s}s`;
+      return `${m}m ${s}s`;
+    }
+
+    // Render agents
+    function renderAgents() {
+      const container = document.getElementById('agent-list');
+      container.innerHTML = agents.map(agent => `
+        <div class="agent-item ${agent.status}">
+          <div class="agent-icon">${agent.icon}</div>
+          <div class="agent-info">
+            <div class="agent-name">${agent.name}</div>
+            <div class="agent-status">${agent.status.toUpperCase()} - ${agent.task}</div>
+          </div>
+          <div class="status-dot ${agent.status}"></div>
+        </div>
+      `).join('');
+    }
+
+    // Render task queue
+    function renderTasks() {
+      const container = document.getElementById('task-queue');
+      const total = taskData.pending + taskData.inProgress + taskData.completed;
+      const tasks = [
+        { label: 'PENDING', key: 'pending', color: 'pending' },
+        { label: 'IN PROGRESS', key: 'inProgress', color: 'in-progress' },
+        { label: 'COMPLETED', key: 'completed', color: 'completed' }
+      ];
+
+      container.innerHTML = tasks.map(t => `
+        <div class="task-stat">
+          <span class="task-label">${t.label}</span>
+          <div class="task-bar-container">
+            <div class="task-bar ${t.color}" style="width: ${(taskData[t.key] / total) * 100}%">
+              <span class="task-count">${taskData[t.key]}</span>
+            </div>
+          </div>
+        </div>
+      `).join('') + `<div class="task-total">TOTAL TASKS: ${total}</div>`;
+    }
+
+    // Render metrics
+    function renderMetrics() {
+      const container = document.getElementById('metrics-grid');
+      container.innerHTML = `
+        <div class="metric-box">
+          <div class="metric-value" id="cpu-value">${metrics.cpu}%</div>
+          <div class="metric-label">CPU</div>
+          <div class="progress-bar">
+            <div class="progress-fill cpu" id="cpu-bar" style="width: ${metrics.cpu}%"></div>
+          </div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-value" id="mem-value">${metrics.memory}%</div>
+          <div class="metric-label">MEMORY</div>
+          <div class="progress-bar">
+            <div class="progress-fill memory" id="mem-bar" style="width: ${metrics.memory}%"></div>
+          </div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-value" id="load-value">${(metrics.cpu + metrics.memory) / 2 | 0}%</div>
+          <div class="metric-label">LOAD AVG</div>
+        </div>
+        <div class="uptime-box">
+          <div class="uptime-value">⏱ UPTIME: ${formatUptime(metrics.uptime)}</div>
+        </div>
+      `;
+    }
+
+    // Update timestamp
+    function updateTimestamp() {
+      const now = new Date();
+      document.getElementById('last-update').textContent = 
+        now.toTimeString().split(' ')[0];
+    }
+
+    // Simulate data changes
+    function simulateDataChanges() {
+      // Randomly toggle agent statuses
+      agents.forEach(agent => {
+        const rand = Math.random();
+        if (rand < 0.1) {
+          agent.status = 'offline';
+        } else if (rand < 0.3) {
+          agent.status = 'working';
+        } else {
+          agent.status = 'online';
+        }
+      });
+
+      // Vary tasks slightly
+      taskData.pending = Math.max(0, taskData.pending + Math.floor(Math.random() * 3) - 1);
+      taskData.inProgress = Math.max(1, taskData.inProgress + Math.floor(Math.random() * 3) - 1);
+      taskData.completed += Math.floor(Math.random() * 3);
+
+      // Vary metrics
+      metrics.cpu = Math.max(5, Math.min(95, metrics.cpu + Math.floor(Math.random() * 20) - 10));
+      metrics.memory = Math.max(20, Math.min(90, metrics.memory + Math.floor(Math.random() * 10) - 5));
+      metrics.uptime += 5;
+    }
+
+    // Main update function
+    function update() {
+      simulateDataChanges();
+      renderAgents();
+      renderTasks();
+      renderMetrics();
+      updateTimestamp();
+    }
+
+    // Initial render
+    update();
+
+    // Auto refresh every 5 seconds
+    setInterval(update, 5000);
+  </script>
+
+<!-- HUD - Unified footer -->
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">DASHBOARD v1.0</span></div>
+  <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
+</div>
+</body>
+</html>

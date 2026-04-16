@@ -1,0 +1,11 @@
+# Secrets
+TOOLS.md
+MEMORY.md
+*.md
+# Logs
+*.log
+# Python
+__pycache__/
+*.pyc
+# Node
+node_modules/

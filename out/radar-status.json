@@ -1,0 +1,42 @@
+{
+  "updated": "2026-04-16T06:30:05.148Z",
+  "sources": {
+    "Reddit": 15,
+    "GitHub": 10,
+    "Twitter": 20
+  },
+  "total": 45,
+  "progress": 15,
+  "topSignals": [
+    {
+      "source": "Reddit",
+      "title": "Quit my job with no offer lined up because of my health. Took 8 months to land s",
+      "score": 2512,
+      "url": "https://reddit.com/r/jobsearchhacks/comments/1rnu44b/quit_my_job_with_no_offer_lined_up_because_of_my/"
+    },
+    {
+      "source": "Reddit",
+      "title": "My 3 year remote customer service automation is ending. I'm genuinely sad.",
+      "score": 2345,
+      "url": "https://reddit.com/r/antiwork/comments/1ncjpbc/my_3_year_remote_customer_service_automation_is/"
+    },
+    {
+      "source": "Reddit",
+      "title": "Stellaris Dev Diary #295 - Armies, Sectors, Messages, and More",
+      "score": 2271,
+      "url": "https://reddit.com/r/Stellaris/comments/12suoth/stellaris_dev_diary_295_armies_sectors_messages/"
+    },
+    {
+      "source": "Reddit",
+      "title": "I'm a corporate lawyer watching AI eat my profession in real time. Should I be t",
+      "score": 1755,
+      "url": "https://reddit.com/r/careerguidance/comments/1s0lwyc/im_a_corporate_lawyer_watching_ai_eat_my/"
+    },
+    {
+      "source": "Reddit",
+      "title": "My passive income streams",
+      "score": 1391,
+      "url": "https://reddit.com/r/passive_income/comments/1hr9els/my_passive_income_streams/"
+    }
+  ]
+}

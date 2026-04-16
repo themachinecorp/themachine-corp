@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THEMACHINE Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --green: #00ff00; --magenta: #ff00ff; --red: #ff4444; --purple: #9B59B6; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { 
+      background: var(--bg); color: #fff; font-family: 'Press Start 2P', monospace; 
+      padding: 8px; min-height: 100vh; 
+    }
+    
+    .nav{display:flex;align-items:center;padding:15px 20px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(12px,2vw,16px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
+    
+    .header { text-align: center; padding: 12px; border-bottom: 2px solid var(--gold); margin-bottom: 12px; }
+    .header h1 { font-size: 12px; color: var(--gold); }
+    .header .subtitle { font-size: 6px; color: #666; margin-top: 4px; }
+    
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+    .card { background: rgba(0,0,0,0.5); border: 2px solid #333; padding: 10px; }
+    .card-title { font-size: 7px; color: var(--cyan); margin-bottom: 8px; }
+    
+    .big-num { font-size: 18px; color: var(--gold); text-align: center; }
+    .big-label { font-size: 5px; color: #666; text-align: center; margin-top: 4px; }
+    
+    /* CPU/Memory Bars */
+    .bar-wrap { margin: 6px 0; }
+    .bar-label { display: flex; justify-content: space-between; font-size: 5px; color: #888; margin-bottom: 2px; }
+    .bar { height: 12px; background: #1a1a24; border: 1px solid #333; position: relative; }
+    .bar-fill { height: 100%; transition: width 0.5s ease; }
+    .bar-fill.cpu { background: linear-gradient(90deg, var(--green), var(--gold)); }
+    .bar-fill.mem { background: linear-gradient(90deg, var(--cyan), var(--magenta)); }
+    .bar-value { position: absolute; right: 4px; top: 2px; font-size: 5px; color: #fff; }
+    
+    /* Agent Activity Grid */
+    .agent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .agent-card { background: rgba(0,0,0,0.5); border: 1px solid #444; padding: 8px; text-align: center; }
+    .agent-card.active { border-color: var(--green); }
+    .agent-card.idle { border-color: var(--gold); opacity: 0.7; }
+    .agent-avatar { width: 24px; height: 24px; border-radius: 50%; margin: 0 auto 6px; display: flex; align-items: center; justify-content: center; font-size: 6px; font-weight: bold; }
+    .agent-name { font-size: 6px; color: var(--gold); margin-bottom: 4px; }
+    .agent-task { font-size: 5px; color: #888; }
+    .agent-status { font-size: 4px; margin-top: 4px; padding: 2px 4px; }
+    .agent-status.active { color: var(--green); }
+    .agent-status.idle { color: var(--gold); }
+    
+    .avatar-TM { background: linear-gradient(135deg, var(--gold), #FFA500); color: #000; }
+    .avatar-Kevin { background: linear-gradient(135deg, #00FFFF, #0080FF); color: #000; }
+    .avatar-Alex { background: linear-gradient(135deg, #00FF00, #00CC00); color: #000; }
+    .avatar-Mike { background: linear-gradient(135deg, #FF00FF, #FF0080); }
+    .avatar-Sarah { background: linear-gradient(135deg, #FF6B6B, #FF0000); }
+    .avatar-David { background: linear-gradient(135deg, var(--purple), #4A235A); }
+    
+    /* Task Stats */
+    .task-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .task-stat { background: rgba(0,0,0,0.5); border: 1px solid #333; padding: 8px; text-align: center; }
+    .task-num { font-size: 14px; color: var(--cyan); }
+    .task-label { font-size: 5px; color: #666; margin-top: 2px; }
+    
+    /* Charts */
+    .chart-container { margin-top: 8px; }
+    .chart-title { font-size: 6px; color: var(--gold); margin-bottom: 6px; }
+    
+    /* CSS Bar Chart - Activity over time */
+    .bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 60px; padding: 4px; background: #0a0a10; border: 1px solid #333; }
+    .bar-chart .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .bar-chart .bar-block { width: 100%; background: var(--cyan); transition: height 0.3s ease; min-height: 2px; }
+    .bar-chart .bar-block:hover { background: var(--gold); }
+    .bar-chart .bar-label { font-size: 4px; color: #555; }
+    
+    /* Pie Chart - CSS conic gradient */
+    .pie-wrap { display: flex; gap: 12px; align-items: center; justify-content: center; }
+    .pie { width: 60px; height: 60px; border-radius: 50%; background: conic-gradient(var(--green) 0% 70%, var(--gold) 70% 85%, var(--red) 85% 100%); border: 2px solid #333; }
+    .pie-legend { font-size: 5px; }
+    .pie-legend-item { display: flex; align-items: center; gap: 4px; margin: 3px 0; }
+    .pie-dot { width: 6px; height: 6px; }
+    .pie-dot.active { background: var(--green); }
+    .pie-dot.idle { background: var(--gold); }
+    .pie-dot.offline { background: var(--red); }
+    
+    /* Progress Ring */
+    .ring-wrap { display: flex; flex-direction: column; align-items: center; }
+    .ring { width: 50px; height: 50px; border-radius: 50%; background: conic-gradient(var(--green) var(--p, 0%), #222 0%); display: flex; align-items: center; justify-content: center; position: relative; }
+    .ring::before { content: ''; position: absolute; width: 36px; height: 36px; background: var(--bg); border-radius: 50%; }
+    .ring-val { position: relative; z-index: 1; font-size: 7px; color: var(--gold); }
+    .ring-label { font-size: 5px; color: #666; margin-top: 4px; }
+    
+    /* History Table */
+    .history-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+    .history-table th { font-size: 5px; color: #666; text-align: left; padding: 4px; border-bottom: 1px solid #333; }
+    .history-table td { font-size: 5px; padding: 4px; border-bottom: 1px solid #222; }
+    .status-dot { display: inline-block; width: 4px; height: 4px; margin-right: 4px; }
+    .status-dot.ok { background: var(--green); }
+    .status-dot.pending { background: var(--gold); }
+    .status-dot.error { background: var(--red); }
+    
+    .hud { position: fixed; bottom: 0; left: 0; right: 0; padding: 5px; background: rgba(0,0,0,0.95); border-top: 2px solid var(--cyan); text-align: center; font-size: 4px; }
+    
+    /* Mobile */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      .agent-grid { grid-template-columns: repeat(2, 1fr); }
+      .task-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
+  <div class="header">
+    <h1>[_TM_] ANALYTICS</h1>
+    <div class="subtitle">REAL-TIME OFFICE METRICS // <span id="ts">--:--:--</span></div>
+  </div>
+  
+  <!-- System Stats -->
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">[_] SYSTEM</div>
+      <div class="bar-wrap">
+        <div class="bar-label"><span>CPU</span><span id="cpu-val">0%</span></div>
+        <div class="bar"><div class="bar-fill cpu" id="cpu-bar" style="width:0%"></div></div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-label"><span>MEM</span><span id="mem-val">0%</span></div>
+        <div class="bar"><div class="bar-fill mem" id="mem-bar" style="width:0%"></div></div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-title">[$] TASKS</div>
+      <div class="task-grid" style="grid-template-columns:1fr">
+        <div class="task-stat"><div class="task-num" id="active-proc">0</div><div class="task-label">ACTIVE</div></div>
+        <div class="task-stat"><div class="task-num" id="pending-tasks">0</div><div class="task-label">PENDING</div></div>
+        <div class="task-stat"><div class="task-num" id="sessions">0</div><div class="task-label">SESSIONS</div></div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-title">[*] COMPLETION</div>
+      <div class="ring-wrap">
+        <div class="ring" id="completion-ring" style="--p:70%"><span class="ring-val">70%</span></div>
+        <div class="ring-label">TASK RATE</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Agent Activity -->
+  <div class="card" style="margin-bottom: 12px;">
+    <div class="card-title">[@] AGENT ACTIVITY</div>
+    <div class="agent-grid" id="agent-grid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+  
+  <!-- Charts Row -->
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">[~] ACTIVITY TIMELINE</div>
+      <div class="chart-container">
+        <div class="bar-chart" id="activity-chart">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-title">[%] STATUS DIST</div>
+      <div class="pie-wrap">
+        <div class="pie" id="status-pie"></div>
+        <div class="pie-legend">
+          <div class="pie-legend-item"><span class="pie-dot active"></span><span>Active</span></div>
+          <div class="pie-legend-item"><span class="pie-dot idle"></span><span>Idle</span></div>
+          <div class="pie-legend-item"><span class="pie-dot offline"></span><span>Offline</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-title">[^] PERFORMANCE</div>
+      <div style="font-size:5px;color:#666;text-align:center;padding:8px">
+        <div style="margin:4px 0">AVG RESPONSE: <span style="color:var(--cyan)">120ms</span></div>
+        <div style="margin:4px 0">UPTIME: <span style="color:var(--green)">99.9%</span></div>
+        <div style="margin:4px 0">TASKS/DAY: <span style="color:var(--gold)">847</span></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Recent Activity -->
+  <div class="card">
+    <div class="card-title">[v] RECENT LOG</div>
+    <table class="history-table">
+      <thead><tr><th>AGENT</th><th>ACTION</th><th>TIME</th><th>STATUS</th></tr></thead>
+      <tbody id="log-body">
+        <!-- Populated by JS -->
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="hud">DATA: /api/office.json // AUTO-REFRESH: 5s</div>
+  
+  <script>
+    const agents = ['TM', 'Kevin', 'Alex', 'Mike', 'Sarah', 'David'];
+    const tasks = ['coordinating', 'coding', 'trading', 'content', 'product', 'security'];
+    const colors = ['gold', 'cyan', 'green', 'magenta', 'red', 'purple'];
+    
+    // Activity history (simulated for chart)
+    let activityHistory = Array(12).fill(0).map(() => Math.floor(Math.random() * 80) + 20);
+    let recentLogs = [];
+    
+    function init() {
+      renderActivityChart();
+      renderPieChart();
+      fetchData();
+      setInterval(fetchData, 5000);
+      setInterval(updateTime, 1000);
+      setInterval(animateChart, 3000);
+    }
+    
+    function updateTime() {
+      document.getElementById('ts').innerText = new Date().toISOString().slice(11, 19);
+    }
+    
+    function fetchData() {
+      fetch('/api/office.json')
+        .then(r => r.json())
+        .then(data => {
+          updateSystem(data.system);
+          updateAgents(data.agents);
+          updateTasks(data.tasks);
+        })
+        .catch(e => console.log('Data fetch error:', e));
+    }
+    
+    function updateSystem(sys) {
+      const cpu = Math.round(sys.cpu['1m'] * 100);
+      const mem = sys.memory.percent;
+      document.getElementById('cpu-val').innerText = cpu + '%';
+      document.getElementById('cpu-bar').style.width = cpu + '%';
+      document.getElementById('mem-val').innerText = mem + '%';
+      document.getElementById('mem-bar').style.width = mem + '%';
+    }
+    
+    function updateAgents(agentData) {
+      const grid = document.getElementById('agent-grid');
+      let activeCount = 0;
+      
+      grid.innerHTML = agents.map((name, i) => {
+        const data = agentData[name] || {status: 'offline', task: 'none'};
+        const isActive = data.status === 'active';
+        if(isActive) activeCount++;
+        
+        return `
+          <div class="agent-card ${isActive ? 'active' : 'idle'}">
+            <div class="agent-avatar avatar-${name}">${name.substring(0,2)}</div>
+            <div class="agent-name">${name.toUpperCase()}</div>
+            <div class="agent-task">${data.task}</div>
+            <div class="agent-status ${isActive ? 'active' : 'idle'}">[${isActive ? 'OK' : 'WAIT'}]</div>
+          </div>
+        `;
+      }).join('');
+      
+      // Update pie chart
+      const activePct = (activeCount / 6) * 100;
+      const idlePct = ((6 - activeCount) / 6) * 100;
+      document.getElementById('status-pie').style.background = 
+        `conic-gradient(var(--green) 0% ${activePct}%, var(--gold) ${activePct}% ${activePct + idlePct}%, var(--red) ${activePct + idlePct}% 100%)`;
+    }
+    
+    function updateTasks(taskData) {
+      document.getElementById('active-proc').innerText = taskData.activeProcesses;
+      document.getElementById('pending-tasks').innerText = taskData.pending;
+      document.getElementById('sessions').innerText = taskData.sessions;
+      
+      // Update completion ring
+      const rate = Math.min(95, 50 + taskData.activeProcesses * 10);
+      document.getElementById('completion-ring').style.setProperty('--p', rate + '%');
+      document.getElementById('completion-ring').querySelector('.ring-val').innerText = rate + '%';
+      
+      // Add to logs
+      if(taskData.activeProcesses > 0) {
+        addLog('System', 'Task processing', 'ok');
+      }
+    }
+    
+    function renderActivityChart() {
+      const chart = document.getElementById('activity-chart');
+      const hours = ['00','04','08','12','16','20','00','04','08','12','16','20'];
+      
+      chart.innerHTML = hours.map((h, i) => `
+        <div class="bar-col">
+          <div class="bar-block" style="height:${activityHistory[i]}%"></div>
+          <div class="bar-label">${h}</div>
+        </div>
+      `).join('');
+    }
+    
+    function animateChart() {
+      activityHistory.shift();
+      activityHistory.push(Math.floor(Math.random() * 80) + 20);
+      renderActivityChart();
+    }
+    
+    function renderPieChart() {
+      // Initial render - updated by fetch
+    }
+    
+    function addLog(agent, action, status) {
+      const log = { agent, action, status, time: new Date().toLocaleTimeString() };
+      recentLogs.unshift(log);
+      if(recentLogs.length > 5) recentLogs.pop();
+      
+      const tbody = document.getElementById('log-body');
+      tbody.innerHTML = recentLogs.map(l => `
+        <tr>
+          <td>${l.agent}</td>
+          <td>${l.action}</td>
+          <td>${l.time}</td>
+          <td><span class="status-dot ${l.status}"></span>${l.status.toUpperCase()}</td>
+        </tr>
+      `).join('');
+    }
+    
+    // Initialize
+    init();
+  </script>
+</body>
+</html>

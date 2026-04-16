@@ -1,0 +1,28 @@
+name: Daily Workspace Backup
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            out/
+            .github/
+          sparse-checkout-cone-mode: false
+
+      - name: Commit site files
+        run: |
+          git config user.name "themachine-corp bot"
+          git config user.email "themachinecorp@163.com"
+          git add out/ .github/
+          git diff --staged --quiet || git commit -m "chore: daily site deploy $(date +%Y-%m-%d)"
+          git push

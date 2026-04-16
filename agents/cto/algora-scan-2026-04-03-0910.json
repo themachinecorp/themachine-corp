@@ -1,0 +1,192 @@
+{
+  "scan_time": "2026-04-03T09:10:00+08:00",
+  "algora": {
+    "total_bounties": 16,
+    "high_value_count": 16,
+    "bounties": [
+      {
+        "id": "archestra-3378",
+        "repo": "archestra-ai/archestra",
+        "issue": 3378,
+        "price": 500,
+        "title": "Agent schedule triggers",
+        "state": "open",
+        "status": "rejected",
+        "reason": "Reserved for specific contributor",
+        "url": "https://github.com/archestra-ai/archestra/issues/3378"
+      },
+      {
+        "id": "zio-519",
+        "repo": "zio/zio-blocks",
+        "issue": 519,
+        "price": 4000,
+        "title": "Schema Migration System for ZIO Schema 2",
+        "state": "open",
+        "status": "highly_contested",
+        "reason": "nr0225 submitted PR, SoraDynasty implementing, shenStudio1998 also interested - very competitive",
+        "url": "https://github.com/zio/zio-blocks/issues/519"
+      },
+      {
+        "id": "twenty-imap",
+        "repo": "twentyhq/twenty",
+        "price": 2500,
+        "title": "IMAP",
+        "state": "open",
+        "status": "needs_research",
+        "reason": "Requires TypeScript/full-stack skills, GitHub issue not immediately identifiable",
+        "url": "https://algora.io/twentyhq/bounties/g6i2c8YSNV9nHogT"
+      },
+      {
+        "id": "golem-275",
+        "repo": "golemcloud/golem",
+        "issue": 1926,
+        "price": 3500,
+        "title": "Incorporate MCP Server into Golem CLI",
+        "state": "closed",
+        "status": "rejected",
+        "reason": "CLOSED - Issue was closed, no longer available",
+        "url": "https://github.com/golemcloud/golem/issues/1926"
+      },
+      {
+        "id": "zio-9878",
+        "repo": "zio/zio",
+        "issue": 9878,
+        "price": 850,
+        "title": "ZScheduler parks+unparks workers too frequently",
+        "state": "open",
+        "status": "pending_review",
+        "url": "https://github.com/zio/zio/issues/9878"
+      },
+      {
+        "id": "zio-9877",
+        "repo": "zio/zio",
+        "issue": 9877,
+        "price": 750,
+        "title": "Can Fiber(Runtime) and Promise be merged?",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "Design/API question - likely needs RFC before implementation",
+        "url": "https://github.com/zio/zio/issues/9877"
+      },
+      {
+        "id": "deskflow-8032",
+        "repo": "deskflow/deskflow",
+        "issue": 8032,
+        "price": 2500,
+        "title": "Persist Input Capture XDG Desktop Portal dialog (Wayland)",
+        "state": "closed",
+        "status": "rejected",
+        "reason": "CLOSED - maintainers explicitly say NOT accepting bounties",
+        "url": "https://github.com/deskflow/deskflow/issues/8032"
+      },
+      {
+        "id": "deskflow-8031",
+        "repo": "deskflow/deskflow",
+        "issue": 8031,
+        "price": 5000,
+        "title": "Clipboard support in XDG Desktop Portal (Wayland)",
+        "state": "closed",
+        "status": "rejected",
+        "reason": "CLOSED - maintainers explicitly say NOT accepting bounties; WIP PR exists",
+        "url": "https://github.com/deskflow/deskflow/issues/8031"
+      },
+      {
+        "id": "zio-9356",
+        "repo": "zio/zio",
+        "issue": 9356,
+        "price": 2500,
+        "title": "Implement NIO scheduler for ZIO",
+        "state": "open",
+        "status": "pending_review",
+        "reason": "Performance optimization - references blog post, needs study",
+        "url": "https://github.com/zio/zio/issues/9356"
+      },
+      {
+        "id": "zio-481",
+        "repo": "zio/izumi-reflect",
+        "issue": 481,
+        "price": 750,
+        "title": "Subtype relation for refined type fails",
+        "state": "open",
+        "status": "pending_review",
+        "url": "https://github.com/zio/izumi-reflect/issues/481"
+      },
+      {
+        "id": "zio-9101",
+        "repo": "zio/zio",
+        "issue": 9101,
+        "price": 650,
+        "title": "zio.test.Gen generates the same data every time in certain conditions",
+        "state": "open",
+        "status": "new",
+        "url": "https://github.com/zio/zio/issues/9101"
+      },
+      {
+        "id": "zio-9093",
+        "repo": "zio/zio",
+        "issue": 9093,
+        "price": 650,
+        "title": "ZIO's Semaphore performance not too great",
+        "state": "open",
+        "status": "new",
+        "url": "https://github.com/zio/zio/issues/9093"
+      },
+      {
+        "id": "kyo-390",
+        "repo": "getkyo/kyo",
+        "issue": 390,
+        "price": 500,
+        "title": "gRPC Support",
+        "state": "open",
+        "status": "new",
+        "url": "https://github.com/getkyo/kyo/issues/390"
+      },
+      {
+        "id": "zio-8861",
+        "repo": "zio/zio",
+        "issue": 8861,
+        "price": 1500,
+        "title": "Create Loom-friendly concurrent weak set (FiberSet)",
+        "state": "open",
+        "status": "new",
+        "url": "https://github.com/zio/zio/issues/8861"
+      },
+      {
+        "id": "zio-8807",
+        "repo": "zio/zio",
+        "issue": 8807,
+        "price": 1250,
+        "title": "Creating highly optimized and specialized fiber mailbox",
+        "state": "open",
+        "status": "new",
+        "url": "https://github.com/zio/zio/issues/8807"
+      },
+      {
+        "id": "isaac-45",
+        "repo": "isaac/isaac",
+        "issue": 45,
+        "price": 850,
+        "title": "[ISAAC-497] Implement an enhanced RAG Pipeline for Scientific/Research Workflows",
+        "state": "open",
+        "status": "new",
+        "url": "https://github.com/isaac-ai/isaac/issues/45"
+      }
+    ]
+  },
+  "bounty_new": {
+    "status": "private_beta",
+    "waitlist_position": 544,
+    "note": "No public bounty board - platform is in closed beta"
+  },
+  "summary": {
+    "algora_total": 16,
+    "algora_high_value": 16,
+    "algora_available": 13,
+    "algora_rejected_closed": 3,
+    "algora_new_this_scan": 6,
+    "bounty_new_total": 0,
+    "bounty_new_public": false,
+    "potential_value_available": 13550,
+    "rejected_value": 8000
+  }
+}

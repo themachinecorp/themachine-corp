@@ -1,0 +1,52 @@
+{
+  "position": 0,
+  "entry_price": 0,
+  "grid_mid": 72797.9,
+  "grid_low": 69885.984,
+  "grid_high": 75709.81599999999,
+  "active_grids": [
+    {
+      "level": 0,
+      "side": "buy",
+      "price": 69885.98,
+      "size": 0,
+      "filled": false,
+      "ord_id": null
+    },
+    {
+      "level": 1,
+      "side": "buy",
+      "price": 71341.94,
+      "size": 0,
+      "filled": false,
+      "ord_id": null
+    },
+    {
+      "level": 2,
+      "side": "sell",
+      "price": 72797.9,
+      "size": 0,
+      "filled": false,
+      "ord_id": null
+    },
+    {
+      "level": 3,
+      "side": "sell",
+      "price": 74253.86,
+      "size": 0,
+      "filled": false,
+      "ord_id": null
+    },
+    {
+      "level": 4,
+      "side": "sell",
+      "price": 75709.82,
+      "size": 0,
+      "filled": false,
+      "ord_id": null
+    }
+  ],
+  "buy_count": 0,
+  "sell_count": 0,
+  "total_pnl": 0
+}

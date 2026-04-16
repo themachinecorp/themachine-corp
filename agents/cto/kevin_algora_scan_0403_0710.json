@@ -1,0 +1,41 @@
+{
+  "scan_time": "2026-04-03T07:10:00+08:00",
+  "status": "failed",
+  "errors": [
+    "Browser plugin disabled: plugins.allow excludes 'browser'",
+    "Brave Search API key invalid (422: SUBSCRIPTION_TOKEN_INVALID)",
+    "Algora has no public REST/GraphQL API - page access requires browser",
+    "web_fetch blocked for both algora.io and bounty.new"
+  ],
+  "pending_bounties_carried_forward": [
+    {
+      "id": "zio-519",
+      "price": "$4,000",
+      "title": "Schema Migration System for ZIO Schema 2",
+      "priority": "P0",
+      "url": "https://github.com/zio/zio-blocks/issues/519"
+    },
+    {
+      "id": "zio-9356",
+      "price": "$2,500",
+      "title": "Implement NIO scheduler for ZIO",
+      "priority": "P1",
+      "url": "https://github.com/zio/zio/issues/9356"
+    },
+    {
+      "id": "zio-9878",
+      "price": "$850",
+      "title": "ZScheduler parks+unparks workers too frequently",
+      "priority": "P2",
+      "url": "https://github.com/zio/zio/issues/9878"
+    },
+    {
+      "id": "zio-481",
+      "price": "$750",
+      "title": "Subtype relation for refined type fails",
+      "priority": "P2",
+      "url": "https://github.com/zio/izumi-reflect/issues/481"
+    }
+  ],
+  "recommended_action": "Enable browser plugin in openclaw config to resume live scanning. Current pending bounties total $7,850+ in potential value."
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THEMACHINE Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg0: #0a0f0e; --bg1: #131f1d; --bg2: #1a2926; --ink: #e8f5f1; --muted: #7a9a8f; --accent: #ff8c42; --accent2: #2dd4a8; --danger: #ff4757; --warn: #ffa502; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html,body { background: var(--bg0); color: var(--ink); font-family: 'Press Start 2P',monospace; height: 100vh; overflow: hidden; }
+    .nav{display:flex;align-items:center;padding:12px 20px;border-bottom:2px solid #00ffff;background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100}
+    .nav-logo{font-size:clamp(16px,2vw,22px);color:#d4af37;text-shadow:2px 2px 0 #00ffff;text-decoration:none}
+    .header { background: var(--bg1); padding: 12px 24px; border-bottom: 3px solid var(--accent2); display: flex; justify-content: space-between; align-items: center; }
+    .header h1 { font-size: 28px; color: var(--accent); letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,140,66,0.3); }
+    .header .time { font-size: 20px; color: var(--accent2); }
+    .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; padding: 20px; height: calc(100vh - 60px); }
+    .room { background: var(--bg1); border: 2px solid var(--accent2); padding: 20px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .room::before { content: ''; position: absolute; top:0;left:0;right:0;height:3px;background: linear-gradient(90deg,var(--accent),var(--accent2)); }
+    .room-label { font-size: 20px; color: var(--accent); margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid rgba(45,212,168,0.3); }
+    .content { flex: 1; overflow-y: auto; }
+    .agent { display: flex; align-items: center; gap: 12px; padding: 10px; background: var(--bg2); margin-bottom: 8px; border-left: 3px solid var(--accent2); transition: all 0.2s; }
+    .agent:hover { background: rgba(45,212,168,0.1); transform: translateX(3px); }
+    .agent-avatar { width: 32px; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; color: #000; }
+    .agent-info { flex: 1; }
+    .agent-name { font-size: 18px; color: var(--ink); }
+    .agent-task { font-size: 14px; color: var(--muted); }
+    .agent-status { font-size: 12px; padding: 2px 8px; border-radius: 3px; }
+    .status-active { background: rgba(45,212,168,0.2); color: var(--accent2); }
+    .status-idle { background: rgba(255,165,2,0.2); color: var(--warn); }
+    .task-item { display: flex; justify-content: space-between; padding: 10px; background: var(--bg2); margin-bottom: 8px; border-left: 3px solid var(--accent); }
+    .task-label { color: var(--muted); }
+    .task-value { color: var(--ink); font-size: 18px; }
+    .sys-item { display: flex; justify-content: space-between; padding: 12px; background: var(--bg2); margin-bottom: 8px; }
+    .sys-label { color: var(--muted); }
+    .sys-value { color: var(--accent2); font-size: 18px; }
+    .progress-bar { height: 8px; background: var(--bg0); border-radius: 4px; margin-top: 5px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 0.5s; }
+    .stat-row { display: flex; gap: 15px; margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(45,212,168,0.2); }
+    .stat { flex: 1; text-align: center; padding: 10px; background: var(--bg2); }
+    .stat-num { font-size: 28px; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; }
+    .scan-line { position: fixed; top:0;left:0;right:0;bottom:0;pointer-events:none;background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px); }
+  </style>
+</head>
+<body>
+  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
+  <div class="scan-line"></div>
+  <div class="header">
+    <h1>⬡ THEMACHINE LIBRARY</h1>
+    <span class="time" id="clock">--:--:--</span>
+  </div>
+  <div class="grid">
+    <div class="room">
+      <div class="room-label">[ AGENTS ]</div>
+      <div class="content" id="agents"></div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num" id="agent-total">0</div><div class="stat-label">Total</div></div>
+        <div class="stat"><div class="stat-num" id="agent-active">0</div><div class="stat-label">Active</div></div>
+      </div>
+    </div>
+    <div class="room">
+      <div class="room-label">[ TASKS ]</div>
+      <div class="content" id="tasks"></div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num" id="task-pending">0</div><div class="stat-label">Pending</div></div>
+        <div class="stat"><div class="stat-num" id="task-active">0</div><div class="stat-label">Active</div></div>
+      </div>
+    </div>
+    <div class="room">
+      <div class="room-label">[ SYSTEM ]</div>
+      <div class="content" id="system"></div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num" id="sys-uptime">24/7</div><div class="stat-label">Uptime</div></div>
+        <div class="stat"><div class="stat-num" id="sys-status">●</div><div class="stat-label">Status</div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const colors = {
+      'TM': '#ffd700', 'Kevin': '#00ffff', 'Alex': '#00ff00', 
+      'Mike': '#ff00ff', 'Sarah': '#ff6b6b', 'David': '#9b59b6'
+    };
+    const statusText = { 'active': '● ACTIVE', 'idle': '○ IDLE', 'offline': '■ OFFLINE' };
+
+    async function load() {
+      try {
+        const res = await fetch('/api/office.json');
+        const data = await res.json();
+        
+        // Agents
+        const agents = data.agents || {};
+        let activeCount = 0;
+        const agentsHtml = Object.entries(agents).map(([name, info]) => {
+          if (info.status === 'active') activeCount++;
+          return `<div class="agent">
+            <div class="agent-avatar" style="background:${colors[name]||'#666'}">${name[0]}</div>
+            <div class="agent-info">
+              <div class="agent-name">${name}</div>
+              <div class="agent-task">${info.task || 'idle'}</div>
+            </div>
+            <div class="agent-status status-${info.status}">${statusText[info.status]||'○ IDLE'}</div>
+          </div>`;
+        }).join('');
+        document.getElementById('agents').innerHTML = agentsHtml;
+        document.getElementById('agent-total').textContent = Object.keys(agents).length;
+        document.getElementById('agent-active').textContent = activeCount;
+
+        // Tasks
+        const tasks = data.tasks || {};
+        document.getElementById('tasks').innerHTML = `
+          <div class="task-item"><span class="task-label">Processes</span><span class="task-value">${tasks.activeProcesses || 0}</span></div>
+          <div class="task-item"><span class="task-label">Sessions</span><span class="task-value">${tasks.sessions || 0}</span></div>
+          <div class="task-item"><span class="task-label">Pending</span><span class="task-value">${tasks.pending || 0}</span></div>
+        `;
+        document.getElementById('task-pending').textContent = tasks.pending || 0;
+        document.getElementById('task-active').textContent = tasks.activeProcesses || 0;
+
+        // System
+        const sys = data.system || {};
+        const cpuLoad = sys.cpu?.['1m'] || 0;
+        const memPercent = sys.memory?.percent || 0;
+        document.getElementById('system').innerHTML = `
+          <div class="sys-item"><span class="sys-label">CPU (1m)</span><span class="sys-value">${cpuLoad.toFixed(2)}</span></div>
+          <div class="sys-item"><span class="sys-label">Memory</span><span class="sys-value">${memPercent}%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${memPercent}%"></div></div>
+          <div class="sys-item"><span class="sys-label">Mem Used</span><span class="sys-value">${Math.round(sys.memory?.used/1024)}GB / ${Math.round(sys.memory?.total/1024)}GB</span></div>
+        `;
+      } catch(e) {
+        console.error('Load error:', e);
+      }
+      
+      document.getElementById('clock').textContent = new Date().toLocaleTimeString();
+    }
+
+    load();
+    setInterval(load, 3000);
+    setInterval(() => document.getElementById('clock').textContent = new Date().toLocaleTimeString(), 1000);
+  </script>
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">LIBRARY v1.0</span></div>
+  <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
+</div>
+</body>
+</html>

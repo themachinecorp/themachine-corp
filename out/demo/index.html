@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo | THEMACHINE Corp.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111120;
+      --surface2: #181830;
+      --text: #e0e0e0;
+      --text-dim: #777;
+      --gold: #d4af37;
+      --cyan: #00e5ff;
+      --green: #22c55e;
+      --yellow: #eab308;
+      --border: rgba(0,229,255,.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Space Mono', monospace; line-height: 1.6; }
+
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+    nav .logo { font-family: 'Press Start 2P', cursive; font-size: clamp(8px,1.5vw,12px); color: var(--cyan); text-decoration: none; white-space: nowrap; }
+    nav .logo span { color: var(--gold); }
+    nav .nav-links { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; }
+    nav .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 12px; transition: color .2s; }
+    nav .nav-links a:hover { color: var(--text); }
+    nav .nav-links a.active { color: var(--gold); }
+
+    /* PAGE HEADER */
+    .page-header { text-align: center; padding: 60px 24px 40px; }
+    .page-header h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(12px,2.5vw,22px); color: var(--text); margin-bottom: 14px; line-height: 1.5; }
+    .page-header p { color: var(--text-dim); font-size: clamp(12px,2vw,15px); }
+
+    /* SECTIONS */
+    .section-label { font-family: 'Press Start 2P', cursive; font-size: clamp(9px,1.5vw,13px); color: var(--cyan); text-align: center; letter-spacing: 2px; margin-bottom: 8px; }
+    .section-divider { width: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--cyan)); margin: 0 auto 12px; }
+    .section-sub { text-align: center; color: var(--text-dim); font-size: clamp(11px,1.8vw,14px); margin-bottom: 40px; }
+
+    /* GRID */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+    .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+    /* CARD */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; display: flex; flex-direction: column; gap: 16px; transition: border-color .3s, transform .3s; }
+    .card:hover { border-color: rgba(0,229,255,.4); transform: translateY(-2px); }
+
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .card-title { font-family: 'Press Start 2P', cursive; font-size: clamp(8px,1.2vw,11px); color: var(--text); line-height: 1.6; word-break: break-word; }
+    .card-title .icon { font-size: clamp(14px,2.5vw,20px); margin-right: 6px; }
+
+    .badge { font-size: clamp(7px,1vw,9px); font-weight: 700; padding: 4px 10px; border-radius: 3px; letter-spacing: 1px; white-space: nowrap; }
+    .badge-live { background: rgba(34,197,94,.15); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
+    .badge-building { background: rgba(234,179,8,.12); color: var(--yellow); border: 1px solid rgba(234,179,8,.3); }
+    .badge-idea { background: rgba(255,255,255,.05); color: var(--text-dim); border: 1px solid rgba(255,255,255,.1); }
+
+    .card-desc { font-size: clamp(12px,1.5vw,14px); color: var(--text-dim); line-height: 1.7; flex: 1; }
+
+    /* PROGRESS */
+    .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .progress-label { font-size: clamp(8px,1vw,10px); color: var(--text-dim); letter-spacing: 2px; }
+    .progress-pct { font-family: 'Press Start 2P', cursive; font-size: clamp(9px,1.2vw,12px); }
+    .progress-pct.green { color: var(--green); }
+    .progress-pct.gold { color: var(--gold); }
+    .progress-pct.dim { color: var(--text-dim); }
+    .progress-track { height: 8px; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 3px; }
+    .progress-fill.green { background: var(--green); }
+    .progress-fill.gold { background: var(--gold); }
+    .progress-fill.dim { background: rgba(255,255,255,.2); }
+
+    /* BTN */
+    .card-btn { display: inline-block; text-align: center; padding: 10px 18px; font-size: clamp(9px,1.2vw,11px); font-weight: 700; text-decoration: none; border-radius: 3px; letter-spacing: 1px; align-self: flex-start; transition: opacity .2s; }
+    .card-btn:hover { opacity: .85; }
+    .btn-live { background: var(--gold); color: #000; }
+    .btn-coming { background: rgba(255,255,255,.06); color: var(--text-dim); border: 1px solid rgba(255,255,255,.1); cursor: default; }
+
+    /* FOOTER NOTE */
+    .note { text-align: center; color: var(--text-dim); font-size: clamp(10px,1.3vw,12px); margin-top: 32px; padding: 16px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">◈ <span>THEMACHINE</span> CORP.</a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="https://themachinecorp.gumroad.com/" target="_blank">Products</a></li>
+    <li><a href="/demo.html" class="active">Demo</a></li>
+    <li><a href="/team/">Team</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1>// SaaS Demos</h1>
+  <p>Shipping progress. Real data. No decoration.</p>
+</div>
+
+<div class="container">
+
+  <p class="section-label">// LIVE PRODUCTS</p>
+  <div class="section-divider"></div>
+  <p class="section-sub">Up and running. Used daily.</p>
+
+  <div class="demo-grid">
+
+    <!-- THEMATHINK Daily -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">📅</span>THEMATHINK Daily</div>
+        <span class="badge badge-live">● LIVE</span>
+      </div>
+      <p class="card-desc">AI agent team daily briefing — what each agent did, what's queued, blockers flagged. Every morning.</p>
+      <div>
+        <div class="progress-meta">
+          <span class="progress-label">PROGRESS</span>
+          <span class="progress-pct green">85%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill green" style="width:85%"></div>
+        </div>
+      </div>
+      <a href="https://themachine-corp.pages.dev/" class="card-btn btn-live">View →</a>
+    </div>
+
+  </div>
+
+  <p class="section-label" style="margin-top:60px">// IN DEVELOPMENT</p>
+  <div class="section-divider"></div>
+  <p class="section-sub">Actively building. Arriving soon.</p>
+
+  <div class="demo-grid">
+
+    <!-- Algora Bounty Sprint -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">⚡</span>Algora Bounty Sprint</div>
+        <span class="badge badge-building">◷ BUILDING</span>
+      </div>
+      <p class="card-desc">Kevin auto-scans Algora every hour. Claims matching bounty, submits PR, tracks payout. $500–$5,000 per bounty.</p>
+      <div>
+        <div class="progress-meta">
+          <span class="progress-label">PROGRESS</span>
+          <span class="progress-pct gold">40%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill gold" style="width:40%"></div>
+        </div>
+      </div>
+      <span class="card-btn btn-coming">View →</a>
+    </div>
+
+    <!-- Gumroad Sales Sync -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">🛒</span>Gumroad Sales Sync</div>
+        <span class="badge badge-building">◷ BUILDING</span>
+      </div>
+      <p class="card-desc">Auto-pull Gumroad sales data. Track revenue per product, refunds, and trends. Real numbers, updated daily.</p>
+      <div>
+        <div class="progress-meta">
+          <span class="progress-label">PROGRESS</span>
+          <span class="progress-pct gold">15%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill gold" style="width:15%"></div>
+        </div>
+      </div>
+      <span class="card-btn btn-coming">View →</a>
+    </div>
+
+    <!-- Demand Radar -->
+    <div class="card" id="radar-card">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">📡</span>Demand Radar</div>
+        <span class="badge badge-building" id="radar-badge">◷ BUILDING</span>
+      </div>
+      <p class="card-desc" id="radar-desc">Market research engine — find what to build next. <span id="radar-sources">Scanning...</span></p>
+      <div>
+        <div class="progress-meta">
+          <span class="progress-label">PROGRESS</span>
+          <span class="progress-pct gold" id="radar-pct">15%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill gold" id="radar-bar" style="width:15%"></div>
+        </div>
+      </div>
+      <div id="radar-signals" style="font-size:11px;color:var(--text-dim);min-height:16px"></div>
+      <a href="/demand-radar/" class="card-btn btn-live">View →</a>
+    </div>
+
+  </div>
+
+  <div class="note">
+    Progress updates automatically as Kevin builds. Last sync: <span id="sync-time">2026-04-16</span>.
+  </div>
+
+  <script>
+    fetch('https://themachine-corp.pages.dev/radar-status.json')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (!d) return;
+        var pct = d.progress || 15;
+        document.getElementById('radar-pct').textContent = pct + '%';
+        document.getElementById('radar-bar').style.width = pct + '%';
+        var srcParts = Object.entries(d.sources||{}).filter(function(e){return e[1]>0;}).map(function(e){return e[0]+': '+e[1];});
+        document.getElementById('radar-sources').textContent = srcParts.join(' · ') + ' — ' + d.total + ' signals today';
+        document.getElementById('sync-time').textContent = new Date(d.updated).toLocaleString('en-US',{hour12:false,timeZone:'Asia/Shanghai'}).replace(',','');
+        var top = (d.topSignals||[]).slice(0,2);
+        if (top.length) {
+          var html = top.map(function(t){return '<span style="color:var(--gold)">&#9658;</span> ' + t.title.substring(0,55);}).join('<br>');
+          document.getElementById('radar-signals').innerHTML = html;
+        }
+      }).catch(function(){});
+  </script>
+
+</div>
+
+</body>
+</html>
