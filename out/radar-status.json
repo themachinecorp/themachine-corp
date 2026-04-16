@@ -1,42 +1,303 @@
 {
-  "updated": "2026-04-16T06:30:05.148Z",
+  "updated": "2026-04-16T23:24:36.366767Z",
   "sources": {
-    "Reddit": 15,
-    "GitHub": 10,
-    "Twitter": 20
+    "Twitter": 66,
+    "Reddit": 0,
+    "GitHub": 0
   },
-  "total": 45,
+  "total": 65,
   "progress": 15,
   "topSignals": [
     {
-      "source": "Reddit",
-      "title": "Quit my job with no offer lined up because of my health. Took 8 months to land s",
-      "score": 2512,
-      "url": "https://reddit.com/r/jobsearchhacks/comments/1rnu44b/quit_my_job_with_no_offer_lined_up_because_of_my/"
+      "source": "Twitter",
+      "title": "Ramanuj Mukherjee @law_ninja · 4月1日 The most dangerous person in any industry right now is not the A",
+      "text": "Ramanuj Mukherjee @law_ninja · 4月1日 The most dangerous person in any industry right now is not the AI expert. It is the domain expert who learned AI. And almost nobody understands why. Let me explain. India produces roughly 1.5 million engineers ever",
+      "url": "https://x.com/law_ninja/status/2039317392057364989",
+      "score": 305,
+      "engagement": {
+        "likes": 305,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-01T12:22:09.000Z",
+      "category": "tools"
     },
     {
-      "source": "Reddit",
-      "title": "My 3 year remote customer service automation is ending. I'm genuinely sad.",
-      "score": 2345,
-      "url": "https://reddit.com/r/antiwork/comments/1ncjpbc/my_3_year_remote_customer_service_automation_is/"
+      "source": "Twitter",
+      "title": "Himanshu Kumar @codewithimanshu · 3月30日 Stop Wasting Time and Learn to Build Claude Skills That Gene",
+      "text": "Himanshu Kumar @codewithimanshu · 3月30日 Stop Wasting Time and Learn to Build Claude Skills That Generate Revenue. A $20 Tool Is Replacing $6,000/Month Freelancers. You're Not Building It. You're Getting Replaced by It. 10+ automations. All running on",
+      "url": "https://x.com/codewithimanshu/status/2038455470479020184",
+      "score": 149,
+      "engagement": {
+        "likes": 149,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-03-30T03:17:11.000Z",
+      "category": "product"
     },
     {
-      "source": "Reddit",
-      "title": "Stellaris Dev Diary #295 - Armies, Sectors, Messages, and More",
-      "score": 2271,
-      "url": "https://reddit.com/r/Stellaris/comments/12suoth/stellaris_dev_diary_295_armies_sectors_messages/"
+      "source": "Twitter",
+      "title": "Lina  @XNXX_EN · 16小时 Traditional sales tools are officially broken. Most CRMs are just expensive da",
+      "text": "Lina  @XNXX_EN · 16小时 Traditional sales tools are officially broken. Most CRMs are just expensive databases for bad forecasts and guesswork. Seeing HockeyStack raise $50M to launch an AI Revenue Agent that actually clones your top rep’s playbook is t",
+      "url": "https://x.com/XNXX_EN/status/2044463017891664334",
+      "score": 88,
+      "engagement": {
+        "likes": 88,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-15T17:09:02.000Z",
+      "category": "product"
     },
     {
-      "source": "Reddit",
-      "title": "I'm a corporate lawyer watching AI eat my profession in real time. Should I be t",
-      "score": 1755,
-      "url": "https://reddit.com/r/careerguidance/comments/1s0lwyc/im_a_corporate_lawyer_watching_ai_eat_my/"
+      "source": "Twitter",
+      "title": "Dhanian  @e_opore · 3月30日 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Nat",
+      "text": "Dhanian  @e_opore · 3月30日 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Native Development Era PHASE 1: MINDSET SHIFT — FROM CODER TO AI-ENABLED ARCHITECT ├── The New Development Paradigm │   ├── Why 2026+ developers need AI ",
+      "url": "https://x.com/e_opore/status/2038543586380206296",
+      "score": 73,
+      "engagement": {
+        "likes": 73,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-03-30T09:07:19.000Z",
+      "category": "ai-agents"
     },
     {
-      "source": "Reddit",
-      "title": "My passive income streams",
-      "score": 1391,
-      "url": "https://reddit.com/r/passive_income/comments/1hr9els/my_passive_income_streams/"
+      "source": "Twitter",
+      "title": "Sakata @0x_sakata · 15小时 \"ai is taking over jobs\" but are they really? The answer is obviously no,  ",
+      "text": "Sakata @0x_sakata · 15小时 \"ai is taking over jobs\" but are they really? The answer is obviously no,  even in sales nowadays you can use ai tools to run your business, and HockeyStack is the first AI revenue agent, recently raised $50M to: > run or mon",
+      "url": "https://x.com/0x_sakata/status/2044486062047957106",
+      "score": 47,
+      "engagement": {
+        "likes": 47,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-15T18:40:36.000Z",
+      "category": "product"
+    },
+    {
+      "source": "Twitter",
+      "title": "Dhaval Makwana @heyDhavall · 3月30日  BREAKING: Someone just built an OpenClaw-style agent for outboun",
+      "text": "Dhaval Makwana @heyDhavall · 3月30日  BREAKING: Someone just built an OpenClaw-style agent for outbound sales. It’s called ClawGTM. You paste in your website, and it starts building your outbound workflow around what you actually sell. That’s what caug",
+      "url": "https://x.com/heyDhavall/status/2038531730672640353",
+      "score": 40,
+      "engagement": {
+        "likes": 40,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-03-30T08:20:13.000Z",
+      "category": "product"
+    },
+    {
+      "source": "Twitter",
+      "title": "Rhys @RhysSullivan · 2小时 回复  @theo built with claude mythos so our jobs are safe for another cycle i",
+      "text": "Rhys @RhysSullivan · 2小时 回复  @theo built with claude mythos so our jobs are safe for another cycle i wonder how much of Anthropic's positioning of 'the code doesn't matter anymore' they're able to get away with because of inference subsidies keeping ",
+      "url": "https://x.com/RhysSullivan/status/2044684699327684703",
+      "score": 34,
+      "engagement": {
+        "likes": 34,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-16T07:49:55.000Z",
+      "category": "ai-agents"
+    },
+    {
+      "source": "Twitter",
+      "title": "Now Media @nowmedia · 12小时 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackath",
+      "text": "Now Media @nowmedia · 12小时 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackathon! The quality of submissions made this an incredibly hard decision Congrats to our winners:   Arbiter   NO-CODE Agent Builder   SlashMarket Learn mo",
+      "url": "https://x.com/nowmedia/status/2044528631150452770",
+      "score": 30,
+      "engagement": {
+        "likes": 30,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-15T21:29:45.000Z",
+      "category": "tools"
+    },
+    {
+      "source": "Twitter",
+      "title": "Now Media @nowmedia · 12小时 回复  @nowmedia No-Code Agent Builder is a visual workflow tool for creatin",
+      "text": "Now Media @nowmedia · 12小时 回复  @nowmedia No-Code Agent Builder is a visual workflow tool for creating AI-powered blockchain agents on Etherlink  Users chain together pre-built on-chain actions like token transfers, swaps, NFT deployment, DAO creation",
+      "url": "https://x.com/nowmedia/status/2044528644337406453",
+      "score": 6,
+      "engagement": {
+        "likes": 6,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-15T21:29:48.000Z",
+      "category": "tools"
+    },
+    {
+      "source": "Twitter",
+      "title": "MOONBERG @moonberg · 4月14日 回复  @yo_itsmatt Hey matthew would love to share what we are working on. N",
+      "text": "MOONBERG @moonberg · 4月14日 回复  @yo_itsmatt Hey matthew would love to share what we are working on. No code algo builder, backtest engine and agentic trading agent coming to  @solana  soon . 引用 MOONBERG @moonberg · 3月27日 Why you are failing on auto-tr",
+      "url": "https://x.com/moonberg/status/2043731372997579071",
+      "score": 6,
+      "engagement": {
+        "likes": 6,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-13T16:41:44.000Z",
+      "category": "ai-agents"
+    },
+    {
+      "source": "Twitter",
+      "title": "The Vibe Coder @quantumaidev · 3月27日 What’s the best part of tech? One connection can change your ne",
+      "text": "The Vibe Coder @quantumaidev · 3月27日 What’s the best part of tech? One connection can change your next project, job, or startup. So let’s connect. If you’re a developer, indie hacker, founder, or builder working on something exciting in: AI, SaaS, we",
+      "url": "https://x.com/quantumaidev/status/2037546208290582846",
+      "score": 6,
+      "engagement": {
+        "likes": 6,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-03-27T15:04:06.000Z",
+      "category": "other"
+    },
+    {
+      "source": "Twitter",
+      "title": "Hasan Toor @hasantoxr · 4月14日 回复  @hasantoxr I saw most teams are running 5 or 6 different AI tools ",
+      "text": "Hasan Toor @hasantoxr · 4月14日 回复  @hasantoxr I saw most teams are running 5 or 6 different AI tools that don't share context with each other. One agent for sales. One for coding. One for ops. One for content. They all start from scratch every single ",
+      "url": "https://x.com/hasantoxr/status/2044065879290421714",
+      "score": 5,
+      "engagement": {
+        "likes": 5,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-14T14:50:57.000Z",
+      "category": "tools"
+    },
+    {
+      "source": "Twitter",
+      "title": "Cameron England @iamcamengland · 18小时 The biggest problem with most people's AI setup isn't the tool",
+      "text": "Cameron England @iamcamengland · 18小时 The biggest problem with most people's AI setup isn't the tools. It's that you can only automate what you can actually imagine automating. If you've never seen what a finance agent, a sales AI, and a content idea",
+      "url": "https://x.com/iamcamengland/status/2044446960464036015",
+      "score": 4,
+      "engagement": {
+        "likes": 4,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-15T16:05:14.000Z",
+      "category": "tools"
+    },
+    {
+      "source": "Twitter",
+      "title": "True Mark USA @TrueMarkUSA · 4月2日 We just launched our free AI Audit tool at True Mark USA! This is ",
+      "text": "True Mark USA @TrueMarkUSA · 4月2日 We just launched our free AI Audit tool at True Mark USA! This is something we built for business owners who know there are inefficiencies in their operation—but aren’t exactly sure where to start fixing them. The au",
+      "url": "https://x.com/TrueMarkUSA/status/2039443092378656989",
+      "score": 3,
+      "engagement": {
+        "likes": 3,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-01T20:41:38.000Z",
+      "category": "tools"
+    },
+    {
+      "source": "Twitter",
+      "title": "agentstack.dev @agentstack_dev · 4月4日 Not every workflow problem needs an agent. Some need automatio",
+      "text": "agentstack.dev @agentstack_dev · 4月4日 Not every workflow problem needs an agent. Some need automation. @MSPowerAutomate   is not an AI tool first. It is a workflow automation tool. Its purpose is to take repeatable business processes and execute them",
+      "url": "https://x.com/agentstack_dev/status/2040408793356317094",
+      "score": 3,
+      "engagement": {
+        "likes": 3,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-04T12:38:59.000Z",
+      "category": "tools"
+    },
+    {
+      "source": "Twitter",
+      "title": "jvxiao @jvxiao_me · 4月11日 Developer here, currently building an AI Background Remover tool.   Also s",
+      "text": "jvxiao @jvxiao_me · 4月11日 Developer here, currently building an AI Background Remover tool.   Also shipping micro SaaS products while sharing real build logs and epic fails.   If you're into indie hacking, AI tools, SaaS growth, or build in public — ",
+      "url": "https://x.com/jvxiao_me/status/2042874902521483470",
+      "score": 3,
+      "engagement": {
+        "likes": 3,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-11T07:58:26.000Z",
+      "category": "product"
+    },
+    {
+      "source": "Twitter",
+      "title": "Beursact  @beursact · 3月27日 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Jus",
+      "text": "Beursact  @beursact · 3月27日 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Just Three Days A single indie creator turned a ridiculous concept into viral gold.  SlapMac detects physical slaps on your MacBook using built-in sensor",
+      "url": "https://x.com/beursact/status/2037512794501968278",
+      "score": 3,
+      "engagement": {
+        "likes": 3,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-03-27T12:51:20.000Z",
+      "category": "product"
+    },
+    {
+      "source": "Twitter",
+      "title": "GooGZ AI @PaulGugAI · 20小时 Github surfing: Claude Code Job Search System An AI-powered job search sy",
+      "text": "GooGZ AI @PaulGugAI · 20小时 Github surfing: Claude Code Job Search System An AI-powered job search system built on Claude Code with 14 skill modes, a Go dashboard, PDF generation, and batch processing.  Any AI-savvy engineering job seekers out there s",
+      "url": "https://x.com/PaulGugAI/status/2044402347062030474",
+      "score": 2,
+      "engagement": {
+        "likes": 2,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-15T13:07:57.000Z",
+      "category": "bounty"
+    },
+    {
+      "source": "Twitter",
+      "title": "Arsal @arsalfeed · 4月13日 Someone built an AI job search system for Claude Code, ran it on 700+ appli",
+      "text": "Arsal @arsalfeed · 4月13日 Someone built an AI job search system for Claude Code, ran it on 700+ applications, and actually got hired. Now it's open-source. It's a full agentic workflow that scans career pages across 45+ companies, rewrites your CV to ",
+      "url": "https://x.com/arsalfeed/status/2043407580681343090",
+      "score": 2,
+      "engagement": {
+        "likes": 2,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-12T19:15:06.000Z",
+      "category": "ai-agents"
+    },
+    {
+      "source": "Twitter",
+      "title": "Zane Chen @chenzeling4 · 4月11日 Career-Ops — AI-powered job search system built on Claude Code. 14 sk",
+      "text": "Zane Chen @chenzeling4 · 4月11日 Career-Ops — AI-powered job search system built on Claude Code. 14 skill modes: resume tailoring, cover letters, interview prep, salary negotiation & more. Go dashboard, PDF generation, batch processing. Multilingual (7",
+      "url": "https://x.com/chenzeling4/status/2042767944782909890",
+      "score": 2,
+      "engagement": {
+        "likes": 2,
+        "retweets": 0,
+        "replies": 0
+      },
+      "ts": "2026-04-11T00:53:25.000Z",
+      "category": "ai-agents"
     }
-  ]
+  ],
+  "categories": {
+    "ai-agents": 11,
+    "bounty": 3,
+    "product": 6,
+    "tools": 9,
+    "other": 1
+  },
+  "summary": {
+    "top_opportunity": "Ramanuj Mukherjee @law_ninja · 4月1日 The most dangerous person in any industry right now is not the A",
+    "actionable_signals": 4
+  }
 }
