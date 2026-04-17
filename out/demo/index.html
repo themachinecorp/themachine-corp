@@ -20,18 +20,17 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: var(--bg); color: var(--text); font-family: 'Space Mono', monospace; line-height: 1.6; }
-    a { text-decoration: none; }
 
     nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
-    nav .logo { font-family: 'Press Start 2P', cursive; font-size: clamp(8px,1.5vw,12px); color: var(--cyan); white-space: nowrap; }
+    nav .logo { font-family: 'Press Start 2P', cursive; font-size: clamp(8px,1.5vw,12px); color: var(--cyan); text-decoration: none; white-space: nowrap; }
     nav .logo span { color: var(--gold); }
     nav .nav-links { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; }
-    nav .nav-links a { color: var(--text-dim); font-size: 12px; transition: color .2s; }
+    nav .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 12px; transition: color .2s; }
     nav .nav-links a:hover { color: var(--text); }
     nav .nav-links a.active { color: var(--gold); }
 
     .page-header { text-align: center; padding: 60px 24px 40px; }
-    .page-header h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(12px,2.5vw,22px); margin-bottom: 14px; line-height: 1.5; }
+    .page-header h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(12px,2.5vw,22px); color: var(--text); margin-bottom: 14px; line-height: 1.5; }
     .page-header p { color: var(--text-dim); font-size: clamp(12px,2vw,15px); }
 
     .section-label { font-family: 'Press Start 2P', cursive; font-size: clamp(9px,1.5vw,13px); color: var(--cyan); text-align: center; letter-spacing: 2px; margin-bottom: 8px; }
@@ -43,17 +42,14 @@
 
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; display: flex; flex-direction: column; gap: 16px; transition: border-color .3s, transform .3s; }
     .card:hover { border-color: rgba(0,229,255,.4); transform: translateY(-2px); }
-    .card.status-shipped { border-color: rgba(34,197,94,.35); }
-    .card.status-in_dev { border-color: rgba(234,179,8,.3); }
 
     .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-    .card-title { font-family: 'Press Start 2P', cursive; font-size: clamp(8px,1.2vw,11px); line-height: 1.6; word-break: break-word; }
+    .card-title { font-family: 'Press Start 2P', cursive; font-size: clamp(8px,1.2vw,11px); color: var(--text); line-height: 1.6; word-break: break-word; }
     .card-title .icon { font-size: clamp(14px,2.5vw,20px); margin-right: 6px; }
 
     .badge { font-size: clamp(7px,1vw,9px); font-weight: 700; padding: 4px 10px; border-radius: 3px; letter-spacing: 1px; white-space: nowrap; }
     .badge-live { background: rgba(34,197,94,.15); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
     .badge-building { background: rgba(234,179,8,.12); color: var(--yellow); border: 1px solid rgba(234,179,8,.3); }
-    .badge-idea { background: rgba(255,255,255,.05); color: var(--text-dim); border: 1px solid rgba(255,255,255,.1); }
 
     .card-desc { font-size: clamp(12px,1.5vw,14px); color: var(--text-dim); line-height: 1.7; flex: 1; }
 
@@ -66,126 +62,110 @@
     .progress-track { height: 8px; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
     .progress-fill { height: 100%; border-radius: 3px; }
     .progress-fill.green { background: var(--green); }
-    .progress-fill.gold { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+    .progress-fill.gold { background: var(--gold); }
+    .progress-fill.dim { background: rgba(255,255,255,.2); }
 
-    .card-btn { display: inline-block; text-align: center; padding: 10px 18px; font-size: clamp(9px,1.2vw,11px); font-weight: 700; border-radius: 3px; letter-spacing: 1px; align-self: flex-start; transition: opacity .2s; }
+    .card-btn { display: inline-block; text-align: center; padding: 10px 18px; font-size: clamp(9px,1.2vw,11px); font-weight: 700; text-decoration: none; border-radius: 3px; letter-spacing: 1px; align-self: flex-start; transition: opacity .2s; }
     .card-btn:hover { opacity: .85; }
     .btn-live { background: var(--gold); color: #000; }
-    .btn-coming { background: rgba(255,255,255,.06); color: var(--text-dim); border: 1px solid rgba(255,255,255,.1); cursor: default; pointer-events: none; }
-    .btn-private { background: rgba(34,197,94,.12); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
-
-    .empty-state { text-align: center; padding: 48px 24px; color: var(--text-dim); font-size: 13px; }
-    .empty-state .icon { font-size: 32px; display: block; margin-bottom: 12px; opacity: .4; }
+    .btn-coming { background: rgba(255,255,255,.06); color: var(--text-dim); border: 1px solid rgba(255,255,255,.1); cursor: default; }
 
     .note { text-align: center; color: var(--text-dim); font-size: clamp(10px,1.3vw,12px); margin-top: 32px; padding: 16px; border-top: 1px solid var(--border); }
-
-    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .card-tag { font-size: 10px; padding: 2px 8px; border-radius: 3px; background: rgba(0,229,255,.08); color: var(--cyan); border: 1px solid rgba(0,229,255,.15); }
+    .empty-state { color: var(--text-dim); font-size: 13px; text-align: center; padding: 32px; }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="logo">◈ <span>THEMACHINE</span> CORP.</a>
+  <a href="index.html" class="logo">◈ <span>THEMACHINE</span> CORP.</a>
   <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="https://themachinecorp.gumroad.com/" target="_blank">Products</a></li>
-    <li><a href="/demand-radar/">Demand Radar</a></li>
-    <li><a href="/team/">Team</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="demo.html" class="active">Demo</a></li>
+    <li><a href="team.html">Team</a></li>
   </ul>
 </nav>
 
 <div class="page-header">
-  <h1>// Built in Public</h1>
-  <p>What we're shipping. Updated automatically from our ops pipeline.</p>
+  <h1>// SaaS Demos</h1>
+  <p>Shipping progress. Real data. No decoration.</p>
 </div>
 
 <div class="container">
 
-  <!-- SHIPPED / LIVE -->
-  <p class="section-label">// LIVE</p>
+  <!-- Dynamically rendered: LIVE PRODUCTS -->
+  <p class="section-label">// LIVE PRODUCTS</p>
   <div class="section-divider"></div>
-  <p class="section-sub">Shipped and generating value.</p>
-  <div class="demo-grid" id="shipped-grid">
-    <!-- Rendered by JS -->
-  </div>
+  <p class="section-sub">Up and running. Used daily.</p>
+  <div class="demo-grid" id="live-grid"></div>
 
-  <!-- IN DEVELOPMENT -->
-  <p class="section-label" style="margin-top:60px">// IN DEVELOPMENT</p>
+  <!-- Dynamically rendered: IN DEVELOPMENT -->
+  <p class="section-label" style="margin-top:60px" id="dev-section-label">// IN DEVELOPMENT</p>
   <div class="section-divider"></div>
   <p class="section-sub">Actively building. Arriving soon.</p>
-  <div class="demo-grid" id="indev-grid">
-    <!-- Rendered by JS -->
-  </div>
+  <div class="demo-grid" id="dev-grid"></div>
 
-  <div class="note">
-    Pipeline updates automatically &nbsp;·&nbsp; Source: <a href="/demand-lab/" style="color:var(--green)">Demand Lab →</a>
-    &nbsp;·&nbsp; Last sync: <span id="sync-time">--</span>
-  </div>
+  <div class="note" id="footer-note"></div>
 
 </div>
 
 <script>
-(function() {
-  var DEMAND_DATA = {"updated":"2026-04-17T01:42:00Z","cards":[{"id":"dr-001","title":"AI Agent Side Hustle Dashboard","description":"Notion template + live tracking for AI agent income. Build once, sell forever on Gumroad.","source":"Twitter signal \u2014 305 likes, 0 replies","category":"product","priority":1,"status":"shipped","feasibility":9,"tech":"Web (HTML/CSS/JS)","effort":3,"owner":"Kevin","progress":100,"url":"https://themachinecorp.gumroad.com/l/fypiy","notes":"Live on Gumroad. $19/product."},{"id":"dr-002","title":"Demand Radar \u2014 Public Signal Feed","description":"Live display of developer pain points scraped from Twitter/Reddit/GitHub. Landing page + lead gen.","source":"Twitter \u2014 top signal category: AI agents (11 signals)","category":"product","priority":2,"status":"shipped","feasibility":9,"tech":"HTML + JSON API","effort":2,"owner":"Kevin","progress":100,"url":"https://themachine-corp.pages.dev/demand-radar","notes":"Public page live. Private feed at /demand-lab/private"},{"id":"dr-003","title":"Demand Radar \u2014 Private Ops Dashboard","description":"Internal version with demand cards, prioritization queue, and auto-demo integration.","source":"Founder request \u2014 2026-04-17","category":"tools","priority":1,"status":"in_dev","feasibility":8,"tech":"HTML + JSON + Cloudflare Pages","effort":3,"owner":"Kevin","progress":60,"url":"https://themachine-corp.pages.dev/demand-lab/private","notes":"Cards system + demo auto-sync in progress."},{"id":"dr-004","title":"AI Agent Engineer Playbook","description":"Comprehensive playbook: tools stack, income strategies, workflow templates. $19-99 on Gumroad.","source":"Twitter signal \u2014 'learn to build claude skills' thread","category":"product","priority":3,"status":"idea","feasibility":8,"tech":"Markdown + PDF","effort":5,"owner":"Mike","progress":0,"url":"","notes":"Needs: real case studies, income screenshots. Do NOT fake numbers."},{"id":"dr-005","title":"Algora Bounty Hunter Toolkit","description":"Script that auto-scans Algora for $100+ bounties with <5 claims, filters by language, and submits PR.","source":"Algora bounty scan \u2014 Coolify $250 bounties, 3c","category":"tools","priority":2,"status":"analyzing","feasibility":7,"tech":"Python + GitHub API","effort":4,"owner":"Kevin","progress":0,"url":"","notes":"Scanner works but Reddit/GitHub sources broken. Fix ws module first."},{"id":"dr-006","title":"Claude Code Job Search System","description":"AI agent that applies to jobs via Claude Code.\u6709\u4eba\u5728\u505a\uff0c\u6211\u4eec\u80fd\u505a\u5417\uff1f\u5dee\u5f02\u5316\uff1a\u4e13\u6ce8 remote contractor roles\u3002","source":"Twitter \u2014 @PaulGugAI @arsalfeed","category":"product","priority":4,"status":"idea","feasibility":4,"tech":"Claude Code + job board API","effort":8,"owner":"","progress":0,"url":"","notes":"High effort, uncertain demand. Monitor signal first before building."},{"id":"dr-007","title":"Twitter Signal \u2192 Content Pipeline","description":"Auto-capture high-engagement AI agent tweets \u2192 generate reply threads \u2192 auto-post via X API.","source":"Twitter \u2014 @AlexFinn 697 likes on Claude Opus 4.7 thread","category":"tools","priority":3,"status":"analyzing","feasibility":6,"tech":"Twitter API + Claude","effort":5,"owner":"Mike","progress":0,"url":"","notes":"X API free tier: read-only. Posting needs elevated access. Check cost."},{"id":"dr-008","title":"AI Audit Tool \u2014 Free Lead Gen","description":"Free tool: paste your workflow \u2192 get AI agent recommendations. Gathers emails for paid product upsell.","source":"Twitter \u2014 @TrueMarkUSA free AI audit tool launch","category":"product","priority":2,"status":"idea","feasibility":7,"tech":"HTML + AI API","effort":4,"owner":"Kevin","progress":0,"url":"","notes":"Lead gen play. Free tool \u2192 email capture \u2192 Gumroad product."}]};
+demandCards = {"updated":"2026-04-17T08:05:13.459Z","cards":[{"id":"dr-001","title":"AI Agent Side Hustle Dashboard","description":"Track your AI agent income opportunities in one place. Built with real Gumroad/Algora data.","source":"internal","category":"product","priority":1,"status":"shipped","feasibility":9,"tech":"HTML/CSS/JS + Gumroad API","effort":3,"owner":"Kevin","progress":100,"url":"https://themachine-corp.pages.dev/demo/","notes":"Live. Real-time Gumroad data embedded.","signals":5,"lastSignal":"2026-04-17T08:05:13.459Z"},{"id":"dr-002","title":"Demand Lab — Public Signal Feed","description":"Real-time Twitter signal stream for demand intelligence. 65+ signals and growing.","source":"internal","category":"tools","priority":1,"status":"shipped","feasibility":9,"tech":"HTML/CSS/JS","effort":2,"owner":"Kevin","progress":100,"url":"https://themachine-corp.pages.dev/demand-radar/","notes":"Live. Auto-updates hourly.","signals":65,"lastSignal":"2026-04-17T07:24:00.000Z"},{"id":"dr-003","title":"Demand Lab — Ops Dashboard","description":"Internal pipeline view: Idea → Analyzing → Ready → In Dev → Shipped.","source":"internal","category":"tools","priority":1,"status":"in_dev","feasibility":9,"tech":"HTML/CSS/JS","effort":1,"owner":"Kevin","progress":60,"url":"https://themachine-corp.pages.dev/demand-lab/","notes":"Live internal tool.","signals":0},{"id":"dr-004","title":"AI Agent Engineer Playbook","description":"Step-by-step guide: how to build, launch, and monetize AI agent products.","source":"gumroad","category":"product","priority":3,"status":"idea","feasibility":8,"tech":"Notion/Gumroad","effort":5,"owner":null,"progress":0,"url":"","notes":"Content ready. Page needed."},{"id":"dr-005","title":"Algora Bounty Hunter Toolkit","description":"Automated Algora scanning + PR submission pipeline. Currently on pause (account restricted).","source":"algora","category":"tools","priority":2,"status":"analyzing","feasibility":7,"tech":"Node.js + GH API","effort":3,"owner":"Kevin","progress":40,"url":"","notes":"Paused — Algora account restricted."},{"id":"dr-006","title":"Claude Code Job Search System","description":"Use Claude Code to automate LinkedIn/email job applications for devs.","source":"twitter","category":"product","priority":3,"status":"idea","feasibility":6,"tech":"Claude Code + browser","effort":7,"owner":null,"progress":0,"url":"","notes":"Concept."},{"id":"dr-007","title":"Twitter Signal → Content Pipeline","description":"Auto-generate blog posts/threads from trending Twitter discussions in your niche.","source":"twitter","category":"tools","priority":2,"status":"analyzing","feasibility":7,"tech":"Node.js + Twitter API","effort":4,"owner":"Mike","progress":20,"url":"","notes":"Mike owns this."},{"id":"dr-008","title":"AI Audit Tool — Free Lead Gen","description":"Free SEO/accessibility audit tool. Collects emails, upsells paid fixes report.","source":"twitter","category":"product","priority":3,"status":"idea","feasibility":7,"tech":"Node.js + Lighthouse","effort":3,"owner":null,"progress":0,"url":"","notes":"Concept."},{"id":"dr-019","title":"Built with AI — Market Signal","description":"People sharing AI-built products on HN. High-signal for tool demand.","source":"HN","category":"ai-agents","priority":2,"status":"analyzing","feasibility":5,"tech":"HN API + scraper","effort":null,"owner":"Kevin","progress":10,"url":"","notes":"dr-019 market signal card."},{"id":"dr-020","title":"Social Signal — Market Signal","description":"Organic Twitter discussions on AI agents, automation, and side hustles.","source":"Twitter","category":"tools","priority":1,"status":"analyzing","feasibility":5,"tech":"Twitter CDP / API","effort":null,"owner":"Mike","progress":15,"url":"","notes":"dr-020 social signal card."},{"id":"dr-021","title":"Autonomous Agents — Market Signal","description":"A curated collection of AI agent research papers released in 2026.","source":"GitHub","category":"ai-agents","priority":3,"status":"analyzing","feasibility":5,"tech":"GitHub API","effort":null,"owner":"Kevin","progress":5,"url":"","notes":"dr-021 market signal card."}]};
 
-  function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  const ICONS = { product:'🛒', tools:'🔧', 'ai-agents':'🤖', bounty:'⚡', other:'📦' };
+  const STATUS_BADGE = { shipped:'<span class="badge badge-live">● LIVE</span>', in_dev:'<span class="badge badge-building">◷ BUILDING</span>' };
+  const PROGRESS_COLOR = { shipped:'green', in_dev:'gold' };
 
-  function renderCard(card) {
-    var isLive = card.status === 'shipped';
-    var badge = isLive
-      ? '<span class="badge badge-live">● LIVE</span>'
-      : '<span class="badge badge-building">◷ BUILDING</span>';
-    var cardClass = 'card status-' + card.status;
-    var pct = card.progress || 0;
-    var pctClass = isLive ? 'green' : 'gold';
-    var fillClass = isLive ? 'green' : 'gold';
-    var btn = card.url
-      ? '<a href="' + esc(card.url) + '" class="card-btn btn-live" target="_blank">View →</a>'
+  function cardHTML(card) {
+    const icon = ICONS[card.category] || '📦';
+    const badge = STATUS_BADGE[card.status] || '';
+    const pct = card.progress || 0;
+    const color = PROGRESS_COLOR[card.status] || 'dim';
+    const url = card.url;
+    const btn = url
+      ? '<a href="' + url + '" class="card-btn btn-live">View →</a>'
       : '<span class="card-btn btn-coming">Coming Soon</span>';
-    var owner = card.owner ? '<span style="font-size:10px;color:var(--text-dim)">👤 ' + esc(card.owner) + '</span>' : '';
-    var tags = '';
-    if (card.category) {
-      var catLabels = { product:'Product', tools:'Tools', bounty:'Bounty', 'ai-agents':'AI Agent', other:'Other' };
-      tags += '<span class="card-tag">' + (catLabels[card.category] || card.category) + '</span>';
-    }
-    if (card.feasibility) tags += '<span class="card-tag">F:' + card.feasibility + '/10</span>';
-    if (card.effort) tags += '<span class="card-tag">' + card.effort + 'd effort</span>';
-    return '<div class="' + cardClass + '">' +
+    return '<div class="card">' +
       '<div class="card-header">' +
-        '<div class="card-title">📦 ' + esc(card.title) + '</div>' + badge +
+        '<div class="card-title"><span class="icon">' + icon + '</span>' + card.title + '</div>' +
+        badge +
       '</div>' +
-      '<p class="card-desc">' + esc(card.description) + '</p>' +
-      (tags ? '<div class="card-tags">' + tags + '</div>' : '') +
+      '<p class="card-desc">' + (card.description || '') + '</p>' +
       '<div>' +
         '<div class="progress-meta">' +
           '<span class="progress-label">PROGRESS</span>' +
-          '<span class="progress-pct ' + pctClass + '">' + pct + '%</span>' +
+          '<span class="progress-pct ' + color + '">' + pct + '%</span>' +
         '</div>' +
         '<div class="progress-track">' +
-          '<div class="progress-fill ' + fillClass + '" style="width:' + pct + '%"></div>' +
+          '<div class="progress-fill ' + color + '" style="width:' + pct + '%"></div>' +
         '</div>' +
       '</div>' +
-      '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">' +
-        owner +
-        btn +
-      '</div>' +
+      btn +
     '</div>';
   }
 
-  var data = DEMAND_DATA;
-  var cards = data.cards || [];
-  var shipped = cards.filter(function(c){ return c.status === 'shipped'; });
-  var indev = cards.filter(function(c){ return c.status === 'in_dev'; });
-  var updated = new Date(data.updated).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Shanghai'});
-  document.getElementById('sync-time').textContent = updated;
-  document.getElementById('shipped-grid').innerHTML =
-    shipped.length ? shipped.map(renderCard).join('')
-      : '<div class="empty-state"><span class="icon">📦</span>Nothing shipped yet. Check back soon.</div>';
-  document.getElementById('indev-grid').innerHTML =
-    indev.length ? indev.map(renderCard).join('')
-      : '<div class="empty-state"><span class="icon">🔨</span>Nothing in development yet. Queue is being analyzed.</div>';
-})();;
+  const cards = (demandCards.cards || demandCards);
+
+  // LIVE = shipped
+  const live = cards.filter(c => c.status === 'shipped');
+  document.getElementById('live-grid').innerHTML =
+    live.length ? live.map(cardHTML).join('') : '<p class="empty-state">Nothing shipped yet.</p>';
+
+  // IN DEV = in_dev
+  const dev = cards.filter(c => c.status === 'in_dev');
+  if (!dev.length) {
+    document.getElementById('dev-section-label').style.display = 'none';
+    document.querySelector('#dev-grid').parentElement.querySelector('.section-divider').style.display = 'none';
+    document.querySelector('#dev-grid').parentElement.querySelector('.section-sub').style.display = 'none';
+  }
+  document.getElementById('dev-grid').innerHTML =
+    dev.length ? dev.map(cardHTML).join('') : '<p class="empty-state">Nothing in development yet.</p>';
+
+  // Footer
+  const updated = new Date(demandCards.updated);
+  const opts = { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' };
+  document.getElementById('footer-note').textContent =
+    'Demand Lab · ' + cards.length + ' cards · Updated: ' + updated.toLocaleString('en-US', opts);
 </script>
 
 </body>
