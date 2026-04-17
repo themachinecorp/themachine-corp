@@ -127,8 +127,9 @@
 
 <script>
 (function() {
+  var DEMAND_DATA = {"updated":"2026-04-17T01:42:00Z","cards":[{"id":"dr-001","title":"AI Agent Side Hustle Dashboard","description":"Notion template + live tracking for AI agent income. Build once, sell forever on Gumroad.","source":"Twitter signal \u2014 305 likes, 0 replies","category":"product","priority":1,"status":"shipped","feasibility":9,"tech":"Web (HTML/CSS/JS)","effort":3,"owner":"Kevin","progress":100,"url":"https://themachinecorp.gumroad.com/l/fypiy","notes":"Live on Gumroad. $19/product."},{"id":"dr-002","title":"Demand Radar \u2014 Public Signal Feed","description":"Live display of developer pain points scraped from Twitter/Reddit/GitHub. Landing page + lead gen.","source":"Twitter \u2014 top signal category: AI agents (11 signals)","category":"product","priority":2,"status":"shipped","feasibility":9,"tech":"HTML + JSON API","effort":2,"owner":"Kevin","progress":100,"url":"https://themachine-corp.pages.dev/demand-radar","notes":"Public page live. Private feed at /demand-radar/private"},{"id":"dr-003","title":"Demand Radar \u2014 Private Ops Dashboard","description":"Internal version with demand cards, prioritization queue, and auto-demo integration.","source":"Founder request \u2014 2026-04-17","category":"tools","priority":1,"status":"in_dev","feasibility":8,"tech":"HTML + JSON + Cloudflare Pages","effort":3,"owner":"Kevin","progress":60,"url":"https://themachine-corp.pages.dev/demand-radar/private","notes":"Cards system + demo auto-sync in progress."},{"id":"dr-004","title":"AI Agent Engineer Playbook","description":"Comprehensive playbook: tools stack, income strategies, workflow templates. $19-99 on Gumroad.","source":"Twitter signal \u2014 'learn to build claude skills' thread","category":"product","priority":3,"status":"idea","feasibility":8,"tech":"Markdown + PDF","effort":5,"owner":"Mike","progress":0,"url":"","notes":"Needs: real case studies, income screenshots. Do NOT fake numbers."},{"id":"dr-005","title":"Algora Bounty Hunter Toolkit","description":"Script that auto-scans Algora for $100+ bounties with <5 claims, filters by language, and submits PR.","source":"Algora bounty scan \u2014 Coolify $250 bounties, 3c","category":"tools","priority":2,"status":"analyzing","feasibility":7,"tech":"Python + GitHub API","effort":4,"owner":"Kevin","progress":0,"url":"","notes":"Scanner works but Reddit/GitHub sources broken. Fix ws module first."},{"id":"dr-006","title":"Claude Code Job Search System","description":"AI agent that applies to jobs via Claude Code.\u6709\u4eba\u5728\u505a\uff0c\u6211\u4eec\u80fd\u505a\u5417\uff1f\u5dee\u5f02\u5316\uff1a\u4e13\u6ce8 remote contractor roles\u3002","source":"Twitter \u2014 @PaulGugAI @arsalfeed","category":"product","priority":4,"status":"idea","feasibility":4,"tech":"Claude Code + job board API","effort":8,"owner":"","progress":0,"url":"","notes":"High effort, uncertain demand. Monitor signal first before building."},{"id":"dr-007","title":"Twitter Signal \u2192 Content Pipeline","description":"Auto-capture high-engagement AI agent tweets \u2192 generate reply threads \u2192 auto-post via X API.","source":"Twitter \u2014 @AlexFinn 697 likes on Claude Opus 4.7 thread","category":"tools","priority":3,"status":"analyzing","feasibility":6,"tech":"Twitter API + Claude","effort":5,"owner":"Mike","progress":0,"url":"","notes":"X API free tier: read-only. Posting needs elevated access. Check cost."},{"id":"dr-008","title":"AI Audit Tool \u2014 Free Lead Gen","description":"Free tool: paste your workflow \u2192 get AI agent recommendations. Gathers emails for paid product upsell.","source":"Twitter \u2014 @TrueMarkUSA free AI audit tool launch","category":"product","priority":2,"status":"idea","feasibility":7,"tech":"HTML + AI API","effort":4,"owner":"Kevin","progress":0,"url":"","notes":"Lead gen play. Free tool \u2192 email capture \u2192 Gumroad product."}]};
+
   function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function scoreClass(v) { return v >= 7 ? 'green' : v >= 4 ? 'gold' : 'dim'; }
 
   function renderCard(card) {
     var isLive = card.status === 'shipped';
@@ -172,26 +173,19 @@
     '</div>';
   }
 
-  fetch('/demand-radar/demand-cards.json?_=' + Date.now())
-    .then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(data) {
-      if (!data) { document.getElementById('sync-time').textContent = 'unavailable'; return; }
-      var cards = data.cards || [];
-      var shipped = cards.filter(function(c){ return c.status === 'shipped'; });
-      var indev = cards.filter(function(c){ return c.status === 'in_dev'; });
-      var updated = new Date(data.updated).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Shanghai'});
-      document.getElementById('sync-time').textContent = updated;
-      document.getElementById('shipped-grid').innerHTML =
-        shipped.length ? shipped.map(renderCard).join('')
-          : '<div class="empty-state"><span class="icon">📦</span>Nothing shipped yet. Check back soon.</div>';
-      document.getElementById('indev-grid').innerHTML =
-        indev.length ? indev.map(renderCard).join('')
-          : '<div class="empty-state"><span class="icon">🔨</span>Nothing in development yet. Queue is being analyzed.</div>';
-    })
-    .catch(function() {
-      document.getElementById('sync-time').textContent = 'failed';
-    });
-})();
+  var data = DEMAND_DATA;
+  var cards = data.cards || [];
+  var shipped = cards.filter(function(c){ return c.status === 'shipped'; });
+  var indev = cards.filter(function(c){ return c.status === 'in_dev'; });
+  var updated = new Date(data.updated).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Shanghai'});
+  document.getElementById('sync-time').textContent = updated;
+  document.getElementById('shipped-grid').innerHTML =
+    shipped.length ? shipped.map(renderCard).join('')
+      : '<div class="empty-state"><span class="icon">📦</span>Nothing shipped yet. Check back soon.</div>';
+  document.getElementById('indev-grid').innerHTML =
+    indev.length ? indev.map(renderCard).join('')
+      : '<div class="empty-state"><span class="icon">🔨</span>Nothing in development yet. Queue is being analyzed.</div>';
+})();;
 </script>
 
 </body>
