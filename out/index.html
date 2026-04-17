@@ -64,6 +64,19 @@
     }
     .nav-cta:hover { opacity: .85; }
 
+    .live-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-right: 6px;
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.8); }
+    }
+
     /* HERO */
     .hero {
       text-align: center;
@@ -271,6 +284,7 @@
 <nav>
   <a href="/" class="nav-logo">◈ THEMACHINE</a>
   <div class="nav-links">
+    <span class="live-dot"></span>
     <a href="/demand-lab/">DEMAND LAB</a>
     <a href="/demand-radar/">DEMAND RADAR</a>
     <a href="/demo/">DEMO</a>
@@ -296,12 +310,12 @@
 <!-- STATS -->
 <div class="stats-strip">
   <div class="stat">
-    <div class="stat-val">65+</div>
-    <div class="stat-label">LIVE SIGNALS</div>
+    <div class="stat-val">13</div>
+    <div class="stat-label">SIGNALS TRACKED</div>
   </div>
   <div class="stat">
-    <div class="stat-val">11</div>
-    <div class="stat-label">DEMAND CARDS</div>
+    <div class="stat-val">6</div>
+    <div class="stat-label">DEMAND CARDS SHIPPED</div>
   </div>
   <div class="stat">
     <div class="stat-val">2</div>
@@ -331,7 +345,7 @@
         <div class="product-name">Demand Lab — Public Signal Feed</div>
         <span class="badge badge-live">● LIVE</span>
       </div>
-      <div class="product-desc">Real-time Twitter + HN signal stream for AI agent market intelligence. 65+ signals and growing.</div>
+      <div class="product-desc">Real-time Twitter + HN signal stream for AI agent market intelligence. 13 signals tracked and updated hourly.</div>
       <div><a href="/demand-radar/" class="product-link">Open Radar →</a></div>
     </div>
   </div>
