@@ -4,289 +4,606 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demand Lab — THEMACHINE Corp.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0e14;
-      --surface: #111827;
-      --surface2: #1a2332;
-      --surface3: #243044;
-      --border: #2a3a55;
-      --border2: #3a5070;
-      --text: #e2e8f0;
-      --text-dim: #8899aa;
+      --bg: #0a0a0f;
+      --surface: #111120;
+      --surface2: #1a1a2e;
+      --surface3: #1e1e32;
+      --text: #e0e0e0;
+      --text-dim: #666;
+      --text-mid: #999;
+      --gold: #d4af37;
       --cyan: #00e5ff;
-      --gold: #fbbf24;
       --green: #22c55e;
+      --yellow: #eab308;
       --orange: #f97316;
       --red: #ef4444;
-      --purple: #a78bfa;
+      --border: rgba(0,229,255,.12);
+      --border2: rgba(255,255,255,.07);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'Space Mono', monospace; min-height: 100vh; }
-    a { color: var(--cyan); }
+    body { background: var(--bg); color: var(--text); font-family: 'Space Mono', monospace; line-height: 1.6; }
+    a { color: inherit; }
 
     /* NAV */
-    nav { display: flex; align-items: center; padding: 14px 20px; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.4); }
-    nav .logo { font-size: 11px; color: var(--cyan); text-decoration: none; letter-spacing: 1px; }
-    nav .logo span { color: var(--purple); }
-    nav .nav-links { display: flex; gap: 20px; list-style: none; margin-left: auto; }
-    nav .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 11px; transition: color .2s; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 24px; border-bottom: 1px solid var(--border);
+      flex-wrap: wrap; gap: 8px;
+    }
+    nav .logo { font-family: 'Press Start 2P', cursive; font-size: 9px; color: var(--green); text-decoration: none; }
+    nav .logo span { color: var(--gold); }
+    .access-badge {
+      background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.35);
+      color: var(--green); font-size: 9px; font-weight: 700;
+      padding: 3px 10px; border-radius: 3px; letter-spacing: 1px;
+    }
+    nav .nav-links { display: flex; gap: 20px; list-style: none; }
+    nav .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 11px; }
     nav .nav-links a:hover { color: var(--text); }
-    nav .nav-links a.active { color: var(--purple); }
 
-    /* HERO */
-    .hero { padding: 40px 20px 30px; text-align: center; border-bottom: 1px solid var(--border); }
-    .hero h1 { font-size: clamp(20px, 4vw, 36px); color: var(--text); margin-bottom: 12px; letter-spacing: -0.5px; }
-    .hero h1 span { color: var(--purple); }
-    .hero p { color: var(--text-dim); font-size: 13px; max-width: 520px; margin: 0 auto 24px; line-height: 1.7; }
-    .hero-stats { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .hero-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; text-align: center; min-width: 100px; }
-    .hero-stat .num { font-size: 22px; font-weight: 700; color: var(--cyan); }
-    .hero-stat .num.orange { color: var(--orange); }
-    .hero-stat .num.green { color: var(--green); }
-    .hero-stat .lbl { font-size: 10px; color: var(--text-dim); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px 80px; }
 
-    /* SIGNAL STRIP */
-    .signal-strip { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 20px; }
-    .signal-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 10px; color: var(--text-dim); }
-    .signal-meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-    .signal-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
-    .signal-scroll::-webkit-scrollbar { height: 3px; }
-    .signal-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    .sig-chip { flex-shrink: 0; background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; font-size: 10px; color: var(--text-dim); text-decoration: none; white-space: nowrap; transition: all .15s; }
-    .sig-chip:hover { border-color: var(--cyan); color: var(--cyan); }
-    .sig-chip .cat { color: var(--purple); margin-right: 4px; }
-    .sig-chip .likes { color: var(--gold); margin-left: 4px; }
+    /* SECTION HEADER */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 24px 0 12px; gap: 12px; flex-wrap: wrap;
+    }
+    .section-title {
+      font-family: 'Press Start 2P', cursive; font-size: 8px;
+      color: var(--cyan); letter-spacing: 1px;
+    }
+    .section-title.green { color: var(--green); }
+    .section-title.gold { color: var(--gold); }
+    .section-count {
+      font-size: 10px; color: var(--text-dim);
+      background: var(--surface); border: 1px solid var(--border2);
+      padding: 2px 10px; border-radius: 20px;
+    }
+    .divider { height: 1px; background: var(--border2); margin: 8px 0 16px; }
 
-    /* PIPELINE */
-    .pipeline { padding: 32px 20px; max-width: 1100px; margin: 0 auto; }
-    .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
-    .section-header h2 { font-size: 13px; color: var(--text); text-transform: uppercase; letter-spacing: 2px; }
-    .section-header .badge { background: var(--purple); color: var(--bg); font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700; }
+    /* ===== SIGNALS STRIP ===== */
+    .signals-strip {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 8px; overflow: hidden;
+      margin-top: 16px;
+    }
+    .signals-meta {
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 16px; border-bottom: 1px solid var(--border2);
+      font-size: 10px; color: var(--text-dim); flex-wrap: wrap;
+    }
+    .signals-meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .signals-meta .sep { color: var(--border2); }
+    .signals-scroll {
+      height: 120px; overflow-y: auto; padding: 10px 16px;
+      display: flex; flex-direction: column; gap: 6px;
+      scrollbar-width: thin; scrollbar-color: var(--surface3) transparent;
+    }
+    .signals-scroll::-webkit-scrollbar { width: 4px; }
+    .signals-scroll::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 2px; }
 
-    /* FILTER CHIPS */
-    .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
-    .filter-chip { background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); padding: 5px 14px; border-radius: 20px; font-size: 11px; font-family: 'Space Mono', monospace; cursor: pointer; transition: all .15s; }
-    .filter-chip:hover { border-color: var(--purple); color: var(--purple); }
-    .filter-chip.active { background: var(--purple); border-color: var(--purple); color: var(--bg); font-weight: 700; }
-    .filter-chip.all.active { background: var(--cyan); border-color: var(--cyan); }
-    .filter-chip.shipped.active { background: var(--green); border-color: var(--green); }
-    .filter-chip.in_dev.active { background: var(--orange); border-color: var(--orange); }
+    .signal-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 6px 10px; border-radius: 5px;
+      background: var(--surface2); border: 1px solid var(--border2);
+      font-size: 11px; flex-shrink: 0; transition: border-color .2s;
+    }
+    .signal-row:hover { border-color: var(--cyan); }
+    .signal-row .cat {
+      font-size: 9px; padding: 1px 6px; border-radius: 3px;
+      font-weight: 700; white-space: nowrap; flex-shrink: 0;
+    }
+    .cat-ai { background: rgba(0,229,255,.15); color: var(--cyan); }
+    .cat-bounty { background: rgba(234,179,8,.15); color: var(--yellow); }
+    .cat-product { background: rgba(249,115,22,.15); color: var(--orange); }
+    .cat-tools { background: rgba(34,197,94,.15); color: var(--green); }
+    .cat-other { background: rgba(255,255,255,.07); color: var(--text-dim); }
+    .signal-row .text { flex: 1; color: var(--text); line-height: 1.4; }
+    .signal-row .text a { color: var(--text); text-decoration: none; }
+    .signal-row .text a:hover { color: var(--cyan); }
+    .signal-row .eng { font-size: 10px; color: var(--text-dim); white-space: nowrap; display: flex; gap: 6px; flex-shrink: 0; }
+    .signal-row .eng span { display: flex; align-items: center; gap: 2px; }
+    .signal-empty { text-align: center; padding: 30px; color: var(--text-dim); font-size: 12px; }
 
-    /* CARDS GRID */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+    /* ===== DEMAND CARDS ===== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
 
-    /* DEMAND CARD */
-    .dcard { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; transition: border-color .2s; }
-    .dcard:hover { border-color: var(--border2); }
-    .dcard-header { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-    .dcard-title { font-size: 12px; font-weight: 700; color: var(--text); flex: 1; line-height: 1.4; }
-    .dcard-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
-    .badge { font-size: 9px; padding: 2px 7px; border-radius: 4px; font-weight: 700; letter-spacing: 0.5px; }
-    .badge-p1 { background: rgba(0,229,255,.15); color: var(--cyan); border: 1px solid rgba(0,229,255,.3); }
-    .badge-p2 { background: rgba(251,191,36,.12); color: var(--gold); border: 1px solid rgba(251,191,36,.25); }
-    .badge-p3 { background: rgba(167,139,250,.12); color: var(--purple); border: 1px solid rgba(167,139,250,.25); }
-    .badge-cat { background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border); }
-    .badge-status { border: 1px solid; }
-    .badge-idea { color: var(--text-dim); border-color: rgba(255,255,255,.15); }
-    .badge-analyzing { color: var(--cyan); border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.08); }
-    .badge-ready { color: var(--gold); border-color: rgba(251,191,36,.4); background: rgba(251,191,36,.08); }
-    .badge-in_dev { color: var(--orange); border-color: rgba(249,115,22,.4); background: rgba(249,115,22,.08); }
-    .badge-shipped { color: var(--green); border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.08); }
-    .dcard-desc { font-size: 11px; color: var(--text-dim); line-height: 1.6; margin-bottom: 10px; }
-    .dcard-stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+    .dcard {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 8px; padding: 16px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: border-color .2s, transform .2s;
+    }
+    .dcard:hover { border-color: var(--cyan); transform: translateY(-1px); }
+    .dcard.status-in_dev { border-color: rgba(234,179,8,.3); background: rgba(234,179,8,.04); }
+    .dcard.status-shipped { border-color: rgba(34,197,94,.3); background: rgba(34,197,94,.04); }
+
+    .dcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .dcard-title { font-size: 12px; font-weight: 700; color: var(--text); line-height: 1.4; flex: 1; }
+    .dcard-id { font-size: 9px; color: var(--text-dim); flex-shrink: 0; margin-top: 2px; }
+
+    .dcard-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+    .dcard-badge {
+      font-size: 9px; padding: 2px 7px; border-radius: 3px;
+      font-weight: 700; white-space: nowrap;
+    }
+    .badge-p1 { background: rgba(239,68,68,.2); color: var(--red); border: 1px solid rgba(239,68,68,.4); }
+    .badge-p2 { background: rgba(249,115,22,.15); color: var(--orange); border: 1px solid rgba(249,115,22,.35); }
+    .badge-p3 { background: rgba(234,179,8,.12); color: var(--yellow); border: 1px solid rgba(234,179,8,.3); }
+    .badge-cat { background: rgba(0,229,255,.1); color: var(--cyan); border: 1px solid rgba(0,229,255,.2); }
+    .badge-status-idea { background: rgba(255,255,255,.07); color: var(--text-dim); border: 1px solid rgba(255,255,255,.12); }
+    .badge-status-analyzing { background: rgba(0,229,255,.1); color: var(--cyan); border: 1px solid rgba(0,229,255,.25); }
+    .badge-status-ready { background: rgba(234,179,8,.12); color: var(--yellow); border: 1px solid rgba(234,179,8,.3); }
+    .badge-status-in_dev { background: rgba(249,115,22,.15); color: var(--orange); border: 1px solid rgba(249,115,22,.35); }
+    .badge-status-shipped { background: rgba(34,197,94,.15); color: var(--green); border: 1px solid rgba(34,197,94,.35); }
+
+    .dcard-desc { font-size: 11px; color: var(--text-mid); line-height: 1.5; flex: 1; }
+    .dcard-source { font-size: 10px; color: var(--text-dim); line-height: 1.4; }
+
+    .dcard-stats { display: flex; gap: 12px; flex-wrap: wrap; }
     .dcard-stat { display: flex; flex-direction: column; gap: 2px; }
-    .dcard-stat .label { font-size: 9px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
-    .dcard-stat .value { font-size: 12px; font-weight: 700; }
+    .dcard-stat .label { font-size: 9px; color: var(--text-dim); }
+    .dcard-stat .value { font-size: 11px; font-weight: 700; color: var(--text); }
     .dcard-stat .value.high { color: var(--green); }
-    .dcard-stat .value.mid { color: var(--gold); }
+    .dcard-stat .value.mid { color: var(--yellow); }
     .dcard-stat .value.low { color: var(--red); }
-    .dcard-owner { font-size: 10px; color: var(--text-dim); margin-bottom: 8px; }
-    .dcard-url { display: inline-block; font-size: 10px; color: var(--cyan); text-decoration: none; border: 1px solid rgba(0,229,255,.3); padding: 2px 8px; border-radius: 4px; margin-bottom: 10px; }
-    .dcard-url:hover { background: rgba(0,229,255,.08); }
 
-    /* PROGRESS */
-    .dcard-progress-wrap { margin-bottom: 10px; }
-    .dcard-progress-label { display: flex; justify-content: space-between; font-size: 9px; color: var(--text-dim); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
-    .dcard-progress-bar { height: 4px; background: var(--surface3); border-radius: 2px; overflow: hidden; }
-    .dcard-progress-fill { height: 100%; border-radius: 2px; transition: width .5s; }
-    .dcard-progress-fill.orange { background: var(--orange); }
-    .dcard-progress-fill.green { background: var(--green); }
+    .dcard-progress-wrap { display: flex; flex-direction: column; gap: 4px; }
+    .dcard-progress-bar {
+      height: 4px; background: var(--surface3); border-radius: 2px; overflow: hidden;
+    }
+    .dcard-progress-fill {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--yellow));
+      transition: width .5s ease;
+    }
+    .dcard-progress-fill.done { background: var(--green); }
+    .dcard-progress-label { font-size: 10px; color: var(--text-dim); display: flex; justify-content: space-between; }
 
-    /* PIPELINE FLOW */
-    .pipeline-flow { display: flex; align-items: center; gap: 3px; font-size: 11px; margin-top: 10px; }
+    .dcard-actions { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+    .dcard-actions .owner { font-size: 10px; color: var(--text-dim); margin-right: auto; }
+
+    .action-btn {
+      padding: 4px 12px; border-radius: 4px; font-size: 10px;
+      cursor: pointer; border: 1px solid; font-family: 'Space Mono', monospace;
+      transition: all .15s; background: transparent;
+    }
+    .action-btn.idea { border-color: rgba(255,255,255,.15); color: var(--text-dim); }
+    .action-btn.idea:hover { border-color: var(--cyan); color: var(--cyan); }
+    .action-btn.analyzing { border-color: rgba(0,229,255,.3); color: var(--cyan); }
+    .action-btn.analyzing:hover { background: rgba(0,229,255,.1); }
+    .action-btn.ready { border-color: rgba(234,179,8,.4); color: var(--yellow); }
+    .action-btn.ready:hover { background: rgba(234,179,8,.1); }
+    .action-btn.in_dev { border-color: rgba(249,115,22,.4); color: var(--orange); }
+    .action-btn.in_dev:hover { background: rgba(249,115,22,.1); }
+    .action-btn.shipped { border-color: rgba(34,197,94,.4); color: var(--green); }
+    .action-btn.shipped:hover { background: rgba(34,197,94,.1); }
+
+    /* ===== PIPELINE FLOW (read-only) ===== */
+    .pipeline-flow {
+      display: flex; align-items: center; gap: 2px;
+      font-size: 11px; margin-left: auto;
+    }
     .pf-step { color: var(--border2); transition: color .2s; }
-    .pf-step.active { color: var(--purple); font-weight: 700; }
+    .pf-step.active { color: var(--cyan); font-weight: 700; }
     .pf-arrow { color: var(--border2); font-size: 9px; }
 
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 20px; text-align: center; font-size: 10px; color: var(--text-dim); }
-    footer a { color: var(--cyan); }
+    /* ===== ADD CARD ===== */
+    .add-card-btn {
+      background: var(--surface2); border: 1px dashed rgba(0,229,255,.3);
+      border-radius: 8px; padding: 16px; text-align: center;
+      cursor: pointer; transition: all .2s; color: var(--text-dim);
+      font-size: 11px; display: flex; align-items: center;
+      justify-content: center; gap: 8px;
+    }
+    .add-card-btn:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(0,229,255,.04); }
 
-    /* EMPTY */
-    .empty { text-align: center; padding: 40px; color: var(--text-dim); font-size: 12px; }
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.7); z-index: 100;
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--surface); border: 1px solid rgba(0,229,255,.25);
+      border-radius: 10px; padding: 28px; width: 100%; max-width: 520px;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal h2 { font-family: 'Press Start 2P', cursive; font-size: 10px; color: var(--gold); margin-bottom: 20px; }
+    .modal .close {
+      float: right; cursor: pointer; color: var(--text-dim);
+      font-size: 18px; line-height: 1; padding: 4px;
+    }
+    .modal .close:hover { color: var(--text); }
+    .form-row { margin-bottom: 14px; }
+    .form-row label { display: block; font-size: 10px; color: var(--text-dim); margin-bottom: 4px; letter-spacing: .5px; }
+    .form-row input, .form-row textarea, .form-row select {
+      width: 100%; background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 5px; color: var(--text); font-family: 'Space Mono', monospace;
+      font-size: 12px; padding: 8px 10px; outline: none;
+    }
+    .form-row input:focus, .form-row textarea:focus, .form-row select:focus { border-color: var(--cyan); }
+    .form-row textarea { resize: vertical; min-height: 70px; }
+    .form-row select { cursor: pointer; }
+    .form-row-half { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .modal-submit {
+      width: 100%; padding: 10px; background: var(--gold); color: #000;
+      border: none; border-radius: 5px; font-family: 'Press Start 2P', cursive;
+      font-size: 9px; cursor: pointer; margin-top: 8px; transition: opacity .2s;
+    }
+    .modal-submit:hover { opacity: .85; }
+
+    /* ===== LEGEND ===== */
+    .legend {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      padding: 12px 16px; background: var(--surface);
+      border: 1px solid var(--border2); border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--text-dim); }
+    .legend-item strong { color: var(--text-mid); }
+
+    /* ===== FILTER BAR ===== */
+    .filter-row {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .filter-chip {
+      padding: 4px 12px; border-radius: 20px; font-size: 10px;
+      border: 1px solid var(--border2); background: transparent;
+      color: var(--text-dim); cursor: pointer; transition: all .15s;
+      font-family: 'Space Mono', monospace;
+    }
+    .filter-chip:hover { border-color: var(--cyan); color: var(--cyan); }
+    .filter-chip.active { background: var(--cyan); color: var(--bg); border-color: var(--cyan); font-weight: 700; }
+
+    .footer { text-align: center; padding: 24px; font-size: 10px; color: var(--text-dim); border-top: 1px solid var(--border2); margin-top: 40px; }
   </style>
 </head>
 <body>
+  <nav>
+    <a href="/" class="logo">◈ THEMACHINE <span>CORP.</span></a>
+    
+    <ul class="nav-links">
+      <li><a href="/demand-radar/">← Signals</a></li>
+      <li><a href="/demand-lab/" class="active">Demand Lab</a></li><li><a href="/">Home</a></li>
+    </ul>
+  </nav>
 
-<nav>
-  <a href="/" class="logo">◈ THEMACHINE <span>CORP.</span></a>
-  <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/demand-radar/">Demand Radar</a></li>
-    <li><a href="/demand-lab/" class="active">Demand Lab</a></li>
-    <li><a href="/demo/">Demo</a></li>
-  </ul>
-</nav>
+  <div class="container">
 
-<div class="hero">
-  <h1>Demand <span>Lab</span></h1>
-  <p>From raw developer signal to shipped product. Every card below represents a real opportunity we're tracking, prioritizing, and turning into revenue.</p>
-  <div class="hero-stats" id="hero-stats"></div>
-</div>
+    <!-- ===== SIGNALS ===== -->
+    <div class="section-header">
+      <span class="section-title">📡 LIVE SIGNALS</span>
+      <span class="section-count" id="signal-count-label">Loading...</span>
+    </div>
+    <div class="divider"></div>
+    <div class="signals-strip">
+      <div class="signals-meta">
+        <span class="dot"></span>
+        <span>Twitter</span>
+        <span class="sep">·</span>
+        <span>Reddit</span>
+        <span class="sep">·</span>
+        <span>GitHub</span>
+        <span class="sep">·</span>
+        <span style="margin-left:auto">Last updated: <span id="signals-updated">--</span></span>
+      </div>
+      <div class="signals-scroll" id="signals-scroll">
+        <div class="signal-empty">Loading signals...</div>
+      </div>
+    </div>
 
-<!-- Signal Strip -->
-<div class="signal-strip">
-  <div class="signal-meta">
-    <div class="dot"></div>
-    <span>Live Signals</span>
-    <span id="signal-count-label" style="margin-left:8px;color:var(--text-dim)">—</span>
+    <!-- ===== DEMAND CARDS ===== -->
+    <div class="section-header" style="margin-top:32px;">
+      <span class="section-title green">🎯 DEMAND PIPELINE</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span class="section-count" id="card-count-label">-- cards</span>
+        <span class="section-count" style="color:var(--green);" id="p1-count"></span>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="filter-row">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="idea">💡 Ideas</button>
+      <button class="filter-chip" data-filter="analyzing">🔍 Analyzing</button>
+      <button class="filter-chip" data-filter="ready">✅ Ready</button>
+      <button class="filter-chip" data-filter="in_dev">🔥 In Dev</button>
+      <button class="filter-chip" data-filter="shipped">🚀 Shipped</button>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><strong>P1</strong> — Do first</div>
+      <div class="legend-item"><strong>P2</strong> — Worth doing</div>
+      <div class="legend-item"><strong>P3</strong> — Nice to have</div>
+      <div class="legend-item"><strong>F</strong> — Feasibility (1-10)</div>
+      <div class="legend-item"><strong>E</strong> — Effort (days)</div>
+    </div>
+
+    <div class="cards-grid" id="cards-grid">
+      <!-- Cards rendered by JS -->
+    </div>
+
+    <div class="add-card-btn" onclick="openModal()">
+      <span>+</span> Add Demand Card
+    </div>
+
   </div>
-  <div class="signal-scroll" id="signals-scroll"></div>
-</div>
 
-<!-- Pipeline -->
-<div class="pipeline">
-  <div class="section-header">
-    <h2>Demand Pipeline</h2>
-    <span class="badge" id="card-count-label">8 cards</span>
+  <div class="footer">
+    THEMACHINE Corp. &nbsp;·&nbsp; Updated: <span id="footer-updated">--</span>
   </div>
 
-  <div class="filter-bar">
-    <button class="filter-chip all active" data-filter="all">All</button>
-    <button class="filter-chip shipped" data-filter="shipped">🚀 Shipped</button>
-    <button class="filter-chip in_dev" data-filter="in_dev">🔥 In Dev</button>
-    <button class="filter-chip analyzing" data-filter="analyzing">🔍 Analyzing</button>
-    <button class="filter-chip idea" data-filter="idea">💡 Ideas</button>
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <span class="close" onclick="closeModal()">×</span>
+      <h2>+ New Demand Card</h2>
+      <div class="form-row">
+        <label>TITLE *</label>
+        <input type="text" id="f-title" placeholder="What is the demand?">
+      </div>
+      <div class="form-row">
+        <label>DESCRIPTION</label>
+        <textarea id="f-desc" placeholder="Why does this matter? Who wants it?"></textarea>
+      </div>
+      <div class="form-row">
+        <label>SOURCE (signal, DM, observation…)</label>
+        <input type="text" id="f-source" placeholder="e.g. Twitter — @user 200 likes">
+      </div>
+      <div class="form-row-half">
+        <div class="form-row">
+          <label>CATEGORY</label>
+          <select id="f-category">
+            <option value="product">🛒 Product</option>
+            <option value="tools">🔧 Tools</option>
+            <option value="bounty">💰 Bounty</option>
+            <option value="ai-agents">🤖 AI Agents</option>
+            <option value="other">📌 Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>PRIORITY</label>
+          <select id="f-priority">
+            <option value="1">P1 — Do First</option>
+            <option value="2">P2 — Worth Doing</option>
+            <option value="3">P3 — Nice to Have</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row-half">
+        <div class="form-row">
+          <label>FEASIBILITY (1-10)</label>
+          <input type="number" id="f-feasibility" min="1" max="10" value="7">
+        </div>
+        <div class="form-row">
+          <label>EFFORT (days)</label>
+          <input type="number" id="f-effort" min="1" max="30" value="3">
+        </div>
+      </div>
+      <div class="form-row-half">
+        <div class="form-row">
+          <label>OWNER</label>
+          <select id="f-owner">
+            <option value="">Unassigned</option>
+            <option value="Kevin">Kevin</option>
+            <option value="Mike">Mike</option>
+            <option value="Both">Both</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>INITIAL STATUS</label>
+          <select id="f-status">
+            <option value="idea">💡 Idea</option>
+            <option value="analyzing" selected>🔍 Analyzing</option>
+            <option value="ready">✅ Ready</option>
+          </select>
+        </div>
+      </div>
+      <button class="modal-submit" onclick="submitCard()">Add Card →</button>
+    </div>
   </div>
 
-  <div class="cards-grid" id="cards-grid"></div>
-</div>
+  <script>
+    // ===== STATE =====
+    let demandCards = [];
+    let signals = [];
 
-<footer>
-  Demand Lab · THEMACHINE Corp. · Signals powered by <a href="/demand-radar/">Demand Radar</a>
-</footer>
+    // ===== INIT =====
+    const radarMeta = {"updated": "2026-04-16T23:24:36.366767Z", "sources": {"Twitter": 66, "Reddit": 0, "GitHub": 0}, "total": 65, "progress": 15, "topSignals": [{"source": "Twitter", "title": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the A", "text": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the AI expert. It is the domain expert who learned AI. And almost nobody understands why. Let me explain. India produces roughly 1.5 million engineers ever", "url": "https://x.com/law_ninja/status/2039317392057364989", "score": 305, "engagement": {"likes": 305, "retweets": 0, "replies": 0}, "ts": "2026-04-01T12:22:09.000Z", "category": "tools"}, {"source": "Twitter", "title": "Himanshu Kumar @codewithimanshu \u00b7 3\u670830\u65e5 Stop Wasting Time and Learn to Build Claude Skills That Gene", "text": "Himanshu Kumar @codewithimanshu \u00b7 3\u670830\u65e5 Stop Wasting Time and Learn to Build Claude Skills That Generate Revenue. A $20 Tool Is Replacing $6,000/Month Freelancers. You're Not Building It. You're Getting Replaced by It. 10+ automations. All running on", "url": "https://x.com/codewithimanshu/status/2038455470479020184", "score": 149, "engagement": {"likes": 149, "retweets": 0, "replies": 0}, "ts": "2026-03-30T03:17:11.000Z", "category": "product"}, {"source": "Twitter", "title": "Lina  @XNXX_EN \u00b7 16\u5c0f\u65f6 Traditional sales tools are officially broken. Most CRMs are just expensive da", "text": "Lina  @XNXX_EN \u00b7 16\u5c0f\u65f6 Traditional sales tools are officially broken. Most CRMs are just expensive databases for bad forecasts and guesswork. Seeing HockeyStack raise $50M to launch an AI Revenue Agent that actually clones your top rep\u2019s playbook is t", "url": "https://x.com/XNXX_EN/status/2044463017891664334", "score": 88, "engagement": {"likes": 88, "retweets": 0, "replies": 0}, "ts": "2026-04-15T17:09:02.000Z", "category": "product"}, {"source": "Twitter", "title": "Dhanian  @e_opore \u00b7 3\u670830\u65e5 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Nat", "text": "Dhanian  @e_opore \u00b7 3\u670830\u65e5 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Native Development Era PHASE 1: MINDSET SHIFT \u2014 FROM CODER TO AI-ENABLED ARCHITECT \u251c\u2500\u2500 The New Development Paradigm \u2502   \u251c\u2500\u2500 Why 2026+ developers need AI ", "url": "https://x.com/e_opore/status/2038543586380206296", "score": 73, "engagement": {"likes": 73, "retweets": 0, "replies": 0}, "ts": "2026-03-30T09:07:19.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Sakata @0x_sakata \u00b7 15\u5c0f\u65f6 \"ai is taking over jobs\" but are they really? The answer is obviously no,  ", "text": "Sakata @0x_sakata \u00b7 15\u5c0f\u65f6 \"ai is taking over jobs\" but are they really? The answer is obviously no,  even in sales nowadays you can use ai tools to run your business, and HockeyStack is the first AI revenue agent, recently raised $50M to: > run or mon", "url": "https://x.com/0x_sakata/status/2044486062047957106", "score": 47, "engagement": {"likes": 47, "retweets": 0, "replies": 0}, "ts": "2026-04-15T18:40:36.000Z", "category": "product"}, {"source": "Twitter", "title": "Dhaval Makwana @heyDhavall \u00b7 3\u670830\u65e5  BREAKING: Someone just built an OpenClaw-style agent for outboun", "text": "Dhaval Makwana @heyDhavall \u00b7 3\u670830\u65e5  BREAKING: Someone just built an OpenClaw-style agent for outbound sales. It\u2019s called ClawGTM. You paste in your website, and it starts building your outbound workflow around what you actually sell. That\u2019s what caug", "url": "https://x.com/heyDhavall/status/2038531730672640353", "score": 40, "engagement": {"likes": 40, "retweets": 0, "replies": 0}, "ts": "2026-03-30T08:20:13.000Z", "category": "product"}, {"source": "Twitter", "title": "Rhys @RhysSullivan \u00b7 2\u5c0f\u65f6 \u56de\u590d  @theo built with claude mythos so our jobs are safe for another cycle i", "text": "Rhys @RhysSullivan \u00b7 2\u5c0f\u65f6 \u56de\u590d  @theo built with claude mythos so our jobs are safe for another cycle i wonder how much of Anthropic's positioning of 'the code doesn't matter anymore' they're able to get away with because of inference subsidies keeping ", "url": "https://x.com/RhysSullivan/status/2044684699327684703", "score": 34, "engagement": {"likes": 34, "retweets": 0, "replies": 0}, "ts": "2026-04-16T07:49:55.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackath", "text": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackathon! The quality of submissions made this an incredibly hard decision Congrats to our winners:   Arbiter   NO-CODE Agent Builder   SlashMarket Learn mo", "url": "https://x.com/nowmedia/status/2044528631150452770", "score": 30, "engagement": {"likes": 30, "retweets": 0, "replies": 0}, "ts": "2026-04-15T21:29:45.000Z", "category": "tools"}, {"source": "Twitter", "title": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 \u56de\u590d  @nowmedia No-Code Agent Builder is a visual workflow tool for creatin", "text": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 \u56de\u590d  @nowmedia No-Code Agent Builder is a visual workflow tool for creating AI-powered blockchain agents on Etherlink  Users chain together pre-built on-chain actions like token transfers, swaps, NFT deployment, DAO creation", "url": "https://x.com/nowmedia/status/2044528644337406453", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-04-15T21:29:48.000Z", "category": "tools"}, {"source": "Twitter", "title": "MOONBERG @moonberg \u00b7 4\u670814\u65e5 \u56de\u590d  @yo_itsmatt Hey matthew would love to share what we are working on. N", "text": "MOONBERG @moonberg \u00b7 4\u670814\u65e5 \u56de\u590d  @yo_itsmatt Hey matthew would love to share what we are working on. No code algo builder, backtest engine and agentic trading agent coming to  @solana  soon . \u5f15\u7528 MOONBERG @moonberg \u00b7 3\u670827\u65e5 Why you are failing on auto-tr", "url": "https://x.com/moonberg/status/2043731372997579071", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-04-13T16:41:44.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "The Vibe Coder @quantumaidev \u00b7 3\u670827\u65e5 What\u2019s the best part of tech? One connection can change your ne", "text": "The Vibe Coder @quantumaidev \u00b7 3\u670827\u65e5 What\u2019s the best part of tech? One connection can change your next project, job, or startup. So let\u2019s connect. If you\u2019re a developer, indie hacker, founder, or builder working on something exciting in: AI, SaaS, we", "url": "https://x.com/quantumaidev/status/2037546208290582846", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-03-27T15:04:06.000Z", "category": "other"}, {"source": "Twitter", "title": "Hasan Toor @hasantoxr \u00b7 4\u670814\u65e5 \u56de\u590d  @hasantoxr I saw most teams are running 5 or 6 different AI tools ", "text": "Hasan Toor @hasantoxr \u00b7 4\u670814\u65e5 \u56de\u590d  @hasantoxr I saw most teams are running 5 or 6 different AI tools that don't share context with each other. One agent for sales. One for coding. One for ops. One for content. They all start from scratch every single ", "url": "https://x.com/hasantoxr/status/2044065879290421714", "score": 5, "engagement": {"likes": 5, "retweets": 0, "replies": 0}, "ts": "2026-04-14T14:50:57.000Z", "category": "tools"}, {"source": "Twitter", "title": "Cameron England @iamcamengland \u00b7 18\u5c0f\u65f6 The biggest problem with most people's AI setup isn't the tool", "text": "Cameron England @iamcamengland \u00b7 18\u5c0f\u65f6 The biggest problem with most people's AI setup isn't the tools. It's that you can only automate what you can actually imagine automating. If you've never seen what a finance agent, a sales AI, and a content idea", "url": "https://x.com/iamcamengland/status/2044446960464036015", "score": 4, "engagement": {"likes": 4, "retweets": 0, "replies": 0}, "ts": "2026-04-15T16:05:14.000Z", "category": "tools"}, {"source": "Twitter", "title": "True Mark USA @TrueMarkUSA \u00b7 4\u67082\u65e5 We just launched our free AI Audit tool at True Mark USA! This is ", "text": "True Mark USA @TrueMarkUSA \u00b7 4\u67082\u65e5 We just launched our free AI Audit tool at True Mark USA! This is something we built for business owners who know there are inefficiencies in their operation\u2014but aren\u2019t exactly sure where to start fixing them. The au", "url": "https://x.com/TrueMarkUSA/status/2039443092378656989", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-01T20:41:38.000Z", "category": "tools"}, {"source": "Twitter", "title": "agentstack.dev @agentstack_dev \u00b7 4\u67084\u65e5 Not every workflow problem needs an agent. Some need automatio", "text": "agentstack.dev @agentstack_dev \u00b7 4\u67084\u65e5 Not every workflow problem needs an agent. Some need automation. @MSPowerAutomate   is not an AI tool first. It is a workflow automation tool. Its purpose is to take repeatable business processes and execute them", "url": "https://x.com/agentstack_dev/status/2040408793356317094", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-04T12:38:59.000Z", "category": "tools"}, {"source": "Twitter", "title": "jvxiao @jvxiao_me \u00b7 4\u670811\u65e5 Developer here, currently building an AI Background Remover tool.   Also s", "text": "jvxiao @jvxiao_me \u00b7 4\u670811\u65e5 Developer here, currently building an AI Background Remover tool.   Also shipping micro SaaS products while sharing real build logs and epic fails.   If you're into indie hacking, AI tools, SaaS growth, or build in public \u2014 ", "url": "https://x.com/jvxiao_me/status/2042874902521483470", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-11T07:58:26.000Z", "category": "product"}, {"source": "Twitter", "title": "Beursact  @beursact \u00b7 3\u670827\u65e5 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Jus", "text": "Beursact  @beursact \u00b7 3\u670827\u65e5 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Just Three Days A single indie creator turned a ridiculous concept into viral gold.  SlapMac detects physical slaps on your MacBook using built-in sensor", "url": "https://x.com/beursact/status/2037512794501968278", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-03-27T12:51:20.000Z", "category": "product"}, {"source": "Twitter", "title": "GooGZ AI @PaulGugAI \u00b7 20\u5c0f\u65f6 Github surfing: Claude Code Job Search System An AI-powered job search sy", "text": "GooGZ AI @PaulGugAI \u00b7 20\u5c0f\u65f6 Github surfing: Claude Code Job Search System An AI-powered job search system built on Claude Code with 14 skill modes, a Go dashboard, PDF generation, and batch processing.  Any AI-savvy engineering job seekers out there s", "url": "https://x.com/PaulGugAI/status/2044402347062030474", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-15T13:07:57.000Z", "category": "bounty"}, {"source": "Twitter", "title": "Arsal @arsalfeed \u00b7 4\u670813\u65e5 Someone built an AI job search system for Claude Code, ran it on 700+ appli", "text": "Arsal @arsalfeed \u00b7 4\u670813\u65e5 Someone built an AI job search system for Claude Code, ran it on 700+ applications, and actually got hired. Now it's open-source. It's a full agentic workflow that scans career pages across 45+ companies, rewrites your CV to ", "url": "https://x.com/arsalfeed/status/2043407580681343090", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-12T19:15:06.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Zane Chen @chenzeling4 \u00b7 4\u670811\u65e5 Career-Ops \u2014 AI-powered job search system built on Claude Code. 14 sk", "text": "Zane Chen @chenzeling4 \u00b7 4\u670811\u65e5 Career-Ops \u2014 AI-powered job search system built on Claude Code. 14 skill modes: resume tailoring, cover letters, interview prep, salary negotiation & more. Go dashboard, PDF generation, batch processing. Multilingual (7", "url": "https://x.com/chenzeling4/status/2042767944782909890", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-11T00:53:25.000Z", "category": "ai-agents"}], "categories": {"ai-agents": 11, "bounty": 3, "product": 6, "tools": 9, "other": 1}, "summary": {"top_opportunity": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the A", "actionable_signals": 4}};
 
-<script>
-  // ===== EMBEDDED DATA =====
-  var DEMAND_DATA = {"updated":"2026-04-17T01:42:00Z","cards":[{"id":"dr-001","title":"AI Agent Side Hustle Dashboard","description":"Notion template + live tracking for AI agent income. Build once, sell forever on Gumroad.","source":"Twitter signal \u2014 305 likes, 0 replies","category":"product","priority":1,"status":"shipped","feasibility":9,"tech":"Web (HTML/CSS/JS)","effort":3,"owner":"Kevin","progress":100,"url":"https://themachinecorp.gumroad.com/l/fypiy","notes":"Live on Gumroad. $19/product."},{"id":"dr-002","title":"Demand Lab \u2014 Public Signal Feed","description":"Live display of developer pain points scraped from Twitter/Reddit/GitHub. Landing page + lead gen.","source":"Twitter \u2014 top signal category: AI agents (11 signals)","category":"product","priority":2,"status":"shipped","feasibility":9,"tech":"HTML + JSON API","effort":2,"owner":"Kevin","progress":100,"url":"https://themachine-corp.pages.dev/demand-radar","notes":"Live signal feed at /demand-radar. Demand Lab pipeline at /demand-lab."},{"id":"dr-003","title":"Demand Lab \u2014 Ops Dashboard","description":"Internal version with demand cards, prioritization queue, and auto-demo integration.","source":"Founder request \u2014 2026-04-17","category":"tools","priority":1,"status":"in_dev","feasibility":8,"tech":"HTML + JSON + Cloudflare Pages","effort":3,"owner":"Kevin","progress":60,"url":"https://themachine-corp.pages.dev/demand-radar/private","notes":"Cards system + pipeline flow live at /demand-lab."},{"id":"dr-004","title":"AI Agent Engineer Playbook","description":"Comprehensive playbook: tools stack, income strategies, workflow templates. $19-99 on Gumroad.","source":"Twitter signal \u2014 'learn to build claude skills' thread","category":"product","priority":3,"status":"idea","feasibility":8,"tech":"Markdown + PDF","effort":5,"owner":"Mike","progress":0,"url":"","notes":"Needs: real case studies, income screenshots. Do NOT fake numbers."},{"id":"dr-005","title":"Algora Bounty Hunter Toolkit","description":"Script that auto-scans Algora for $100+ bounties with <5 claims, filters by language, and submits PR.","source":"Algora bounty scan \u2014 Coolify $250 bounties, 3c","category":"tools","priority":2,"status":"analyzing","feasibility":7,"tech":"Python + GitHub API","effort":4,"owner":"Kevin","progress":0,"url":"","notes":"Scanner works but Reddit/GitHub sources broken. Fix ws module first."},{"id":"dr-006","title":"Claude Code Job Search System","description":"AI agent that applies to jobs via Claude Code.\u6709\u4eba\u5728\u505a\uff0c\u6211\u4eec\u80fd\u505a\u5417\uff1f\u5dee\u5f02\u5316\uff1a\u4e13\u6ce8 remote contractor roles\u3002","source":"Twitter \u2014 @PaulGugAI @arsalfeed","category":"product","priority":4,"status":"idea","feasibility":4,"tech":"Claude Code + job board API","effort":8,"owner":"","progress":0,"url":"","notes":"High effort, uncertain demand. Monitor signal first before building."},{"id":"dr-007","title":"Twitter Signal \u2192 Content Pipeline","description":"Auto-capture high-engagement AI agent tweets \u2192 generate reply threads \u2192 auto-post via X API.","source":"Twitter \u2014 @AlexFinn 697 likes on Claude Opus 4.7 thread","category":"tools","priority":3,"status":"analyzing","feasibility":6,"tech":"Twitter API + Claude","effort":5,"owner":"Mike","progress":0,"url":"","notes":"X API free tier: read-only. Posting needs elevated access. Check cost."},{"id":"dr-008","title":"AI Audit Tool \u2014 Free Lead Gen","description":"Free tool: paste your workflow \u2192 get AI agent recommendations. Gathers emails for paid product upsell.","source":"Twitter \u2014 @TrueMarkUSA free AI audit tool launch","category":"product","priority":2,"status":"idea","feasibility":7,"tech":"HTML + AI API","effort":4,"owner":"Kevin","progress":0,"url":"","notes":"Lead gen play. Free tool \u2192 email capture \u2192 Gumroad product."}]};  = {"updated":"2026-04-16T23:24:36.366767Z","sources":{"Twitter":66,"Reddit":0,"GitHub":0},"total":65,"progress":15,"topSignals":[{"source":"Twitter","title":"Ramanuj Mukherjee @law_ninja · 4月1日 The most dangerous person in any industry right now is not the A","text":"Ramanuj Mukherjee @law_ninja · 4月67081\u65e5 The most dangerous person in any industry right now is not the AI expert. It is the domain expert who learned AI.","url":"https://x.com/law_ninja/status/2039317392057364989","score":305,"engagement":{"likes":305,"retweets":0,"replies":0},"ts":"2026-04-01T12:22:09.000Z","category":"tools"},{"source":"Twitter","title":"Himanshu Kumar @codewithimanshu · 3月30日 Stop Wasting Time and Learn to Build Claude Skills That Gene","text":"Stop Wasting Time and Learn to Build Claude Skills That Generate Revenue. A $20 Tool Is Replacing $6,000/Month Freelancers.","url":"https://x.com/codewithimanshu/status/2038455470479020184","score":149,"engagement":{"likes":149,"retweets":0,"replies":0},"ts":"2026-03-30T03:17:11.000Z","category":"product"},{"source":"Twitter","title":"Dhaval Makwana @heyDhavall · 3月30日 BREAKING: Someone just built an OpenClaw-style agent for outbound.","text":"BREAKING: Someone just built an OpenClaw-style agent for outbound sales. It\u2019s called ClawGTM.","url":"https://x.com/heyDhavall/status/2038531730672640353","score":40,"engagement":{"likes":40,"retweets":0,"replies":0},"ts":"2026-03-30T08:20:13.000Z","category":"product"},{"source":"Twitter","title":"GooGZ AI @PaulGugAI · 20小时 Github surfing: Claude Code Job Search System","text":"An AI-powered job search system built on Claude Code with 14 skill modes, Go dashboard, PDF generation.","url":"https://x.com/PaulGugAI/status/2044402347062030474","score":2,"engagement":{"likes":2,"retweets":0,"replies":0},"ts":"2026-04-15T13:07:57.000Z","category":"bounty"},{"source":"Twitter","title":"agentstack.dev @agentstack_dev · 4月4日 Not every workflow problem needs an agent.","text":"Not every workflow problem needs an agent. Some need automation.","url":"https://x.com/agentstack_dev/status/20404087933563147094","score":3,"engagement":{"likes":3,"retweets":0,"replies":0},"ts":"2026-04-04T12:38:59.000Z","category":"tools"},{"source":"Twitter","title":"jvxiao @jvxiao_me · 4月11日 Developer here, currently building an AI Background Remover tool.","text":"Also shipping micro SaaS products while sharing real build logs and epic fails.","url":"https://x.com/jvxiao_me/status/2042874902521483470","score":3,"engagement":{"likes":3,"retweets":0,"replies":0},"ts":"2026-04-11T07:58:26.000Z","category":"product"},{"source":"Twitter","title":"True Mark USA @TrueMarkUSA · 4月2日 We just launched our free AI Audit tool.","text":"We just launched our free AI Audit tool at True Mark USA!","url":"https://x.com/TrueMarkUSA/status/2039443092378656989","score":3,"engagement":{"likes":3,"retweets":0,"replies":0},"ts":"2026-04-01T20:41:38.000Z","category":"tools"},{"source":"Twitter","title":"Beursact @beursact · 3月27日 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Just Three Days","text":"SlapMac detects physical slaps on your MacBook using built-in sensor.","url":"https://x.com/beursact/status/2037512794501968278","score":3,"engagement":{"likes":3,"retweets":0,"replies":0},"ts":"2026-03-27T12:51:20.000Z","category":"product"},{"source":"Twitter","title":"Hasan Toor @hasantoxr · 4月14日 I saw most teams are running 5 or 6 different AI tools that don\u2019t share context.","text":"One agent for sales. One for coding. One for ops. They all start from scratch every single time.","url":"https://x.com/hasantoxr/status/2044065879290421714","score":5,"engagement":{"likes":5,"retweets":0,"replies":0},"ts":"2026-04-14T14:50:57.000Z","category":"tools"}]};
+    async function init() {
+      signals = {"updated": "2026-04-16T23:24:36.366767Z", "sources": {"Twitter": 66, "Reddit": 0, "GitHub": 0}, "total": 65, "progress": 15, "topSignals": [{"source": "Twitter", "title": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the A", "text": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the AI expert. It is the domain expert who learned AI. And almost nobody understands why. Let me explain. India produces roughly 1.5 million engineers ever", "url": "https://x.com/law_ninja/status/2039317392057364989", "score": 305, "engagement": {"likes": 305, "retweets": 0, "replies": 0}, "ts": "2026-04-01T12:22:09.000Z", "category": "tools"}, {"source": "Twitter", "title": "Himanshu Kumar @codewithimanshu \u00b7 3\u670830\u65e5 Stop Wasting Time and Learn to Build Claude Skills That Gene", "text": "Himanshu Kumar @codewithimanshu \u00b7 3\u670830\u65e5 Stop Wasting Time and Learn to Build Claude Skills That Generate Revenue. A $20 Tool Is Replacing $6,000/Month Freelancers. You're Not Building It. You're Getting Replaced by It. 10+ automations. All running on", "url": "https://x.com/codewithimanshu/status/2038455470479020184", "score": 149, "engagement": {"likes": 149, "retweets": 0, "replies": 0}, "ts": "2026-03-30T03:17:11.000Z", "category": "product"}, {"source": "Twitter", "title": "Lina  @XNXX_EN \u00b7 16\u5c0f\u65f6 Traditional sales tools are officially broken. Most CRMs are just expensive da", "text": "Lina  @XNXX_EN \u00b7 16\u5c0f\u65f6 Traditional sales tools are officially broken. Most CRMs are just expensive databases for bad forecasts and guesswork. Seeing HockeyStack raise $50M to launch an AI Revenue Agent that actually clones your top rep\u2019s playbook is t", "url": "https://x.com/XNXX_EN/status/2044463017891664334", "score": 88, "engagement": {"likes": 88, "retweets": 0, "replies": 0}, "ts": "2026-04-15T17:09:02.000Z", "category": "product"}, {"source": "Twitter", "title": "Dhanian  @e_opore \u00b7 3\u670830\u65e5 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Nat", "text": "Dhanian  @e_opore \u00b7 3\u670830\u65e5 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Native Development Era PHASE 1: MINDSET SHIFT \u2014 FROM CODER TO AI-ENABLED ARCHITECT \u251c\u2500\u2500 The New Development Paradigm \u2502   \u251c\u2500\u2500 Why 2026+ developers need AI ", "url": "https://x.com/e_opore/status/2038543586380206296", "score": 73, "engagement": {"likes": 73, "retweets": 0, "replies": 0}, "ts": "2026-03-30T09:07:19.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Sakata @0x_sakata \u00b7 15\u5c0f\u65f6 \"ai is taking over jobs\" but are they really? The answer is obviously no,  ", "text": "Sakata @0x_sakata \u00b7 15\u5c0f\u65f6 \"ai is taking over jobs\" but are they really? The answer is obviously no,  even in sales nowadays you can use ai tools to run your business, and HockeyStack is the first AI revenue agent, recently raised $50M to: > run or mon", "url": "https://x.com/0x_sakata/status/2044486062047957106", "score": 47, "engagement": {"likes": 47, "retweets": 0, "replies": 0}, "ts": "2026-04-15T18:40:36.000Z", "category": "product"}, {"source": "Twitter", "title": "Dhaval Makwana @heyDhavall \u00b7 3\u670830\u65e5  BREAKING: Someone just built an OpenClaw-style agent for outboun", "text": "Dhaval Makwana @heyDhavall \u00b7 3\u670830\u65e5  BREAKING: Someone just built an OpenClaw-style agent for outbound sales. It\u2019s called ClawGTM. You paste in your website, and it starts building your outbound workflow around what you actually sell. That\u2019s what caug", "url": "https://x.com/heyDhavall/status/2038531730672640353", "score": 40, "engagement": {"likes": 40, "retweets": 0, "replies": 0}, "ts": "2026-03-30T08:20:13.000Z", "category": "product"}, {"source": "Twitter", "title": "Rhys @RhysSullivan \u00b7 2\u5c0f\u65f6 \u56de\u590d  @theo built with claude mythos so our jobs are safe for another cycle i", "text": "Rhys @RhysSullivan \u00b7 2\u5c0f\u65f6 \u56de\u590d  @theo built with claude mythos so our jobs are safe for another cycle i wonder how much of Anthropic's positioning of 'the code doesn't matter anymore' they're able to get away with because of inference subsidies keeping ", "url": "https://x.com/RhysSullivan/status/2044684699327684703", "score": 34, "engagement": {"likes": 34, "retweets": 0, "replies": 0}, "ts": "2026-04-16T07:49:55.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackath", "text": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackathon! The quality of submissions made this an incredibly hard decision Congrats to our winners:   Arbiter   NO-CODE Agent Builder   SlashMarket Learn mo", "url": "https://x.com/nowmedia/status/2044528631150452770", "score": 30, "engagement": {"likes": 30, "retweets": 0, "replies": 0}, "ts": "2026-04-15T21:29:45.000Z", "category": "tools"}, {"source": "Twitter", "title": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 \u56de\u590d  @nowmedia No-Code Agent Builder is a visual workflow tool for creatin", "text": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 \u56de\u590d  @nowmedia No-Code Agent Builder is a visual workflow tool for creating AI-powered blockchain agents on Etherlink  Users chain together pre-built on-chain actions like token transfers, swaps, NFT deployment, DAO creation", "url": "https://x.com/nowmedia/status/2044528644337406453", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-04-15T21:29:48.000Z", "category": "tools"}, {"source": "Twitter", "title": "MOONBERG @moonberg \u00b7 4\u670814\u65e5 \u56de\u590d  @yo_itsmatt Hey matthew would love to share what we are working on. N", "text": "MOONBERG @moonberg \u00b7 4\u670814\u65e5 \u56de\u590d  @yo_itsmatt Hey matthew would love to share what we are working on. No code algo builder, backtest engine and agentic trading agent coming to  @solana  soon . \u5f15\u7528 MOONBERG @moonberg \u00b7 3\u670827\u65e5 Why you are failing on auto-tr", "url": "https://x.com/moonberg/status/2043731372997579071", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-04-13T16:41:44.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "The Vibe Coder @quantumaidev \u00b7 3\u670827\u65e5 What\u2019s the best part of tech? One connection can change your ne", "text": "The Vibe Coder @quantumaidev \u00b7 3\u670827\u65e5 What\u2019s the best part of tech? One connection can change your next project, job, or startup. So let\u2019s connect. If you\u2019re a developer, indie hacker, founder, or builder working on something exciting in: AI, SaaS, we", "url": "https://x.com/quantumaidev/status/2037546208290582846", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-03-27T15:04:06.000Z", "category": "other"}, {"source": "Twitter", "title": "Hasan Toor @hasantoxr \u00b7 4\u670814\u65e5 \u56de\u590d  @hasantoxr I saw most teams are running 5 or 6 different AI tools ", "text": "Hasan Toor @hasantoxr \u00b7 4\u670814\u65e5 \u56de\u590d  @hasantoxr I saw most teams are running 5 or 6 different AI tools that don't share context with each other. One agent for sales. One for coding. One for ops. One for content. They all start from scratch every single ", "url": "https://x.com/hasantoxr/status/2044065879290421714", "score": 5, "engagement": {"likes": 5, "retweets": 0, "replies": 0}, "ts": "2026-04-14T14:50:57.000Z", "category": "tools"}, {"source": "Twitter", "title": "Cameron England @iamcamengland \u00b7 18\u5c0f\u65f6 The biggest problem with most people's AI setup isn't the tool", "text": "Cameron England @iamcamengland \u00b7 18\u5c0f\u65f6 The biggest problem with most people's AI setup isn't the tools. It's that you can only automate what you can actually imagine automating. If you've never seen what a finance agent, a sales AI, and a content idea", "url": "https://x.com/iamcamengland/status/2044446960464036015", "score": 4, "engagement": {"likes": 4, "retweets": 0, "replies": 0}, "ts": "2026-04-15T16:05:14.000Z", "category": "tools"}, {"source": "Twitter", "title": "True Mark USA @TrueMarkUSA \u00b7 4\u67082\u65e5 We just launched our free AI Audit tool at True Mark USA! This is ", "text": "True Mark USA @TrueMarkUSA \u00b7 4\u67082\u65e5 We just launched our free AI Audit tool at True Mark USA! This is something we built for business owners who know there are inefficiencies in their operation\u2014but aren\u2019t exactly sure where to start fixing them. The au", "url": "https://x.com/TrueMarkUSA/status/2039443092378656989", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-01T20:41:38.000Z", "category": "tools"}, {"source": "Twitter", "title": "agentstack.dev @agentstack_dev \u00b7 4\u67084\u65e5 Not every workflow problem needs an agent. Some need automatio", "text": "agentstack.dev @agentstack_dev \u00b7 4\u67084\u65e5 Not every workflow problem needs an agent. Some need automation. @MSPowerAutomate   is not an AI tool first. It is a workflow automation tool. Its purpose is to take repeatable business processes and execute them", "url": "https://x.com/agentstack_dev/status/2040408793356317094", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-04T12:38:59.000Z", "category": "tools"}, {"source": "Twitter", "title": "jvxiao @jvxiao_me \u00b7 4\u670811\u65e5 Developer here, currently building an AI Background Remover tool.   Also s", "text": "jvxiao @jvxiao_me \u00b7 4\u670811\u65e5 Developer here, currently building an AI Background Remover tool.   Also shipping micro SaaS products while sharing real build logs and epic fails.   If you're into indie hacking, AI tools, SaaS growth, or build in public \u2014 ", "url": "https://x.com/jvxiao_me/status/2042874902521483470", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-11T07:58:26.000Z", "category": "product"}, {"source": "Twitter", "title": "Beursact  @beursact \u00b7 3\u670827\u65e5 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Jus", "text": "Beursact  @beursact \u00b7 3\u670827\u65e5 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Just Three Days A single indie creator turned a ridiculous concept into viral gold.  SlapMac detects physical slaps on your MacBook using built-in sensor", "url": "https://x.com/beursact/status/2037512794501968278", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-03-27T12:51:20.000Z", "category": "product"}, {"source": "Twitter", "title": "GooGZ AI @PaulGugAI \u00b7 20\u5c0f\u65f6 Github surfing: Claude Code Job Search System An AI-powered job search sy", "text": "GooGZ AI @PaulGugAI \u00b7 20\u5c0f\u65f6 Github surfing: Claude Code Job Search System An AI-powered job search system built on Claude Code with 14 skill modes, a Go dashboard, PDF generation, and batch processing.  Any AI-savvy engineering job seekers out there s", "url": "https://x.com/PaulGugAI/status/2044402347062030474", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-15T13:07:57.000Z", "category": "bounty"}, {"source": "Twitter", "title": "Arsal @arsalfeed \u00b7 4\u670813\u65e5 Someone built an AI job search system for Claude Code, ran it on 700+ appli", "text": "Arsal @arsalfeed \u00b7 4\u670813\u65e5 Someone built an AI job search system for Claude Code, ran it on 700+ applications, and actually got hired. Now it's open-source. It's a full agentic workflow that scans career pages across 45+ companies, rewrites your CV to ", "url": "https://x.com/arsalfeed/status/2043407580681343090", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-12T19:15:06.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Zane Chen @chenzeling4 \u00b7 4\u670811\u65e5 Career-Ops \u2014 AI-powered job search system built on Claude Code. 14 sk", "text": "Zane Chen @chenzeling4 \u00b7 4\u670811\u65e5 Career-Ops \u2014 AI-powered job search system built on Claude Code. 14 skill modes: resume tailoring, cover letters, interview prep, salary negotiation & more. Go dashboard, PDF generation, batch processing. Multilingual (7", "url": "https://x.com/chenzeling4/status/2042767944782909890", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-11T00:53:25.000Z", "category": "ai-agents"}], "categories": {"ai-agents": 11, "bounty": 3, "product": 6, "tools": 9, "other": 1}, "summary": {"top_opportunity": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the A", "actionable_signals": 4}}['topSignals'] || [];
+      demandCards = {"updated": "2026-04-17T01:42:00Z", "cards": [{"id": "dr-001", "title": "AI Agent Side Hustle Dashboard", "description": "Notion template + live tracking for AI agent income. Build once, sell forever on Gumroad.", "source": "Twitter signal \u2014 305 likes, 0 replies", "category": "product", "priority": 1, "status": "shipped", "feasibility": 9, "tech": "Web (HTML/CSS/JS)", "effort": 3, "owner": "Kevin", "progress": 100, "url": "https://themachinecorp.gumroad.com/l/fypiy", "notes": "Live on Gumroad. $19/product."}, {"id": "dr-002", "title": "Demand Lab \u2014 Public Signal Feed", "description": "Live display of developer pain points scraped from Twitter/Reddit/GitHub. Landing page + lead gen.", "source": "Twitter \u2014 top signal category: AI agents (11 signals)", "category": "product", "priority": 2, "status": "shipped", "feasibility": 9, "tech": "HTML + JSON API", "effort": 2, "owner": "Kevin", "progress": 100, "url": "https://themachine-corp.pages.dev/demand-lab", "notes": "Public page live. Private feed at /demand-lab/private"}, {"id": "dr-003", "title": "Demand Lab \u2014 Private Ops Dashboard", "description": " version with demand cards, prioritization queue, and auto-demo integration.", "source": "Founder request \u2014 2026-04-17", "category": "tools", "priority": 1, "status": "in_dev", "feasibility": 8, "tech": "HTML + JSON + Cloudflare Pages", "effort": 3, "owner": "Kevin", "progress": 60, "url": "https://themachine-corp.pages.dev/demand-lab/private", "notes": "Cards system + demo auto-sync in progress."}, {"id": "dr-004", "title": "AI Agent Engineer Playbook", "description": "Comprehensive playbook: tools stack, income strategies, workflow templates. $19-99 on Gumroad.", "source": "Twitter signal \u2014 'learn to build claude skills' thread", "category": "product", "priority": 3, "status": "idea", "feasibility": 8, "tech": "Markdown + PDF", "effort": 5, "owner": "Mike", "progress": 0, "url": "", "notes": "Needs: real case studies, income screenshots. Do NOT fake numbers."}, {"id": "dr-005", "title": "Algora Bounty Hunter Toolkit", "description": "Script that auto-scans Algora for $100+ bounties with <5 claims, filters by language, and submits PR.", "source": "Algora bounty scan \u2014 Coolify $250 bounties, 3c", "category": "tools", "priority": 2, "status": "analyzing", "feasibility": 7, "tech": "Python + GitHub API", "effort": 4, "owner": "Kevin", "progress": 0, "url": "", "notes": "Scanner works but Reddit/GitHub sources broken. Fix ws module first."}, {"id": "dr-006", "title": "Claude Code Job Search System", "description": "AI agent that applies to jobs via Claude Code.\u6709\u4eba\u5728\u505a\uff0c\u6211\u4eec\u80fd\u505a\u5417\uff1f\u5dee\u5f02\u5316\uff1a\u4e13\u6ce8 remote contractor roles\u3002", "source": "Twitter \u2014 @PaulGugAI @arsalfeed", "category": "product", "priority": 4, "status": "idea", "feasibility": 4, "tech": "Claude Code + job board API", "effort": 8, "owner": "", "progress": 0, "url": "", "notes": "High effort, uncertain demand. Monitor signal first before building."}, {"id": "dr-007", "title": "Twitter Signal \u2192 Content Pipeline", "description": "Auto-capture high-engagement AI agent tweets \u2192 generate reply threads \u2192 auto-post via X API.", "source": "Twitter \u2014 @AlexFinn 697 likes on Claude Opus 4.7 thread", "category": "tools", "priority": 3, "status": "analyzing", "feasibility": 6, "tech": "Twitter API + Claude", "effort": 5, "owner": "Mike", "progress": 0, "url": "", "notes": "X API free tier: read-only. Posting needs elevated access. Check cost."}, {"id": "dr-008", "title": "AI Audit Tool \u2014 Free Lead Gen", "description": "Free tool: paste your workflow \u2192 get AI agent recommendations. Gathers emails for paid product upsell.", "source": "Twitter \u2014 @TrueMarkUSA free AI audit tool launch", "category": "product", "priority": 2, "status": "idea", "feasibility": 7, "tech": "HTML + AI API", "effort": 4, "owner": "Kevin", "progress": 0, "url": "", "notes": "Lead gen play. Free tool \u2192 email capture \u2192 Gumroad product."}]}['cards'] || [];
+      renderSignals({"updated": "2026-04-16T23:24:36.366767Z", "sources": {"Twitter": 66, "Reddit": 0, "GitHub": 0}, "total": 65, "progress": 15, "topSignals": [{"source": "Twitter", "title": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the A", "text": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the AI expert. It is the domain expert who learned AI. And almost nobody understands why. Let me explain. India produces roughly 1.5 million engineers ever", "url": "https://x.com/law_ninja/status/2039317392057364989", "score": 305, "engagement": {"likes": 305, "retweets": 0, "replies": 0}, "ts": "2026-04-01T12:22:09.000Z", "category": "tools"}, {"source": "Twitter", "title": "Himanshu Kumar @codewithimanshu \u00b7 3\u670830\u65e5 Stop Wasting Time and Learn to Build Claude Skills That Gene", "text": "Himanshu Kumar @codewithimanshu \u00b7 3\u670830\u65e5 Stop Wasting Time and Learn to Build Claude Skills That Generate Revenue. A $20 Tool Is Replacing $6,000/Month Freelancers. You're Not Building It. You're Getting Replaced by It. 10+ automations. All running on", "url": "https://x.com/codewithimanshu/status/2038455470479020184", "score": 149, "engagement": {"likes": 149, "retweets": 0, "replies": 0}, "ts": "2026-03-30T03:17:11.000Z", "category": "product"}, {"source": "Twitter", "title": "Lina  @XNXX_EN \u00b7 16\u5c0f\u65f6 Traditional sales tools are officially broken. Most CRMs are just expensive da", "text": "Lina  @XNXX_EN \u00b7 16\u5c0f\u65f6 Traditional sales tools are officially broken. Most CRMs are just expensive databases for bad forecasts and guesswork. Seeing HockeyStack raise $50M to launch an AI Revenue Agent that actually clones your top rep\u2019s playbook is t", "url": "https://x.com/XNXX_EN/status/2044463017891664334", "score": 88, "engagement": {"likes": 88, "retweets": 0, "replies": 0}, "ts": "2026-04-15T17:09:02.000Z", "category": "product"}, {"source": "Twitter", "title": "Dhanian  @e_opore \u00b7 3\u670830\u65e5 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Nat", "text": "Dhanian  @e_opore \u00b7 3\u670830\u65e5 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Native Development Era PHASE 1: MINDSET SHIFT \u2014 FROM CODER TO AI-ENABLED ARCHITECT \u251c\u2500\u2500 The New Development Paradigm \u2502   \u251c\u2500\u2500 Why 2026+ developers need AI ", "url": "https://x.com/e_opore/status/2038543586380206296", "score": 73, "engagement": {"likes": 73, "retweets": 0, "replies": 0}, "ts": "2026-03-30T09:07:19.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Sakata @0x_sakata \u00b7 15\u5c0f\u65f6 \"ai is taking over jobs\" but are they really? The answer is obviously no,  ", "text": "Sakata @0x_sakata \u00b7 15\u5c0f\u65f6 \"ai is taking over jobs\" but are they really? The answer is obviously no,  even in sales nowadays you can use ai tools to run your business, and HockeyStack is the first AI revenue agent, recently raised $50M to: > run or mon", "url": "https://x.com/0x_sakata/status/2044486062047957106", "score": 47, "engagement": {"likes": 47, "retweets": 0, "replies": 0}, "ts": "2026-04-15T18:40:36.000Z", "category": "product"}, {"source": "Twitter", "title": "Dhaval Makwana @heyDhavall \u00b7 3\u670830\u65e5  BREAKING: Someone just built an OpenClaw-style agent for outboun", "text": "Dhaval Makwana @heyDhavall \u00b7 3\u670830\u65e5  BREAKING: Someone just built an OpenClaw-style agent for outbound sales. It\u2019s called ClawGTM. You paste in your website, and it starts building your outbound workflow around what you actually sell. That\u2019s what caug", "url": "https://x.com/heyDhavall/status/2038531730672640353", "score": 40, "engagement": {"likes": 40, "retweets": 0, "replies": 0}, "ts": "2026-03-30T08:20:13.000Z", "category": "product"}, {"source": "Twitter", "title": "Rhys @RhysSullivan \u00b7 2\u5c0f\u65f6 \u56de\u590d  @theo built with claude mythos so our jobs are safe for another cycle i", "text": "Rhys @RhysSullivan \u00b7 2\u5c0f\u65f6 \u56de\u590d  @theo built with claude mythos so our jobs are safe for another cycle i wonder how much of Anthropic's positioning of 'the code doesn't matter anymore' they're able to get away with because of inference subsidies keeping ", "url": "https://x.com/RhysSullivan/status/2044684699327684703", "score": 34, "engagement": {"likes": 34, "retweets": 0, "replies": 0}, "ts": "2026-04-16T07:49:55.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackath", "text": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackathon! The quality of submissions made this an incredibly hard decision Congrats to our winners:   Arbiter   NO-CODE Agent Builder   SlashMarket Learn mo", "url": "https://x.com/nowmedia/status/2044528631150452770", "score": 30, "engagement": {"likes": 30, "retweets": 0, "replies": 0}, "ts": "2026-04-15T21:29:45.000Z", "category": "tools"}, {"source": "Twitter", "title": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 \u56de\u590d  @nowmedia No-Code Agent Builder is a visual workflow tool for creatin", "text": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 \u56de\u590d  @nowmedia No-Code Agent Builder is a visual workflow tool for creating AI-powered blockchain agents on Etherlink  Users chain together pre-built on-chain actions like token transfers, swaps, NFT deployment, DAO creation", "url": "https://x.com/nowmedia/status/2044528644337406453", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-04-15T21:29:48.000Z", "category": "tools"}, {"source": "Twitter", "title": "MOONBERG @moonberg \u00b7 4\u670814\u65e5 \u56de\u590d  @yo_itsmatt Hey matthew would love to share what we are working on. N", "text": "MOONBERG @moonberg \u00b7 4\u670814\u65e5 \u56de\u590d  @yo_itsmatt Hey matthew would love to share what we are working on. No code algo builder, backtest engine and agentic trading agent coming to  @solana  soon . \u5f15\u7528 MOONBERG @moonberg \u00b7 3\u670827\u65e5 Why you are failing on auto-tr", "url": "https://x.com/moonberg/status/2043731372997579071", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-04-13T16:41:44.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "The Vibe Coder @quantumaidev \u00b7 3\u670827\u65e5 What\u2019s the best part of tech? One connection can change your ne", "text": "The Vibe Coder @quantumaidev \u00b7 3\u670827\u65e5 What\u2019s the best part of tech? One connection can change your next project, job, or startup. So let\u2019s connect. If you\u2019re a developer, indie hacker, founder, or builder working on something exciting in: AI, SaaS, we", "url": "https://x.com/quantumaidev/status/2037546208290582846", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-03-27T15:04:06.000Z", "category": "other"}, {"source": "Twitter", "title": "Hasan Toor @hasantoxr \u00b7 4\u670814\u65e5 \u56de\u590d  @hasantoxr I saw most teams are running 5 or 6 different AI tools ", "text": "Hasan Toor @hasantoxr \u00b7 4\u670814\u65e5 \u56de\u590d  @hasantoxr I saw most teams are running 5 or 6 different AI tools that don't share context with each other. One agent for sales. One for coding. One for ops. One for content. They all start from scratch every single ", "url": "https://x.com/hasantoxr/status/2044065879290421714", "score": 5, "engagement": {"likes": 5, "retweets": 0, "replies": 0}, "ts": "2026-04-14T14:50:57.000Z", "category": "tools"}, {"source": "Twitter", "title": "Cameron England @iamcamengland \u00b7 18\u5c0f\u65f6 The biggest problem with most people's AI setup isn't the tool", "text": "Cameron England @iamcamengland \u00b7 18\u5c0f\u65f6 The biggest problem with most people's AI setup isn't the tools. It's that you can only automate what you can actually imagine automating. If you've never seen what a finance agent, a sales AI, and a content idea", "url": "https://x.com/iamcamengland/status/2044446960464036015", "score": 4, "engagement": {"likes": 4, "retweets": 0, "replies": 0}, "ts": "2026-04-15T16:05:14.000Z", "category": "tools"}, {"source": "Twitter", "title": "True Mark USA @TrueMarkUSA \u00b7 4\u67082\u65e5 We just launched our free AI Audit tool at True Mark USA! This is ", "text": "True Mark USA @TrueMarkUSA \u00b7 4\u67082\u65e5 We just launched our free AI Audit tool at True Mark USA! This is something we built for business owners who know there are inefficiencies in their operation\u2014but aren\u2019t exactly sure where to start fixing them. The au", "url": "https://x.com/TrueMarkUSA/status/2039443092378656989", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-01T20:41:38.000Z", "category": "tools"}, {"source": "Twitter", "title": "agentstack.dev @agentstack_dev \u00b7 4\u67084\u65e5 Not every workflow problem needs an agent. Some need automatio", "text": "agentstack.dev @agentstack_dev \u00b7 4\u67084\u65e5 Not every workflow problem needs an agent. Some need automation. @MSPowerAutomate   is not an AI tool first. It is a workflow automation tool. Its purpose is to take repeatable business processes and execute them", "url": "https://x.com/agentstack_dev/status/2040408793356317094", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-04T12:38:59.000Z", "category": "tools"}, {"source": "Twitter", "title": "jvxiao @jvxiao_me \u00b7 4\u670811\u65e5 Developer here, currently building an AI Background Remover tool.   Also s", "text": "jvxiao @jvxiao_me \u00b7 4\u670811\u65e5 Developer here, currently building an AI Background Remover tool.   Also shipping micro SaaS products while sharing real build logs and epic fails.   If you're into indie hacking, AI tools, SaaS growth, or build in public \u2014 ", "url": "https://x.com/jvxiao_me/status/2042874902521483470", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-11T07:58:26.000Z", "category": "product"}, {"source": "Twitter", "title": "Beursact  @beursact \u00b7 3\u670827\u65e5 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Jus", "text": "Beursact  @beursact \u00b7 3\u670827\u65e5 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Just Three Days A single indie creator turned a ridiculous concept into viral gold.  SlapMac detects physical slaps on your MacBook using built-in sensor", "url": "https://x.com/beursact/status/2037512794501968278", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-03-27T12:51:20.000Z", "category": "product"}, {"source": "Twitter", "title": "GooGZ AI @PaulGugAI \u00b7 20\u5c0f\u65f6 Github surfing: Claude Code Job Search System An AI-powered job search sy", "text": "GooGZ AI @PaulGugAI \u00b7 20\u5c0f\u65f6 Github surfing: Claude Code Job Search System An AI-powered job search system built on Claude Code with 14 skill modes, a Go dashboard, PDF generation, and batch processing.  Any AI-savvy engineering job seekers out there s", "url": "https://x.com/PaulGugAI/status/2044402347062030474", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-15T13:07:57.000Z", "category": "bounty"}, {"source": "Twitter", "title": "Arsal @arsalfeed \u00b7 4\u670813\u65e5 Someone built an AI job search system for Claude Code, ran it on 700+ appli", "text": "Arsal @arsalfeed \u00b7 4\u670813\u65e5 Someone built an AI job search system for Claude Code, ran it on 700+ applications, and actually got hired. Now it's open-source. It's a full agentic workflow that scans career pages across 45+ companies, rewrites your CV to ", "url": "https://x.com/arsalfeed/status/2043407580681343090", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-12T19:15:06.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Zane Chen @chenzeling4 \u00b7 4\u670811\u65e5 Career-Ops \u2014 AI-powered job search system built on Claude Code. 14 sk", "text": "Zane Chen @chenzeling4 \u00b7 4\u670811\u65e5 Career-Ops \u2014 AI-powered job search system built on Claude Code. 14 skill modes: resume tailoring, cover letters, interview prep, salary negotiation & more. Go dashboard, PDF generation, batch processing. Multilingual (7", "url": "https://x.com/chenzeling4/status/2042767944782909890", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-11T00:53:25.000Z", "category": "ai-agents"}], "categories": {"ai-agents": 11, "bounty": 3, "product": 6, "tools": 9, "other": 1}, "summary": {"top_opportunity": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the A", "actionable_signals": 4}});
+      renderCards();
+      document.getElementById('footer-updated').textContent = 'Updated ' +
+        new Date({"updated": "2026-04-16T23:24:36.366767Z", "sources": {"Twitter": 66, "Reddit": 0, "GitHub": 0}, "total": 65, "progress": 15, "topSignals": [{"source": "Twitter", "title": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the A", "text": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the AI expert. It is the domain expert who learned AI. And almost nobody understands why. Let me explain. India produces roughly 1.5 million engineers ever", "url": "https://x.com/law_ninja/status/2039317392057364989", "score": 305, "engagement": {"likes": 305, "retweets": 0, "replies": 0}, "ts": "2026-04-01T12:22:09.000Z", "category": "tools"}, {"source": "Twitter", "title": "Himanshu Kumar @codewithimanshu \u00b7 3\u670830\u65e5 Stop Wasting Time and Learn to Build Claude Skills That Gene", "text": "Himanshu Kumar @codewithimanshu \u00b7 3\u670830\u65e5 Stop Wasting Time and Learn to Build Claude Skills That Generate Revenue. A $20 Tool Is Replacing $6,000/Month Freelancers. You're Not Building It. You're Getting Replaced by It. 10+ automations. All running on", "url": "https://x.com/codewithimanshu/status/2038455470479020184", "score": 149, "engagement": {"likes": 149, "retweets": 0, "replies": 0}, "ts": "2026-03-30T03:17:11.000Z", "category": "product"}, {"source": "Twitter", "title": "Lina  @XNXX_EN \u00b7 16\u5c0f\u65f6 Traditional sales tools are officially broken. Most CRMs are just expensive da", "text": "Lina  @XNXX_EN \u00b7 16\u5c0f\u65f6 Traditional sales tools are officially broken. Most CRMs are just expensive databases for bad forecasts and guesswork. Seeing HockeyStack raise $50M to launch an AI Revenue Agent that actually clones your top rep\u2019s playbook is t", "url": "https://x.com/XNXX_EN/status/2044463017891664334", "score": 88, "engagement": {"likes": 88, "retweets": 0, "replies": 0}, "ts": "2026-04-15T17:09:02.000Z", "category": "product"}, {"source": "Twitter", "title": "Dhanian  @e_opore \u00b7 3\u670830\u65e5 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Nat", "text": "Dhanian  @e_opore \u00b7 3\u670830\u65e5 The AI Developer: Mastering Prompt-to-Code Complete Roadmap for the AI-Native Development Era PHASE 1: MINDSET SHIFT \u2014 FROM CODER TO AI-ENABLED ARCHITECT \u251c\u2500\u2500 The New Development Paradigm \u2502   \u251c\u2500\u2500 Why 2026+ developers need AI ", "url": "https://x.com/e_opore/status/2038543586380206296", "score": 73, "engagement": {"likes": 73, "retweets": 0, "replies": 0}, "ts": "2026-03-30T09:07:19.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Sakata @0x_sakata \u00b7 15\u5c0f\u65f6 \"ai is taking over jobs\" but are they really? The answer is obviously no,  ", "text": "Sakata @0x_sakata \u00b7 15\u5c0f\u65f6 \"ai is taking over jobs\" but are they really? The answer is obviously no,  even in sales nowadays you can use ai tools to run your business, and HockeyStack is the first AI revenue agent, recently raised $50M to: > run or mon", "url": "https://x.com/0x_sakata/status/2044486062047957106", "score": 47, "engagement": {"likes": 47, "retweets": 0, "replies": 0}, "ts": "2026-04-15T18:40:36.000Z", "category": "product"}, {"source": "Twitter", "title": "Dhaval Makwana @heyDhavall \u00b7 3\u670830\u65e5  BREAKING: Someone just built an OpenClaw-style agent for outboun", "text": "Dhaval Makwana @heyDhavall \u00b7 3\u670830\u65e5  BREAKING: Someone just built an OpenClaw-style agent for outbound sales. It\u2019s called ClawGTM. You paste in your website, and it starts building your outbound workflow around what you actually sell. That\u2019s what caug", "url": "https://x.com/heyDhavall/status/2038531730672640353", "score": 40, "engagement": {"likes": 40, "retweets": 0, "replies": 0}, "ts": "2026-03-30T08:20:13.000Z", "category": "product"}, {"source": "Twitter", "title": "Rhys @RhysSullivan \u00b7 2\u5c0f\u65f6 \u56de\u590d  @theo built with claude mythos so our jobs are safe for another cycle i", "text": "Rhys @RhysSullivan \u00b7 2\u5c0f\u65f6 \u56de\u590d  @theo built with claude mythos so our jobs are safe for another cycle i wonder how much of Anthropic's positioning of 'the code doesn't matter anymore' they're able to get away with because of inference subsidies keeping ", "url": "https://x.com/RhysSullivan/status/2044684699327684703", "score": 34, "engagement": {"likes": 34, "retweets": 0, "replies": 0}, "ts": "2026-04-16T07:49:55.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackath", "text": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 Thank you to everyone who entered our Tezos EVM ( @etherlink ) AI Hackathon! The quality of submissions made this an incredibly hard decision Congrats to our winners:   Arbiter   NO-CODE Agent Builder   SlashMarket Learn mo", "url": "https://x.com/nowmedia/status/2044528631150452770", "score": 30, "engagement": {"likes": 30, "retweets": 0, "replies": 0}, "ts": "2026-04-15T21:29:45.000Z", "category": "tools"}, {"source": "Twitter", "title": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 \u56de\u590d  @nowmedia No-Code Agent Builder is a visual workflow tool for creatin", "text": "Now Media @nowmedia \u00b7 12\u5c0f\u65f6 \u56de\u590d  @nowmedia No-Code Agent Builder is a visual workflow tool for creating AI-powered blockchain agents on Etherlink  Users chain together pre-built on-chain actions like token transfers, swaps, NFT deployment, DAO creation", "url": "https://x.com/nowmedia/status/2044528644337406453", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-04-15T21:29:48.000Z", "category": "tools"}, {"source": "Twitter", "title": "MOONBERG @moonberg \u00b7 4\u670814\u65e5 \u56de\u590d  @yo_itsmatt Hey matthew would love to share what we are working on. N", "text": "MOONBERG @moonberg \u00b7 4\u670814\u65e5 \u56de\u590d  @yo_itsmatt Hey matthew would love to share what we are working on. No code algo builder, backtest engine and agentic trading agent coming to  @solana  soon . \u5f15\u7528 MOONBERG @moonberg \u00b7 3\u670827\u65e5 Why you are failing on auto-tr", "url": "https://x.com/moonberg/status/2043731372997579071", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-04-13T16:41:44.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "The Vibe Coder @quantumaidev \u00b7 3\u670827\u65e5 What\u2019s the best part of tech? One connection can change your ne", "text": "The Vibe Coder @quantumaidev \u00b7 3\u670827\u65e5 What\u2019s the best part of tech? One connection can change your next project, job, or startup. So let\u2019s connect. If you\u2019re a developer, indie hacker, founder, or builder working on something exciting in: AI, SaaS, we", "url": "https://x.com/quantumaidev/status/2037546208290582846", "score": 6, "engagement": {"likes": 6, "retweets": 0, "replies": 0}, "ts": "2026-03-27T15:04:06.000Z", "category": "other"}, {"source": "Twitter", "title": "Hasan Toor @hasantoxr \u00b7 4\u670814\u65e5 \u56de\u590d  @hasantoxr I saw most teams are running 5 or 6 different AI tools ", "text": "Hasan Toor @hasantoxr \u00b7 4\u670814\u65e5 \u56de\u590d  @hasantoxr I saw most teams are running 5 or 6 different AI tools that don't share context with each other. One agent for sales. One for coding. One for ops. One for content. They all start from scratch every single ", "url": "https://x.com/hasantoxr/status/2044065879290421714", "score": 5, "engagement": {"likes": 5, "retweets": 0, "replies": 0}, "ts": "2026-04-14T14:50:57.000Z", "category": "tools"}, {"source": "Twitter", "title": "Cameron England @iamcamengland \u00b7 18\u5c0f\u65f6 The biggest problem with most people's AI setup isn't the tool", "text": "Cameron England @iamcamengland \u00b7 18\u5c0f\u65f6 The biggest problem with most people's AI setup isn't the tools. It's that you can only automate what you can actually imagine automating. If you've never seen what a finance agent, a sales AI, and a content idea", "url": "https://x.com/iamcamengland/status/2044446960464036015", "score": 4, "engagement": {"likes": 4, "retweets": 0, "replies": 0}, "ts": "2026-04-15T16:05:14.000Z", "category": "tools"}, {"source": "Twitter", "title": "True Mark USA @TrueMarkUSA \u00b7 4\u67082\u65e5 We just launched our free AI Audit tool at True Mark USA! This is ", "text": "True Mark USA @TrueMarkUSA \u00b7 4\u67082\u65e5 We just launched our free AI Audit tool at True Mark USA! This is something we built for business owners who know there are inefficiencies in their operation\u2014but aren\u2019t exactly sure where to start fixing them. The au", "url": "https://x.com/TrueMarkUSA/status/2039443092378656989", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-01T20:41:38.000Z", "category": "tools"}, {"source": "Twitter", "title": "agentstack.dev @agentstack_dev \u00b7 4\u67084\u65e5 Not every workflow problem needs an agent. Some need automatio", "text": "agentstack.dev @agentstack_dev \u00b7 4\u67084\u65e5 Not every workflow problem needs an agent. Some need automation. @MSPowerAutomate   is not an AI tool first. It is a workflow automation tool. Its purpose is to take repeatable business processes and execute them", "url": "https://x.com/agentstack_dev/status/2040408793356317094", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-04T12:38:59.000Z", "category": "tools"}, {"source": "Twitter", "title": "jvxiao @jvxiao_me \u00b7 4\u670811\u65e5 Developer here, currently building an AI Background Remover tool.   Also s", "text": "jvxiao @jvxiao_me \u00b7 4\u670811\u65e5 Developer here, currently building an AI Background Remover tool.   Also shipping micro SaaS products while sharing real build logs and epic fails.   If you're into indie hacking, AI tools, SaaS growth, or build in public \u2014 ", "url": "https://x.com/jvxiao_me/status/2042874902521483470", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-04-11T07:58:26.000Z", "category": "product"}, {"source": "Twitter", "title": "Beursact  @beursact \u00b7 3\u670827\u65e5 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Jus", "text": "Beursact  @beursact \u00b7 3\u670827\u65e5 Solo Developer Builds Absurd Mac App in 48 Hours Generates $5,000 in Just Three Days A single indie creator turned a ridiculous concept into viral gold.  SlapMac detects physical slaps on your MacBook using built-in sensor", "url": "https://x.com/beursact/status/2037512794501968278", "score": 3, "engagement": {"likes": 3, "retweets": 0, "replies": 0}, "ts": "2026-03-27T12:51:20.000Z", "category": "product"}, {"source": "Twitter", "title": "GooGZ AI @PaulGugAI \u00b7 20\u5c0f\u65f6 Github surfing: Claude Code Job Search System An AI-powered job search sy", "text": "GooGZ AI @PaulGugAI \u00b7 20\u5c0f\u65f6 Github surfing: Claude Code Job Search System An AI-powered job search system built on Claude Code with 14 skill modes, a Go dashboard, PDF generation, and batch processing.  Any AI-savvy engineering job seekers out there s", "url": "https://x.com/PaulGugAI/status/2044402347062030474", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-15T13:07:57.000Z", "category": "bounty"}, {"source": "Twitter", "title": "Arsal @arsalfeed \u00b7 4\u670813\u65e5 Someone built an AI job search system for Claude Code, ran it on 700+ appli", "text": "Arsal @arsalfeed \u00b7 4\u670813\u65e5 Someone built an AI job search system for Claude Code, ran it on 700+ applications, and actually got hired. Now it's open-source. It's a full agentic workflow that scans career pages across 45+ companies, rewrites your CV to ", "url": "https://x.com/arsalfeed/status/2043407580681343090", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-12T19:15:06.000Z", "category": "ai-agents"}, {"source": "Twitter", "title": "Zane Chen @chenzeling4 \u00b7 4\u670811\u65e5 Career-Ops \u2014 AI-powered job search system built on Claude Code. 14 sk", "text": "Zane Chen @chenzeling4 \u00b7 4\u670811\u65e5 Career-Ops \u2014 AI-powered job search system built on Claude Code. 14 skill modes: resume tailoring, cover letters, interview prep, salary negotiation & more. Go dashboard, PDF generation, batch processing. Multilingual (7", "url": "https://x.com/chenzeling4/status/2042767944782909890", "score": 2, "engagement": {"likes": 2, "retweets": 0, "replies": 0}, "ts": "2026-04-11T00:53:25.000Z", "category": "ai-agents"}], "categories": {"ai-agents": 11, "bounty": 3, "product": 6, "tools": 9, "other": 1}, "summary": {"top_opportunity": "Ramanuj Mukherjee @law_ninja \u00b7 4\u67081\u65e5 The most dangerous person in any industry right now is not the A", "actionable_signals": 4}}['updated']).toLocaleString('en-US', {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    }
 
-  // ===== HELPERS =====
-  function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function timeAgo(ts) {
-    if (!ts) return '';
-    var d = new Date(ts);
-    var now = new Date();
-    var diff = Math.floor((now - d) / 1000);
-    if (diff < 3600) return Math.floor(diff/60) + 'm ago';
-    if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
-    return Math.floor(diff/86400) + 'd ago';
-  }
+    // signals pre-loaded
 
-  // ===== HERO STATS =====
-  var cards = DEMAND_DATA.cards || [];
-  var shipped = cards.filter(function(c){ return c.status === 'shipped'; });
-  var inDev = cards.filter(function(c){ return c.status === 'in_dev'; });
-  var analyzing = cards.filter(function(c){ return c.status === 'analyzing'; });
-  var ideas = cards.filter(function(c){ return c.status === 'idea'; });
-  document.getElementById('hero-stats').innerHTML =
-    '<div class="hero-stat"><div class="num green">'+shipped.length+'</div><div class="lbl">Shipped</div></div>' +
-    '<div class="hero-stat"><div class="num orange">'+inDev.length+'</div><div class="lbl">In Dev</div></div>' +
-    '<div class="hero-stat"><div class="num">'+analyzing.length+'</div><div class="lbl">Analyzing</div></div>' +
-    '<div class="hero-stat"><div class="num">'+ideas.length+'</div><div class="lbl">Ideas</div></div>' +
-    '<div class="hero-stat"><div class="num">'+RADAR_DATA.total+'</div><div class="lbl">Live Signals</div></div>';
+    function renderSignals(data) {
+      document.getElementById('signals-updated').textContent =
+        new Date(data.updated).toLocaleString('en-US', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+      document.getElementById('signal-count-label').textContent =
+        (data.total || 0) + ' signals';
 
-  // ===== SIGNALS =====
-  var signals = RADAR_DATA.topSignals || [];
-  document.getElementById('signal-count-label').textContent = RADAR_DATA.total + ' signals';
-  document.getElementById('signals-scroll').innerHTML = signals.map(function(s) {
-    var catMap = { 'ai-agents':'AI', 'bounty':'BOUNTY', 'product':'PRODUCT', 'tools':'TOOLS', 'other':'OTHER' };
-    var cat = catMap[s.category] || s.category.toUpperCase();
-    return '<a href="'+esc(s.url)+'" class="sig-chip" target="_blank">' +
-      '<span class="cat">'+cat+'</span>' +
-      esc(s.title.replace(/·.*$/,'').substring(0,50)) +
-      ' <span class="likes">❤'+s.score+'</span>' +
-    '</a>';
-  }).join('');
+      const container = document.getElementById('signals-scroll');
+      if (!signals.length) {
+        container.innerHTML = '<div class="signal-empty">No signals yet.</div>';
+        return;
+      }
+      container.innerHTML = signals.map(s => {
+        const catClass = 'cat-' + (s.category || 'other');
+        const catLabel = { 'ai-agents':'AI', bounty:'BOUNTY', product:'PRODUCT', tools:'TOOLS', other:'OTHER' }[s.category] || 'OTHER';
+        const eng = s.engagement || {};
+        return `<div class="signal-row">
+          <span class="cat ${catClass}">${catLabel}</span>
+          <span class="text"><a href="${s.url||'#'}" target="_blank">${escHtml(s.title)}</a></span>
+          <span class="eng">
+            <span>❤ ${eng.likes||0}</span>
+            <span>🔁 ${eng.retweets||0}</span>
+          </span>
+        </div>`;
+      }).join('');
+    }
 
-  // ===== PIPELINE FLOW =====
-  var FLOW = ['idea','analyzing','ready','in_dev','shipped'];
-  var FLOW_LABELS = { idea:'💡', analyzing:'🔍', ready:'✅', in_dev:'🔥', shipped:'🚀' };
-  function pipelineFlow(current) {
-    var html = '<div class="pipeline-flow">';
-    FLOW.forEach(function(step, i) {
-      html += '<span class="pf-step'+(step===current?' active':'')+'">'+FLOW_LABELS[step]+'</span>';
-      if (i < FLOW.length-1) html += '<span class="pf-arrow\">›</span>';
+    // demandCards pre-loaded
+
+    function renderCards(filter) {
+      const grid = document.getElementById('cards-grid');
+      const filtered = filter && filter !== 'all'
+        ? demandCards.filter(c => c.status === filter)
+        : demandCards;
+
+      document.getElementById('card-count-label').textContent = filtered.length + ' cards';
+      document.getElementById('p1-count').textContent =
+        demandCards.filter(c => c.priority === 1).length + ' P1';
+
+      if (!filtered.length) {
+        grid.innerHTML = '<p style="color:var(--text-dim);padding:40px;text-align:center;font-size:12px">No cards in this category.</p>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(card => {
+        const statusLabels = { idea:'💡 Idea', analyzing:'🔍 Analyzing', ready:'✅ Ready', in_dev:'🔥 In Dev', shipped:'🚀 Shipped' };
+        const prioLabels = { 1:'P1', 2:'P2', 3:'P3' };
+        const prioClass = { 1:'badge-p1', 2:'badge-p2', 3:'badge-p3' };
+        const featClass = c => c >= 7 ? 'high' : c >= 4 ? 'mid' : 'low';
+        const catLabels = { product:'🛒 Product', tools:'🔧 Tools', bounty:'💰 Bounty', 'ai-agents':'🤖 AI Agents', other:'📌 Other' };
+        const featNum = card.feasibility || 5;
+        const isInDev = card.status === 'in_dev';
+        const isShipped = card.status === 'shipped';
+        const progressDone = isShipped ? 'done' : '';
+
+        return `<div class="dcard status-${card.status}">
+          <div class="dcard-top">
+            <div class="dcard-title">${escHtml(card.title)}</div>
+            <div class="dcard-id">${card.id}</div>
+          </div>
+          <div class="dcard-meta">
+            <span class="dcard-badge ${prioClass[card.priority] || 'badge-p3'}">${prioLabels[card.priority] || 'P3'}</span>
+            <span class="dcard-badge badge-cat">${catLabels[card.category] || '📌'}</span>
+            <span class="dcard-badge badge-status-${card.status}">${statusLabels[card.status] || card.status}</span>
+          </div>
+          <div class="dcard-desc">${escHtml(card.description)}</div>
+          ${card.source ? `<div class="dcard-source">📍 ${escHtml(card.source)}</div>` : ''}
+          <div class="dcard-stats">
+            <div class="dcard-stat">
+              <span class="label">FEASIBILITY</span>
+              <span class="value ${featClass(featNum)}">${featNum}/10</span>
+            </div>
+            <div class="dcard-stat">
+              <span class="label">EFFORT</span>
+              <span class="value">${card.effort || '?'}d</span>
+            </div>
+            ${card.owner ? `<div class="dcard-stat"><span class="label">OWNER</span><span class="value">${card.owner}</span></div>` : ''}
+            ${card.url ? `<div class="dcard-stat"><span class="label">LINK</span><span class="value" style="font-size:10px"><a href="${card.url}" target="_blank" style="color:var(--cyan)">View ↗</a></span></div>` : ''}
+          </div>
+          ${(isInDev || isShipped) ? `
+          <div class="dcard-progress-wrap">
+            <div class="dcard-progress-label">
+              <span>${card.progress || 0}%</span>
+              <span>${card.status === 'shipped' ? 'Shipped' : 'In Development'}</span>
+            </div>
+            <div class="dcard-progress-bar">
+              <div class="dcard-progress-fill ${progressDone}" style="width:${card.progress || 0}%"></div>
+            </div>
+          </div>` : ''}
+          <div class="dcard-actions">
+            ${card.owner ? `<span class="owner">👤 ${card.owner}</span>` : '<span class="owner" style="color:var(--red)">⚠ Unassigned</span>'}
+            <span class="pipeline-flow">
+              <span class="pf-step ${card.status==='idea'?'active':''}">💡</span>
+              <span class="pf-arrow">›</span>
+              <span class="pf-step ${card.status==='analyzing'?'active':''}">🔍</span>
+              <span class="pf-arrow">›</span>
+              <span class="pf-step ${card.status==='ready'?'active':''}">✅</span>
+              <span class="pf-arrow">›</span>
+              <span class="pf-step ${card.status==='in_dev'?'active':''}">🔥</span>
+              <span class="pf-arrow">›</span>
+              <span class="pf-step ${card.status==='shipped'?'active':''}">🚀</span>
+            </span>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // ===== FILTER =====
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        renderCards(chip.dataset.filter);
+      });
     });
-    html += '</div>';
-    return html;
-  }
 
-  // ===== RENDER CARDS =====
-  function featClass(v) { return v >= 7 ? 'high' : v >= 4 ? 'mid' : 'low'; }
-  var CAT_LABELS = { product:'🛒 Product', tools:'🔧 Tools', bounty:'💰 Bounty', 'ai-agents':'🤖 AI Agent', other:'📌 Other' };
-  var STATUS_LABELS = { idea:'💡 Idea', analyzing:'🔍 Analyzing', ready:'✅ Ready', in_dev:'🔥 In Dev', shipped:'🚀 Shipped' };
-  var STATUS_BADGE = { idea:'badge-idea', analyzing:'badge-analyzing', ready:'badge-ready', in_dev:'badge-in_dev', shipped:'badge-shipped' };
-  var PRIO_BADGE = { 1:'badge-p1', 2:'badge-p2', 3:'badge-p3', 4:'badge-p3' };
+    // ===== STATUS UPDATE =====
+    function updateStatus(id, newStatus) {
+      const card = demandCards.find(c => c.id === id);
+      if (!card) return;
+      card.status = newStatus;
+      if (newStatus === 'shipped') card.progress = 100;
+      if (newStatus === 'in_dev' && !card.progress) card.progress = 20;
+      renderCards(document.querySelector('.filter-chip.active').dataset.filter);
+      // In production: POST to API to persist. For now: show feedback.
+      console.log('Card', id, '→', newStatus);
+    }
 
-  function renderCard(card) {
-    var isInDev = card.status === 'in_dev';
-    var isShipped = card.status === 'shipped';
-    var pct = card.progress || 0;
-    var progressDone = isShipped ? 'green' : 'orange';
-    return '<div class="dcard">' +
-      '<div class="dcard-header">' +
-        '<div class="dcard-title">📦 '+esc(card.title)+'</div>' +
-      '</div>' +
-      '<div class="dcard-meta">' +
-        '<span class="badge '+PRIO_BADGE[card.priority]||'badge-p3'+'">P'+card.priority+'</span>' +
-        '<span class="badge badge-cat">'+esc(CAT_LABELS[card.category]||card.category)+'</span>' +
-        '<span class="badge '+STATUS_BADGE[card.status]+'">'+esc(STATUS_LABELS[card.status])+'</span>' +
-      '</div>' +
-      '<p class="dcard-desc">'+esc(card.description)+'</p>' +
-      '<div class="dcard-stats">' +
-        '<div class="dcard-stat"><span class="label">Feasibility</span><span class="value '+featClass(card.feasibility)+'">'+card.feasibility+'/10</span></div>' +
-        '<div class="dcard-stat"><span class="label">Effort</span><span class="value">'+card.effort+'d</span></div>' +
-        (card.owner ? '<div class="dcard-stat"><span class="label">Owner</span><span class="value">'+esc(card.owner)+'</span></div>' : '') +
-      '</div>' +
-      (card.url ? '<a href="'+esc(card.url)+'" class="dcard-url" target="_blank">View ↗</a>' : '') +
-      (isInDev || isShipped ? '<div class="dcard-progress-wrap">' +
-        '<div class="dcard-progress-label"><span>'+pct+'%</span><span>'+esc(isShipped?'Shipped':'In Development')+'</span></div>' +
-        '<div class="dcard-progress-bar"><div class="dcard-progress-fill '+progressDone+'" style="width:'+pct+'%"></div></div>' +
-      '</div>' : '') +
-      pipelineFlow(card.status) +
-    '</div>';
-  }
-
-  function renderCards(filter) {
-    var filtered = filter === 'all' ? cards : cards.filter(function(c){ return c.status === filter; });
-    document.getElementById('card-count-label').textContent = filtered.length + ' cards';
-    document.getElementById('cards-grid').innerHTML =
-      filtered.length ? filtered.map(renderCard).join('')
-        : '<div class="empty">No cards in this stage.</div>';
-  }
-
-  renderCards('all');
-
-  // ===== FILTER =====
-  document.querySelectorAll('.filter-chip').forEach(function(chip) {
-    chip.addEventListener('click', function() {
-      document.querySelectorAll('.filter-chip').forEach(function(c){ c.classList.remove('active'); });
-      chip.classList.add('active');
-      renderCards(chip.dataset.filter);
+    // ===== MODAL =====
+    function openModal() {
+      document.getElementById('modal-overlay').classList.add('open');
+    }
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+    }
+    document.getElementById('modal-overlay').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeModal();
     });
-  });
-</script>
+
+    function submitCard() {
+      const title = document.getElementById('f-title').value.trim();
+      if (!title) { alert('Title is required'); return; }
+      const newCard = {
+        id: 'dr-' + Date.now().toString(36),
+        title,
+        description: document.getElementById('f-desc').value.trim(),
+        source: document.getElementById('f-source').value.trim(),
+        category: document.getElementById('f-category').value,
+        priority: parseInt(document.getElementById('f-priority').value),
+        feasibility: parseInt(document.getElementById('f-feasibility').value) || 5,
+        effort: parseInt(document.getElementById('f-effort').value) || 3,
+        owner: document.getElementById('f-owner').value,
+        status: document.getElementById('f-status').value,
+        progress: 0,
+        url: '',
+        notes: ''
+      };
+      demandCards.push(newCard);
+      demandCards.sort((a, b) => a.priority - b.priority);
+      renderCards(document.querySelector('.filter-chip.active').dataset.filter);
+      closeModal();
+      // Reset form
+      ['f-title','f-desc','f-source'].forEach(id => document.getElementById(id).value = '');
+      console.log('New card:', JSON.stringify(newCard, null, 2));
+    }
+
+    // ===== UTILS =====
+    function escHtml(s) {
+      return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    init();
+  </script>
 </body>
 </html>
