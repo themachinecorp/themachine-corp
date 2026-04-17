@@ -188,6 +188,15 @@
     .action-btn.shipped { border-color: rgba(34,197,94,.4); color: var(--green); }
     .action-btn.shipped:hover { background: rgba(34,197,94,.1); }
 
+    /* ===== PIPELINE FLOW (read-only) ===== */
+    .pipeline-flow {
+      display: flex; align-items: center; gap: 2px;
+      font-size: 11px; margin-left: auto;
+    }
+    .pf-step { color: var(--border2); transition: color .2s; }
+    .pf-step.active { color: var(--cyan); font-weight: 700; }
+    .pf-arrow { color: var(--border2); font-size: 9px; }
+
     /* ===== ADD CARD ===== */
     .add-card-btn {
       background: var(--surface2); border: 1px dashed rgba(0,229,255,.3);
@@ -514,11 +523,17 @@
           </div>` : ''}
           <div class="dcard-actions">
             ${card.owner ? `<span class="owner">👤 ${card.owner}</span>` : '<span class="owner" style="color:var(--red)">⚠ Unassigned</span>'}
-            ${card.status !== 'idea' ? `<button class="action-btn idea" onclick="updateStatus('${card.id}','idea')">💡</button>` : ''}
-            ${card.status !== 'analyzing' ? `<button class="action-btn analyzing" onclick="updateStatus('${card.id}','analyzing')">🔍</button>` : ''}
-            ${card.status !== 'ready' ? `<button class="action-btn ready" onclick="updateStatus('${card.id}','ready')">✅</button>` : ''}
-            ${card.status !== 'in_dev' ? `<button class="action-btn in_dev" onclick="updateStatus('${card.id}','in_dev')">🔥</button>` : ''}
-            ${card.status !== 'shipped' ? `<button class="action-btn shipped" onclick="updateStatus('${card.id}','shipped')">🚀</button>` : ''}
+            <span class="pipeline-flow">
+              <span class="pf-step ${card.status==='idea'?'active':''}">💡</span>
+              <span class="pf-arrow">›</span>
+              <span class="pf-step ${card.status==='analyzing'?'active':''}">🔍</span>
+              <span class="pf-arrow">›</span>
+              <span class="pf-step ${card.status==='ready'?'active':''}">✅</span>
+              <span class="pf-arrow">›</span>
+              <span class="pf-step ${card.status==='in_dev'?'active':''}">🔥</span>
+              <span class="pf-arrow">›</span>
+              <span class="pf-step ${card.status==='shipped'?'active':''}">🚀</span>
+            </span>
           </div>
         </div>`;
       }).join('');
