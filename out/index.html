@@ -231,6 +231,39 @@
     }
     footer a { color: var(--text-dim); margin: 0 8px; }
     footer a:hover { color: var(--cyan); }
+
+    /* ===== MOBILE (≤600px) ===== */
+    @media (max-width: 600px) {
+      nav { padding: 0 12px; height: 48px; }
+      .nav-links { gap: 2px; }
+      .nav-links a { padding: 5px 7px; font-size: 8px; }
+      .nav-cta { padding: 6px 10px; font-size: 8px; }
+
+      .hero { padding: 48px 16px 36px; }
+      .hero h1 { font-size: clamp(14px, 6vw, 20px); }
+
+      .stats-strip {
+        padding: 16px 8px;
+        margin: 0 12px;
+        gap: 0;
+      }
+      .stat { padding: 8px 10px; border-right: none; border-bottom: 1px solid rgba(0,229,255,.1); }
+      .stat:last-child { border-bottom: none; }
+      .stat-val { font-size: 14px; }
+      .stat-label { font-size: 8px; }
+
+      .section { padding: 36px 12px; }
+      .section-title { font-size: clamp(10px, 3vw, 14px); margin-bottom: 20px; }
+
+      .products-grid { grid-template-columns: 1fr; }
+      .gumroad-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .cta-section { padding: 28px 16px; margin: 0 12px 40px; }
+      .cta-section h2 { font-size: clamp(9px, 3vw, 12px); }
+      .cta-section .btn-primary { padding: 12px 20px; font-size: 9px; }
+
+      footer { padding: 20px 12px; }
+    }
   </style>
 </head>
 <body>
