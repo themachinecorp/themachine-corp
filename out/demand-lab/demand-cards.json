@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17T07:05:07.302Z",
+  "updated": "2026-04-17T08:05:13.459Z",
   "cards": [
     {
       "id": "dr-001",
@@ -17,7 +17,7 @@
       "url": "https://themachine-corp.pages.dev/demo/",
       "notes": "Live. Real-time Gumroad data embedded.",
       "signals": 5,
-      "lastSignal": "2026-04-17T07:05:07.302Z"
+      "lastSignal": "2026-04-17T08:05:13.459Z"
     },
     {
       "id": "dr-020",
@@ -30,7 +30,8 @@
       "signals": 30,
       "examples": [],
       "lastSignal": "2026-04-17T04:40:00.000Z",
-      "ts": "2026-04-17T04:40:00.000Z"
+      "ts": "2026-04-17T04:40:00.000Z",
+      "owner": "Mike"
     },
     {
       "id": "dr-002",
@@ -74,8 +75,9 @@
       "status": "analyzing",
       "signals": 5,
       "examples": [],
-      "lastSignal": "2026-04-17T07:05:07.302Z",
-      "ts": "2026-04-17T04:40:00.000Z"
+      "lastSignal": "2026-04-17T08:05:13.459Z",
+      "ts": "2026-04-17T04:40:00.000Z",
+      "owner": "Kevin"
     },
     {
       "id": "dr-005",
@@ -124,8 +126,9 @@
           "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
         }
       ],
-      "lastSignal": "2026-04-17T07:05:07.302Z",
-      "ts": "2026-04-17T05:05:09.032Z"
+      "lastSignal": "2026-04-17T08:05:13.459Z",
+      "ts": "2026-04-17T05:05:09.032Z",
+      "owner": "Kevin"
     },
     {
       "id": "dr-004",
