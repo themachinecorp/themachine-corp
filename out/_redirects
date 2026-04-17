@@ -11,7 +11,8 @@
 /noesis /noesis/index.html 200
 /socrates /socrates/index.html 200
 /demand-radar /demand-radar/index.html 200
-/demand-radar/private /demand-lab/private 308
+/demand-radar/private /demand-radar/ 308
+/demand-lab/private /demand-lab/ 308
 /index /index/index.html 200
 
 # Legacy .html redirects
