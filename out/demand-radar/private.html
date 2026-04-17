@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demand Radar — THEMACHINE Corp.</title>
+  <title>Demand Radar — Internal Feed</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -17,7 +17,6 @@
       --green: #22c55e;
       --yellow: #eab308;
       --orange: #f97316;
-      --red: #ef4444;
       --border: rgba(0,229,255,.15);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,26 +27,31 @@
       padding: 16px 32px; border-bottom: 1px solid var(--border);
       flex-wrap: wrap; gap: 12px;
     }
-    nav .logo { font-family: 'Press Start 2P', cursive; font-size: 10px; color: var(--cyan); text-decoration: none; }
+    nav .logo { font-family: 'Press Start 2P', cursive; font-size: 10px; color: var(--green); text-decoration: none; }
     nav .logo span { color: var(--gold); }
     nav .links { display: flex; gap: 24px; list-style: none; }
-    nav .links a { color: var(--text-dim); text-decoration: none; font-size: 12px; transition: color .2s; }
+    nav .links a { color: var(--text-dim); text-decoration: none; font-size: 12px; }
     nav .links a:hover { color: var(--text); }
-    nav .links a.active { color: var(--gold); }
+    .access-badge {
+      background: rgba(34,197,94,.15); border: 1px solid rgba(34,197,94,.4);
+      color: var(--green); font-size: 9px; font-weight: 700;
+      padding: 3px 10px; border-radius: 3px; letter-spacing: 1px;
+    }
 
     .hero {
       text-align: center; padding: 60px 24px 40px;
-      background: radial-gradient(ellipse at center, rgba(0,229,255,.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(34,197,94,.06) 0%, transparent 70%);
+      border-bottom: 1px solid rgba(34,197,94,.15);
     }
     .hero .badge {
       display: inline-block; font-size: 9px; font-weight: 700;
       padding: 4px 12px; border-radius: 3px;
-      background: rgba(234,179,8,.12); color: var(--yellow);
-      border: 1px solid rgba(234,179,8,.3); letter-spacing: 1px; margin-bottom: 16px;
+      background: rgba(34,197,94,.12); color: var(--green);
+      border: 1px solid rgba(34,197,94,.3); letter-spacing: 1px; margin-bottom: 16px;
     }
     .hero h1 {
       font-family: 'Press Start 2P', cursive; font-size: clamp(11px,2.5vw,18px);
-      line-height: 1.8; margin-bottom: 16px;
+      line-height: 1.8; margin-bottom: 16px; color: var(--green);
     }
     .hero p { color: var(--text-dim); font-size: clamp(12px,1.8vw,15px); max-width: 560px; margin: 0 auto 32px; }
 
@@ -64,8 +68,25 @@
 
     .container { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
 
+    .admin-bar {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      background: rgba(34,197,94,.05); border: 1px solid rgba(34,197,94,.2);
+      border-radius: 8px; padding: 12px 20px; margin: 24px 0;
+      font-size: 11px; color: var(--text-dim);
+    }
+    .admin-bar .label { color: var(--green); font-weight: 700; }
+    .admin-bar .refresh-btn {
+      margin-left: auto; padding: 5px 14px;
+      background: var(--green); color: #000;
+      border: none; border-radius: 4px; cursor: pointer;
+      font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700;
+    }
+    .admin-bar .refresh-btn:hover { opacity: .85; }
+    .admin-bar .api-status { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+    .admin-bar .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
     .filter-bar {
-      display: flex; gap: 8px; flex-wrap: wrap; margin: 40px 0 24px;
+      display: flex; gap: 8px; flex-wrap: wrap; margin: 32px 0 24px;
       align-items: center;
     }
     .filter-btn {
@@ -111,37 +132,13 @@
     .signal-link { font-size: 11px; color: var(--cyan); text-decoration: none; margin-left: auto; }
     .signal-link:hover { text-decoration: underline; }
 
-    .upgrade-banner {
-      background: linear-gradient(135deg, rgba(212,175,55,.08), rgba(212,175,55,.03));
-      border: 1px solid rgba(212,175,55,.3); border-radius: 12px;
-      padding: 32px; margin-top: 48px; text-align: center;
+    /* Internal action panel */
+    .action-panel {
+      background: var(--surface2); border: 1px solid rgba(212,175,55,.25);
+      border-radius: 10px; padding: 24px; margin-top: 48px;
     }
-    .upgrade-banner h2 { font-family: 'Press Start 2P', cursive; font-size: 12px; color: var(--gold); margin-bottom: 12px; }
-    .upgrade-banner p { color: var(--text-dim); font-size: 13px; max-width: 440px; margin: 0 auto 20px; }
-    .upgrade-banner ul { text-align: left; max-width: 360px; margin: 0 auto 24px; display: inline-block; }
-    .upgrade-banner li { font-size: 12px; color: var(--text-dim); margin-bottom: 8px; padding-left: 16px; position: relative; }
-    .upgrade-banner li::before { content: '→'; position: absolute; left: 0; color: var(--gold); }
-    .cta-btn {
-      display: inline-block; padding: 12px 28px; background: var(--gold); color: #000;
-      font-family: 'Press Start 2P', cursive; font-size: 10px; text-decoration: none;
-      border-radius: 6px; transition: opacity .2s; cursor: pointer; border: none;
-    }
-    .cta-btn:hover { opacity: .85; }
-
-    .pricing-grid { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
-    .pricing-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 28px; min-width: 220px; text-align: center;
-    }
-    .pricing-card.featured { border-color: var(--gold); }
-    .pricing-card h3 { font-family: 'Press Start 2P', cursive; font-size: 9px; color: var(--text-dim); margin-bottom: 12px; }
-    .pricing-card.featured h3 { color: var(--gold); }
-    .pricing-card .price { font-family: 'Press Start 2P', cursive; font-size: 20px; color: var(--cyan); margin-bottom: 4px; }
-    .pricing-card.featured .price { color: var(--gold); }
-    .pricing-card .period { font-size: 11px; color: var(--text-dim); margin-bottom: 16px; }
-    .pricing-card ul { text-align: left; margin-bottom: 20px; }
-    .pricing-card li { font-size: 11px; color: var(--text-dim); margin-bottom: 6px; padding-left: 12px; }
-    .pricing-card li::before { content: '✓'; color: var(--green); margin-right: 6px; }
+    .action-panel h2 { font-family: 'Press Start 2P', cursive; font-size: 10px; color: var(--gold); margin-bottom: 16px; }
+    .action-panel .hint { font-size: 11px; color: var(--text-dim); margin-bottom: 16px; }
 
     .footer { text-align: center; padding: 32px; font-size: 11px; color: var(--text-dim); border-top: 1px solid var(--border); }
 
@@ -149,25 +146,24 @@
       .stats-bar { gap: 20px; }
       .filter-bar { gap: 6px; }
       .signal-card { padding: 14px; }
-      .pricing-grid { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
   <nav>
-    <a href="/" class="logo">◈ THEMACHINE <span>CORP.</span></a>
+    <a href="/" class="logo">◈ TEAM <span>INTERNAL</span></a>
+    <span class="access-badge">🔒 PRIVATE FEED</span>
     <ul class="links">
+      <li><a href="/demand-radar/">← Public Demo</a></li>
       <li><a href="/">Home</a></li>
-      <li><a href="/demand-radar/" class="active">Demand Radar</a></li>
-      <li><a href="/team/">Team</a></li>
       <li><a href="/products/">Products</a></li>
     </ul>
   </nav>
 
   <div class="hero">
-    <div class="badge">📡 LIVE SIGNALS</div>
-    <h1>Demand Radar</h1>
-    <p>Real-time intelligence on what developers are building, buying, and struggling with. Updated hourly from Twitter, Reddit, and GitHub.</p>
+    <div class="badge">🔒 INTERNAL — TEAM USE ONLY</div>
+    <h1>Live Signal Feed</h1>
+    <p>Real-time demand intelligence. No marketing. No delays. Just signals.</p>
     <div class="stats-bar">
       <div class="stat">
         <div class="num" id="stat-total">--</div>
@@ -182,13 +178,27 @@
         <div class="label">Bounties</div>
       </div>
       <div class="stat">
-        <div class="num" id="stat-tools">--</div>
+        <div class="num orange" id="stat-tools">--</div>
         <div class="label">Tools</div>
       </div>
     </div>
   </div>
 
   <div class="container">
+    <div class="admin-bar">
+      <span class="label">DATA SOURCE:</span>
+      <span>Twitter (65 signals)</span>
+      <span>·</span>
+      <span>Reddit (0 signals)</span>
+      <span>·</span>
+      <span>GitHub (0 signals)</span>
+      <button class="refresh-btn" onclick="loadData()">↻ Refresh</button>
+      <div class="api-status">
+        <span class="dot"></span>
+        <span>Live</span>
+      </div>
+    </div>
+
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="ai-agents">AI Agents</button>
@@ -202,45 +212,25 @@
       <!-- Signals loaded dynamically -->
     </div>
 
-    <div class="upgrade-banner">
-      <h2>Want the full feed?</h2>
-      <p>See what developers are actually paying for — updated in real-time, not 24 hours stale.</p>
-      <ul>
-        <li>Real-time signals from Twitter, Reddit & GitHub</li>
-        <li>Bounty alerts with exact payout amounts</li>
-        <li>Private signal feed API access</li>
-        <li>Custom keyword monitoring</li>
+    <div class="action-panel">
+      <h2>→ Next Actions</h2>
+      <p class="hint">Use these signals to find revenue opportunities: bounties to claim, content to post, products to build.</p>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+        <li style="font-size:12px; color:var(--text-dim);">
+          💰 <strong style="color:var(--text)">Bounties</strong> — Click 💰 badge above → claim on Algora → ship PR
+        </li>
+        <li style="font-size:12px; color:var(--text-dim);">
+          📝 <strong style="color:var(--text)">Content</strong> — Click any signal → reply/post on X with insight
+        </li>
+        <li style="font-size:12px; color:var(--text-dim);">
+          🛒 <strong style="color:var(--text)">Products</strong> — Tools signals → build & sell on Gumroad
+        </li>
       </ul>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>STARTER</h3>
-          <div class="price">$19</div>
-          <div class="period">/ month</div>
-          <ul>
-            <li>100 signals / day</li>
-            <li>Twitter + Reddit</li>
-            <li>Basic filters</li>
-          </ul>
-          <a href="/register/" class="cta-btn">Get Access →</a>
-        </div>
-        <div class="pricing-card featured">
-          <h3>PRO</h3>
-          <div class="price">$49</div>
-          <div class="period">/ month</div>
-          <ul>
-            <li>Unlimited signals</li>
-            <li>GitHub bounty API</li>
-            <li>Private feed URL</li>
-            <li>Alert on keywords</li>
-          </ul>
-          <a href="/register/" class="cta-btn">Get Access →</a>
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="footer">
-    Demand Radar &nbsp;·&nbsp; Updated <span id="last-updated">--</span> &nbsp;·&nbsp; THEMACHINE Corp.
+    Internal Feed &nbsp;·&nbsp; Updated <span id="last-updated">--</span> &nbsp;·&nbsp; THEMACHINE Corp. — Confidential
   </div>
 
   <script>
@@ -262,7 +252,7 @@
 
         renderSignals('all');
       } catch(e) {
-        document.getElementById('signal-grid').innerHTML = '<p style="color:var(--text-dim);padding:40px;text-align:center">Signal data loading... Refresh in a moment.</p>';
+        document.getElementById('signal-grid').innerHTML = '<p style="color:var(--text-dim);padding:40px;text-align:center">Data loading... check API connection.</p>';
       }
     }
 
