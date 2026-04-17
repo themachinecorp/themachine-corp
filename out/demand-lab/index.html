@@ -464,12 +464,12 @@
     function renderCards(filter) {
       const grid = document.getElementById('cards-grid');
       const filtered = filter && filter !== 'all'
-        ? demandCards.cards?.filter(c => c.status) || demandCards.filter(c => c.status) === filter)
-        : demandCards;
+        ? (demandCards.cards || demandCards).filter(c => c.status === filter)
+        : (demandCards.cards || demandCards);
 
       document.getElementById('card-count-label').textContent = filtered.length + ' cards';
       document.getElementById('p1-count').textContent =
-        demandCards.filter(c => c.priority === 1).length + ' P1';
+        (demandCards.cards || demandCards).filter(c => c.priority === 1).length + ' P1';
 
       if (!filtered.length) {
         grid.innerHTML = '<p style="color:var(--text-dim);padding:40px;text-align:center;font-size:12px">No cards in this category.</p>';
@@ -550,7 +550,7 @@
 
     // ===== STATUS UPDATE =====
     function updateStatus(id, newStatus) {
-      const card = demandCards.find(c => c.id === id);
+      const card = (demandCards.cards || demandCards).find(c => c.id === id);
       if (!card) return;
       card.status = newStatus;
       if (newStatus === 'shipped') card.progress = 100;
@@ -589,8 +589,8 @@
         url: '',
         notes: ''
       };
-      demandCards.push(newCard);
-      demandCards.sort((a, b) => a.priority - b.priority);
+      (demandCards.cards || demandCards).push(newCard);
+      (demandCards.cards || demandCards).sort((a, b) => a.priority - b.priority);
       renderCards(document.querySelector('.filter-chip.active').dataset.filter);
       closeModal();
       // Reset form
