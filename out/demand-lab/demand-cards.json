@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17T04:40:00.000Z",
+  "updated": "2026-04-17T07:05:07.302Z",
   "cards": [
     {
       "id": "dr-001",
@@ -15,7 +15,22 @@
       "owner": "Kevin",
       "progress": 100,
       "url": "https://themachine-corp.pages.dev/demo/",
-      "notes": "Live. Real-time Gumroad data embedded."
+      "notes": "Live. Real-time Gumroad data embedded.",
+      "signals": 5,
+      "lastSignal": "2026-04-17T07:05:07.302Z"
+    },
+    {
+      "id": "dr-020",
+      "title": "Social Signal — Market Signal",
+      "description": "Organic Twitter discussions on AI agents, automation, and side hustles.",
+      "source": "Twitter",
+      "category": "market",
+      "priority": 1,
+      "status": "analyzing",
+      "signals": 30,
+      "examples": [],
+      "lastSignal": "2026-04-17T04:40:00.000Z",
+      "ts": "2026-04-17T04:40:00.000Z"
     },
     {
       "id": "dr-002",
@@ -50,20 +65,17 @@
       "notes": "Live. Auto-updated from demand-cards.json."
     },
     {
-      "id": "dr-004",
-      "title": "AI Agent Engineer Playbook",
-      "description": "Step-by-step guide: how to build, launch, and monetize AI agent products.",
-      "source": "gumroad",
-      "category": "product",
-      "priority": 3,
-      "status": "idea",
-      "feasibility": 8,
-      "tech": "Gumroad + Notion",
-      "effort": 5,
-      "owner": "",
-      "progress": 0,
-      "url": "",
-      "notes": "Pre-launch waitlist. Content outline ready."
+      "id": "dr-019",
+      "title": "Built with AI — Market Signal",
+      "description": "People sharing AI-built products on HN. High-signal for tool demand.",
+      "source": "HN",
+      "category": "market",
+      "priority": 2,
+      "status": "analyzing",
+      "signals": 5,
+      "examples": [],
+      "lastSignal": "2026-04-17T07:05:07.302Z",
+      "ts": "2026-04-17T04:40:00.000Z"
     },
     {
       "id": "dr-005",
@@ -82,22 +94,6 @@
       "notes": "Algora account restricted. Exploring alternative bounty platforms."
     },
     {
-      "id": "dr-006",
-      "title": "Claude Code Job Search System",
-      "description": "Use Claude Code to automate LinkedIn/email job applications for devs.",
-      "source": "twitter",
-      "category": "product",
-      "priority": 3,
-      "status": "idea",
-      "feasibility": 6,
-      "tech": "Claude Code + LinkedIn API",
-      "effort": 7,
-      "owner": "",
-      "progress": 0,
-      "url": "",
-      "notes": "High intent signals on Twitter. Multiple people asking about this."
-    },
-    {
       "id": "dr-007",
       "title": "Twitter Signal → Content Pipeline",
       "description": "Auto-generate blog posts/threads from trending Twitter discussions in your niche.",
@@ -114,6 +110,56 @@
       "notes": "Mike owns this. Watching engagement on AI content automation tweets."
     },
     {
+      "id": "dr-021",
+      "title": "Autonomous Agents — Market Signal",
+      "description": "A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workf",
+      "source": "GitHub",
+      "category": "ai-agents",
+      "priority": 3,
+      "status": "analyzing",
+      "signals": 1,
+      "examples": [
+        {
+          "title": "A curated collection of AI agent research papers released in 2026, covering agen",
+          "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+        }
+      ],
+      "lastSignal": "2026-04-17T07:05:07.302Z",
+      "ts": "2026-04-17T05:05:09.032Z"
+    },
+    {
+      "id": "dr-004",
+      "title": "AI Agent Engineer Playbook",
+      "description": "Step-by-step guide: how to build, launch, and monetize AI agent products.",
+      "source": "gumroad",
+      "category": "product",
+      "priority": 3,
+      "status": "idea",
+      "feasibility": 8,
+      "tech": "Gumroad + Notion",
+      "effort": 5,
+      "owner": "",
+      "progress": 0,
+      "url": "",
+      "notes": "Pre-launch waitlist. Content outline ready."
+    },
+    {
+      "id": "dr-006",
+      "title": "Claude Code Job Search System",
+      "description": "Use Claude Code to automate LinkedIn/email job applications for devs.",
+      "source": "twitter",
+      "category": "product",
+      "priority": 3,
+      "status": "idea",
+      "feasibility": 6,
+      "tech": "Claude Code + LinkedIn API",
+      "effort": 7,
+      "owner": "",
+      "progress": 0,
+      "url": "",
+      "notes": "High intent signals on Twitter. Multiple people asking about this."
+    },
+    {
       "id": "dr-008",
       "title": "AI Audit Tool — Free Lead Gen",
       "description": "Free SEO/accessibility audit tool. Collects emails, upsells paid fixes report.",
@@ -128,32 +174,6 @@
       "progress": 0,
       "url": "",
       "notes": "Multiple \"帮我看看网站\" type requests. Good inbound funnel."
-    },
-    {
-      "id": "dr-019",
-      "title": "Built with AI — Market Signal",
-      "description": "People sharing AI-built products on HN. High-signal for tool demand.",
-      "source": "HN",
-      "category": "market",
-      "priority": 2,
-      "status": "analyzing",
-      "signals": 5,
-      "examples": [],
-      "lastSignal": "2026-04-17T04:40:00.000Z",
-      "ts": "2026-04-17T04:40:00.000Z"
-    },
-    {
-      "id": "dr-020",
-      "title": "Social Signal — Market Signal",
-      "description": "Organic Twitter discussions on AI agents, automation, and side hustles.",
-      "source": "Twitter",
-      "category": "market",
-      "priority": 1,
-      "status": "analyzing",
-      "signals": 30,
-      "examples": [],
-      "lastSignal": "2026-04-17T04:40:00.000Z",
-      "ts": "2026-04-17T04:40:00.000Z"
     }
   ]
 }
