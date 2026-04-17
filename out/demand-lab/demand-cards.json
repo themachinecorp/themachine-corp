@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17T09:54:17.776Z",
+  "updated": "2026-04-17T12:05:01.501Z",
   "cards": [
     {
       "id": "dr-001",
@@ -20,22 +20,8 @@
       "lastSignal": "2026-04-17T08:05:13.459Z"
     },
     {
-      "id": "dr-020",
-      "title": "Social Signal — Market Signal",
-      "description": "Organic Twitter discussions on AI agents, automation, and side hustles.",
-      "source": "Twitter",
-      "category": "market",
-      "priority": 1,
-      "status": "analyzing",
-      "signals": 30,
-      "examples": [],
-      "lastSignal": "2026-04-17T04:40:00.000Z",
-      "ts": "2026-04-17T04:40:00.000Z",
-      "owner": "Mike"
-    },
-    {
       "id": "dr-002",
-      "title": "Demand Lab — Public Signal Feed",
+      "title": "Demand Lab \u2014 Public Signal Feed",
       "description": "Real-time Twitter signal stream for demand intelligence. 65+ signals and growing.",
       "source": "internal",
       "category": "tools",
@@ -51,8 +37,8 @@
     },
     {
       "id": "dr-003",
-      "title": "Demand Lab — Ops Dashboard",
-      "description": "Internal pipeline view: Idea → Analyzing → Ready → In Dev → Shipped.",
+      "title": "Demand Lab \u2014 Ops Dashboard",
+      "description": "Internal pipeline view: Idea \u2192 Analyzing \u2192 Ready \u2192 In Dev \u2192 Shipped.",
       "source": "internal",
       "category": "tools",
       "priority": 1,
@@ -64,71 +50,6 @@
       "progress": 60,
       "url": "https://themachine-corp.pages.dev/demand-lab/",
       "notes": "Live. Auto-updated from demand-cards.json."
-    },
-    {
-      "id": "dr-019",
-      "title": "Built with AI — Market Signal",
-      "description": "People sharing AI-built products on HN. High-signal for tool demand.",
-      "source": "HN",
-      "category": "market",
-      "priority": 2,
-      "status": "analyzing",
-      "signals": 5,
-      "examples": [],
-      "lastSignal": "2026-04-17T08:05:13.459Z",
-      "ts": "2026-04-17T04:40:00.000Z",
-      "owner": "Kevin"
-    },
-    {
-      "id": "dr-005",
-      "title": "Algora Bounty Hunter Toolkit",
-      "description": "Automated Algora scanning + PR submission pipeline. Currently on pause (account restricted).",
-      "source": "algora",
-      "category": "tools",
-      "priority": 2,
-      "status": "analyzing",
-      "feasibility": 7,
-      "tech": "Node.js + GitHub API",
-      "effort": 3,
-      "owner": "Kevin",
-      "progress": 20,
-      "url": "",
-      "notes": "Algora account restricted. Exploring alternative bounty platforms."
-    },
-    {
-      "id": "dr-007",
-      "title": "Twitter Signal → Content Pipeline",
-      "description": "Auto-generate blog posts/threads from trending Twitter discussions in your niche.",
-      "source": "twitter",
-      "category": "tools",
-      "priority": 2,
-      "status": "analyzing",
-      "feasibility": 7,
-      "tech": "CDP + OpenAI",
-      "effort": 4,
-      "owner": "Mike",
-      "progress": 10,
-      "url": "",
-      "notes": "Mike owns this. Watching engagement on AI content automation tweets."
-    },
-    {
-      "id": "dr-021",
-      "title": "Autonomous Agents — Market Signal",
-      "description": "A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workf",
-      "source": "GitHub",
-      "category": "ai-agents",
-      "priority": 3,
-      "status": "analyzing",
-      "signals": 1,
-      "examples": [
-        {
-          "title": "A curated collection of AI agent research papers released in 2026, covering agen",
-          "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
-        }
-      ],
-      "lastSignal": "2026-04-17T08:05:13.459Z",
-      "ts": "2026-04-17T05:05:09.032Z",
-      "owner": "Kevin"
     },
     {
       "id": "dr-004",
@@ -147,6 +68,22 @@
       "notes": "Pre-launch waitlist. Content outline ready."
     },
     {
+      "id": "dr-005",
+      "title": "Algora Bounty Hunter Toolkit",
+      "description": "Automated Algora scanning + PR submission pipeline. Currently on pause (account restricted).",
+      "source": "algora",
+      "category": "tools",
+      "priority": 2,
+      "status": "analyzing",
+      "feasibility": 7,
+      "tech": "Node.js + GitHub API",
+      "effort": 3,
+      "owner": "Kevin",
+      "progress": 20,
+      "url": "",
+      "notes": "Algora account restricted. Exploring alternative bounty platforms."
+    },
+    {
       "id": "dr-006",
       "title": "Claude Code Job Search System",
       "description": "Use Claude Code to automate LinkedIn/email job applications for devs.",
@@ -163,8 +100,24 @@
       "notes": "High intent signals on Twitter. Multiple people asking about this."
     },
     {
+      "id": "dr-007",
+      "title": "Twitter Signal \u2192 Content Pipeline",
+      "description": "Auto-generate blog posts/threads from trending Twitter discussions in your niche.",
+      "source": "twitter",
+      "category": "tools",
+      "priority": 2,
+      "status": "analyzing",
+      "feasibility": 7,
+      "tech": "CDP + OpenAI",
+      "effort": 4,
+      "owner": "Mike",
+      "progress": 10,
+      "url": "",
+      "notes": "Mike owns this. Watching engagement on AI content automation tweets."
+    },
+    {
       "id": "dr-008",
-      "title": "AI Audit Tool — Free Lead Gen",
+      "title": "AI Audit Tool \u2014 Free Lead Gen",
       "description": "Free SEO/accessibility audit tool. Collects emails, upsells paid fixes report.",
       "source": "twitter",
       "category": "product",
@@ -176,7 +129,80 @@
       "owner": "",
       "progress": 0,
       "url": "",
-      "notes": "Multiple \"帮我看看网站\" type requests. Good inbound funnel."
+      "notes": "Multiple \"\u5e2e\u6211\u770b\u770b\u7f51\u7ad9\" type requests. Good inbound funnel."
+    },
+    {
+      "id": "dr-019",
+      "title": "Built with AI \u2014 Market Signal",
+      "description": "People sharing AI-built products on HN. High-signal for tool demand.",
+      "source": "HN",
+      "category": "market",
+      "priority": 2,
+      "status": "analyzing",
+      "signals": 5,
+      "examples": [],
+      "lastSignal": "2026-04-17T08:05:13.459Z",
+      "ts": "2026-04-17T04:40:00.000Z",
+      "owner": "Kevin"
+    },
+    {
+      "id": "dr-020",
+      "title": "Social Signal \u2014 Market Signal",
+      "description": "Organic Twitter discussions on AI agents, automation, and side hustles.",
+      "source": "Twitter",
+      "category": "market",
+      "priority": 1,
+      "status": "analyzing",
+      "signals": 30,
+      "examples": [],
+      "lastSignal": "2026-04-17T04:40:00.000Z",
+      "ts": "2026-04-17T04:40:00.000Z",
+      "owner": "Mike"
+    },
+    {
+      "id": "dr-021",
+      "title": "Autonomous Agents \u2014 Market Signal",
+      "description": "A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workf",
+      "source": "GitHub",
+      "category": "ai-agents",
+      "priority": 3,
+      "status": "analyzing",
+      "signals": 1,
+      "examples": [
+        {
+          "title": "A curated collection of AI agent research papers released in 2026, covering agen",
+          "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+        }
+      ],
+      "lastSignal": "2026-04-17T08:05:13.459Z",
+      "ts": "2026-04-17T05:05:09.032Z",
+      "owner": "Kevin"
+    },
+    {
+      "id": "dr-022",
+      "title": "Twill.ai \u2014 Cloud Coding Agent (YC S25)",
+      "desc": "YC S25 startup. Runs Claude Code/Codex CLIs in cloud, returns PRs. 77 HN points. Validates demand for autonomous coding agents \u2014 our core market.",
+      "status": "analyzing",
+      "priority": "high",
+      "category": "market_signal",
+      "source": "HN",
+      "score": 77,
+      "owner": "Kevin",
+      "progress": 0,
+      "url": "https://twill.ai"
+    },
+    {
+      "id": "dr-023",
+      "title": "Relvy \u2014 On-Call Runbook Automation (YC F24)",
+      "desc": "YC F24 startup. Automates on-call runbooks for dev teams. 48 HN points. AI ops niche growing \u2014 automation for ops is adjacent to our agent pipeline.",
+      "status": "analyzing",
+      "priority": "medium",
+      "category": "market_signal",
+      "source": "HN",
+      "score": 48,
+      "owner": "Kevin",
+      "progress": 0,
+      "url": "https://www.relvy.ai"
     }
   ]
 }
