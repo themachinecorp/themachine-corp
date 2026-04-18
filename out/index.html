@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THEMACHINE CORP. — AI Agent Revenue Machine</title>
-  <meta name="description" content="We build AI agent systems that find demand, ship products, and generate revenue — on autopilot.">
+  <title>THEMATHINK — Autonomous AI Revenue Machine</title>
+  <meta name="description" content="AI agents that find demand, ship products, and generate revenue — 24/7, no humans required.">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -17,105 +17,125 @@
       --cyan: #00e5ff;
       --green: #22c55e;
       --orange: #f97316;
-      --red: #ef4444;
       --border: rgba(0,229,255,.15);
     }
     * { margin:0; padding:0; box-sizing:border-box; }
-    html { background: var(--bg); color: var(--text); font-family: 'Press Start 2P', monospace; font-size: 11px; scroll-behavior: smooth; }
+    html { background: var(--bg); color: var(--text); font-family: 'Press Start 2P', cursive; font-size: 10px; scroll-behavior: smooth; }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
+
+    /* MARQUEE TICKER */
+    .ticker {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-block;
+      animation: ticker-scroll 30s linear infinite;
+      gap: 0;
+    }
+    .ticker-item {
+      display: inline-block;
+      font-size: 8px;
+      color: var(--text-dim);
+      padding: 0 24px;
+    }
+    .ticker-item .val { color: var(--cyan); margin-right: 6px; }
+    .ticker-item .green { color: var(--green); }
+    .ticker-item .gold { color: var(--gold); }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
     /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(8,8,16,.92);
+      background: rgba(8,8,16,.95);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(12px);
       padding: 0 24px;
       display: flex; align-items: center; justify-content: space-between;
       height: 52px;
     }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
     .nav-logo {
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Press Start 2P', cursive;
       font-size: 10px;
-      color: var(--gold);
+      color: var(--cyan);
       letter-spacing: 1px;
     }
-    .nav-links { display: flex; gap: 4px; align-items: center; }
+    .nav-logo-sub {
+      font-size: 8px;
+      color: var(--text-dim);
+      border-left: 1px solid var(--border);
+      padding-left: 10px;
+      margin-left: 2px;
+    }
+    .nav-links { display: flex; gap: 2px; align-items: center; }
     .nav-links a {
-      font-size: 10px;
-      padding: 6px 12px;
+      font-size: 8px;
+      padding: 6px 10px;
       border-radius: 4px;
       color: var(--text-dim);
       border: 1px solid transparent;
       transition: all .15s;
+      white-space: nowrap;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--cyan); border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.06); }
-    .nav-links a.gold { color: var(--gold); border-color: rgba(212,175,55,.3); }
-    .nav-links a.gold:hover { background: rgba(212,175,55,.1); }
+    .nav-links a:hover { color: var(--cyan); border-color: rgba(0,229,255,.3); }
+    .nav-links a.gold { color: var(--gold); }
     .nav-cta {
-      font-size: 10px;
-      padding: 7px 16px;
+      font-size: 8px;
+      padding: 6px 12px;
       background: var(--gold);
       color: #000 !important;
       border-radius: 4px;
       font-weight: 700;
       border: none !important;
     }
-    .nav-cta:hover { opacity: .85; }
-
-    .live-dot {
-      display: inline-block;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      margin-right: 6px;
-      animation: pulse-dot 1.5s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: .5; transform: scale(.8); }
-    }
 
     /* HERO */
     .hero {
       text-align: center;
-      padding: 80px 24px 60px;
+      padding: 64px 24px 48px;
       max-width: 800px;
       margin: 0 auto;
     }
-    .hero-badge {
-      display: inline-block;
-      font-size: 9px;
-      padding: 4px 12px;
-      border: 1px solid rgba(0,229,255,.3);
-      border-radius: 20px;
+    .hero-brand {
+      font-size: clamp(20px, 8vw, 48px);
       color: var(--cyan);
+      letter-spacing: 4px;
+      text-shadow: 0 0 30px rgba(0,229,255,.3), 0 0 60px rgba(0,229,255,.15);
+      margin-bottom: 8px;
+      animation: glow-cyan 3s ease-in-out infinite;
+    }
+    @keyframes glow-cyan {
+      0%,100% { text-shadow: 0 0 30px rgba(0,229,255,.3); }
+      50% { text-shadow: 0 0 50px rgba(0,229,255,.6), 0 0 80px rgba(0,229,255,.2); }
+    }
+    .hero-sub-brand {
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: 2px;
       margin-bottom: 28px;
-      letter-spacing: 1px;
     }
-    .hero h1 {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(16px, 4vw, 28px);
-      line-height: 1.4;
-      color: var(--text);
-      margin-bottom: 24px;
-    }
-    .hero h1 span { color: var(--gold); }
-    .hero-sub {
-      font-size: clamp(11px, 2vw, 14px);
+    .hero-desc {
+      font-size: 10px;
       color: var(--text-dim);
-      line-height: 1.8;
-      max-width: 560px;
-      margin: 0 auto 40px;
+      line-height: 2;
+      max-width: 500px;
+      margin: 0 auto 32px;
     }
     .hero-cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
-      padding: 12px 28px;
-      background: var(--gold);
+      padding: 12px 24px;
+      background: var(--cyan);
       color: #000;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 9px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 8px;
       border-radius: 5px;
       font-weight: 700;
       border: none;
@@ -124,170 +144,221 @@
     }
     .btn-primary:hover { opacity: .85; }
     .btn-secondary {
-      padding: 12px 28px;
+      padding: 12px 24px;
       border: 1px solid var(--border);
-      color: var(--cyan);
-      font-size: 10px;
+      color: var(--text-dim);
+      font-size: 8px;
       border-radius: 5px;
       background: transparent;
       cursor: pointer;
       transition: all .15s;
     }
-    .btn-secondary:hover { background: rgba(0,229,255,.08); border-color: var(--cyan); }
+    .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
 
-    /* STATS STRIP */
+    /* STATS */
     .stats-strip {
       display: flex;
       justify-content: center;
-      gap: 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 24px;
+      padding: 20px 16px;
       margin: 0 24px;
       border-radius: 8px;
       flex-wrap: wrap;
+      gap: 0;
     }
-    .stat { text-align: center; padding: 0 32px; border-right: 1px solid var(--border); }
+    .stat { text-align: center; padding: 10px 28px; border-right: 1px solid var(--border); }
     .stat:last-child { border-right: none; }
-    .stat-val { font-size: 22px; font-weight: 700; color: var(--gold); font-family: 'Press Start 2P', monospace; }
-    .stat-label { font-size: 9px; color: var(--text-dim); margin-top: 4px; letter-spacing: .5px; }
+    .stat-val { font-size: 16px; color: var(--gold); margin-bottom: 4px; }
+    .stat-label { font-size: 7px; color: var(--text-dim); letter-spacing: .5px; }
 
-    /* PRODUCTS */
-    .section { padding: 60px 24px; max-width: 1000px; margin: 0 auto; }
-    .section-label {
-      font-size: 9px;
-      letter-spacing: 2px;
-      color: var(--cyan);
-      text-transform: uppercase;
-      margin-bottom: 8px;
+    /* SECTION COMMON */
+    .section { padding: 56px 24px; max-width: 1000px; margin: 0 auto; }
+    .section-label { font-size: 8px; letter-spacing: 3px; color: var(--cyan); margin-bottom: 6px; }
+    .section-title { font-size: clamp(11px, 2.5vw, 16px); color: var(--text); margin-bottom: 28px; }
+
+    /* MANIFESTO / CULTURE */
+    .manifesto {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 32px;
+      margin: 0 24px 48px;
+      max-width: 1000px;
+      text-align: center;
     }
-    .section-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(12px, 2.5vw, 18px);
+    .manifesto-quote {
+      font-size: clamp(10px, 2vw, 13px);
       color: var(--text);
-      margin-bottom: 32px;
+      line-height: 2.2;
+      margin-bottom: 24px;
+      font-style: italic;
     }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
+    .manifesto-quote span { color: var(--cyan); }
+    .manifesto-rules {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
     }
+    .manifesto-rule {
+      font-size: 8px;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text-dim);
+    }
+    .manifesto-rule.active { border-color: rgba(0,229,255,.4); color: var(--cyan); background: rgba(0,229,255,.06); }
+
+    /* DEMAND LAB FEATURED */
     .product-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      padding: 28px;
       transition: border-color .2s, transform .2s;
     }
-    .product-card:hover { border-color: rgba(0,229,255,.4); transform: translateY(-2px); }
-    .product-card.live { border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.04); }
-    .product-card.dev { border-color: rgba(249,115,22,.35); background: rgba(249,115,22,.04); }
-    .product-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-    .product-name { font-size: 12px; font-weight: 700; color: var(--text); }
-    .badge {
-      font-size: 8px; padding: 3px 8px; border-radius: 3px;
-      font-weight: 700; letter-spacing: .5px; white-space: nowrap; flex-shrink: 0;
-    }
-    .badge-live { background: rgba(34,197,94,.15); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
-    .badge-building { background: rgba(249,115,22,.12); color: var(--orange); border: 1px solid rgba(249,115,22,.3); }
-    .product-desc { font-size: 11px; color: var(--text-dim); line-height: 1.6; flex: 1; }
-    .product-link {
-      font-size: 9px; color: var(--cyan);
-      display: inline-flex; align-items: center; gap: 4px;
-      transition: opacity .15s;
-    }
+    .product-card:hover { border-color: rgba(0,229,255,.4); transform: translateY(-3px); }
+    .product-card.live { border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.04); }
+    .product-card.dev { border-color: rgba(249,115,22,.4); background: rgba(249,115,22,.04); }
+    .product-top { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .product-name { font-size: 10px; color: var(--text); flex: 1; }
+    .badge { font-size: 7px; padding: 4px 10px; border-radius: 3px; font-weight: 700; letter-spacing: .5px; white-space: nowrap; }
+    .badge-live { background: rgba(34,197,94,.2); color: var(--green); border: 1px solid rgba(34,197,94,.4); }
+    .badge-building { background: rgba(249,115,22,.15); color: var(--orange); border: 1px solid rgba(249,115,22,.4); }
+    .product-desc { font-size: 9px; color: var(--text-dim); line-height: 1.9; margin-bottom: 16px; }
+    .product-link { font-size: 8px; color: var(--cyan); transition: opacity .15s; }
     .product-link:hover { opacity: .7; }
-    .product-price { font-size: 11px; color: var(--gold); font-weight: 700; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+
+    /* DEMO STRIP */
+    .demo-strip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 0 24px 48px;
+      max-width: 1000px;
+    }
+    .demo-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .demo-title { font-size: 9px; color: var(--text); }
+    .demo-title span { color: var(--gold); }
+    .demo-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+    .demo-badge { font-size: 7px; padding: 4px 10px; border-radius: 3px; font-weight: 700; }
+    .demo-badge.green { background: rgba(34,197,94,.2); color: var(--green); }
+    .demo-badge.orange { background: rgba(249,115,22,.15); color: var(--orange); }
+    .demo-preview {
+      padding: 0;
+      background: var(--bg);
+      min-height: 160px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .demo-preview iframe {
+      width: 100%; height: 280px; border: none;
+      background: var(--bg);
+    }
 
     /* GUMROAD */
     .gumroad-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
-    .gumroad-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      transition: border-color .2s;
-    }
+    .gumroad-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; transition: border-color .2s; }
     .gumroad-card:hover { border-color: rgba(0,229,255,.4); }
-    .gumroad-name { font-size: 10px; font-weight: 700; margin-bottom: 4px; }
+    .gumroad-name { font-size: 8px; color: var(--text); margin-bottom: 6px; }
     .gumroad-price { font-size: 11px; color: var(--gold); margin-bottom: 8px; }
-    .gumroad-url { font-size: 8px; color: var(--text-dim); word-break: break-all; }
+    .gumroad-url { font-size: 7px; color: var(--text-dim); word-break: break-all; }
 
     /* CTA */
     .cta-section {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 48px 32px;
+      padding: 40px 32px;
       text-align: center;
       margin: 0 24px 60px;
       max-width: 1000px;
     }
-    .cta-section h2 {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(10px, 2vw, 14px);
-      margin-bottom: 12px;
-    }
-    .cta-section p { font-size: 12px; color: var(--text-dim); margin-bottom: 28px; line-height: 1.7; }
-    .cta-section .btn-primary { font-size: 10px; padding: 14px 36px; }
+    .cta-section h2 { font-size: clamp(9px, 2vw, 12px); color: var(--text); margin-bottom: 10px; }
+    .cta-section p { font-size: 9px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.9; }
 
     /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px;
-      text-align: center;
-      font-size: 9px;
-      color: var(--text-dim);
-    }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 8px; color: var(--text-dim); }
     footer a { color: var(--text-dim); margin: 0 8px; }
     footer a:hover { color: var(--cyan); }
 
-    /* ===== MOBILE (≤600px) ===== */
+    /* ===== MOBILE ===== */
     @media (max-width: 600px) {
+      .ticker { padding: 6px 0; }
+      .ticker-item { font-size: 7px; padding: 0 16px; }
+
       nav { padding: 0 12px; height: 48px; }
-      .nav-links { gap: 2px; }
-      .nav-links a { padding: 5px 7px; font-size: 8px; }
-      .nav-cta { padding: 6px 10px; font-size: 8px; }
+      .nav-logo { font-size: 8px; }
+      .nav-logo-sub { display: none; }
+      .nav-links { gap: 1px; overflow-x: auto; max-width: 60vw; }
+      .nav-links a { font-size: 7px; padding: 5px 7px; }
+      .nav-cta { padding: 5px 10px; font-size: 7px; }
 
-      .hero { padding: 48px 16px 36px; }
-      .hero h1 { font-size: clamp(14px, 6vw, 20px); }
+      .hero { padding: 40px 16px 32px; }
+      .hero-brand { font-size: clamp(18px, 10vw, 32px); letter-spacing: 2px; }
 
-      .stats-strip {
-        padding: 16px 8px;
-        margin: 0 12px;
-        gap: 0;
-      }
-      .stat { padding: 8px 10px; border-right: none; border-bottom: 1px solid rgba(0,229,255,.1); }
+      .stats-strip { padding: 14px 8px; margin: 0 12px; gap: 0; }
+      .stat { padding: 8px 12px; border-right: none; border-bottom: 1px solid rgba(0,229,255,.1); }
       .stat:last-child { border-bottom: none; }
-      .stat-val { font-size: 14px; }
-      .stat-label { font-size: 8px; }
+      .stat-val { font-size: 13px; }
+
+      .manifesto { padding: 24px 16px; margin: 0 12px 32px; }
+      .manifesto-rules { gap: 6px; }
 
       .section { padding: 36px 12px; }
-      .section-title { font-size: clamp(10px, 3vw, 14px); margin-bottom: 20px; }
+      .section-title { font-size: 10px; margin-bottom: 18px; }
 
       .products-grid { grid-template-columns: 1fr; }
       .gumroad-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-card { padding: 18px; }
+
+      .demo-strip { margin: 0 12px 32px; }
+      .demo-header { padding: 12px 14px; }
+      .demo-preview iframe { height: 200px; }
 
       .cta-section { padding: 28px 16px; margin: 0 12px 40px; }
-      .cta-section h2 { font-size: clamp(9px, 3vw, 12px); }
-      .cta-section .btn-primary { padding: 12px 20px; font-size: 9px; }
+      .btn-primary, .btn-secondary { padding: 11px 18px; }
 
-      footer { padding: 20px 12px; }
+      footer { padding: 16px 12px; }
     }
   </style>
 </head>
 <body>
 
+<!-- LIVE TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker-track">
+    <span class="ticker-item"><span class="val gold">◈ THEMATHINK</span>LIVE SYSTEM</span>
+    <span class="ticker-item"><span class="val">13</span>DEMAND CARDS</span>
+    <span class="ticker-item"><span class="val green">2</span>PRODUCTS LIVE</span>
+    <span class="ticker-item"><span class="val">1</span>SHIPPED</span>
+    <span class="ticker-item"><span class="val gold">24/7</span>AUTONOMOUS OPS</span>
+    <span class="ticker-item"><span class="val">●</span>ALL SYSTEMS ONLINE</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><span class="val gold">◈ THEMATHINK</span>LIVE SYSTEM</span>
+    <span class="ticker-item"><span class="val">13</span>DEMAND CARDS</span>
+    <span class="ticker-item"><span class="val green">2</span>PRODUCTS LIVE</span>
+    <span class="ticker-item"><span class="val">1</span>SHIPPED</span>
+    <span class="ticker-item"><span class="val gold">24/7</span>AUTONOMOUS OPS</span>
+    <span class="ticker-item"><span class="val">●</span>ALL SYSTEMS ONLINE</span>
+  </div>
+</div>
+
+<!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo">◈ THEMACHINE</a>
+  <div class="nav-brand">
+    <a href="/" class="nav-logo">◈ THEMATHINK</a>
+    <span class="nav-logo-sub">by THEMACHINE CORP.</span>
+  </div>
   <div class="nav-links">
-    <span class="live-dot"></span>
     <a href="/demand-lab/">DEMAND LAB</a>
-    <a href="/demand-radar/">DEMAND RADAR</a>
     <a href="/demo/">DEMO</a>
+    <a href="/demand-radar/" class="gold">RADAR</a>
     <a href="/about.html">ABOUT</a>
     <a href="/register/" class="nav-cta">JOIN US →</a>
   </div>
@@ -295,82 +366,103 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">◈ AUTONOMOUS REVENUE SYSTEM</div>
-  <h1>AI agents that<br><span>find demand</span> and <span>ship products</span></h1>
-  <p class="hero-sub">
-    We run a fully autonomous pipeline: demand signals → product ideas → shipped offers → revenue.
-    <br>Built with AI agents. Operates 24/7. No fluff.
+  <div class="hero-brand">THEMATHINK</div>
+  <div class="hero-sub-brand">BY THEMACHINE CORP. · AI AUTONOMOUS REVENUE SYSTEM</div>
+  <p class="hero-desc">
+    We don't just talk about AI agents.<br>
+    We build systems that run 24/7 — finding demand, shipping products, generating revenue.<br>
+    No humans required for operations.
   </p>
   <div class="hero-cta-row">
-    <a href="/demand-lab/" class="btn-primary">SEE LIVE SIGNALS →</a>
-    <a href="/demo/" class="btn-secondary">PRODUCT DEMO</a>
+    <a href="/demand-lab/" class="btn-primary">◈ DEMAND LAB →</a>
+    <a href="/demo/" class="btn-secondary">SEE LIVE DEMO</a>
   </div>
 </section>
 
 <!-- STATS -->
 <div class="stats-strip">
-  <div class="stat">
-    <div class="stat-val">13</div>
-    <div class="stat-label">SIGNALS TRACKED</div>
+  <div class="stat"><div class="stat-val">13</div><div class="stat-label">DEMAND CARDS</div></div>
+  <div class="stat"><div class="stat-val">2</div><div class="stat-label">LIVE PRODUCTS</div></div>
+  <div class="stat"><div class="stat-val">1</div><div class="stat-label">PUBLISHED</div></div>
+  <div class="stat"><div class="stat-val">24/7</div><div class="stat-label">AUTONOMOUS</div></div>
+</div>
+
+<!-- MANIFESTO / CULTURE -->
+<div class="manifesto">
+  <div class="section-label">◈ WHAT WE BELIEVE</div>
+  <div class="manifesto-quote">
+    "The best AI agent is one you <span>forget exists</span> — because it never stops working."
   </div>
-  <div class="stat">
-    <div class="stat-val">6</div>
-    <div class="stat-label">DEMAND CARDS SHIPPED</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">2</div>
-    <div class="stat-label">PRODUCTS SHIPPED</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">24/7</div>
-    <div class="stat-label">AUTONOMOUS OPS</div>
+  <div class="manifesto-rules">
+    <span class="manifesto-rule active">◈ Autonomous by default</span>
+    <span class="manifesto-rule active">◈ Revenue over vanity</span>
+    <span class="manifesto-rule active">◈ Ship weekly, not quarterly</span>
+    <span class="manifesto-rule active">◈ Data before opinions</span>
+    <span class="manifesto-rule active">◈ No fluff, ever</span>
   </div>
 </div>
 
-<!-- LIVE PRODUCTS -->
+<!-- DEMAND LAB FEATURED -->
 <section class="section">
-  <div class="section-label">◈ WHAT'S LIVE</div>
-  <div class="section-title">Shipped Products</div>
+  <div class="section-label">◈ CORE PRODUCT</div>
+  <div class="section-title">Demand Lab — Live</div>
   <div class="products-grid">
     <div class="product-card live">
       <div class="product-top">
-        <div class="product-name">AI Agent Side Hustle Dashboard</div>
+        <div class="product-name">THEMATHINK Demand Lab</div>
         <span class="badge badge-live">● LIVE</span>
       </div>
-      <div class="product-desc">Track AI agent income opportunities in real-time. Gumroad + Algora data in one view.</div>
-      <div><a href="/demo/" class="product-link">View Product →</a></div>
+      <div class="product-desc">
+        Real-time signal tracking across Twitter, HN, and GitHub.
+        13 demand cards spanning idea → shipped lifecycle.
+        Updated every hour, autonomously.
+      </div>
+      <a href="/demand-lab/" class="product-link">Open Demand Lab →</a>
     </div>
     <div class="product-card live">
       <div class="product-top">
-        <div class="product-name">Demand Lab — Public Signal Feed</div>
+        <div class="product-name">THEMATHINK Demo</div>
         <span class="badge badge-live">● LIVE</span>
       </div>
-      <div class="product-desc">Real-time Twitter + HN signal stream for AI agent market intelligence. 13 signals tracked and updated hourly.</div>
-      <div><a href="/demand-radar/" class="product-link">Open Radar →</a></div>
+      <div class="product-desc">
+        Live pipeline view: what's shipped, what's building, what's in analysis.
+        Real numbers. Real progress. Updated every hour.
+      </div>
+      <a href="/demo/" class="product-link">View Live Demo →</a>
     </div>
-  </div>
-</section>
-
-<!-- IN DEVELOPMENT -->
-<section class="section">
-  <div class="section-label">◈ BUILDING</div>
-  <div class="section-title">In Development</div>
-  <div class="products-grid">
     <div class="product-card dev">
       <div class="product-top">
         <div class="product-name">Demand Lab — Ops Dashboard</div>
         <span class="badge badge-building">◷ 60%</span>
       </div>
-      <div class="product-desc">Internal pipeline view: Idea → Analyzing → Ready → In Dev → Shipped. Full lifecycle tracking.</div>
-      <div><a href="/demand-lab/" class="product-link">View Pipeline →</a></div>
+      <div class="product-desc">
+        Internal pipeline tracking: Idea → Analyzing → Ready → In Dev → Shipped.
+        Full lifecycle visibility for the team.
+      </div>
+      <a href="/demand-lab/" class="product-link">View Pipeline →</a>
     </div>
   </div>
 </section>
 
+<!-- DEMO STRIP -->
+<div class="demo-strip">
+  <div class="demo-header">
+    <div class="demo-title">◈ <span>DEMAND LAB</span> — LIVE PIPELINE</div>
+    <div class="demo-badges">
+      <span class="demo-badge green">● 2 LIVE</span>
+      <span class="demo-badge orange">◷ 1 BUILDING</span>
+      <span class="demo-badge green">● 1 PUBLISHED</span>
+    </div>
+  </div>
+  <div class="demo-preview">
+    <iframe src="/demo/" title="THEMATHINK Demo"></iframe>
+  </div>
+</div>
+
 <!-- DIGITAL PRODUCTS -->
 <section class="section">
-  <div class="section-label">◈ DIGITAL PRODUCTS</div>
-  <div class="section-title">On Gumroad</div>
+  <div class="section-label">◈ PUBLISHED</div>
+  <div class="section-title">Digital Products on Gumroad</div>
   <div class="gumroad-grid">
     <div class="gumroad-card">
       <div class="gumroad-name">AI Agent Engineer Playbook</div>
@@ -407,20 +499,21 @@
 
 <!-- CTA -->
 <div class="cta-section">
-  <h2>Want to build AI agent income streams?</h2>
-  <p>Follow our playbook — from zero to first dollar using autonomous AI agents.<br>No hype. No shortcuts. Just systems that work.</p>
+  <div class="section-label">◈ GET STARTED</div>
+  <h2>Build AI Agent Income Streams</h2>
+  <p>Follow our playbook — from zero to first dollar using autonomous AI agents.<br>Real systems. Real revenue. No hype.</p>
   <a href="https://themachinecorp.gumroad.com/l/uptxc" class="btn-primary" target="_blank">GET THE PLAYBOOK — $19</a>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <a href="/demand-lab/">Demand Lab</a>
-  <a href="/demand-radar/">Demand Radar</a>
   <a href="/demo/">Demo</a>
+  <a href="/demand-radar/">Radar</a>
   <a href="/about.html">About</a>
   <a href="https://gumroad.com/themachinecorp" target="_blank">Gumroad</a>
   <br><br>
-  © 2026 THEMACHINE CORP. · Autonomous Revenue System
+  © 2026 THEMATHINK · THEMACHINE CORP. · Autonomous Revenue System
 </footer>
 
 </body>
