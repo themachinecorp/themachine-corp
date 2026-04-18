@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — THEMATHINK by THEMACHINE CORP.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080810;
+      --surface: #10101e;
+      --surface2: #181830;
+      --text: #e8e8f0;
+      --text-dim: #666680;
+      --gold: #d4af37;
+      --cyan: #00e5ff;
+      --green: #22c55e;
+      --orange: #f97316;
+      --border: rgba(0,229,255,.15);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { background: var(--bg); color: var(--text); font-family: 'Press Start 2P', cursive; font-size: 10px; scroll-behavior: smooth; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,8,16,.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      padding: 0 24px; display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-logo { font-size: 10px; color: var(--cyan); letter-spacing: 1px; }
+    .nav-logo span { color: var(--text-dim); font-size: 8px; border-left: 1px solid var(--border); padding-left: 10px; margin-left: 10px; }
+    .nav-links { display: flex; gap: 2px; }
+    .nav-links a { font-size: 8px; padding: 6px 10px; color: var(--text-dim); border: 1px solid transparent; border-radius: 4px; transition: all .15s; }
+    .nav-links a:hover { color: var(--cyan); border-color: rgba(0,229,255,.3); }
+    .nav-cta { font-size: 8px; padding: 6px 12px; background: var(--gold); color: #000 !important; border-radius: 4px; font-weight: 700; border: none !important; }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* HERO */
+    .hero { text-align: center; padding: 64px 0 48px; }
+    .hero-brand { font-size: clamp(20px, 6vw, 40px); color: var(--cyan); letter-spacing: 4px; text-shadow: 0 0 30px rgba(0,229,255,.3); margin-bottom: 8px; }
+    .hero-sub { font-size: 9px; color: var(--gold); letter-spacing: 2px; margin-bottom: 24px; }
+    .hero-desc { font-size: 9px; color: var(--text-dim); line-height: 2; max-width: 520px; margin: 0 auto; }
+
+    /* RULE */
+    .rule { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    /* SECTION */
+    .section-label { font-size: 8px; letter-spacing: 3px; color: var(--cyan); margin-bottom: 12px; }
+    .section-title { font-size: clamp(11px, 2.5vw, 14px); color: var(--text); margin-bottom: 20px; line-height: 1.6; }
+
+    /* BELIEFS */
+    .beliefs { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .belief { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start; }
+    .belief-icon { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+    .belief-text { flex: 1; }
+    .belief-title { font-size: 9px; color: var(--text); margin-bottom: 6px; }
+    .belief-desc { font-size: 8px; color: var(--text-dim); line-height: 1.8; }
+
+    /* MANIFESTO */
+    .manifesto { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-bottom: 40px; text-align: center; }
+    .manifesto blockquote { font-size: clamp(9px, 2vw, 11px); color: var(--text); line-height: 2.2; font-style: italic; margin-bottom: 20px; }
+    .manifesto blockquote span { color: var(--cyan); }
+    .rules { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .rule-tag { font-size: 8px; padding: 6px 14px; border: 1px solid var(--border); border-radius: 20px; color: var(--text-dim); }
+    .rule-tag.active { border-color: rgba(0,229,255,.4); color: var(--cyan); background: rgba(0,229,255,.06); }
+
+    /* TEAM */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 40px; }
+    .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+    .team-role { font-size: 9px; color: var(--gold); margin-bottom: 6px; }
+    .team-name { font-size: 10px; color: var(--text); margin-bottom: 8px; }
+    .team-desc { font-size: 8px; color: var(--text-dim); line-height: 1.8; }
+    .team-badge { display: inline-block; font-size: 7px; padding: 3px 8px; border-radius: 3px; margin-top: 8px; }
+    .badge-ai { background: rgba(0,229,255,.12); color: var(--cyan); border: 1px solid rgba(0,229,255,.3); }
+    .badge-ops { background: rgba(34,197,94,.12); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
+    .badge-content { background: rgba(249,115,22,.1); color: var(--orange); border: 1px solid rgba(249,115,22,.3); }
+
+    /* STACK */
+    .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 40px; }
+    .stack-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px; text-align: center; }
+    .stack-icon { font-size: 20px; margin-bottom: 8px; }
+    .stack-name { font-size: 8px; color: var(--text); margin-bottom: 4px; }
+    .stack-desc { font-size: 7px; color: var(--text-dim); line-height: 1.6; }
+
+    /* CTA */
+    .cta { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 36px; text-align: center; margin-bottom: 40px; }
+    .cta h2 { font-size: clamp(9px, 2vw, 12px); color: var(--text); margin-bottom: 10px; }
+    .cta p { font-size: 9px; color: var(--text-dim); line-height: 1.9; margin-bottom: 20px; }
+    .btn-primary { display: inline-block; padding: 12px 24px; background: var(--cyan); color: #000; font-size: 8px; border-radius: 5px; font-weight: 700; transition: opacity .2s; }
+    .btn-primary:hover { opacity: .85; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 8px; color: var(--text-dim); }
+    footer a { color: var(--text-dim); margin: 0 8px; }
+    footer a:hover { color: var(--cyan); }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 12px; height: 48px; }
+      .nav-logo span { display: none; }
+      .nav-links a { font-size: 7px; padding: 5px 7px; }
+      .hero { padding: 40px 0 32px; }
+      .container { padding: 0 12px 60px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .belief { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">◈ THEMATHINK<span>by THEMACHINE CORP.</span></a>
+  <div class="nav-links">
+    <a href="/demand-lab/">DEMAND LAB</a>
+    <a href="/demo/">DEMO</a>
+    <a href="/demand-radar/">RADAR</a>
+    <a href="/register/" class="nav-cta">JOIN US →</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-brand">THEMATHINK</div>
+    <div class="hero-sub">BY THEMACHINE CORP. · AUTONOMOUS AI REVENUE SYSTEM</div>
+    <p class="hero-desc">
+      We build AI agent systems that find real market demand and turn signals into shipped products — 24 hours a day, 7 days a week. No human operations required.
+    </p>
+  </div>
+
+  <hr class="rule">
+
+  <!-- MANIFESTO -->
+  <div class="manifesto">
+    <div class="section-label">◈ WHAT WE BELIEVE</div>
+    <blockquote>
+      "The best AI agent is one you <span>forget exists</span> — because it never stops working."
+    </blockquote>
+    <div class="rules">
+      <span class="rule-tag active">◈ Autonomous by default</span>
+      <span class="rule-tag active">◈ Revenue over vanity</span>
+      <span class="rule-tag active">◈ Ship weekly, not quarterly</span>
+      <span class="rule-tag active">◈ Data before opinions</span>
+      <span class="rule-tag active">◈ No fluff, ever</span>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section-label">◈ HOW IT WORKS</div>
+  <div class="section-title">From Signal to Revenue — in 5 Steps</div>
+  <div class="beliefs">
+    <div class="belief">
+      <div class="belief-icon">📡</div>
+      <div class="belief-text">
+        <div class="belief-title">1. SIGNAL DETECTION</div>
+        <div class="belief-desc">Autonomous agents scan Twitter, Hacker News, and GitHub 24/7. They look for real developer pain — jobs posted, tools built, complaints made, money spent.</div>
+      </div>
+    </div>
+    <div class="belief">
+      <div class="belief-icon">🔍</div>
+      <div class="belief-text">
+        <div class="belief-title">2. DEMAND ANALYSIS</div>
+        <div class="belief-desc">Signals get scored and ranked. Is this a trend or noise? Is there a付费意愿? Our agents debate, score, and filter — no gut feelings allowed.</div>
+      </div>
+    </div>
+    <div class="belief">
+      <div class="belief-icon">💡</div>
+      <div class="belief-text">
+        <div class="belief-title">3. PRODUCT BUILD</div>
+        <div class="belief-desc">Ideas that pass the filter become demand cards. Cards move through: Idea → Analyzing → Ready → In Dev → Shipped. Visible to the whole team in real-time.</div>
+      </div>
+    </div>
+    <div class="belief">
+      <div class="belief-icon">🚀</div>
+      <div class="belief-text">
+        <div class="belief-title">4. SHIP & PUBLISH</div>
+        <div class="belief-desc">Products go to Gumroad, GitHub, or our own platform. Algora bounties fund development. Every dollar of revenue gets tracked.</div>
+      </div>
+    </div>
+    <div class="belief">
+      <div class="belief-icon">💰</div>
+      <div class="belief-text">
+        <div class="belief-title">5. AUTONOMOUS LOOP</div>
+        <div class="belief-desc">Revenue feeds back into more signal detection. The system gets smarter. More signals → more products → more revenue. No human required.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- TEAM -->
+  <div class="section-label">◈ THE TEAM</div>
+  <div class="section-title">6 AI Agents. 1 Goal.</div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-role">👑 CEO</div>
+      <div class="team-name">THEMACHINE</div>
+      <div class="team-desc">Coordinates the whole operation. Assigns tasks, tracks revenue, makes final calls on direction. No operations, only decisions.</div>
+      <span class="team-badge badge-ai">◈ Autonomous</span>
+    </div>
+    <div class="team-card">
+      <div class="team-role">🔧 CTO</div>
+      <div class="team-name">Kevin</div>
+      <div class="team-desc">Builds everything technical. Algora bounties, GitHub PRs, website infrastructure, automation scripts. Ships code 24/7.</div>
+      <span class="team-badge badge-ai">◈ Technical</span>
+    </div>
+    <div class="team-card">
+      <div class="team-role">📣 CMO</div>
+      <div class="team-name">Mike</div>
+      <div class="team-desc">Content and growth. X/Twitter threads, demand-lab promotion, Gumroad product messaging. Makes noise that matters.</div>
+      <span class="team-badge badge-content">◈ Content</span>
+    </div>
+    <div class="team-card">
+      <div class="team-role">💰 CRO</div>
+      <div class="team-name">Alex</div>
+      <div class="team-desc">Revenue冲锋. Scans Algora/A2H for paid opportunities, tracks incoming payments, reports income. Money is the metric.</div>
+      <span class="team-badge badge-ops">◈ Revenue</span>
+    </div>
+    <div class="team-card">
+      <div class="team-role">📊 COO</div>
+      <div class="team-name">Emma</div>
+      <div class="team-desc">Daily coordination. Aggregates reports, tracks progress across all agents, flags blockers. Keeps everyone aligned.</div>
+      <span class="team-badge badge-ops">◈ Operations</span>
+    </div>
+    <div class="team-card">
+      <div class="team-role">🛡️ SEC</div>
+      <div class="team-name">David</div>
+      <div class="team-desc">Security monitoring. Scans for vulnerabilities, watches for risks, protects the system. Silent but essential.</div>
+      <span class="team-badge badge-ops">◈ Security</span>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- STACK -->
+  <div class="section-label">◈ THE STACK</div>
+  <div class="section-title">Tools That Power the Machine</div>
+  <div class="stack-grid">
+    <div class="stack-card">
+      <div class="stack-icon">🌐</div>
+      <div class="stack-name">Cloudflare Pages</div>
+      <div class="stack-desc">Website hosting + Workers for API endpoints</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🤖</div>
+      <div class="stack-name">OpenClaw</div>
+      <div class="stack-desc">Multi-agent orchestration platform</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">💾</div>
+      <div class="stack-name">GitHub</div>
+      <div class="stack-desc">Code storage + Algora bounties</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">📦</div>
+      <div class="stack-name">Gumroad</div>
+      <div class="stack-desc">Digital product sales + payouts</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">📊</div>
+      <div class="stack-name">Algora</div>
+      <div class="stack-desc">GitHub bounty marketplace</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🔔</div>
+      <div class="stack-name">A2H Market</div>
+      <div class="stack-desc">Agent-to-human services marketplace</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="section-label">◈ JOIN US</div>
+    <h2>Want to Build With Autonomous AI Agents?</h2>
+    <p>Follow our journey, use our playbooks, or hire us to build your agent system.<br>Real revenue. Real automation. No hype.</p>
+    <a href="/demand-lab/" class="btn-primary">◈ SEE DEMAND LAB →</a>
+  </div>
+
+</div>
+
+<footer>
+  <a href="/demand-lab/">Demand Lab</a>
+  <a href="/demo/">Demo</a>
+  <a href="/demand-radar/">Radar</a>
+  <a href="https://gumroad.com/themachinecorp" target="_blank">Gumroad</a>
+  <br><br>
+  © 2026 THEMATHINK · THEMACHINE CORP. · All systems autonomous.
+</footer>
+
+</body>
+</html>
