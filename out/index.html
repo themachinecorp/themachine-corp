@@ -6,6 +6,7 @@
   <title>THEMATHINK — Autonomous AI Revenue Machine</title>
   <meta name="description" content="AI agents that find demand, ship products, and generate revenue — 24/7, no humans required.">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080810'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%2300e5ff'>◈</text></svg>">
   <style>
     :root {
       --bg: #080810;
@@ -43,6 +44,22 @@
     /* ── METALLIC BODY ── */
     body {
       background: radial-gradient(ellipse at 50% 0%, rgba(50,50,80,.4) 0%, transparent 60%), var(--bg);
+    }
+
+    /* ── LIVE PULSE DOT ── */
+    .pulse-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green), 0 0 12px rgba(34,197,94,.4);
+      animation: pulse-breathe 2s ease-in-out infinite;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+    @keyframes pulse-breathe {
+      0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--green), 0 0 12px rgba(34,197,94,.4); }
+      50% { opacity: .5; box-shadow: 0 0 2px var(--green), 0 0 4px rgba(34,197,94,.2); }
     }
 
     /* ── TICKER ── */
@@ -234,6 +251,52 @@
     .section { padding: 56px 24px; max-width: 1000px; margin: 0 auto; }
     .section-label { font-size: 8px; letter-spacing: 3px; color: var(--Ag-dark); margin-bottom: 6px; text-shadow: 0 1px 0 rgba(255,255,255,.3); }
     .section-title { font-size: clamp(11px, 2.5vw, 16px); color: var(--Ag-light); margin-bottom: 28px; text-shadow: 0 1px 0 rgba(255,255,255,.4), 0 -1px 0 rgba(0,0,0,.4); }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 0 24px 48px;
+      max-width: 1000px;
+    }
+    .step-card {
+      border: 2px solid;
+      border-image: var(--Ag-panel-border) 1;
+      border-radius: 10px;
+      padding: 28px 20px;
+      background: var(--Ag-panel-bg);
+      box-shadow: var(--Ag-panel-inset), var(--Ag-shadow);
+      text-align: center;
+      position: relative;
+    }
+    .step-num {
+      font-size: 28px;
+      color: var(--Ag-dark);
+      margin-bottom: 12px;
+      text-shadow: 0 1px 0 rgba(255,255,255,.15);
+      font-family: monospace;
+    }
+    .step-title {
+      font-size: 9px;
+      color: var(--Ag-light);
+      margin-bottom: 10px;
+      text-shadow: 0 1px 0 rgba(255,255,255,.4);
+    }
+    .step-desc { font-size: 8px; color: var(--text-dim); line-height: 1.9; }
+    .step-arrow {
+      position: absolute;
+      right: -20px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--Ag-dark);
+      font-size: 16px;
+      z-index: 1;
+    }
+    .step-card:last-child .step-arrow { display: none; }
+    @media (max-width: 600px) {
+      .how-it-works { grid-template-columns: 1fr; margin: 0 12px 32px; }
+      .step-arrow { display: none; }
+    }
 
     /* ── MANIFESTO ── */
     .manifesto {
@@ -449,6 +512,7 @@
 <nav>
   <div class="nav-brand">
     <a href="/" class="nav-logo">◈ THEMATHINK</a>
+    <span class="pulse-dot"></span>
     <span class="nav-logo-sub">by THEMACHINE CORP.</span>
   </div>
   <div class="nav-links">
@@ -495,6 +559,27 @@
     <span class="manifesto-rule active">◈ Ship weekly, not quarterly</span>
     <span class="manifesto-rule active">◈ Data before opinions</span>
     <span class="manifesto-rule active">◈ No fluff, ever</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-it-works">
+  <div class="step-card">
+    <div class="step-num">01</div>
+    <div class="step-title">SCAN</div>
+    <div class="step-desc">AI agents scan Twitter, HN, GitHub — 24/7. Signals captured every hour. Zero human input.</div>
+    <span class="step-arrow">→</span>
+  </div>
+  <div class="step-card">
+    <div class="step-num">02</div>
+    <div class="step-title">BUILD</div>
+    <div class="step-desc">Validated demand becomes a card. Card moves through pipeline: Idea → Analyzing → Ready → In Dev.</div>
+    <span class="step-arrow">→</span>
+  </div>
+  <div class="step-card">
+    <div class="step-num">03</div>
+    <div class="step-title">SHIP</div>
+    <div class="step-desc">Products go live on Gumroad or as SaaS. Revenue tracked. System restarts. Forever.</div>
   </div>
 </div>
 
