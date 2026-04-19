@@ -46,6 +46,68 @@
       background: radial-gradient(ellipse at 50% 0%, rgba(50,50,80,.4) 0%, transparent 60%), var(--bg);
     }
 
+    /* ── HERO AMBIENT GLOW ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(0,229,255,.08) 0%, transparent 70%);
+      animation: ambientPulse 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes ambientPulse {
+      0%,100% { opacity: .6; transform: translateX(-50%) scale(1); }
+      50%     { opacity: 1;   transform: translateX(-50%) scale(1.15); }
+    }
+
+    /* ── SCANLINE OVERLAY ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,.04) 2px,
+        rgba(0,0,0,.04) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── ENTRANCE ANIMATIONS ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes glowPulse {
+      0%,100% { text-shadow: 0 0 8px rgba(0,229,255,.3), 0 0 20px rgba(0,229,255,.1); }
+      50%     { text-shadow: 0 0 16px rgba(0,229,255,.6), 0 0 40px rgba(0,229,255,.2); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .fade-in { animation: fadeInUp .7s ease-out both; }
+    .fade-in:nth-child(2) { animation-delay: .1s; }
+    .fade-in:nth-child(3) { animation-delay: .2s; }
+
+    /* ── CARD HOVER ── */
+    .product-card, .gumroad-card, .step-card {
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .product-card:hover, .gumroad-card:hover, .step-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(0,229,255,.15);
+    }
+
     /* ── LIVE PULSE DOT ── */
     .pulse-dot {
       display: inline-block;
@@ -170,6 +232,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+      animation: glowPulse 4s ease-in-out infinite;
     }
     .hero-sub-brand {
       font-size: 9px;
@@ -452,9 +515,9 @@
       box-shadow: var(--Ag-panel-inset);
       transition: transform .15s, box-shadow .15s;
     }
-    .gumroad-card:hover { transform: translateY(-2px); box-shadow: var(--Ag-panel-inset), 0 6px 20px rgba(0,0,0,.5); }
+    .gumroad-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(212,175,55,.2); }
     .gumroad-name { font-size: 8px; color: var(--Ag-light); margin-bottom: 6px; text-shadow: 0 1px 0 rgba(255,255,255,.4); }
-    .gumroad-price { font-size: 12px; color: var(--Ag-light); margin-bottom: 8px; text-shadow: 0 1px 0 rgba(255,255,255,.5); }
+    .gumroad-price { font-size: 14px; color: var(--gold); margin-bottom: 8px; font-weight: 700; text-shadow: 0 0 8px rgba(212,175,55,.3); }
     .gumroad-url { font-size: 7px; color: var(--Ag-dark); word-break: break-all; }
 
     /* ── CTA ── */
@@ -581,7 +644,7 @@
 </section>
 
 <!-- STATS -->
-<div class="stats-strip">
+<div class="stats-strip fade-in">
   <div class="stat"><div class="stat-val">13</div><div class="stat-label">DEMAND CARDS</div></div>
   <div class="stat"><div class="stat-val">2</div><div class="stat-label">LIVE PRODUCTS</div></div>
   <div class="stat"><div class="stat-val">1</div><div class="stat-label">PUBLISHED</div></div>
@@ -589,7 +652,7 @@
 </div>
 
 <!-- MANIFESTO -->
-<div class="manifesto">
+<div class="manifesto fade-in">
   <div class="section-label">◈ WHAT WE BELIEVE</div>
   <div class="manifesto-quote">
     "The best AI agent is one you <span>forget exists</span> — because it never stops working."
@@ -604,7 +667,7 @@
 </div>
 
 <!-- HOW IT WORKS -->
-<div class="how-it-works">
+<div class="how-it-works fade-in">
   <div class="step-card">
     <div class="step-num">01</div>
     <div class="step-title">SCAN</div>
@@ -667,7 +730,7 @@
 </section>
 
 <!-- DEMO STRIP -->
-<div class="demo-strip">
+<div class="demo-strip fade-in">
   <div class="demo-header">
     <div class="demo-title">◈ <span>DEMAND LAB</span> — LIVE PIPELINE</div>
     <div class="demo-badges">
@@ -720,7 +783,7 @@
 </section>
 
 <!-- CTA -->
-<div class="cta-section">
+<div class="cta-section fade-in">
   <div class="section-label">◈ GET STARTED</div>
   <h2>Build AI Agent Income Streams</h2>
   <p>Follow our playbook — from zero to first dollar using autonomous AI agents.<br>Real systems. Real revenue. No hype.</p>
