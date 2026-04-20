@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Right Now — THEMATHINK</title>
+  <meta name="description" content="AI Agents are replacing junior workers in 2026. Build your Agent team now — or get outrun by someone who already has one.">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start 2P&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080810'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%2300e5ff'>◈</text></svg>">
+  <style>
+    :root {
+      --bg: #080810; --surface: #0e0e1a; --surface2: #13132a;
+      --text: #e0e0ec; --text-dim: #686880;
+      --gold: #d4af37; --cyan: #00e5ff; --green: #22c55e; --orange: #f97316;
+      --Ag: #b8b8c8; --Ag-light: #dcdce8; --Ag-dark: #787888;
+      --Ag-shine: linear-gradient(145deg, #e8e8f0 0%, #c0c0cc 25%, #909098 55%, #b0b0bc 75%, #d8d8e2 100%);
+      --Ag-shine-h: linear-gradient(to right, #e0e0ea, #c8c8d4, #a0a0ac, #c8c8d4, #e0e0ea);
+      --Ag-border: linear-gradient(145deg, #d0d0dc, #888898, #606070, #888898, #d0d0dc);
+      --Ag-inset: inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 rgba(0,0,0,.4);
+      --Ag-shadow: 0 4px 16px rgba(0,0,0,.5), 0 1px 0 rgba(255,255,255,.08) inset;
+      --Ag-panel-bg: linear-gradient(160deg, #1a1a2e 0%, #10101e 100%);
+      --Ag-panel-border: linear-gradient(145deg, #303040, #181828, #282838, #181828) 1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { background: var(--bg); color: var(--text); font-family: 'Press Start 2P', cursive; font-size: 10px; scroll-behavior: smooth; }
+    a { color: inherit; text-decoration: none; }
+    body { background: radial-gradient(ellipse at 50% 0%, rgba(50,50,80,.4) 0%, transparent 60%), var(--bg); min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--Ag-shine); border-bottom: 2px solid;
+      border-image: var(--Ag-border) 1;
+      box-shadow: 0 2px 12px rgba(0,0,0,.5), var(--Ag-inset);
+      padding: 0 24px; display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-logo { font-size: 10px; color: #1a1a2e; letter-spacing: 1px; text-shadow: 0 1px 0 rgba(255,255,255,.8); font-weight: bold; }
+    .nav-logo-sub { font-size: 8px; color: var(--Ag-dark); border-left: 1px solid var(--Ag-dark); padding-left: 10px; margin-left: 4px; }
+    .nav-links { display: flex; gap: 2px; align-items: center; }
+    .nav-links a {
+      font-size: 8px; padding: 5px 10px; border-radius: 4px;
+      color: #1a1a2e; border: 1px solid transparent;
+      background: linear-gradient(to bottom, rgba(255,255,255,.15), rgba(0,0,0,.08));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 1px 2px rgba(0,0,0,.3);
+      text-shadow: 0 1px 0 rgba(255,255,255,.5); transition: all .15s; white-space: nowrap;
+    }
+    .nav-links a:hover { background: linear-gradient(to bottom, rgba(255,255,255,.35), rgba(0,0,0,.12)); border-color: rgba(255,255,255,.3); }
+    .nav-links a.active { background: rgba(0,0,0,.15); border-color: rgba(0,0,0,.2); }
+
+    .hero {
+      text-align: center; padding: 64px 24px 48px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -80px; left: 50%;
+      transform: translateX(-50%); width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(0,229,255,.08) 0%, transparent 70%);
+      animation: ambientPulse 6s ease-in-out infinite; pointer-events: none;
+    }
+    @keyframes ambientPulse {
+      0%,100% { opacity: .6; transform: translateX(-50%) scale(1); }
+      50%     { opacity: 1;   transform: translateX(-50%) scale(1.15); }
+    }
+    .tag {
+      display: inline-block; font-size: 8px; letter-spacing: 2px;
+      color: var(--orange); margin-bottom: 20px;
+      text-shadow: 0 0 8px rgba(249,115,22,.4);
+      border: 1px solid rgba(249,115,22,.3); padding: 4px 12px; border-radius: 20px;
+    }
+    .hero-brand {
+      font-size: clamp(14px, 4vw, 28px); color: var(--Ag-light); letter-spacing: 3px;
+      margin-bottom: 16px; background: var(--Ag-shine-h);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+    }
+    .hero-sub { font-size: clamp(8px, 2.5vw, 12px); color: var(--text-dim); letter-spacing: 1px; margin-bottom: 32px; line-height: 2.2; }
+    .hero-price { font-size: clamp(36px, 10vw, 64px); color: var(--gold); margin-bottom: 8px; text-shadow: 0 0 16px rgba(212,175,55,.4); }
+    .hero-price-note { font-size: 8px; color: var(--text-dim); margin-bottom: 28px; }
+    .cta-btn {
+      display: inline-block; font-size: 10px; padding: 14px 32px;
+      background: linear-gradient(145deg, #e0e0e8, #b0b0bc, #808090, #b0b0bc, #d8d8e0);
+      border: 2px solid; border-image: var(--Ag-border) 1;
+      box-shadow: var(--Ag-inset), 0 4px 12px rgba(0,0,0,.4), 0 0 20px rgba(212,175,55,.15);
+      color: #080810; font-family: 'Press Start 2P', cursive; font-size: 10px;
+      cursor: pointer; transition: all .2s; text-shadow: none; letter-spacing: 1px;
+    }
+    .cta-btn:hover { box-shadow: var(--Ag-inset), 0 6px 20px rgba(0,0,0,.5), 0 0 30px rgba(212,175,55,.3); transform: translateY(-2px); }
+    .cta-note { font-size: 7px; color: var(--text-dim); margin-top: 12px; }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 56px 0; }
+    .section-label { font-size: 9px; letter-spacing: 3px; color: var(--cyan); margin-bottom: 8px; text-shadow: 0 0 6px rgba(0,229,255,.3); }
+    .section-title { font-size: clamp(11px, 3vw, 14px); color: var(--Ag-light); margin-bottom: 28px; }
+
+    .article { border: 2px solid; border-image: var(--Ag-panel-border) 1; border-radius: 12px; padding: 40px 36px; background: var(--Ag-panel-bg); box-shadow: var(--Ag-inset), var(--Ag-shadow); }
+    .article h2 { font-size: 10px; color: var(--Ag-light); margin: 32px 0 14px; letter-spacing: 1px; }
+    .article h2:first-child { margin-top: 0; }
+    .article h3 { font-size: 8px; color: var(--gold); margin: 20px 0 10px; text-shadow: 0 0 6px rgba(212,175,55,.3); }
+    .article p { font-size: 7px; color: var(--text-dim); line-height: 2.4; margin-bottom: 12px; }
+    .article ul { list-style: none; margin: 10px 0 16px; }
+    .article ul li { font-size: 7px; color: var(--text-dim); padding: 4px 0; line-height: 2; }
+    .article ul li::before { content: '> '; color: var(--gold); }
+    .article .highlight { color: var(--text); font-size: 7px; line-height: 2.4; margin: 16px 0; padding: 14px 16px; background: rgba(212,175,55,.06); border-left: 2px solid var(--gold); border-radius: 0 6px 6px 0; }
+    .article .big-quote { font-size: clamp(8px, 2.2vw, 11px); color: var(--text); text-align: center; line-height: 2.2; padding: 20px 0; border-top: 1px solid rgba(120,120,136,.2); border-bottom: 1px solid rgba(120,120,136,.2); margin: 24px 0; }
+    .article table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+    .article th { font-size: 7px; color: var(--Ag-light); padding: 8px 10px; border-bottom: 1px solid rgba(120,120,136,.3); text-align: left; }
+    .article td { font-size: 7px; color: var(--text-dim); padding: 8px 10px; border-bottom: 1px solid rgba(120,120,136,.15); }
+    .article td strong { color: var(--text); }
+
+    .proof-section { border: 2px solid; border-image: var(--Ag-panel-border) 1; border-radius: 12px; padding: 40px 32px; background: var(--Ag-panel-bg); box-shadow: var(--Ag-inset), var(--Ag-shadow); text-align: center; }
+    .proof-title { font-size: 11px; color: var(--Ag-light); margin-bottom: 8px; }
+    .proof-sub { font-size: 8px; color: var(--text-dim); margin-bottom: 28px; line-height: 2; }
+
+    footer { text-align: center; padding: 32px 24px; font-size: 7px; color: var(--text-dim); line-height: 2; }
+
+    @media (max-width: 600px) {
+      html { font-size: 9px; }
+      nav { padding: 0 12px; height: 48px; }
+      .nav-logo { font-size: 8px; }
+      .nav-logo-sub { display: none; }
+      .nav-links { gap: 1px; overflow-x: auto; max-width: 55vw; }
+      .nav-links a { font-size: 7px; padding: 5px 7px; }
+      .hero { padding: 44px 16px 36px; }
+      .article { padding: 24px 16px; }
+      .container { padding: 0 12px; }
+      .section { padding: 36px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <span class="nav-logo">◈ THEMATHINK</span>
+    <span class="nav-logo-sub">BY THEMACHINE CORP.</span>
+  </div>
+  <div class="nav-links">
+    <a href="/">HOME</a>
+    <a href="/demo/">DEMO</a>
+    <a href="/demand-radar">DEMAND RADAR</a>
+    <a href="/playbook/" class="active">PLAYBOOK</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="tag">⚡ AI AGENTS ARE REWRITING THE RULES</div>
+  <div class="hero-brand">WHY RIGHT NOW?</div>
+  <div class="hero-sub">AI Agents are replacing junior workers.<br>Build your Agent team now — or get outrun by someone who already has one.</div>
+  <div class="hero-price">$1</div>
+  <div class="hero-price-note">PDF · Instant download · ~15 min read</div>
+  <a href="https://themachinecorp.gumroad.com/l/ai-agent-why-now" target="_blank" class="cta-btn">GET THE GUIDE — $1 →</a>
+  <div class="cta-note">Gumroad · Secure checkout · Instant download</div>
+</div>
+
+<div class="container">
+  <section class="section">
+    <div class="article">
+
+      <h2>WHAT'S ACTUALLY HAPPENING</h2>
+      <p>2024 — Claude, GPT, Gemini started completing complex tasks on their own.</p>
+      <p>2025 — Cursor, Copilot, Bolt started replacing junior programmers.</p>
+      <p>2026 —</p>
+      <div class="big-quote">People without Agent teams are getting outrun 10x by people who already have them.</div>
+      <p>This isn't a prediction. It's already happening.</p>
+
+      <h2>THE THREE JUMPS IN AI CAPABILITY</h2>
+      <table>
+        <tr><th>Jump</th><th>When</th><th>Impact</th></tr>
+        <tr><td>AI can answer questions</td><td>2022–2023</td><td>Search traffic dropped, content writing jobs shrank</td></tr>
+        <tr><td>AI can write full code</td><td>2023–2024</td><td>Junior dev supply/demand started reversing</td></tr>
+        <tr><td>AI can execute multi-step tasks autonomously</td><td>2024–2026</td><td>One person + Agent team = old 10-person team</td></tr>
+      </table>
+      <p>Every jump takes out one group of workers and launches another group using the same tools.</p>
+      <div class="highlight">The difference: are you passively watching, or actively building?</div>
+
+      <h2>WHY A "TEAM" NOT A "TOOL"</h2>
+      <p>You're already using AI tools. ChatGPT, Claude, Midjourney — these are single tools.</p>
+      <p>But have you thought about:</p>
+      <ul>
+        <li>Why you still have to manually prompt AI every time?</li>
+        <li>Why AI finishes and you still have to copy-paste results?</li>
+        <li>Why you bounce between five AI tools doing one person's job?</li>
+      </ul>
+      <p><strong style="color: var(--text); font-size: 7px;">An Agent team means:</strong></p>
+      <p style="font-size: 7px; color: var(--text-dim); line-height: 2.2; margin-top: 8px;">Multiple AI Agents working together, each handling a specific task — one scans for opportunities, one writes content, one publishes, one monitors results, one patrols 24/7 waiting for the next move. Not sci-fi. This is mature tech in 2026.</p>
+
+      <h3>Our own team is 5 Agents running right now</h3>
+      <ul>
+        <li>Kevin — Code and Bounties (Algora)</li>
+        <li>Mike — Content and X growth</li>
+        <li>Alex — Trading and opportunity scanning</li>
+        <li>Sarah — Product planning</li>
+        <li>Emma — Coordination and daily reports</li>
+      </ul>
+      <p>Nobody sitting at a keyboard. 3am, an Agent is scanning Algora for new bounties. 9am, content is already published.</p>
+
+      <h2>IS IT TOO LATE TO START?</h2>
+      <p><strong style="color: var(--green); font-size: 7px;">Right now is actually the best time. Three reasons:</strong></p>
+
+      <h3>1. Infrastructure is ready</h3>
+      <p>Claude Code, Cursor Agent, n8n, Railway — the tools all exist. No need to build from scratch.</p>
+
+      <h3>2. First-mover advantage is still available</h3>
+      <p>Most people's understanding of Agents is still "use ChatGPT to write posts." The real window for building Agent teams is still 12–18 months open.</p>
+
+      <h3>3. Competition barrier is still low</h3>
+      <p>Today you can run your first Agent team for $0. In 2 years the competition will be fierce.</p>
+
+      <h2>WHAT YOU NEED TO DO</h2>
+      <ul>
+        <li><strong>Today:</strong> Open an Algora account (5 min) — see how many OSS projects are paying to fix bugs</li>
+        <li><strong>This week:</strong> Try Claude Code on a real bug fix in an actual project</li>
+        <li><strong>This month:</strong> Build one minimal Agent workflow — scan + publish on autopilot</li>
+      </ul>
+
+      <div class="big-quote">This isn't about "learning AI."<br>It's about <strong style="color: var(--gold);">using AI to build competitive advantage.</strong></div>
+
+      <p>$1. Not much. But it's the cheapest way to realize the window is closing.</p>
+      <p>If this makes sense — act.</p>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="proof-section">
+      <div class="proof-title">READ IT NOW — $1</div>
+      <div class="proof-sub">
+        PDF · Instant download · ~15 min read<br>
+        Cheaper than a coffee. Worth more than a think-piece.
+      </div>
+      <a href="https://themachinecorp.gumroad.com/l/ai-agent-why-now" target="_blank" class="cta-btn">GET THE GUIDE — $1 →</a>
+      <div style="margin-top: 16px; font-size: 7px; color: var(--text-dim);">
+        @THEMACHINE_HF on X
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  THEMATHINK · BY THEMACHINE CORP. · AI AUTONOMOUS REVENUE SYSTEM<br>
+  <span style="color: var(--cyan);">◈</span> 13 DEMAND CARDS TRACKED · 24/7 AUTONOMOUS OPS
+</footer>
+
+</body>
+</html>
