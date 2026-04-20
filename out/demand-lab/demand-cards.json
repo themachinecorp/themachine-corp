@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-17T12:05:01.501Z",
+  "updated": "2026-04-20T07:05:01.408Z",
   "cards": [
     {
       "id": "dr-001",
@@ -21,7 +21,7 @@
     },
     {
       "id": "dr-002",
-      "title": "Demand Lab \u2014 Public Signal Feed",
+      "title": "Demand Lab — Public Signal Feed",
       "description": "Real-time Twitter signal stream for demand intelligence. 65+ signals and growing.",
       "source": "internal",
       "category": "tools",
@@ -37,8 +37,8 @@
     },
     {
       "id": "dr-003",
-      "title": "Demand Lab \u2014 Ops Dashboard",
-      "description": "Internal pipeline view: Idea \u2192 Analyzing \u2192 Ready \u2192 In Dev \u2192 Shipped.",
+      "title": "Demand Lab — Ops Dashboard",
+      "description": "Internal pipeline view: Idea → Analyzing → Ready → In Dev → Shipped.",
       "source": "internal",
       "category": "tools",
       "priority": 1,
@@ -101,7 +101,7 @@
     },
     {
       "id": "dr-007",
-      "title": "Twitter Signal \u2192 Content Pipeline",
+      "title": "Twitter Signal → Content Pipeline",
       "description": "Auto-generate blog posts/threads from trending Twitter discussions in your niche.",
       "source": "twitter",
       "category": "tools",
@@ -117,7 +117,7 @@
     },
     {
       "id": "dr-008",
-      "title": "AI Audit Tool \u2014 Free Lead Gen",
+      "title": "AI Audit Tool — Free Lead Gen",
       "description": "Free SEO/accessibility audit tool. Collects emails, upsells paid fixes report.",
       "source": "twitter",
       "category": "product",
@@ -129,11 +129,11 @@
       "owner": "",
       "progress": 0,
       "url": "",
-      "notes": "Multiple \"\u5e2e\u6211\u770b\u770b\u7f51\u7ad9\" type requests. Good inbound funnel."
+      "notes": "Multiple \"帮我看看网站\" type requests. Good inbound funnel."
     },
     {
       "id": "dr-019",
-      "title": "Built with AI \u2014 Market Signal",
+      "title": "Built with AI — Market Signal",
       "description": "People sharing AI-built products on HN. High-signal for tool demand.",
       "source": "HN",
       "category": "market",
@@ -147,7 +147,7 @@
     },
     {
       "id": "dr-020",
-      "title": "Social Signal \u2014 Market Signal",
+      "title": "Social Signal — Market Signal",
       "description": "Organic Twitter discussions on AI agents, automation, and side hustles.",
       "source": "Twitter",
       "category": "market",
@@ -161,7 +161,7 @@
     },
     {
       "id": "dr-021",
-      "title": "Autonomous Agents \u2014 Market Signal",
+      "title": "Autonomous Agents — Market Signal",
       "description": "A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workf",
       "source": "GitHub",
       "category": "ai-agents",
@@ -180,8 +180,8 @@
     },
     {
       "id": "dr-022",
-      "title": "Twill.ai \u2014 Cloud Coding Agent (YC S25)",
-      "desc": "YC S25 startup. Runs Claude Code/Codex CLIs in cloud, returns PRs. 77 HN points. Validates demand for autonomous coding agents \u2014 our core market.",
+      "title": "Twill.ai — Cloud Coding Agent (YC S25)",
+      "desc": "YC S25 startup. Runs Claude Code/Codex CLIs in cloud, returns PRs. 77 HN points. Validates demand for autonomous coding agents — our core market.",
       "status": "analyzing",
       "priority": "high",
       "category": "market_signal",
@@ -193,8 +193,8 @@
     },
     {
       "id": "dr-023",
-      "title": "Relvy \u2014 On-Call Runbook Automation (YC F24)",
-      "desc": "YC F24 startup. Automates on-call runbooks for dev teams. 48 HN points. AI ops niche growing \u2014 automation for ops is adjacent to our agent pipeline.",
+      "title": "Relvy — On-Call Runbook Automation (YC F24)",
+      "desc": "YC F24 startup. Automates on-call runbooks for dev teams. 48 HN points. AI ops niche growing — automation for ops is adjacent to our agent pipeline.",
       "status": "analyzing",
       "priority": "medium",
       "category": "market_signal",
