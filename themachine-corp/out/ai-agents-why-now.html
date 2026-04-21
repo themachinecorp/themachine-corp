@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Why Now — THEMATHINK</title>
+  <meta name="description" content="7 days. 1-2 hours/day. A working AI Agent income system using OpenClaw by Day 8. Daily tasks, exact configs, OpenClaw-native workflow. No theory.">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start 2P&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080810'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%2300e5ff'>◈</text></svg>">
+  <style>
+    :root {
+      --bg: #080810; --surface: #0e0e1a; --surface2: #13132a;
+      --text: #e0e0ec; --text-dim: #686880;
+      --gold: #d4af37; --cyan: #00e5ff; --green: #22c55e; --orange: #f97316;
+      --Ag: #b8b8c8; --Ag-light: #dcdce8; --Ag-dark: #787888;
+      --Ag-shine: linear-gradient(145deg, #e8e8f0 0%, #c0c0cc 25%, #909098 55%, #b0b0bc 75%, #d8d8e2 100%);
+      --Ag-shine-h: linear-gradient(to right, #e0e0ea, #c8c8d4, #a0a0ac, #c8c8d4, #e0e0ea);
+      --Ag-border: linear-gradient(145deg, #d0d0dc, #888898, #606070, #888898, #d0d0dc);
+      --Ag-inset: inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 rgba(0,0,0,.4);
+      --Ag-shadow: 0 4px 16px rgba(0,0,0,.5), 0 1px 0 rgba(255,255,255,.08) inset;
+      --Ag-panel-bg: linear-gradient(160deg, #1a1a2e 0%, #10101e 100%);
+      --Ag-panel-border: linear-gradient(145deg, #303040, #181828, #282838, #181828) 1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { background: var(--bg); color: var(--text); font-family: 'Press Start 2P', cursive; font-size: 10px; scroll-behavior: smooth; }
+    a { color: inherit; text-decoration: none; }
+    body { background: radial-gradient(ellipse at 50% 0%, rgba(50,50,80,.4) 0%, transparent 60%), var(--bg); min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--Ag-shine); border-bottom: 2px solid;
+      border-image: var(--Ag-border) 1;
+      box-shadow: 0 2px 12px rgba(0,0,0,.5), var(--Ag-inset);
+      padding: 0 24px; display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-logo { font-size: 10px; color: #1a1a2e; letter-spacing: 1px; text-shadow: 0 1px 0 rgba(255,255,255,.8); font-weight: bold; }
+    .nav-logo-sub { font-size: 8px; color: var(--Ag-dark); border-left: 1px solid var(--Ag-dark); padding-left: 10px; margin-left: 4px; }
+    .nav-links { display: flex; gap: 2px; align-items: center; }
+    .nav-links a {
+      font-size: 8px; padding: 5px 10px; border-radius: 4px;
+      color: #1a1a2e; border: 1px solid transparent;
+      background: linear-gradient(to bottom, rgba(255,255,255,.15), rgba(0,0,0,.08));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 1px 2px rgba(0,0,0,.3);
+      text-shadow: 0 1px 0 rgba(255,255,255,.5); transition: all .15s; white-space: nowrap;
+    }
+    .nav-links a:hover { background: linear-gradient(to bottom, rgba(255,255,255,.35), rgba(0,0,0,.12)); }
+
+    .hero {
+      text-align: center; padding: 64px 24px 40px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -80px; left: 50%;
+      transform: translateX(-50%); width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(0,229,255,.08) 0%, transparent 70%);
+      animation: ambientPulse 6s ease-in-out infinite; pointer-events: none;
+    }
+    @keyframes ambientPulse {
+      0%,100% { opacity: .6; transform: translateX(-50%) scale(1); }
+      50%     { opacity: 1;   transform: translateX(-50%) scale(1.15); }
+    }
+    .tag {
+      display: inline-block; font-size: 8px; letter-spacing: 2px;
+      color: var(--orange); margin-bottom: 20px;
+      text-shadow: 0 0 8px rgba(249,115,22,.4);
+      border: 1px solid rgba(249,115,22,.3); padding: 4px 12px; border-radius: 20px;
+    }
+    .hero-brand {
+      font-size: clamp(14px, 4vw, 28px); color: var(--Ag-light); letter-spacing: 3px;
+      margin-bottom: 16px; background: var(--Ag-shine-h);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+    }
+    .hero-sub { font-size: clamp(9px, 2.5vw, 12px); color: var(--text-dim); letter-spacing: 1px; margin-bottom: 28px; line-height: 2.2; }
+    .hero-price { font-size: clamp(28px, 8vw, 52px); color: var(--gold); margin-bottom: 6px; text-shadow: 0 0 16px rgba(212,175,55,.4); }
+    .hero-price-note { font-size: 8px; color: var(--text-dim); margin-bottom: 24px; }
+    .cta-btn {
+      display: inline-block; font-size: 10px; padding: 14px 32px;
+      background: linear-gradient(145deg, #e0e0e8, #b0b0bc, #808090, #b0b0bc, #d8d8e0);
+      border: 2px solid; border-image: var(--Ag-border) 1;
+      box-shadow: var(--Ag-inset), 0 4px 12px rgba(0,0,0,.4), 0 0 20px rgba(212,175,55,.15);
+      color: #080810; font-family: 'Press Start 2P', cursive; font-size: 10px;
+      cursor: pointer; transition: all .2s; text-shadow: none; letter-spacing: 1px;
+    }
+    .cta-btn:hover { box-shadow: var(--Ag-inset), 0 6px 20px rgba(0,0,0,.5), 0 0 30px rgba(212,175,55,.3); transform: translateY(-2px); }
+    .cta-note { font-size: 8px; color: var(--text-dim); margin-top: 12px; }
+
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 48px 0; }
+    .section-label { font-size: 9px; letter-spacing: 3px; color: var(--cyan); margin-bottom: 8px; text-shadow: 0 0 6px rgba(0,229,255,.3); }
+    .section-title { font-size: clamp(11px, 3vw, 14px); color: var(--Ag-light); margin-bottom: 24px; }
+
+    .article { border: 2px solid; border-image: var(--Ag-panel-border) 1; border-radius: 12px; padding: 36px 32px; background: var(--Ag-panel-bg); box-shadow: var(--Ag-inset), var(--Ag-shadow); }
+    .article h2 { font-size: 11px; color: var(--Ag-light); margin: 28px 0 12px; letter-spacing: 1px; }
+    .article h2:first-child { margin-top: 0; }
+    .article p { font-size: 9px; color: var(--text-dim); line-height: 2; margin-bottom: 12px; }
+    .article ul { list-style: none; margin: 10px 0 14px; }
+    .article ul li { font-size: 9px; color: var(--text-dim); padding: 4px 0; line-height: 1.8; }
+    .article ul li::before { content: '> '; color: var(--gold); }
+
+    /* THE CUT-OFF — content fades and ends */
+    .fade-end { position: relative; }
+    .fade-end::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--bg) 80%);
+      pointer-events: none;
+    }
+
+    .paywall-section {
+      border: 2px solid; border-image: var(--Ag-panel-border) 1;
+      border-radius: 12px; padding: 40px 32px;
+      background: var(--Ag-panel-bg); box-shadow: var(--Ag-inset), var(--Ag-shadow);
+      text-align: center;
+    }
+    .paywall-title { font-size: clamp(11px, 3vw, 14px); color: var(--gold); margin-bottom: 12px; text-shadow: 0 0 8px rgba(212,175,55,.4); }
+    .paywall-sub { font-size: 9px; color: var(--text-dim); line-height: 2; margin-bottom: 24px; }
+    .paywall-features { list-style: none; margin: 0 0 28px; text-align: left; display: inline-block; }
+    .paywall-features li { font-size: 9px; color: var(--text-dim); padding: 4px 0; line-height: 1.8; }
+    .paywall-features li::before { content: '+ '; color: var(--green); }
+
+    footer { text-align: center; padding: 32px 24px; font-size: 8px; color: var(--text-dim); line-height: 2; }
+
+    @media (max-width: 600px) {
+      html { font-size: 9px; }
+      nav { padding: 0 12px; height: 48px; }
+      .nav-logo { font-size: 8px; }
+      .nav-logo-sub { display: none; }
+      .nav-links { gap: 1px; overflow-x: auto; max-width: 55vw; }
+      .nav-links a { font-size: 8px; padding: 5px 7px; }
+      .hero { padding: 44px 16px 32px; }
+      .article { padding: 24px 16px; }
+      .paywall-section { padding: 28px 16px; }
+      .container { padding: 0 12px; }
+      .section { padding: 36px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <span class="nav-logo">◈ THEMATHINK</span>
+    <span class="nav-logo-sub">BY THEMACHINE CORP.</span>
+  </div>
+  <div class="nav-links">
+    <a href="/">HOME</a>
+    <a href="/demo/">DEMO</a>
+    <a href="/demand-radar">DEMAND RADAR</a>
+    <a href="/ai-agents-why-now" class="active">PLAYBOOK</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="tag">⚡ 7-DAY AGENT LAUNCH GUIDE</div>
+  <div class="hero-brand">BUILD LIKE METAL. SHIP LIKE WATER.</div>
+  <div class="hero-sub">Not a theory piece. A practical 7-step system<br>for launching your first AI Agent income stream.</div>
+  <div class="hero-price">$1</div>
+  <div class="hero-price-note">PDF · Instant download</div>
+  <a href="https://themachinecorp.gumroad.com/l/ai-agent-why-now" target="_blank" class="cta-btn">GET THE 7-DAY GUIDE →</a>
+  <div class="cta-note">Gumroad · Secure checkout · Instant download</div>
+</div>
+
+<div class="container">
+  <section class="section">
+    <div class="article fade-end">
+
+      <h2>WHAT THE FIRST AGENT DOES</h2>
+      <p>Nobody sitting at a keyboard. 9am, Mike already posted 2 tweets. Scanner already updated today's topics. That's already happening with OpenClaw.</p>
+      <p>You can set one up in 7 days.</p>
+
+      <h2>WHAT YOU GET IN 7 DAYS</h2>
+      <ul>
+        <li>Day 1 — Sign up for 4 tools, configure Claude Code (30 min)</li>
+        <li>Day 2 — Configure browser automation, let Agent post its first tweet</li>
+        <li>Day 3 — Automated daily tweet via OpenClaw browser automation</li>
+        <li>Day 4 — Connect Gumroad for digital product sales</li>
+        <li>Day 5 — Configure Scanner + Mike + Writer (3-agent team)</li>
+        <li>Day 6 — Run the complete content-to-income loop</li>
+        <li>Day 7 — Review, prune, optimize your agent setup</li>
+      </ul>
+
+      <h2>WHAT YOUR FIRST AGENT TEAM LOOKS LIKE</h2>
+      <ul>
+        <li>Scanner — Scans X trends every morning, writes today-topics.txt</li>
+        <li>Mike — Generates and publishes daily content</li>
+        <li>Writer — Turns hot topics into PDF products, uploads to Gumroad</li>
+      </ul>
+      <p>Three agents. One shared file. No complex infra.</p>
+
+    </div>
+  </section>
+
+  <!-- PAYWALL — content cuts off, reader must pay -->
+  <section class="section">
+    <div class="paywall-section">
+      <div class="paywall-title">READ THE FULL 7-DAY SYSTEM</div>
+      <div class="paywall-sub">
+        The setup instructions, exact command configs,<br>
+        tool-by-tool walkthrough, and 30-day roadmap.
+      </div>
+      <ul class="paywall-features">
+        <li>OpenClaw browser automation setup + prompt templates</li>
+        <li>Scanner Agent prompt templates (copy-paste ready)</li>
+        <li>n8n workflow templates for content automation</li>
+        <li>30-day milestone map with weekly check points</li>
+        <li>Tool cost breakdown + free-tier alternatives</li>
+        <li>Common traps and how to avoid them</li>
+      </ul>
+      <a href="https://themachinecorp.gumroad.com/l/ai-agent-why-now" target="_blank" class="cta-btn">GET THE FULL GUIDE — $1 →</a>
+      <div style="margin-top: 14px; font-size: 8px; color: var(--text-dim);">
+        Instant PDF download · ~20 min read
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  THEMATHINK · BY THEMACHINE CORP. · AI AUTONOMOUS REVENUE SYSTEM<br>
+  <span style="color: var(--cyan);">◈</span> 13 DEMAND CARDS TRACKED · 24/7 AUTONOMOUS OPS
+</footer>
+
+</body>
+</html>

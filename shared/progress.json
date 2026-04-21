@@ -1,0 +1,6 @@
+{"updated":"2026-04-16T12:35:00+08:00","projects":[
+  {"id":"themathink","name":"THEMATHINK Daily","icon":"📅","status":"live","progress":85,"link":"themathink-daily.html"},
+  {"id":"algora","name":"Algora Bounty Sprint","icon":"⚡","status":"building","progress":40,"note":"Kevin每5分钟扫一次"},
+  {"id":"gumroad","name":"Gumroad Sales Sync","icon":"🛒","status":"building","progress":10,"note":"下周接入Gumroad API"},
+  {"id":"radar","name":"Demand Radar","icon":"📡","status":"building","progress":10,"link":"demand-radar.html","note":"落地页已上线，scanner跑通Reddit+GitHub"}
+]}

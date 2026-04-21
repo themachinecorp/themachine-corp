@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "skills": {
+    "auto-bounty-hunter": {
+      "version": "1.0.0",
+      "installedAt": 1774287321936
+    },
+    "market-analysis-cn": {
+      "version": "1.0.0",
+      "installedAt": 1774287328474
+    },
+    "master-marketing": {
+      "version": "1.0.1",
+      "installedAt": 1774287392511
+    },
+    "seo": {
+      "version": "1.0.3",
+      "installedAt": 1774288584295
+    },
+    "content-writer": {
+      "version": "1.0.0",
+      "installedAt": 1774288676241
+    },
+    "competitor-watch": {
+      "version": "1.1.0",
+      "installedAt": 1774288682374
+    },
+    "openclaw-aisa-twitter-search-post": {
+      "version": "1.0.0",
+      "installedAt": 1775050356168
+    },
+    "bird-twitter": {
+      "version": "1.0.0",
+      "installedAt": 1775050374415
+    }
+  }
+}

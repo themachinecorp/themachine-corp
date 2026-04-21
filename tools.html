@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Toolbox | THEMATHINK</title>
+  <style>
+    :root { --bg: #0a0a0f; --card: #141419; --text: #e5e7eb; --gold: #fbbf24; --gray: #6b7280; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, sans-serif; min-height: 100vh; }
+    
+    /* Header */
+    header { padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; }
+    header a { color: var(--gold); text-decoration: none; font-size: 15px; }
+    header a:hover { text-decoration: underline; }
+    
+    /* Main */
+    main { max-width: 1000px; margin: 0 auto; padding: 20px 40px 80px; }
+    h1 { color: var(--gold); font-size: 48px; text-align: center; margin-bottom: 8px; font-weight: 700; letter-spacing: -1px; }
+    .subtitle { color: var(--gray); text-align: center; margin-bottom: 48px; font-size: 17px; }
+    
+    /* Grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .card { 
+      background: var(--card); border: 1px solid #222; border-radius: 16px; padding: 28px 24px; 
+      cursor: pointer; transition: all 0.25s ease; text-align: center;
+    }
+    .card:hover { 
+      border-color: var(--gold); transform: translateY(-3px); 
+      box-shadow: 0 8px 32px rgba(251, 191, 36, 0.1);
+    }
+    .card .icon { font-size: 36px; margin-bottom: 14px; display: block; }
+    .card h3 { color: var(--text); font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .card p { color: var(--gray); font-size: 12px; line-height: 1.4; }
+    
+    /* Tool Panel */
+    #tool-panel { 
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+      background: rgba(10, 10, 15, 0.98); z-index: 200; padding: 40px; 
+    }
+    #tool-panel.active { display: block; }
+    #tool-panel .close { 
+      position: fixed; top: 24px; right: 32px; font-size: 32px; cursor: pointer; 
+      color: var(--gray); transition: color 0.2s;
+    }
+    #tool-panel .close:hover { color: var(--gold); }
+    #tool-panel .panel-content { max-width: 640px; margin: 40px auto 0; }
+    #tool-panel h2 { color: var(--gold); font-size: 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    #tool-panel .input-group { margin-bottom: 16px; }
+    #tool-panel label { display: block; color: var(--gray); font-size: 13px; margin-bottom: 8px; }
+    #tool-panel input, #tool-panel textarea { 
+      width: 100%; padding: 14px 18px; border: 1px solid #333; border-radius: 10px; 
+      background: var(--card); color: var(--text); font-size: 15px; font-family: inherit;
+    }
+    #tool-panel input:focus, #tool-panel textarea:focus { 
+      outline: none; border-color: var(--gold); 
+    }
+    #tool-panel textarea { min-height: 120px; resize: vertical; }
+    #tool-panel button { 
+      background: var(--gold); color: #0a0a0f; border: none; padding: 14px 32px; 
+      border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; 
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    #tool-panel button:hover { transform: scale(1.02); }
+    #tool-panel button:active { transform: scale(0.98); }
+    #tool-panel .result { 
+      background: var(--card); padding: 24px; border-radius: 12px; margin-top: 24px; 
+      white-space: pre-wrap; color: #ccc; line-height: 1.7; font-size: 14px;
+      border: 1px solid #222;
+    }
+    #tool-panel .result:empty { display: none; }
+    
+    /* Footer */
+    footer { text-align: center; padding: 40px; color: var(--gray); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/">← THEMATHINK</a>
+    <a href="/team.html">Team</a>
+  </header>
+  
+  <main>
+    <h1>🧰 AI Toolbox</h1>
+    <p class="subtitle">Simple tools to boost your productivity</p>
+    
+    <div class="grid">
+      <div class="card" onclick="openTool('summarize')">
+        <span class="icon">📝</span>
+        <h3>Summarizer</h3>
+        <p>Summarize long text into key points</p>
+      </div>
+      
+      <div class="card" onclick="openTool('translate')">
+        <span class="icon">🌐</span>
+        <h3>Translator</h3>
+        <p>Translate between languages</p>
+      </div>
+      
+      <div class="card" onclick="openTool('code')">
+        <span class="icon">💻</span>
+        <h3>Code</h3>
+        <p>Format & improve code</p>
+      </div>
+      
+      <div class="card" onclick="openTool('email')">
+        <span class="icon">✉️</span>
+        <h3>Email</h3>
+        <p>Write professional emails</p>
+      </div>
+      
+      <div class="card" onclick="openTool('outline')">
+        <span class="icon">📋</span>
+        <h3>Outline</h3>
+        <p>Create article outlines</p>
+      </div>
+      
+      <div class="card" onclick="openTool('idea')">
+        <span class="icon">💡</span>
+        <h3>Ideas</h3>
+        <p>Brainstorm creative ideas</p>
+      </div>
+      
+      <div class="card" onclick="openTool('review')">
+        <span class="icon">⭐</span>
+        <h3>Review</h3>
+        <p>Write product reviews</p>
+      </div>
+      
+      <div class="card" onclick="openTool('social')">
+        <span class="icon">🐦</span>
+        <h3>Social</h3>
+        <p>Generate social posts</p>
+      </div>
+    </div>
+  </main>
+  
+  <footer>© 2026 THEMATHINK</footer>
+  
+  <!-- Tool Panel -->
+  <div id="tool-panel">
+    <div class="close" onclick="closeTool()">×</div>
+    <div class="panel-content">
+      <h2 id="tool-title">Tool</h2>
+      <div id="tool-inputs"></div>
+      <button onclick="runTool()">Generate</button>
+      <div id="tool-result" class="result"></div>
+    </div>
+  </div>
+  
+  <script>
+    const tools = {
+      summarize: { title: '📝 Text Summarizer', inputs: '<div class="input-group"><label>Your text</label><textarea id="input-text" placeholder="Paste text to summarize..."></textarea></div>', prompt: 'Summarize into 3-5 bullet points:' },
+      translate: { title: '🌐 Translator', inputs: '<div class="input-group"><label>Target language</label><input id="input-lang" placeholder="e.g., Chinese, Spanish, French"></div><div class="input-group"><label>Text to translate</label><textarea id="input-text" placeholder="Enter text..."></textarea></div>', prompt: 'Translate to' },
+      code: { title: '💻 Code Formatter', inputs: '<div class="input-group"><label>Language</label><input id="input-lang" placeholder="e.g., javascript, python, go"></div><div class="input-group"><label>Your code</label><textarea id="input-text" placeholder="Paste code..."></textarea></div>', prompt: 'Format and improve this code:' },
+      email: { title: '✉️ Email Writer', inputs: '<div class="input-group"><label>Subject</label><input id="input-subject" placeholder="Email subject"></div><div class="input-group"><label>What is this about?</label><textarea id="input-text" placeholder="Brief description..."></textarea></div>', prompt: 'Write a professional email about:' },
+      outline: { title: '📋 Article Outline', inputs: '<div class="input-group"><label>Topic</label><input id="input-topic" placeholder="Article topic"></div><div class="input-group"><label>Number of sections</label><input id="input-sections" placeholder="5"></div>', prompt: 'Create a detailed outline for:' },
+      idea: { title: '💡 Idea Generator', inputs: '<div class="input-group"><label>Topic or industry</label><input id="input-topic" placeholder="e.g., fitness app, travel, AI"></div>', prompt: 'Generate 8 creative ideas for:' },
+      review: { title: '⭐ Product Review', inputs: '<div class="input-group"><label>Product name</label><input id="input-product" placeholder="Product name"></div><div class="input-group"><label>Key features</label><textarea id="input-text" placeholder="Main features..."></textarea></div>', prompt: 'Write a review for:' },
+      social: { title: '🐦 Social Post', inputs: '<div class="input-group"><label>Platform</label><input id="input-platform" placeholder="Twitter, LinkedIn, Instagram"></div><div class="input-group"><label>Topic</label><textarea id="input-text" placeholder="What to post about?"></textarea></div>', prompt: 'Write a' }
+    };
+    
+    let currentTool = '';
+    
+    function openTool(tool) {
+      currentTool = tool;
+      document.getElementById('tool-title').textContent = tools[tool].title;
+      document.getElementById('tool-inputs').innerHTML = tools[tool].inputs;
+      document.getElementById('tool-result').textContent = '';
+      document.getElementById('tool-panel').classList.add('active');
+    }
+    
+    function closeTool() {
+      document.getElementById('tool-panel').classList.remove('active');
+    }
+    
+    async function runTool() {
+      const text = document.getElementById('input-text')?.value || document.getElementById('input-topic')?.value || document.getElementById('input-product')?.value || '';
+      const lang = document.getElementById('input-lang')?.value || '';
+      const platform = document.getElementById('input-platform')?.value || '';
+      const resultEl = document.getElementById('tool-result');
+      
+      if (!text.trim()) {
+        resultEl.textContent = 'Please enter some text.';
+        return;
+      }
+      
+      resultEl.textContent = '🤔 Thinking...';
+      
+      try {
+        let prompt = tools[currentTool].prompt;
+        if (lang) prompt += ' ' + lang + ': ';
+        if (platform) prompt = 'Write a ' + platform + ' post about:';
+        prompt += ' ' + text;
+        
+        const response = await fetch('https://pain-points.jxs66.workers.dev/api/analyze', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ prompt })
+        });
+        
+        const data = await response.json();
+        resultEl.textContent = data.result || data.response || JSON.stringify(data, null, 2);
+      } catch (e) {
+        resultEl.textContent = 'Error: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>

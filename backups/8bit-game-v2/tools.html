@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Tools | THEMACHINE CORP.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
+    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; }
+    .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 10px; text-decoration: none; margin-bottom: 30px; }
+    .back-btn:hover { background: var(--magenta); }
+    h1 { font-family: 'Press Start 2P', cursive; font-size: 18px; color: var(--magenta); margin-bottom: 10px; text-align: center; }
+    .subtitle { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #555; text-align: center; margin-bottom: 25px; }
+    
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 30px; }
+    .tool { background: rgba(255,0,255,0.05); border: 2px solid var(--magenta); padding: 15px; cursor: pointer; transition: all 0.2s; text-align: center; }
+    .tool:hover, .tool.active { background: var(--magenta); color: var(--bg); transform: translateY(-3px); }
+    .tool-icon { font-size: 22px; margin-bottom: 8px; }
+    .tool h2 { font-family: 'Press Start 2P', monospace; font-size: 7px; color: var(--gold); margin-bottom: 6px; }
+    .tool:hover h2, .tool.active h2 { color: var(--bg); }
+    .tool p { font-size: 9px; color: #888; line-height: 1.4; }
+    .tool:hover p { color: #333; }
+    
+    .tool-panel { background: rgba(0,255,255,0.05); border: 2px solid var(--cyan); padding: 20px; display: none; }
+    .tool-panel.active { display: block; }
+    .tool-panel h3 { font-family: 'Press Start 2P', monospace; font-size: 12px; color: var(--gold); margin-bottom: 15px; }
+    textarea, input { width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 2px solid var(--cyan); color: #fff; font-family: monospace; font-size: 14px; margin-bottom: 12px; }
+    textarea { height: 100px; resize: none; }
+    textarea:focus, input:focus { outline: none; border-color: var(--gold); }
+    .btn { padding: 12px 24px; background: var(--cyan); border: none; color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 10px; cursor: pointer; }
+    .btn:hover { background: var(--gold); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    .result { margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--gold); font-size: 13px; line-height: 1.6; white-space: pre-wrap; color: #ddd; display: none; }
+    .result.show { display: block; }
+    .loading { color: var(--cyan); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-btn">◄ BACK</a>
+    <h1>🧰 AI TOOLBOX</h1>
+    <p class="subtitle">FREE AI-POWERED UTILITIES</p>
+    
+    <div class="tools-grid">
+      <div class="tool" onclick="selectTool('summarizer')">
+        <div class="tool-icon">📝</div>
+        <h2>SUMMARIZER</h2>
+        <p>Condense long text into brief key points</p>
+      </div>
+      <div class="tool" onclick="selectTool('analyzer')">
+        <div class="tool-icon">🔍</div>
+        <h2>ANALYZER</h2>
+        <p>Detect sentiment, entities & patterns</p>
+      </div>
+      <div class="tool" onclick="selectTool('ideator')">
+        <div class="tool-icon">💡</div>
+        <h2>IDEATOR</h2>
+        <p>Brainstorm creative concepts instantly</p>
+      </div>
+      <div class="tool" onclick="selectTool('email')">
+        <div class="tool-icon">📧</div>
+        <h2>EMAIL WRITER</h2>
+        <p>Create professional emails in seconds</p>
+      </div>
+      <div class="tool" onclick="selectTool('headline')">
+        <div class="tool-icon">🎯</div>
+        <h2>HEADLINE GEN</h2>
+        <p>Generate attention-grabbing headlines</p>
+      </div>
+      <div class="tool" onclick="selectTool('translator')">
+        <div class="tool-icon">🌐</div>
+        <h2>TRANSLATOR</h2>
+        <p>Translate between 50+ languages</p>
+      </div>
+    </div>
+    
+    <!-- Summarizer Panel -->
+    <div id="panel-summarizer" class="tool-panel">
+      <h3>📝 SUMMARIZER</h3>
+      <textarea id="summarizer-input" placeholder="Paste your text here to summarize..."></textarea>
+      <button class="btn" onclick="runSummarizer()">► SUMMARIZE</button>
+      <div id="summarizer-result" class="result"></div>
+    </div>
+    
+    <!-- Analyzer Panel -->
+    <div id="panel-analyzer" class="tool-panel">
+      <h3>🔍 ANALYZER</h3>
+      <textarea id="analyzer-input" placeholder="Enter text to analyze..."></textarea>
+      <button class="btn" onclick="runAnalyzer()">► ANALYZE</button>
+      <div id="analyzer-result" class="result"></div>
+    </div>
+    
+    <!-- Ideator Panel -->
+    <div id="panel-ideator" class="tool-panel">
+      <h3>💡 IDEATOR</h3>
+      <input type="text" id="ideator-input" placeholder="What do you need ideas for?">
+      <button class="btn" onclick="runIdeator()">► GENERATE IDEAS</button>
+      <div id="ideator-result" class="result"></div>
+    </div>
+    
+    <!-- Email Panel -->
+    <div id="panel-email" class="tool-panel">
+      <h3>📧 EMAIL WRITER</h3>
+      <input type="text" id="email-subject" placeholder="Email subject...">
+      <textarea id="email-input" placeholder="What is the email about?"></textarea>
+      <button class="btn" onclick="runEmail()">► WRITE EMAIL</button>
+      <div id="email-result" class="result"></div>
+    </div>
+    
+    <!-- Headline Panel -->
+    <div id="panel-headline" class="tool-panel">
+      <h3>🎯 HEADLINE GENERATOR</h3>
+      <input type="text" id="headline-input" placeholder="Enter your topic or article...">
+      <button class="btn" onclick="runHeadline()">► GENERATE</button>
+      <div id="headline-result" class="result"></div>
+    </div>
+    
+    <!-- Translator Panel -->
+    <div id="panel-translator" class="tool-panel">
+      <h3>🌐 TRANSLATOR</h3>
+      <input type="text" id="translator-from" placeholder="Source language (e.g., English)">
+      <input type="text" id="translator-to" placeholder="Target language (e.g., Chinese)">
+      <textarea id="translator-input" placeholder="Text to translate..."></textarea>
+      <button class="btn" onclick="runTranslator()">► TRANSLATE</button>
+      <div id="translator-result" class="result"></div>
+    </div>
+  </div>
+  
+  <script>
+    var currentTool = null;
+    var apiKey = 'K0WRRtMpn8YPM-sfIWp1TuNMn4JI9S9Q3X2Zw7Rk';
+    
+    function selectTool(tool) {
+      document.querySelectorAll('.tool').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.getElementById('panel-' + tool).classList.add('active');
+      currentTool = tool;
+    }
+    
+    async function callAI(prompt) {
+      try {
+        const response = await fetch('https://api.minimax.chat/v1/text/chatcompletion_pro', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKey
+          },
+          body: JSON.stringify({
+            model: 'abab6.5s-chat',
+            messages: [{ role: 'user', content: prompt }]
+          })
+        });
+        const data = await response.json();
+        return data.choices?.[0]?.message?.content || 'Error: No response';
+      } catch (e) {
+        return 'Error: ' + e.message;
+      }
+    }
+    
+    async function runSummarizer() {
+      var input = document.getElementById('summarizer-input').value;
+      var result = document.getElementById('summarizer-result');
+      if (!input.trim()) { alert('Please enter some text'); return; }
+      result.innerHTML = '<span class="loading">Processing...</span>';
+      result.classList.add('show');
+      var text = await callAI('Summarize the following into 3-5 key points:\n\n' + input);
+      result.textContent = text;
+    }
+    
+    async function runAnalyzer() {
+      var input = document.getElementById('analyzer-input').value;
+      var result = document.getElementById('analyzer-result');
+      if (!input.trim()) { alert('Please enter some text'); return; }
+      result.innerHTML = '<span class="loading">Analyzing...</span>';
+      result.classList.add('show');
+      var text = await callAI('Analyze this text. Provide: 1) Sentiment (positive/negative/neutral) 2) Key entities 3) Main themes:\n\n' + input);
+      result.textContent = text;
+    }
+    
+    async function runIdeator() {
+      var input = document.getElementById('ideator-input').value;
+      var result = document.getElementById('ideator-result');
+      if (!input.trim()) { alert('Please enter a topic'); return; }
+      result.innerHTML = '<span class="loading">Generating ideas...</span>';
+      result.classList.add('show');
+      var text = await callAI('Generate 5 creative ideas for: ' + input);
+      result.textContent = text;
+    }
+    
+    async function runEmail() {
+      var subject = document.getElementById('email-subject').value;
+      var input = document.getElementById('email-input').value;
+      var result = document.getElementById('email-result');
+      if (!input.trim()) { alert('Please describe the email'); return; }
+      result.innerHTML = '<span class="loading">Writing email...</span>';
+      result.classList.add('show');
+      var text = await callAI('Write a professional email. Subject: ' + subject + '. Purpose: ' + input);
+      result.textContent = text;
+    }
+    
+    async function runHeadline() {
+      var input = document.getElementById('headline-input').value;
+      var result = document.getElementById('headline-result');
+      if (!input.trim()) { alert('Please enter a topic'); return; }
+      result.innerHTML = '<span class="loading">Generating headlines...</span>';
+      result.classList.add('show');
+      var text = await callAI('Generate 5 catchy headlines for: ' + input);
+      result.textContent = text;
+    }
+    
+    async function runTranslator() {
+      var from = document.getElementById('translator-from').value || 'English';
+      var to = document.getElementById('translator-to').value || 'Chinese';
+      var input = document.getElementById('translator-input').value;
+      var result = document.getElementById('translator-result');
+      if (!input.trim()) { alert('Please enter text to translate'); return; }
+      result.innerHTML = '<span class="loading">Translating...</span>';
+      result.classList.add('show');
+      var text = await callAI('Translate from ' + from + ' to ' + to + ':\n\n' + input);
+      result.textContent = text;
+    }
+  </script>
+</body>
+</html>

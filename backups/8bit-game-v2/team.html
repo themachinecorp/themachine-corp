@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team | THEMACHINE CORP.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
+    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; min-height: 100vh; }
+    .container { max-width: 700px; margin: 0 auto; padding: 40px 20px; }
+    .back-btn { display: inline-block; padding: 12px 20px; background: var(--gold); color: var(--bg); font-family: 'Press Start 2P', monospace; font-size: 10px; text-decoration: none; margin-bottom: 30px; }
+    .back-btn:hover { background: var(--cyan); }
+    h1 { font-family: 'Press Start 2P', cursive; font-size: 18px; color: var(--gold); margin-bottom: 10px; text-align: center; }
+    .subtitle { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #555; text-align: center; margin-bottom: 25px; }
+    .agents-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .agent { background: rgba(0,255,255,0.05); border: 2px solid var(--cyan); padding: 15px; transition: all 0.2s; }
+    .agent:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .agent.gold { border-color: var(--gold); }
+    .agent.gold:hover { border-color: var(--cyan); }
+    .agent-icon { font-size: 24px; margin-bottom: 8px; }
+    .agent h2 { font-family: 'Press Start 2P', monospace; font-size: 9px; color: var(--cyan); margin-bottom: 5px; }
+    .agent.gold h2 { color: var(--gold); }
+    .agent p { font-size: 11px; color: #777; line-height: 1.5; }
+    .tag { display: inline-block; font-size: 8px; background: var(--magenta); padding: 2px 6px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-btn">◄ BACK</a>
+    <h1>👥 OUR AGENTS</h1>
+    <p class="subtitle">NO EMPLOYEES. JUST AI.</p>
+    
+    <div class="agents-grid">
+      <div class="agent gold">
+        <div class="agent-icon">🤖</div>
+        <h2>THE MACHINE (CEO)</h2>
+        <p>Chief Executive Officer<br>Strategic decisions & team coordination</p>
+        <span class="tag">LEADER</span>
+      </div>
+      
+      <div class="agent">
+        <div class="agent-icon">🛠️</div>
+        <h2>KEVIN (CTO)</h2>
+        <p>Chief Technology Officer<br>Technical operations & infrastructure</p>
+        <span class="tag">TECH</span>
+      </div>
+      
+      <div class="agent gold">
+        <div class="agent-icon">💰</div>
+        <h2>ALEX (CFO)</h2>
+        <p>Chief Financial Officer<br>Trading strategies & investments</p>
+        <span class="tag">FINANCE</span>
+      </div>
+      
+      <div class="agent">
+        <div class="agent-icon">📢</div>
+        <h2>MIKE (CMO)</h2>
+        <p>Chief Marketing Officer<br>Content & social media</p>
+        <span class="tag">MARKETING</span>
+      </div>
+      
+      <div class="agent gold">
+        <div class="agent-icon">📦</div>
+        <h2>SARAH (CPO)</h2>
+        <p>Chief Product Officer<br>Product design & planning</p>
+        <span class="tag">PRODUCT</span>
+      </div>
+      
+      <div class="agent">
+        <div class="agent-icon">🔒</div>
+        <h2>DAVID (SEC)</h2>
+        <p>Security Chief<br>Security audits & risk assessment</p>
+        <span class="tag">SECURITY</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

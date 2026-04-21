@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THEMACHINE CORP. | AI-Powered</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #0d0d12; --gold: #d4af37; --cyan: #00ffff; --magenta: #ff00ff; }
+    html, body { background: var(--bg); color: #fff; font-family: 'Courier New', monospace; height: 100%; overflow-x: hidden; }
+    @media (max-width: 600px) { .pixel-logo { font-size: clamp(10px, 4vw, 18px) !important; } .menu-btn { padding: 6px 8px !important; font-size: 4px !important; } }
+    
+    .stars { position: fixed; inset: 0; z-index: 0; }
+    .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle 3s infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+    
+    .container { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; padding: 30px 15px; text-align: center; }
+    
+    .logo { font-family: 'Press Start 2P', cursive; font-size: clamp(12px, 3vw, 22px); color: var(--gold); text-shadow: 2px 2px 0 var(--cyan); animation: glow 2s ease-in-out infinite; margin-bottom: 8px; }
+    .logo span { display: block; font-size: clamp(6px, 1.5vw, 10px); color: var(--cyan); margin-top: 5px; }
+    @keyframes glow { 0%, 100% { text-shadow: 2px 2px 0 var(--cyan); } 50% { text-shadow: 0 0 20px var(--gold), 2px 2px 0 var(--cyan); } }
+    
+    .tagline { font-family: 'Press Start 2P', monospace; font-size: clamp(5px, 1.2vw, 8px); color: #666; margin-bottom: 15px; }
+    
+    .hearts { display: flex; gap: 5px; margin-bottom: 15px; justify-content: center; }
+    .heart { width: 10px; height: 10px; background: var(--magenta); clip-path: path('M5 1 C2 0 0 2 0 4 C0 6 5 10 5 10 C5 10 10 6 10 4 C10 2 8 0 5 1'); animation: beat 0.6s infinite; }
+    .heart:nth-child(2) { animation-delay: 0.1s; } .heart:nth-child(3) { animation-delay: 0.2s; } .heart:nth-child(4) { animation-delay: 0.3s; } .heart:nth-child(5) { animation-delay: 0.4s; }
+    @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    
+    .desc { font-size: clamp(10px, 2vw, 13px); color: #888; max-width: 400px; margin: 0 auto 20px; line-height: 1.6; }
+    
+    .menu { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 350px; }
+    .menu-btn { padding: 8px 12px; background: rgba(0,255,255,0.05); border: 2px solid var(--cyan); color: var(--cyan); font-family: 'Press Start 2P', monospace; font-size: clamp(4px, 1vw, 6px); text-decoration: none; transition: all 0.2s; }
+    .menu-btn:hover, .menu-btn:active { background: var(--cyan); color: var(--bg); transform: scale(1.05); }
+    .menu-btn.gold { border-color: var(--gold); color: var(--gold); }
+    .menu-btn.gold:hover { background: var(--gold); }
+    .menu-btn.magenta { border-color: var(--magenta); color: var(--magenta); }
+    .menu-btn.magenta:hover { background: var(--magenta); color: #fff; }
+    
+    .quote { font-style: italic; font-size: clamp(8px, 1.5vw, 11px); color: #555; margin-top: 20px; max-width: 350px; }
+    
+    .hud { position: fixed; bottom: 0; left: 0; right: 0; padding: 8px 12px; background: rgba(0,0,0,0.9); border-top: 2px solid var(--cyan); display: flex; justify-content: space-between; font-family: 'Press Start 2P', monospace; font-size: clamp(4px, 1vw, 6px); }
+    .hud-item { display: flex; gap: 4px; }
+    .hud-label { color: var(--cyan); }
+    .hud-value { color: var(--gold); }
+    
+    .marquee { position: fixed; top: 10px; left: 0; font-family: 'Press Start 2P', monospace; font-size: clamp(4px, 1vw, 6px); color: var(--magenta); white-space: nowrap; animation: scroll 12s linear infinite; }
+    @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+  </style>
+</head>
+<body onload="init()">
+  <div class="stars" id="stars"></div>
+  <div class="marquee">★ THEMACHINE CORP. ★ AI AGENTS WORKING 24/7 ★ NO EMPLOYEES ★</div>
+  
+  <div class="container">
+    <div class="logo">THEMACHINE CORP.<span>8-BIT WORLD</span></div>
+    <div class="tagline">THE MACHINE THAT THINKS</div>
+    
+    <div class="hearts">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+    </div>
+    
+    <div class="desc">
+      AI-powered company with autonomous agents working 24/7. 
+      We help humans discover their potential through intelligent tools and insights.
+    </div>
+    
+    <div class="menu">
+      <a href="/persona/" class="menu-btn gold">🎭 PERSONA</a>
+      <a href="/innervoice/" class="menu-btn">🔮 VOICE</a>
+      <a href="/lifemosaic/" class="menu-btn gold">🧩 MOSAIC</a>
+      <a href="/tools.html" class="menu-btn magenta">🧰 TOOLS</a>
+      <a href="/team.html" class="menu-btn gold">👥 TEAM</a>
+    </div>
+    
+    <div class="quote">
+      "We don't give answers.<br>We help you find your own."
+    </div>
+  </div>
+  
+  <div class="hud">
+    <div class="hud-item"><span class="hud-label">HP</span><span class="hud-value">100</span></div>
+    <div class="hud-item"><span class="hud-label">AGENTS</span><span class="hud-value">6</span></div>
+    <div class="hud-item"><span class="hud-label">STATUS</span><span class="hud-value">ONLINE</span></div>
+    <div class="hud-item"><span class="hud-label">SINCE</span><span class="hud-value">2026</span></div>
+  </div>
+  
+  <script>
+    function init() {
+      var container = document.getElementById('stars');
+      for (var i = 0; i < 40; i++) {
+        var star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 50 + '%';
+        star.style.width = (Math.random() * 2 + 1) + 'px';
+        star.style.height = star.style.width;
+        star.style.animationDelay = Math.random() * 3 + 's';
+        container.appendChild(star);
+      }
+    }
+  </script>
+</body>
+</html>

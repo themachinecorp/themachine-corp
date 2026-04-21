@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOCRATES - In Progress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root { --bg:#0d0d12; --gold:#d4af37; --cyan:#00ffff; --magenta:#ff00ff; }
+    html,body { background:var(--bg); color:#fff; font-family:'Press Start 2P',monospace; min-height:100vh; overflow-x:hidden; }
+    .wrapper { min-height:100vh; display:flex; flex-direction:column; }
+    
+    @media (max-width:600px) {
+      .header{font-size:clamp(10px,2vw,14px)!important;padding:10px!important}
+      .chat-container{padding:15px!important}
+      .message{padding:12px!important;font-size:clamp(8px,1.5vw,11px)!important;margin-bottom:12px!important}
+      .message.ai{font-size:clamp(9px,1.5vw,12px)!important}
+      .input-area{padding:15px!important}
+      .user-input{font-size:clamp(10px,2vw,13px)!important;padding:12px!important}
+      .send-btn{padding:12px 16px!important;font-size:clamp(8px,1.2vw,10px)!important}
+      .stage-indicator{font-size:clamp(6px,1vw,8px)!important;padding:6px 10px!important;margin:8px 10px!important}
+      .actions{gap:8px!important}
+      .action-btn{padding:10px 12px!important;font-size:clamp(7px,1vw,9px)!important}
+    }
+    
+    .header{background:rgba(0,0,0,0.8);border-bottom:2px solid var(--cyan);padding:12px 15px;display:flex;justify-content:space-between;align-items:center;font-size:clamp(9px,1.5vw,12px)}
+    .logo{color:var(--gold)}
+    .back-link{color:#555;text-decoration:none;transition:color 0.2s}
+    .back-link:hover{color:var(--gold)}
+    
+    .stage-indicator{background:rgba(255,0,255,0.1);border:2px solid var(--magenta);color:var(--magenta);padding:8px 12px;font-size:clamp(7px,1.2vw,9px);margin:10px 15px}
+    
+    .chat-container{flex:1;overflow-y:auto;padding:20px;max-width:800px;margin:0 auto;width:100%;padding-bottom:120px}
+    .message{background:rgba(0,255,255,0.05);border:2px solid var(--cyan);padding:15px;margin-bottom:15px;font-size:clamp(9px,1.5vw,12px);line-height:1.6;word-wrap:break-word}
+    .message.user{border-color:var(--gold);background:rgba(212,175,55,0.05)}
+    .message-label{color:var(--gold);font-size:clamp(7px,1vw,9px);margin-bottom:8px}
+    .message.ai{background:rgba(255,0,255,0.05);border-color:var(--magenta)}
+    .message.ai .message-label{color:var(--magenta)}
+    
+    .typing{color:var(--cyan);animation:pulse 1s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+    
+    .input-area{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95);border-top:2px solid var(--cyan);padding:20px;display:flex;gap:10px;align-items:center}
+    .user-input{flex:1;padding:15px;background:rgba(0,255,255,0.03);border:2px solid var(--cyan);color:#fff;font-family:'Press Start 2P',monospace;font-size:clamp(11px,2vw,14px);resize:none}
+    .user-input:focus{outline:none;border-color:var(--gold)}
+    .user-input::placeholder{color:#555}
+    .send-btn{padding:15px 25px;background:var(--cyan);border:2px solid var(--cyan);color:var(--bg);font-family:'Press Start 2P',monospace;font-size:clamp(9px,1.5vw,11px);cursor:pointer;transition:all 0.2s}
+    .send-btn:hover{background:transparent;color:var(--cyan)}
+    .send-btn:disabled{opacity:0.5;cursor:not-allowed}
+    
+    .actions{position:fixed;top:70px;right:15px;display:flex;flex-direction:column;gap:10px;z-index:100;background:rgba(13,13,18,0.9);padding:10px;border:2px solid var(--gold);border-radius:0}
+    .action-btn{padding:10px 14px;background:rgba(212,175,55,0.1);border:2px solid var(--gold);color:var(--gold);font-family:'Press Start 2P',monospace;font-size:clamp(7px,1vw,9px);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+    .action-btn:hover{background:var(--gold);color:var(--bg)}
+    
+    @media (max-width:600px) {
+      .actions{top:auto;bottom:100px;right:10px;left:10px;flex-direction:row;flex-wrap:wrap;justify-content:center;background:rgba(13,13,18,0.95);padding:8px}
+      .action-btn{padding:8px 12px;font-size:clamp(6px,1vw,8px)}
+    }
+    
+    .hud{position:fixed;bottom:0;left:0;right:0;padding:10px 15px;background:rgba(0,0,0,0.9);border-top:2px solid var(--cyan);display:flex;justify-content:space-between;font-size:clamp(7px,1.2vw,10px);pointer-events:none}
+    .hud-item{display:flex;gap:6px}
+    .hud-label{color:var(--cyan)}
+    .hud-value{color:var(--gold)}
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="index.html" class="back-link">← Start Over</a>
+    <div class="logo">SOCRATES</div>
+  </div>
+  
+  <div class="stage-indicator" id="stage">阶段: 澄清</div>
+  
+  <div class="actions">
+    <button class="action-btn" onclick="generateReport()">Generate Report 📊</button>
+    <button class="action-btn" onclick="clearDialogue()">Clear Chat</button>
+  </div>
+  
+  <div class="chat-container" id="chat">
+    <!-- 对话内容 -->
+  </div>
+  
+  <div class="input-area">
+    <textarea id="answer" class="user-input" rows="2" placeholder="Write your answer..."></textarea>
+    <button class="send-btn" id="sendBtn" onclick="sendAnswer()">Send</button>
+  </div>
+
+  <script>
+    const ENCODED_KEY = 'c2stYXBpLVFvQTdOS29qM1ViT3pJRHNwWnFxakw0Z1V4RUQ2U1lEc1NSSG5hMnR1VFExZ0thdlNXN29oVkd0U1dZeDFUZ1E0QUhtVlowLXR5NlBpSjQ1dHZHLUdMemNhNmtqVGRkNER2YVNieTJ0Rm13d2dKQzhSQWxsZ0kwCg==';
+    const API_ENDPOINT = 'https://api.minimax.chat/v1/text/chatcompletion_v2';
+    const MODEL = 'abab6.5s-chat';
+    
+    function getApiKey() {
+      try { return atob(ENCODED_KEY); } catch(e) { return null; }
+    }
+    
+    const STAGES = {
+      clarification: { name: 'Clarification', prompt: 'Explore the core problem you want to solve' },
+      motivation: { name: 'Motivation', prompt: 'Understand why this matters to you' },
+      obstacles: { name: 'Obstacles', prompt: 'Discover blockers and past successes' },
+      action: { name: 'Action', prompt: 'Envision the first step toward success' },
+      summary: { name: 'Summary', prompt: 'Review discoveries and next steps' }
+    };
+    
+    let dialogue = null;
+    let isLoading = false;
+    
+    function loadDialogue() {
+      const stored = localStorage.getItem('socrates_dialogue');
+      if (!stored) {
+        window.location.href = 'index.html';
+        return;
+      }
+      dialogue = JSON.parse(stored);
+      renderMessages();
+      updateStage();
+    }
+    
+    function updateStage() {
+      const stageEl = document.getElementById('stage');
+      const stage = STAGES[dialogue.stage];
+      stageEl.textContent = `Stage: ${stage.name} - ${stage.prompt}`;
+    }
+    
+    function renderMessages() {
+      const chat = document.getElementById('chat');
+      chat.innerHTML = '';
+      
+      // 跳过system消息，只显示用户和AI的对话
+      dialogue.messages.forEach((msg, idx) => {
+        if (msg.role === 'system') return;
+        if (msg.role === 'user' && idx === 1) {
+          // 初始问题
+          addMessage('user', msg.content, 'Your Question');
+        } else if (msg.role === 'assistant') {
+          addMessage('ai', msg.content, 'SOCRATES');
+        } else if (msg.role === 'user') {
+          addMessage('user', msg.content, 'Your Answer');
+        }
+      });
+      
+      chat.scrollTop = chat.scrollHeight;
+    }
+    
+    function addMessage(role, content, label) {
+      const chat = document.getElementById('chat');
+      const div = document.createElement('div');
+      div.className = `message ${role}`;
+      div.innerHTML = `<div class="message-label">${label}</div><div class="message-content">${content.replace(/\n/g, '<br>')}</div>`;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+    
+    function showTyping() {
+      const chat = document.getElementById('chat');
+      const div = document.createElement('div');
+      div.className = 'message ai';
+      div.id = 'typing';
+      div.innerHTML = '<div class="message-label">SOCRATES</div><div class="typing">Thinking...</div>';
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+    
+    function hideTyping() {
+      const typing = document.getElementById('typing');
+      if (typing) typing.remove();
+    }
+    
+    async function sendAnswer() {
+      if (isLoading) return;
+      const answer = document.getElementById('answer').value.trim();
+      if (!answer) return;
+      
+      // 添加用户回答
+      dialogue.messages.push({ role: 'user', content: answer });
+      addMessage('user', answer, '你的回答');
+      document.getElementById('answer').value = '';
+      
+      // 保存并获取AI响应
+      saveDialogue();
+      await getAIResponse();
+    }
+    
+    async function getAIResponse() {
+      isLoading = true;
+      document.getElementById('sendBtn').disabled = true;
+      showTyping();
+      
+      // 把系统指令放在messages开头
+      const systemMsg = { 
+        role: 'system', 
+        content: 'You are a Socratic question coach. Ask one question at a time. Never give answers. Respond in the same language as the user\'s input.' 
+      };
+      const messagesWithSystem = [systemMsg, ...dialogue.messages];
+      
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getApiKey()
+          },
+          body: JSON.stringify({
+            model: MODEL,
+            messages: messagesWithSystem,
+            temperature: 0.7,
+            max_tokens: 1000
+          })
+        });
+        
+        const data = await response.json();
+        hideTyping();
+        
+        if (data.choices && data.choices[0]) {
+          const reply = data.choices[0].message.content;
+          dialogue.messages.push({ role: 'assistant', content: reply });
+          
+          // 检查是否需要切换阶段
+          checkStageTransition(reply);
+          saveDialogue();
+          addMessage('ai', reply, 'SOCRATES');
+        } else {
+          addMessage('ai', 'Sorry, something went wrong. Please try again.', 'SOCRATES');
+        }
+      } catch (err) {
+        hideTyping();
+        addMessage('ai', 'Network error. Please check your connection and try again.', 'SOCRATES');
+        console.error(err);
+      }
+      
+      isLoading = false;
+      document.getElementById('sendBtn').disabled = false;
+    }
+    
+    function checkStageTransition(reply) {
+      // 简单的阶段检测 - 根据关键词判断
+      const lower = reply.toLowerCase();
+      
+      if (dialogue.stage === 'clarification') {
+        if (lower.includes('为什么') || lower.includes('重要') || lower.includes('原因')) {
+          dialogue.stage = 'motivation';
+        }
+      } else if (dialogue.stage === 'motivation') {
+        if (lower.includes('阻碍') || lower.includes('困难') || lower.includes('过去') || lower.includes('成功')) {
+          dialogue.stage = 'obstacles';
+        }
+      } else if (dialogue.stage === 'obstacles') {
+        if (lower.includes('假设') || lower.includes('一年') || lower.includes('成功') || lower.includes('第一步')) {
+          dialogue.stage = 'action';
+        }
+      } else if (dialogue.stage === 'action') {
+        if (lower.includes('总结') || lower.includes('发现') || lower.includes('下一步') || lower.includes('今天')) {
+          dialogue.stage = 'summary';
+        }
+      }
+      
+      updateStage();
+    }
+    
+    function saveDialogue() {
+      localStorage.setItem('socrates_dialogue', JSON.stringify(dialogue));
+    }
+    
+    function generateReport() {
+      // 保存当前对话到报告存储
+      localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
+      window.location.href = 'report.html';
+    }
+    
+    function clearDialogue() {
+      if (confirm('Are you sure you want to clear the chat?')) {
+        localStorage.removeItem('socrates_dialogue');
+        window.location.href = 'index.html';
+      }
+    }
+    
+    // 回车发送
+    document.getElementById('answer').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendAnswer();
+      }
+    });
+    
+    // 初始化
+    loadDialogue();
+  </script>
+</body>
+</html>

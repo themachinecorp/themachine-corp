@@ -1,0 +1,6 @@
+{"updated":"2026-04-16T09:01:00+08:00","projects":[
+  {"id":"themathink","name":"THEMATHINK Daily","icon":"📅","status":"live","progress":85,"link":"themathink-daily.html"},
+  {"id":"algora","name":"Algora Bounty Sprint","icon":"⚡","status":"building","progress":40,"note":"GH账号被封"},
+  {"id":"gumroad","name":"Gumroad Sales Sync","icon":"🛒","status":"building","progress":10},
+  {"id":"radar","name":"Demand Radar","icon":"📡","status":"building","progress":0,"note":"第一优先级"}
+]}

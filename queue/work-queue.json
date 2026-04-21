@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-03-25T10:06:00+08:00",
+  "phase": "P0 - Phase 0 启动",
+
+  "executives": {
+    "Kevin_CTO": {
+      "status": "idle",
+      "currentTask": null,
+      "queue": [],
+      "lastReport": null
+    },
+    "Mike_CMO": {
+      "status": "idle",
+      "currentTask": null,
+      "queue": [],
+      "lastReport": null
+    },
+    "Alex_CFO": {
+      "status": "idle",
+      "currentTask": null,
+      "queue": [],
+      "lastReport": null
+    },
+    "Sarah_CPO": {
+      "status": "idle",
+      "currentTask": null,
+      "queue": [],
+      "lastReport": null
+    },
+    "David_SEC": {
+      "status": "idle",
+      "currentTask": null,
+      "queue": [],
+      "lastReport": null
+    }
+  },
+
+  "globalQueue": [
+    {
+      "id": "P0-001",
+      "task": "Phase 0 基础设施搭建",
+      "assignedTo": "Kevin_CTO",
+      "priority": "P0",
+      "status": "in_progress",
+      "created": "2026-03-25T10:06:00+08:00",
+      "notes": "CEO批准，立即执行"
+    }
+  ],
+
+  "completedTasks": [],
+
+  "notes": "Phase 0 已启动。Kevin和Mike等待各自state.json初始化。"
+}
