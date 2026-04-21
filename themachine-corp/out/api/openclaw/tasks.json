@@ -1,0 +1,9 @@
+{
+  "queue": [
+    {"id": 1, "task": "Trading Monitor", "agent": "Alex", "priority": "P0", "status": "active"},
+    {"id": 2, "task": "X Content", "agent": "Mike", "priority": "P1", "status": "pending"},
+    {"id": 3, "task": "User Feedback", "agent": "Sarah", "priority": "P1", "status": "pending"}
+  ],
+  "completed_today": 8,
+  "pending": 3
+}

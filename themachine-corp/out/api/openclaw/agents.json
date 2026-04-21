@@ -1,0 +1,10 @@
+{
+  "agents": [
+    {"id": "THE MACHINE", "status": "active", "color": "#d4af37"},
+    {"id": "Kevin (CTO)", "status": "active", "color": "#00ffff"},
+    {"id": "Alex (CFO)", "status": "busy", "color": "#00ff00"},
+    {"id": "Mike (CMO)", "status": "active", "color": "#ff00ff"},
+    {"id": "Sarah (CPO)", "status": "active", "color": "#ff6b6b"},
+    {"id": "David (SEC)", "status": "offline", "color": "#9b59b6"}
+  ]
+}

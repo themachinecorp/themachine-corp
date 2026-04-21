@@ -1,0 +1,10 @@
+{
+  "resources": [
+    {"id": "document", "label": "Docs Shelf", "endpoint": "/docs", "status": "online"},
+    {"id": "memory", "label": "Memory Ledger", "endpoint": "/memory", "status": "online"},
+    {"id": "skills", "label": "Skill Registry", "endpoint": "/skills", "status": "online"},
+    {"id": "office", "label": "Office Map", "endpoint": "/office", "status": "online"},
+    {"id": "agents", "label": "Agent Pods", "endpoint": "/agents", "status": "online"},
+    {"id": "tasks", "label": "Task Queue", "endpoint": "/tasks", "status": "online"}
+  ]
+}

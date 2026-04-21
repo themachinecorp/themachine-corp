@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-03-19T13:38:00Z",
+  "hostname": "THEMACHINE",
+  "agents": [
+    {"id": "main", "status": "active", "task": "coordinating"},
+    {"id": "cto", "status": "active", "task": "coding"},
+    {"id": "cfo", "status": "busy", "task": "trading"},
+    {"id": "cmo", "status": "active", "task": "content"},
+    {"id": "cpo", "status": "active", "task": "product"},
+    {"id": "sec", "status": "offline", "task": "security"}
+  ],
+  "memory": {
+    "used": 5357,
+    "total": 15779,
+    "percent": 34
+  },
+  "cpu": {
+    "load1": 0.17,
+    "load5": 0.11,
+    "load15": 0.03
+  }
+}

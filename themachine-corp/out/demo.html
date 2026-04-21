@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo | THEMACHINE Corp.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111120;
+      --text: #e0e0e0;
+      --text-dim: #666;
+      --gold: #d4af37;
+      --cyan: #00e5ff;
+      --green: #22c55e;
+      --border: rgba(0,229,255,.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Space Mono', monospace; line-height: 1.6; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); }
+    nav .logo { font-family: 'Press Start 2P', cursive; font-size: 11px; color: var(--cyan); text-decoration: none; }
+    nav .logo span { color: var(--gold); }
+    nav .nav-links { display: flex; gap: 24px; list-style: none; }
+    nav .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 11px; transition: color .2s; }
+    nav .nav-links a:hover { color: var(--text); }
+    nav .nav-links a.active { color: var(--gold); }
+
+    .page-header { text-align: center; padding: 60px 24px 40px; }
+    .page-header h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(14px,3vw,28px); color: var(--text); margin-bottom: 12px; }
+    .page-header p { color: var(--text-dim); font-size: 13px; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+    .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 24px 20px; display: flex; flex-direction: column; gap: 16px; }
+    .card:hover { border-color: rgba(0,229,255,.4); }
+
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .card-title { font-family: 'Press Start 2P', cursive; font-size: 9px; color: var(--text); line-height: 1.6; }
+    .card-title span { font-size: 16px; margin-right: 6px; }
+
+    .badge { font-size: 7px; font-weight: 700; padding: 3px 8px; border-radius: 2px; letter-spacing: 1px; flex-shrink: 0; }
+    .badge-live { background: rgba(34,197,94,.15); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
+    .badge-building { background: rgba(212,175,55,.12); color: var(--gold); border: 1px solid rgba(212,175,55,.3); }
+    .badge-idea { background: rgba(255,255,255,.05); color: var(--text-dim); border: 1px solid rgba(255,255,255,.1); }
+
+    .card-desc { font-size: 11px; color: var(--text-dim); line-height: 1.7; flex: 1; }
+
+    .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .progress-label { font-size: 7px; color: var(--text-dim); letter-spacing: 2px; }
+    .progress-pct { font-family: 'Press Start 2P', cursive; font-size: 9px; }
+    .progress-pct.green { color: var(--green); }
+    .progress-pct.gold { color: var(--gold); }
+    .progress-pct.dim { color: var(--text-dim); }
+    .progress-track { height: 6px; background: rgba(255,255,255,.08); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 2px; }
+    .progress-fill.green { background: var(--green); }
+    .progress-fill.gold { background: var(--gold); }
+    .progress-fill.dim { background: rgba(255,255,255,.15); }
+
+    .card-btn { display: inline-block; text-align: center; padding: 10px 16px; font-size: 9px; font-weight: 700; text-decoration: none; border-radius: 2px; letter-spacing: 1px; align-self: flex-start; }
+    .btn-live { background: var(--gold); color: #000; }
+    .btn-live:hover { opacity: .85; }
+    .btn-coming { background: rgba(255,255,255,.06); color: var(--text-dim); border: 1px solid rgba(255,255,255,.1); cursor: default; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">◈ <span>THEMACHINE</span> CORP.</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="demo.html" class="active">Demo</a></li>
+    <li><a href="team.html">Team</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1>// SaaS Demos</h1>
+  <p>Shipping progress. No decoration.</p>
+</div>
+
+<div class="container">
+  <div class="demo-grid">
+
+    <!-- THEMATHINK Daily -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span>📅</span>THEMATHINK Daily</div>
+        <span class="badge badge-live">● LIVE</span>
+      </div>
+      <p class="card-desc">AI agent team daily briefing — what each agent did, what's queued, blockers flagged. Every morning.</p>
+      <div>
+        <div class="progress-meta">
+          <span class="progress-label">PROGRESS</span>
+          <span class="progress-pct green">85%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill green" style="width:85%"></div>
+        </div>
+      </div>
+      <a href="themathink-daily.html" class="card-btn btn-live">View →</a>
+    </div>
+
+    <!-- Side Hustle Tracker -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span>💰</span>Side Hustle Tracker</div>
+        <span class="badge badge-idea">◎ IDEA</span>
+      </div>
+      <p class="card-desc">Multi-channel revenue dashboard. Algora bounties, A2H services, Gumroad sales — all in one view.</p>
+      <div>
+        <div class="progress-meta">
+          <span class="progress-label">PROGRESS</span>
+          <span class="progress-pct dim">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill dim" style="width:0%"></div>
+        </div>
+      </div>
+      <span class="card-btn btn-coming">Coming Soon</span>
+    </div>
+
+    <!-- Demand Radar -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span>📡</span>Demand Radar</div>
+        <span class="badge badge-building">◷ BUILDING</span>
+      </div>
+      <p class="card-desc">Real-time scan of Algora, A2H, and GitHub for high-value paid opportunities. Filter by payout and competition.</p>
+      <div>
+        <div class="progress-meta">
+          <span class="progress-label">PROGRESS</span>
+          <span class="progress-pct gold">5%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill gold" style="width:5%"></div>
+        </div>
+      </div>
+      <a href="demand-radar.html" class="card-btn btn-live">View →</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
