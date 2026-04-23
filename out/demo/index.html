@@ -7,20 +7,8 @@
   <title>Demo | THEMACHINE Corp.</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0a0a0f;
-      --surface: #111120;
-      --surface2: #181830;
-      --text: #e0e0e0;
-      --text-dim: #777;
-      --gold: #d4af37;
-      --cyan: #00e5ff;
-      --green: #22c55e;
-      --yellow: #eab308;
-      --border: rgba(0,229,255,.15);
-    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'Press Start 2P', cursive; line-height: 1.6; }
+    body { background: var(--bg); color: var(--text); font-family: 'Space Mono', monospace; line-height: 1.6; }
 
     nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
     nav .logo { font-family: 'Press Start 2P', cursive; font-size: clamp(8px,1.5vw,12px); color: var(--cyan); text-decoration: none; white-space: nowrap; }
@@ -32,323 +20,121 @@
 
     .page-header { text-align: center; padding: 60px 24px 40px; }
     .page-header h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(12px,2.5vw,22px); color: var(--text); margin-bottom: 14px; line-height: 1.5; }
-    .page-header p { color: var(--text-dim); font-size: clamp(12px,2vw,15px); }
-
-    .section-label { font-family: 'Press Start 2P', cursive; font-size: clamp(9px,1.5vw,13px); color: var(--cyan); text-align: center; letter-spacing: 2px; margin-bottom: 8px; }
-    .section-divider { width: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--cyan)); margin: 0 auto 12px; }
-    .section-sub { text-align: center; color: var(--text-dim); font-size: clamp(11px,1.8vw,14px); margin-bottom: 40px; }
+    .page-header p { color: var(--text-dim); font-size: clamp(12px,1.8vw,15px); }
 
     .container { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
     .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; display: flex; flex-direction: column; gap: 16px; transition: border-color .3s, transform .3s; }
     .card:hover { border-color: rgba(0,229,255,.4); transform: translateY(-2px); }
+    .card.in_dev { border-color: rgba(234,179,8,.3); }
 
     .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
     .card-title { font-family: 'Press Start 2P', cursive; font-size: clamp(8px,1.2vw,11px); color: var(--text); line-height: 1.6; word-break: break-word; }
     .card-title .icon { font-size: clamp(14px,2.5vw,20px); margin-right: 6px; }
 
     .badge { font-size: clamp(7px,1vw,9px); font-weight: 700; padding: 4px 10px; border-radius: 3px; letter-spacing: 1px; white-space: nowrap; }
-    .badge-live { background: rgba(34,197,94,.15); color: var(--green); border: 1px solid rgba(34,197,94,.3); }
-    .badge-building { background: rgba(234,179,8,.12); color: var(--yellow); border: 1px solid rgba(234,179,8,.3); }
+    .badge-live { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
+    .badge-building { background: rgba(234,179,8,.12); color: var(--gold); border: 1px solid rgba(234,179,8,.3); }
 
     .card-desc { font-size: clamp(12px,1.5vw,14px); color: var(--text-dim); line-height: 1.7; flex: 1; }
 
     .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .progress-label { font-size: clamp(8px,1vw,10px); color: var(--text-dim); letter-spacing: 2px; }
     .progress-pct { font-family: 'Press Start 2P', cursive; font-size: clamp(9px,1.2vw,12px); }
-    .progress-pct.green { color: var(--green); }
+    .progress-pct.green { color: #22c55e; }
     .progress-pct.gold { color: var(--gold); }
-    .progress-pct.dim { color: var(--text-dim); }
-    .progress-track { height: 8px; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
+    .progress-track { height: 6px; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
     .progress-fill { height: 100%; border-radius: 3px; }
-    .progress-fill.green { background: var(--green); }
+    .progress-fill.green { background: #22c55e; }
     .progress-fill.gold { background: var(--gold); }
-    .progress-fill.dim { background: rgba(255,255,255,.2); }
 
     .card-btn { display: inline-block; text-align: center; padding: 10px 18px; font-size: clamp(9px,1.2vw,11px); font-weight: 700; text-decoration: none; border-radius: 3px; letter-spacing: 1px; align-self: flex-start; transition: opacity .2s; }
     .card-btn:hover { opacity: .85; }
     .btn-live { background: var(--gold); color: #000; }
-    .btn-coming { background: rgba(255,255,255,.06); color: var(--text-dim); border: 1px solid rgba(255,255,255,.1); cursor: default; }
+    .btn-building { background: rgba(234,179,8,.15); color: var(--gold); border: 1px solid rgba(234,179,8,.4); cursor: default; }
 
-    .note { text-align: center; color: var(--text-dim); font-size: clamp(10px,1.3vw,12px); margin-top: 32px; padding: 16px; border-top: 1px solid var(--border); }
-    .empty-state { color: var(--text-dim); font-size: 13px; text-align: center; padding: 32px; }
+    .footer { text-align: center; padding: 24px; font-size: 10px; color: var(--text-dim); border-top: 1px solid var(--border); margin-top: 40px; }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="logo">◈ <span>THEMACHINE</span> CORP.</a>
+  <a href="/" class="logo">◈ <span>THEMACHINE</span></a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="products.html">Products</a></li>
-    <li><a href="demo.html" class="active">Demo</a></li>
-    <li><a href="team.html">Team</a></li>
+    <li><a href="/demand-lab/">Demand Lab</a></li>
+    <li><a href="/demo/" class="active">Demo</a></li>
+    <li><a href="/">Home</a></li>
   </ul>
 </nav>
 
 <div class="page-header">
-  <h1>// SaaS Demos</h1>
-  <p>Shipping progress. Real data. No decoration.</p>
+  <h1>// What We've Built</h1>
+  <p>Live products and active projects — synced from our Demand Lab pipeline.</p>
 </div>
 
 <div class="container">
+  <div class="demo-grid" id="demo-grid">
+    <p style="color:var(--text-dim);text-align:center;padding:60px;font-size:13px;">Loading...</p>
+  </div>
+</div>
 
-  <!-- Dynamically rendered: LIVE PRODUCTS -->
-  <p class="section-label">// LIVE PRODUCTS</p>
-  <div class="section-divider"></div>
-  <p class="section-sub">Up and running. Used daily.</p>
-  <div class="demo-grid" id="live-grid"></div>
-
-  <!-- Dynamically rendered: IN DEVELOPMENT -->
-  <p class="section-label" style="margin-top:60px" id="dev-section-label">// IN DEVELOPMENT</p>
-  <div class="section-divider"></div>
-  <p class="section-sub">Actively building. Arriving soon.</p>
-  <div class="demo-grid" id="dev-grid"></div>
-
-  <div class="note" id="footer-note"></div>
-
+<div class="footer">
+  THEMACHINE Corp. · <a href="/" style="color:var(--cyan)">themachine-corp.pages.dev</a>
 </div>
 
 <script>
-demandCards = {
-  "updated": "2026-04-17T09:54:17.776Z",
-  "cards": [
-    {
-      "id": "dr-001",
-      "title": "AI Agent Side Hustle Dashboard",
-      "description": "Track your AI agent income opportunities in one place. Built with real Gumroad/Algora data.",
-      "source": "internal",
-      "category": "product",
-      "priority": 1,
-      "status": "shipped",
-      "feasibility": 9,
-      "tech": "HTML/CSS/JS + Gumroad API",
-      "effort": 3,
-      "owner": "Kevin",
-      "progress": 100,
-      "url": "https://themachine-corp.pages.dev/demo/",
-      "notes": "Live. Real-time Gumroad data embedded.",
-      "signals": 5,
-      "lastSignal": "2026-04-17T08:05:13.459Z"
-    },
-    {
-      "id": "dr-020",
-      "title": "Social Signal — Market Signal",
-      "description": "Organic Twitter discussions on AI agents, automation, and side hustles.",
-      "source": "Twitter",
-      "category": "market",
-      "priority": 1,
-      "status": "analyzing",
-      "signals": 30,
-      "examples": [],
-      "lastSignal": "2026-04-17T04:40:00.000Z",
-      "ts": "2026-04-17T04:40:00.000Z",
-      "owner": "Mike"
-    },
-    {
-      "id": "dr-002",
-      "title": "Demand Lab — Public Signal Feed",
-      "description": "Real-time Twitter signal stream for demand intelligence. 65+ signals and growing.",
-      "source": "internal",
-      "category": "tools",
-      "priority": 1,
-      "status": "shipped",
-      "feasibility": 9,
-      "tech": "CDP Browser + Cloudflare Pages",
-      "effort": 2,
-      "owner": "Kevin",
-      "progress": 100,
-      "url": "https://themachine-corp.pages.dev/demand-radar/",
-      "notes": "Live. Twitter signals auto-refresh hourly."
-    },
-    {
-      "id": "dr-003",
-      "title": "Demand Lab — Ops Dashboard",
-      "description": "Internal pipeline view: Idea → Analyzing → Ready → In Dev → Shipped.",
-      "source": "internal",
-      "category": "tools",
-      "priority": 1,
-      "status": "in_dev",
-      "feasibility": 9,
-      "tech": "HTML + demand-cards.json",
-      "effort": 1,
-      "owner": "Kevin",
-      "progress": 60,
-      "url": "https://themachine-corp.pages.dev/demand-lab/",
-      "notes": "Live. Auto-updated from demand-cards.json."
-    },
-    {
-      "id": "dr-019",
-      "title": "Built with AI — Market Signal",
-      "description": "People sharing AI-built products on HN. High-signal for tool demand.",
-      "source": "HN",
-      "category": "market",
-      "priority": 2,
-      "status": "analyzing",
-      "signals": 5,
-      "examples": [],
-      "lastSignal": "2026-04-17T08:05:13.459Z",
-      "ts": "2026-04-17T04:40:00.000Z",
-      "owner": "Kevin"
-    },
-    {
-      "id": "dr-005",
-      "title": "Algora Bounty Hunter Toolkit",
-      "description": "Automated Algora scanning + PR submission pipeline. Currently on pause (account restricted).",
-      "source": "algora",
-      "category": "tools",
-      "priority": 2,
-      "status": "analyzing",
-      "feasibility": 7,
-      "tech": "Node.js + GitHub API",
-      "effort": 3,
-      "owner": "Kevin",
-      "progress": 20,
-      "url": "",
-      "notes": "Algora account restricted. Exploring alternative bounty platforms."
-    },
-    {
-      "id": "dr-007",
-      "title": "Twitter Signal → Content Pipeline",
-      "description": "Auto-generate blog posts/threads from trending Twitter discussions in your niche.",
-      "source": "twitter",
-      "category": "tools",
-      "priority": 2,
-      "status": "analyzing",
-      "feasibility": 7,
-      "tech": "CDP + OpenAI",
-      "effort": 4,
-      "owner": "Mike",
-      "progress": 10,
-      "url": "",
-      "notes": "Mike owns this. Watching engagement on AI content automation tweets."
-    },
-    {
-      "id": "dr-021",
-      "title": "Autonomous Agents — Market Signal",
-      "description": "A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workf",
-      "source": "GitHub",
-      "category": "ai-agents",
-      "priority": 3,
-      "status": "analyzing",
-      "signals": 1,
-      "examples": [
-        {
-          "title": "A curated collection of AI agent research papers released in 2026, covering agen",
-          "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
-        }
-      ],
-      "lastSignal": "2026-04-17T08:05:13.459Z",
-      "ts": "2026-04-17T05:05:09.032Z",
-      "owner": "Kevin"
-    },
-    {
-      "id": "dr-004",
-      "title": "AI Agent Engineer Playbook",
-      "description": "Step-by-step guide: how to build, launch, and monetize AI agent products.",
-      "source": "gumroad",
-      "category": "product",
-      "priority": 3,
-      "status": "idea",
-      "feasibility": 8,
-      "tech": "Gumroad + Notion",
-      "effort": 5,
-      "owner": "",
-      "progress": 0,
-      "url": "",
-      "notes": "Pre-launch waitlist. Content outline ready."
-    },
-    {
-      "id": "dr-006",
-      "title": "Claude Code Job Search System",
-      "description": "Use Claude Code to automate LinkedIn/email job applications for devs.",
-      "source": "twitter",
-      "category": "product",
-      "priority": 3,
-      "status": "idea",
-      "feasibility": 6,
-      "tech": "Claude Code + LinkedIn API",
-      "effort": 7,
-      "owner": "",
-      "progress": 0,
-      "url": "",
-      "notes": "High intent signals on Twitter. Multiple people asking about this."
-    },
-    {
-      "id": "dr-008",
-      "title": "AI Audit Tool — Free Lead Gen",
-      "description": "Free SEO/accessibility audit tool. Collects emails, upsells paid fixes report.",
-      "source": "twitter",
-      "category": "product",
-      "priority": 3,
-      "status": "idea",
-      "feasibility": 7,
-      "tech": "HTML + Lighthouse API",
-      "effort": 3,
-      "owner": "",
-      "progress": 0,
-      "url": "",
-      "notes": "Multiple \"帮我看看网站\" type requests. Good inbound funnel."
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+fetch('/demand-lab/demand-cards.json')
+  .then(r => r.json())
+  .then(data => {
+    const grid = document.getElementById('demo-grid');
+    const cards = (data.cards||[]).filter(c => c.status === 'shipped' || c.status === 'in_dev');
+
+    if (!cards.length) {
+      grid.innerHTML = '<p style="color:var(--text-dim);text-align:center;padding:60px;font-size:13px">Nothing here yet.</p>';
+      return;
     }
-  ]
-};
 
-  const ICONS = { product:'🛒', tools:'🔧', 'ai-agents':'🤖', bounty:'⚡', other:'📦' };
-  const STATUS_BADGE = { shipped:'<span class="badge badge-live">● LIVE</span>', in_dev:'<span class="badge badge-building">◷ BUILDING</span>' };
-  const PROGRESS_COLOR = { shipped:'green', in_dev:'gold' };
+    grid.innerHTML = cards.map(card => {
+      const isShipped = card.status === 'shipped';
+      const isInDev = card.status === 'in_dev';
+      const icon = isShipped ? '🚀' : '🔥';
+      const badgeClass = isShipped ? 'badge-live' : 'badge-building';
+      const badgeText = isShipped ? 'LIVE' : 'IN DEV';
+      const progClass = isShipped ? 'green' : 'gold';
+      const progPctClass = isShipped ? 'green' : 'gold';
+      const btnClass = isShipped ? 'btn-live' : 'btn-building';
+      const btnText = isShipped ? 'View Project ↗' : 'In Progress';
+      const cardClass = isInDev ? ' in_dev' : '';
 
-  function cardHTML(card) {
-    const icon = ICONS[card.category] || '📦';
-    const badge = STATUS_BADGE[card.status] || '';
-    const pct = card.progress || 0;
-    const color = PROGRESS_COLOR[card.status] || 'dim';
-    const url = card.url;
-    const btn = url
-      ? '<a href="' + url + '" class="card-btn btn-live">View →</a>'
-      : '<span class="card-btn btn-coming">Coming Soon</span>';
-    return '<div class="card">' +
-      '<div class="card-header">' +
-        '<div class="card-title"><span class="icon">' + icon + '</span>' + card.title + '</div>' +
-        badge +
-      '</div>' +
-      '<p class="card-desc">' + (card.description || '') + '</p>' +
-      '<div>' +
-        '<div class="progress-meta">' +
-          '<span class="progress-label">PROGRESS</span>' +
-          '<span class="progress-pct ' + color + '">' + pct + '%</span>' +
-        '</div>' +
-        '<div class="progress-track">' +
-          '<div class="progress-fill ' + color + '" style="width:' + pct + '%"></div>' +
-        '</div>' +
-      '</div>' +
-      btn +
-    '</div>';
-  }
-
-  const cards = (demandCards.cards || demandCards);
-
-  // LIVE = shipped
-  const live = cards.filter(c => c.status === 'shipped');
-  document.getElementById('live-grid').innerHTML =
-    live.length ? live.map(cardHTML).join('') : '<p class="empty-state">Nothing shipped yet.</p>';
-
-  // IN DEV = in_dev
-  const dev = cards.filter(c => c.status === 'in_dev');
-  if (!dev.length) {
-    document.getElementById('dev-section-label').style.display = 'none';
-    document.querySelector('#dev-grid').parentElement.querySelector('.section-divider').style.display = 'none';
-    document.querySelector('#dev-grid').parentElement.querySelector('.section-sub').style.display = 'none';
-  }
-  document.getElementById('dev-grid').innerHTML =
-    dev.length ? dev.map(cardHTML).join('') : '<p class="empty-state">Nothing in development yet.</p>';
-
-  // Footer
-  const updated = new Date(demandCards.updated);
-  const opts = { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' };
-  document.getElementById('footer-note').textContent =
-    'Demand Lab · ' + cards.length + ' cards · Updated: ' + updated.toLocaleString('en-US', opts);
+      return `<div class="card${cardClass}">
+  <div class="card-header">
+    <div class="card-title"><span class="icon">${icon}</span>${esc(card.title)}</div>
+    <span class="badge ${badgeClass}">${badgeText}</span>
+  </div>
+  <div class="card-desc">${esc(card.description)}</div>
+  ${card.url ? `<a href="${esc(card.url)}" class="card-btn ${btnClass}" target="_blank">${btnText}</a>` : `<span class="card-btn ${btnClass}">${btnText}</span>`}
+  ${isInDev ? `
+  <div>
+    <div class="progress-meta">
+      <span class="progress-label">PROGRESS</span>
+      <span class="progress-pct ${progPctClass}">${card.progress}%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill ${progClass}" style="width:${card.progress}%"></div>
+    </div>
+  </div>` : ''}
+</div>`;
+    }).join('');
+  })
+  .catch(() => {
+    document.getElementById('demo-grid').innerHTML =
+      '<p style="color:var(--text-dim);text-align:center;padding:60px;font-size:13px">Failed to load demos.</p>';
+  });
 </script>
-
 </body>
 </html>
