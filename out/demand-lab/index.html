@@ -53,14 +53,13 @@
 
     .project-card {
       background: var(--Ag-panel-bg);
-      border: 1px solid;
-      border-image: var(--Ag-panel-border) 1;
+      border: 1px solid var(--Ag-dark);
       border-radius: 6px; padding: 20px;
       box-shadow: var(--Ag-panel-inset);
       transition: transform .2s ease, box-shadow .2s ease;
     }
     .project-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(0,229,255,.15); }
-    .project-card.in_dev { border-image: linear-gradient(145deg, #d4af37 0%, #a08020 40%, #806000 70%, #a08020 100%) 1; }
+    .project-card.in_dev { border: 1px solid var(--gold); }
 
     .project-title { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; color: var(--Ag-light); margin-bottom: 10px; line-height: 1.4; }
     .project-desc { font-size: 12px; color: var(--Ag-dark); line-height: 1.6; margin-bottom: 14px; text-shadow: 0 1px 0 rgba(255,255,255,.2); }
