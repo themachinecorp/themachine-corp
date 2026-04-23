@@ -36,15 +36,14 @@
 
     .card {
       background: var(--Ag-panel-bg);
-      border: 1px solid;
-      border-image: var(--Ag-panel-border) 1;
+      border: 1px solid var(--Ag-dark);
       border-radius: 6px; padding: 28px 24px;
       box-shadow: var(--Ag-panel-inset);
       display: flex; flex-direction: column; gap: 16px;
       transition: transform .2s ease, box-shadow .2s ease;
     }
     .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(0,229,255,.15); }
-    .card.in_dev { border-image: linear-gradient(145deg, #d4af37 0%, #a08020 40%, #806000 70%, #a08020 100%) 1; }
+    .card.in_dev { border: 1px solid var(--gold); }
 
     .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
     .card-title { font-family: 'Press Start 2P', cursive; font-size: clamp(8px,1.2vw,11px); color: var(--Ag-light); line-height: 1.6; word-break: break-word; }
