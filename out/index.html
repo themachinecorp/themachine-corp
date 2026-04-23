@@ -320,6 +320,24 @@
       transition: all .15s;
     }
     .btn-secondary:hover { background: rgba(255,255,255,.1); }
+    .btn-free {
+      padding: 13px 26px;
+      border: 1px solid rgba(212,175,55,.6);
+      color: var(--gold);
+      font-size: 8px;
+      border-radius: 5px;
+      background: rgba(212,175,55,.1);
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(212,175,55,.15), inset 0 1px 0 rgba(255,255,255,.08);
+      text-shadow: 0 1px 0 rgba(212,175,55,.3);
+      transition: all .15s;
+      animation: pulse-gold 2s ease-in-out infinite;
+    }
+    .btn-free:hover { background: rgba(212,175,55,.2); transform: translateY(1px); }
+    @keyframes pulse-gold {
+      0%, 100% { box-shadow: 0 0 12px rgba(212,175,55,.15), inset 0 1px 0 rgba(255,255,255,.08); }
+      50% { box-shadow: 0 0 24px rgba(212,175,55,.35), inset 0 1px 0 rgba(255,255,255,.08); }
+    }
 
     /* ── STATS STRIP ── */
     .stats-strip {
@@ -685,6 +703,7 @@
   <div class="hero-cta-row">
     <a href="/demand-lab/" class="btn-primary">◈ DEMAND LAB →</a>
     <a href="/demo/" class="btn-secondary">SEE LIVE DEMO</a>
+    <a href="https://themachinecorp.gumroad.com/l/zifqny" class="btn-free" target="_blank">★ START FREE — $1</a>
   </div>
 </section>
 
