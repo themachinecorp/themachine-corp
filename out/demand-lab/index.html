@@ -1,196 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="/global.css">
   <link rel="stylesheet" href="/ag-theme.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080810'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%2300e5ff'>◈</text></svg>">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demand Lab — THEMACHINE Corp.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start 2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    a { color: inherit; text-decoration: none; }
-
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 24px; border-bottom: 1px solid var(--border);
-      flex-wrap: wrap; gap: 8px;
+    /* ── PAGE HEADER ── */
+    .page-header {
+      text-align: center;
+      padding: 56px 24px 40px;
+      max-width: 700px;
+      margin: 0 auto;
     }
-    nav .logo { font-family: 'Press Start 2P', cursive; font-size: 9px; color: var(--cyan); text-decoration: none; }
-    nav .logo span { color: var(--gold); }
-    nav .nav-links { display: flex; gap: 20px; list-style: none; }
-    nav .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 11px; }
-    nav .nav-links a:hover { color: var(--text); }
-    nav .nav-links a.active { color: var(--gold); }
-
-    .container { max-width: 960px; margin: 0 auto; padding: 0 20px 80px; }
-
-    .page-header { text-align: center; padding: 60px 24px 40px; }
-    .page-header h1 { font-family: 'Press Start 2P', cursive; font-size: clamp(12px,2.5vw,18px); color: var(--text); margin-bottom: 14px; line-height: 1.5; }
-    .page-header p { color: var(--text-dim); font-size: clamp(11px,1.8vw,14px); max-width: 560px; margin: 0 auto; }
-
-    .section-label { font-family: 'Press Start 2P', cursive; font-size: clamp(9px,1.5vw,13px); color: var(--cyan); text-align: center; letter-spacing: 2px; margin-bottom: 8px; }
-    .section-divider { width: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--cyan)); margin: 0 auto 12px; }
-    .section-sub { text-align: center; color: var(--text-dim); font-size: clamp(11px,1.8vw,14px); margin-bottom: 40px; }
-
-    /* STATUS BADGES */
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 10px; border-radius: 3px; font-size: 9px;
-      font-family: 'Press Start 2P', cursive; letter-spacing: 1px;
+    .page-header h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(10px, 2.5vw, 18px);
+      color: var(--Ag-light);
+      text-shadow: 0 1px 0 rgba(255,255,255,.9), 0 -1px 0 rgba(0,0,0,.6);
+      background: linear-gradient(to right, #e0e0ea, #c8c8d4, #a0a0ac, #c8c8d4, #e0e0ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 14px;
+      line-height: 1.5;
     }
-    .status-shipped { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
-    .status-in_dev { background: rgba(234,179,8,.15); color: var(--gold); border: 1px solid rgba(234,179,8,.3); }
-    .status-ready { background: rgba(34,211,238,.15); color: var(--cyan); border: 1px solid rgba(34,211,238,.3); }
-    .status-idea { background: rgba(148,163,184,.1); color: var(--text-dim); border: 1px solid var(--border); }
-    .status-analyzing { background: rgba(168,85,247,.1); color: #a855f7; border: 1px solid rgba(168,85,247,.3); }
+    .page-header p {
+      font-size: clamp(11px, 1.8vw, 14px);
+      color: var(--Ag-dark);
+      text-shadow: 0 1px 0 rgba(255,255,255,.3);
+    }
 
-    /* PIPELINE FLOW */
+    /* ── PIPELINE BAR ── */
     .pipeline-bar {
       display: flex; align-items: center; justify-content: center;
       gap: 0; margin-bottom: 40px; flex-wrap: wrap;
     }
     .pipeline-step {
-      padding: 6px 14px; font-size: 10px; font-family: 'Press Start 2P', cursive;
-      color: var(--text-dim); background: var(--surface); border: 1px solid var(--border);
+      padding: 6px 14px; font-size: 10px;
+      color: var(--Ag-dark); background: var(--Ag-panel-bg);
+      border: 1px solid var(--Ag-dark);
+      font-family: 'Press Start 2P', cursive;
     }
-    .pipeline-step.active { color: var(--cyan); border-color: var(--cyan); }
-    .pipeline-arrow { color: var(--border); font-size: 14px; padding: 0 4px; }
+    .pipeline-step.active { color: var(--Ag-light); border-color: var(--Ag-light); font-weight: 700; }
+    .pipeline-arrow { color: var(--Ag-dark); font-size: 14px; padding: 0 4px; }
 
-    /* PROJECT GRID */
+    /* ── PROJECTS GRID ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 
     .project-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 6px; padding: 20px; transition: border-color .2s;
+      background: var(--Ag-panel-bg);
+      border: 1px solid;
+      border-image: var(--Ag-panel-border) 1;
+      border-radius: 6px; padding: 20px;
+      box-shadow: var(--Ag-panel-inset);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .project-card:hover { border-color: var(--cyan); }
-    .project-card.in_dev { border-color: rgba(234,179,8,.3); }
+    .project-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(0,229,255,.15); }
+    .project-card.in_dev { border-image: linear-gradient(145deg, #d4af37 0%, #a08020 40%, #806000 70%, #a08020 100%) 1; }
 
-    .project-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
-    .project-title { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.4; }
-    .project-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px; }
+    .project-title { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; color: var(--Ag-light); margin-bottom: 10px; line-height: 1.4; }
+    .project-desc { font-size: 12px; color: var(--Ag-dark); line-height: 1.6; margin-bottom: 14px; text-shadow: 0 1px 0 rgba(255,255,255,.2); }
 
     .project-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-    .meta-chip { font-size: 9px; padding: 2px 8px; border-radius: 20px; background: var(--bg); border: 1px solid var(--border); color: var(--text-dim); }
-    .meta-chip.cat-product { border-color: rgba(168,85,247,.4); color: #a855f7; }
-    .meta-chip.cat-tools { border-color: rgba(34,211,238,.4); color: var(--cyan); }
 
-    .project-link { display: inline-block; font-size: 11px; color: var(--cyan); font-family: 'Press Start 2P', cursive; }
-    .project-link:hover { color: var(--gold); }
+    .badge {
+      font-size: 9px; padding: 3px 10px; border-radius: 3px;
+      font-family: 'Press Start 2P', cursive; letter-spacing: 1px;
+    }
+    .badge-shipped { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
+    .badge-in_dev { background: rgba(234,179,8,.12); color: var(--gold); border: 1px solid rgba(234,179,8,.3); }
+    .badge-idea { background: rgba(120,120,136,.1); color: var(--Ag-dark); border: 1px solid rgba(120,120,136,.3); }
+    .badge-analyzing { background: rgba(168,85,247,.1); color: #a855f7; border: 1px solid rgba(168,85,247,.3); }
+
+    .meta-chip { font-size: 9px; padding: 2px 8px; border-radius: 20px; }
+    .meta-chip-cat { border: 1px solid; }
+    .cat-product { border-color: rgba(168,85,247,.4); color: #a855f7; }
+    .cat-tools { border-color: rgba(0,229,255,.4); color: var(--cyan); }
+
+    .project-link { display: inline-block; font-size: 11px; color: var(--gold); font-family: 'Press Start 2P', cursive; }
+    .project-link:hover { opacity: .8; }
 
     /* PROGRESS BAR */
     .progress-wrap { margin-top: 12px; }
-    .progress-label { display: flex; justify-content: space-between; font-size: 9px; color: var(--text-dim); margin-bottom: 4px; }
-    .progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
-    .progress-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width .6s ease; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 9px; color: var(--Ag-dark); margin-bottom: 4px; }
+    .progress-bar { height: 4px; background: rgba(0,0,0,.4); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 2px; }
     .progress-fill.done { background: #22c55e; }
+    .progress-fill.active { background: var(--gold); }
 
-    .footer { text-align: center; padding: 24px; font-size: 10px; color: var(--text-dim); border-top: 1px solid var(--border); margin-top: 40px; }
+    /* SECTION LABEL */
+    .section-label { font-family: 'Press Start 2P', cursive; font-size: clamp(9px,1.5vw,13px); color: var(--gold); text-align: center; letter-spacing: 2px; margin-bottom: 8px; }
+    .section-divider { width: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--cyan)); margin: 0 auto 12px; }
+
+    footer { text-align: center; padding: 24px; font-size: 10px; color: var(--Ag-dark); border-top: 1px solid var(--Ag-dark); margin-top: 40px; }
+    footer a { color: var(--gold); }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="/" class="logo">◈ THEMACHINE<span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="/demo/">Demo</a></li>
-      <li><a href="/demand-lab/" class="active">Demand Lab</a></li>
-      <li><a href="/">Home</a></li>
-    </ul>
-  </nav>
 
-  <div class="container">
-    <div class="page-header">
-      <div class="section-label">DEMAND LAB</div>
-      <div class="section-divider"></div>
-      <h1>What We're Building</h1>
-      <p>AI agent products and tools — shipped, in progress, and on the roadmap. Real demand, real execution.</p>
-    </div>
-
-    <!-- PIPELINE FLOW -->
-    <div style="text-align:center;margin-bottom:32px;">
-      <div class="pipeline-bar">
-        <div class="pipeline-step">💡 Idea</div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step">🔍 Validating</div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step">🔥 In Dev</div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step active">🚀 Shipped</div>
-      </div>
-    </div>
-
-    <!-- PROJECTS GRID -->
-    <div class="projects-grid" id="projects-grid">
-      <div style="color:var(--text-dim);text-align:center;padding:60px;font-size:12px;">Loading...</div>
-    </div>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="val">◈ THEMACHINE</span> Autonomous AI Revenue Machine</span>
+    <span class="ticker-item"><span class="val gold">DEMAND LAB</span> What We're Building</span>
+    <span class="ticker-item"><span class="val green">3 PRODUCTS</span> Shipped & In Progress</span>
+    <span class="ticker-item"><span class="val">◈ THEMACHINE</span> Autonomous AI Revenue Machine</span>
+    <span class="ticker-item"><span class="val gold">DEMAND LAB</span> What We're Building</span>
+    <span class="ticker-item"><span class="val green">3 PRODUCTS</span> Shipped & In Progress</span>
   </div>
+</div>
 
-  <div class="footer">
-    THEMACHINE Corp. · <a href="/" style="color:var(--cyan)">themachine-corp.pages.dev</a>
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">◈ THEMACHINE</div>
+    <div class="nav-logo-sub">CORP</div>
   </div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/demand-lab/" class="gold">Demand Lab</a>
+    <a href="/demo/">Demo</a>
+  </div>
+</nav>
 
-  <script>
-    const STATUS_LABELS = {
-      shipped: '🚀 Shipped',
-      in_dev: '🔥 In Dev',
-      ready: '✅ Ready',
-      idea: '💡 Idea',
-      analyzing: '🔍 Validating'
-    };
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="section-label">DEMAND LAB</div>
+  <div class="section-divider"></div>
+  <h1>What We're Building</h1>
+  <p>AI agent products and tools — shipped, in progress, and on the roadmap.</p>
+</div>
 
-    function esc(s) {
-      return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
+<!-- PIPELINE FLOW -->
+<div style="text-align:center;margin-bottom:32px;">
+  <div class="pipeline-bar">
+    <div class="pipeline-step">💡 Idea</div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">🔍 Validating</div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">🔥 In Dev</div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step active">🚀 Shipped</div>
+  </div>
+</div>
 
-    function progressClass(status, progress) {
-      if (status === 'shipped') return 'done';
-      if (progress > 60) return '';
-      return '';
-    }
+<!-- PROJECTS -->
+<div class="container">
+  <div class="projects-grid" id="projects-grid">
+    <p style="color:var(--Ag-dark);text-align:center;padding:60px;font-size:12px">Loading...</p>
+  </div>
+</div>
 
-    fetch('/demand-lab/demand-cards.json')
-      .then(r => r.json())
-      .then(data => {
-        const grid = document.getElementById('projects-grid');
-        const cards = data.cards || [];
+<footer>
+  THEMACHINE Corp. · <a href="/">themachine-corp.pages.dev</a>
+</footer>
 
-        if (!cards.length) {
-          grid.innerHTML = '<p style="color:var(--text-dim);text-align:center;padding:60px;font-size:12px">Nothing here yet.</p>';
-          return;
-        }
+<script>
+const STATUS_LABELS = {
+  shipped: '🚀 Shipped',
+  in_dev: '🔥 In Dev',
+  ready: '✅ Ready',
+  idea: '💡 Idea',
+  analyzing: '🔍 Validating'
+};
+const CAT_LABELS = { product: '🛒 Product', tools: '🔧 Tools' };
 
-        grid.innerHTML = cards.map(card => {
-          const isInDev = card.status === 'in_dev';
-          const statusHtml = STATUS_LABELS[card.status] || card.status;
-          const catLabel = { product: '🛒 Product', tools: '🔧 Tools' }[card.category] || '📌';
-          const pclass = progressClass(card.status, card.progress);
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 
-          return `<div class="project-card${isInDev ? ' in_dev' : ''}">
-            <div class="project-top">
-              <div class="project-title">${esc(card.title)}</div>
-            </div>
-            <div class="project-meta">
-              <span class="status-badge status-${card.status}">${statusHtml}</span>
-              <span class="meta-chip cat-${card.category}">${catLabel}</span>
-            </div>
-            <div class="project-desc">${esc(card.description)}</div>
-            ${card.url ? `<a href="${esc(card.url)}" class="project-link" target="_blank">View Project ↗</a>` : ''}
-            ${card.status !== 'idea' && card.status !== 'analyzing' ? `
-            <div class="progress-wrap">
-              <div class="progress-label">
-                <span>${card.progress}%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill ${pclass}" style="width:${card.progress}%"></div>
-              </div>
-            </div>` : ''}
-          </div>`;
-        }).join('');
-      })
-      .catch(() => {
-        document.getElementById('projects-grid').innerHTML =
-          '<p style="color:var(--text-dim);text-align:center;padding:60px;font-size:12px">Failed to load projects.</p>';
-      });
-  </script>
+fetch('/demand-lab/demand-cards.json')
+  .then(r => r.json())
+  .then(data => {
+    const grid = document.getElementById('projects-grid');
+    const cards = data.cards || [];
+    if (!cards.length) { grid.innerHTML = '<p style="color:var(--Ag-dark);text-align:center;padding:60px">Nothing here yet.</p>'; return; }
+    grid.innerHTML = cards.map(card => {
+      const isInDev = card.status === 'in_dev';
+      const statusHtml = STATUS_LABELS[card.status] || card.status;
+      const catLabel = CAT_LABELS[card.category] || '📌';
+      const badgeClass = { shipped:'badge-shipped', in_dev:'badge-in_dev', ready:'badge-shipped', idea:'badge-idea', analyzing:'badge-analyzing' }[card.status] || 'badge-idea';
+      const progClass = card.status === 'shipped' ? 'done' : 'active';
+      return `<div class="project-card${isInDev ? ' in_dev' : ''}">
+        <div class="project-title">${esc(card.title)}</div>
+        <div class="project-meta">
+          <span class="badge ${badgeClass}">${statusHtml}</span>
+          <span class="meta-chip meta-chip-cat cat-${card.category}">${catLabel}</span>
+        </div>
+        <div class="project-desc">${esc(card.description)}</div>
+        ${card.url ? `<a href="${esc(card.url)}" class="project-link" target="_blank">View Project ↗</a>` : ''}
+        ${card.status !== 'idea' && card.status !== 'analyzing' ? `
+        <div class="progress-wrap">
+          <div class="progress-label"><span>PROGRESS</span><span>${card.progress}%</span></div>
+          <div class="progress-bar"><div class="progress-fill ${progClass}" style="width:${card.progress}%"></div></div>
+        </div>` : ''}
+      </div>`;
+    }).join('');
+  })
+  .catch(() => { document.getElementById('projects-grid').innerHTML = '<p style="color:var(--Ag-dark);text-align:center;padding:60px">Failed to load projects.</p>'; });
+</script>
 </body>
 </html>
