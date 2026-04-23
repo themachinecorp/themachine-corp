@@ -149,8 +149,7 @@
     nav {
       position: sticky; top: 0; z-index: 100;
       background: var(--Ag-shine);
-      border-bottom: 2px solid;
-      border-image: var(--Ag-border) 1;
+      border-bottom: 2px solid var(--Ag-dark);
       box-shadow: 0 2px 12px rgba(0,0,0,.5), var(--Ag-inset);
       padding: 0 24px;
       display: flex; align-items: center; justify-content: space-between;
