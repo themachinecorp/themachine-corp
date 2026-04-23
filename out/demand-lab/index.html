@@ -41,7 +41,7 @@
     .status-shipped { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
     .status-in_dev { background: rgba(234,179,8,.15); color: var(--gold); border: 1px solid rgba(234,179,8,.3); }
     .status-ready { background: rgba(34,211,238,.15); color: var(--cyan); border: 1px solid rgba(34,211,238,.3); }
-    .status-idea { background: rgba(148,163,184,.1); color: var(--text-dim); border: 1px solid var(--border2); }
+    .status-idea { background: rgba(148,163,184,.1); color: var(--text-dim); border: 1px solid var(--border); }
     .status-analyzing { background: rgba(168,85,247,.1); color: #a855f7; border: 1px solid rgba(168,85,247,.3); }
 
     /* PIPELINE FLOW */
@@ -51,16 +51,16 @@
     }
     .pipeline-step {
       padding: 6px 14px; font-size: 10px; font-family: 'Press Start 2P', cursive;
-      color: var(--text-dim); background: var(--surface); border: 1px solid var(--border2);
+      color: var(--text-dim); background: var(--surface); border: 1px solid var(--border);
     }
     .pipeline-step.active { color: var(--cyan); border-color: var(--cyan); }
-    .pipeline-arrow { color: var(--border2); font-size: 14px; padding: 0 4px; }
+    .pipeline-arrow { color: var(--border); font-size: 14px; padding: 0 4px; }
 
     /* PROJECT GRID */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 
     .project-card {
-      background: var(--surface); border: 1px solid var(--border2);
+      background: var(--surface); border: 1px solid var(--border);
       border-radius: 6px; padding: 20px; transition: border-color .2s;
     }
     .project-card:hover { border-color: var(--cyan); }
@@ -71,7 +71,7 @@
     .project-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; margin-bottom: 14px; }
 
     .project-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-    .meta-chip { font-size: 9px; padding: 2px 8px; border-radius: 20px; background: var(--bg); border: 1px solid var(--border2); color: var(--text-dim); }
+    .meta-chip { font-size: 9px; padding: 2px 8px; border-radius: 20px; background: var(--bg); border: 1px solid var(--border); color: var(--text-dim); }
     .meta-chip.cat-product { border-color: rgba(168,85,247,.4); color: #a855f7; }
     .meta-chip.cat-tools { border-color: rgba(34,211,238,.4); color: var(--cyan); }
 
@@ -81,11 +81,11 @@
     /* PROGRESS BAR */
     .progress-wrap { margin-top: 12px; }
     .progress-label { display: flex; justify-content: space-between; font-size: 9px; color: var(--text-dim); margin-bottom: 4px; }
-    .progress-bar { height: 4px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+    .progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
     .progress-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width .6s ease; }
     .progress-fill.done { background: #22c55e; }
 
-    .footer { text-align: center; padding: 24px; font-size: 10px; color: var(--text-dim); border-top: 1px solid var(--border2); margin-top: 40px; }
+    .footer { text-align: center; padding: 24px; font-size: 10px; color: var(--text-dim); border-top: 1px solid var(--border); margin-top: 40px; }
   </style>
 </head>
 <body>
