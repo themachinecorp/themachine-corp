@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOCRATES AI - Paid Version</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/ag-theme.css">
+  <!-- Gumroad overlay — no defer so it's ready on click -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     :root { 
@@ -81,6 +84,12 @@
     
     .pricing-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;max-width:700px;margin:0 auto}
     .pricing-card{flex:1;min-width:180px;max-width:250px;padding:25px 20px;background:rgba(0,0,0,0.5);border:3px solid #333;transition:all 0.3s}
+    /* Gumroad anchor links styled as pricing cards */
+    a.gumroad-button.pricing-card{display:block;text-decoration:none;color:inherit;cursor:pointer}
+    a.gumroad-button.pricing-card:hover{border-color:var(--gold);transform:translateY(-5px)}
+    a.gumroad-button.pricing-card .pricing-btn{transition:all 0.2s}
+    a.gumroad-button.pricing-card:hover .pricing-btn{background:var(--gold);color:var(--bg)}
+    a.gumroad-button.pricing-card.featured::before{content:"BEST VALUE";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--magenta);padding:5px 10px;font-size:clamp(6px,1vw,8px);pointer-events:none}
     .pricing-card:hover{border-color:var(--gold);transform:translateY(-5px)}
     .pricing-card.featured{border-color:var(--magenta);position:relative}
     .pricing-card.featured::before{content:"BEST VALUE";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--magenta);padding:5px 10px;font-size:clamp(6px,1vw,8px)}
@@ -150,44 +159,20 @@
       
       <!-- Pricing -->
       <div class="pricing-section">
-        <div class="pricing-title">CHOOSE YOUR PATH</div>
-        <div class="pricing-subtitle">Unlock full 3-round sessions + community</div>
+        <div class="pricing-title">LIFETIME ACCESS</div>
+        <div class="pricing-subtitle">One-time payment · Unlock full 3-round sessions + community</div>
         
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <div class="tier-name">STARTER</div>
-            <div class="price">¥299<span>/once</span></div>
+        <div class="pricing-grid" style="max-width:320px">
+          <a class="gumroad-button pricing-card featured" href="https://themachinecorp.gumroad.com/l/socrates-thought" target="_blank" rel="noopener">
+            <div class="tier-name">SOCRATES</div>
+            <div class="price">$4.99<span>/lifetime</span></div>
             <div class="features">
-              <div class="feature">3 AI questioning rounds</div>
-              <div class="feature">Thinking report</div>
-              <div class="feature">Basic community access</div>
+              <div class="feature">Unlimited 3-round AI sessions</div>
+              <div class="feature">Thinking reports</div>
+              <div class="feature">Community access</div>
             </div>
-            <button class="pricing-btn">SELECT</button>
-          </div>
-          
-          <div class="pricing-card featured">
-            <div class="tier-name">PRO</div>
-            <div class="price">¥599<span>/month</span></div>
-            <div class="features">
-              <div class="feature">Unlimited rounds</div>
-              <div class="feature">Detailed reports</div>
-              <div class="feature">Pro community</div>
-              <div class="feature">1v1 coaching</div>
-            </div>
-            <button class="pricing-btn">SELECT</button>
-          </div>
-          
-          <div class="pricing-card">
-            <div class="tier-name">VIP</div>
-            <div class="price">¥1299<span>/month</span></div>
-            <div class="features">
-              <div class="feature">Everything in Pro</div>
-              <div class="feature">Priority support</div>
-              <div class="feature">VIP community</div>
-              <div class="feature">Weekly live sessions</div>
-            </div>
-            <button class="pricing-btn">SELECT</button>
-          </div>
+            <div class="pricing-btn">GET STARTED →</div>
+          </a>
         </div>
       </div>
       
@@ -482,15 +467,37 @@ Output ONLY the 4 sections above, nothing else.`
       }));
     }
     
-    // ─── Full Version (placeholder) ────────────────────────────────────
+    // ─── Full Version → Gumroad ─────────────────────────────────────
     function startFullExperience() {
       const question = document.getElementById('mainQuestion').value.trim();
       if (!question) {
-        alert('Please enter your question');
+        window.open('https://themachinecorp.gumroad.com/l/socrates-thought', '_blank');
         return;
       }
-      alert('Full version coming soon! Try the demo above.');
+      // Save question for after purchase
+      try { sessionStorage.setItem('socrates_pending_question', question); } catch(e) {}
+      window.open('https://themachinecorp.gumroad.com/l/socrates-thought', '_blank');
     }
+    
+    // ─── Gumroad post-purchase redirect ────────────────────────────────
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('gumroad') === 'paid') {
+        document.body.insertAdjacentHTML('afterbegin',
+          '<div style="position:fixed;top:0;left:0;right:0;z-index:9999;padding:16px 20px;background:linear-gradient(135deg,rgba(34,197,94,0.95),rgba(0,200,100,0.95));color:#fff;font-family:\'Press Start 2P\',monospace;font-size:10px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.4)">' +
+          '★ Payment confirmed! Welcome to Socrates. You now have full access. ★' +
+          '</div>'
+        );
+        try {
+          const pending = sessionStorage.getItem('socrates_pending_question');
+          if (pending) {
+            document.getElementById('mainQuestion').value = pending;
+            sessionStorage.removeItem('socrates_pending_question');
+          }
+        } catch(e) {}
+        history.replaceState(null, '', window.location.pathname);
+      }
+    })();
     
     // Enter key support
     document.getElementById('demoInput').addEventListener('keypress', function(e) {
