@@ -658,6 +658,27 @@
 
       footer { padding: 16px 12px; }
     }
+
+    /* SOCRATES FEATURE SECTION */
+    .socrates-section { padding: 56px 24px; max-width: 1000px; margin: 0 auto; }
+    .socrates-feature-row { display: flex; gap: 40px; align-items: center; margin-top: 28px; }
+    .socrates-copy { flex: 1; text-align: left; }
+    .socrates-tag { display: inline-block; background: var(--gold); color: #000; padding: 6px 12px; font-size: 8px; margin-bottom: 16px; }
+    .socrates-desc { color: var(--text); font-size: clamp(9px, 1.5vw, 11px); line-height: 1.8; margin-bottom: 20px; }
+    .socrates-steps { margin-bottom: 24px; }
+    .s-step { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; color: var(--text); font-size: clamp(8px, 1.2vw, 10px); }
+    .s-num { color: var(--gold); font-size: clamp(9px, 1.4vw, 12px); min-width: 24px; }
+    .socrates-cta { background: var(--gold); color: #000; padding: 12px 20px; font-size: 9px; }
+    .socrates-cta:hover { background: #f0c040; }
+    .socrates-visual { flex: 0 0 280px; text-align: center; }
+    .socrates-img { max-width: 240px; width: 100%; border-radius: 12px; filter: drop-shadow(0 0 20px rgba(255,140,0,0.5)); margin: 0 auto; }
+
+    @media (max-width: 700px) {
+      .socrates-feature-row { flex-direction: column; gap: 24px; }
+      .socrates-copy { text-align: center; }
+      .socrates-visual { flex: none; }
+      .socrates-img { max-width: 180px; }
+    }
   </style>
 </head>
 <body>
@@ -789,9 +810,34 @@
     </div>
   </div>
 </section>
+<!-- SOCRATES — DEDICATED SECTION -->
+<section class="section socrates-section">
+  <div class="section-label">◈ THINKING AI</div>
+  <div class="section-title">Socrates — Ask, Reflect, Report</div>
+  <div class="socrates-feature-row">
+    <div class="socrates-copy">
+      <div class="socrates-tag">LIFETIME ACCESS · $4.99</div>
+      <p class="socrates-desc">
+        Socrates is an AI that never gives you answers.<br>
+        It asks three rounds of questions — then gives you a thinking report.<br>
+        Built for people who want to think harder, not fetch more.
+      </p>
+      <div class="socrates-steps">
+        <div class="s-step"><span class="s-num">01</span> You answer three AI questions</div>
+        <div class="s-step"><span class="s-num">02</span> AI extracts your thinking patterns</div>
+        <div class="s-step"><span class="s-num">03</span> You get a personal thinking report</div>
+      </div>
+      <a href="/socrates/" class="product-link socrates-cta">Meet Socrates →</a>
+    </div>
+    <div class="socrates-visual">
+      <img src="/images/elenchus_hero.png" alt="ELENCHUS — Socrates AI Guide" class="socrates-img">
+    </div>
+  </div>
+</section>
+
 <!-- DEMAND LAB -->
 <section class="section">
-  <div class="section-label">◈ CORE PRODUCT</div>
+  <div class="section-label">◈ DEMAND LAB</div>
   <div class="section-title">Demand Lab — Live</div>
   <div class="products-grid">
     <div class="product-card live">
