@@ -75,6 +75,25 @@
     .report-content{text-align:left;font-size:clamp(8px,1.2vw,10px);line-height:2;color:#ccc;white-space:pre-wrap}
     .report-content strong{color:var(--gold)}
     
+    /* Three Questions Section */
+    .three-questions-section{margin:40px 0;padding:30px 20px;background:rgba(0,0,0,0.3);border:2px solid var(--cyan)}
+    .three-questions-title{font-size:clamp(12px,2vw,18px);color:var(--cyan);margin-bottom:10px}
+    .three-questions-subtitle{font-size:clamp(8px,1.5vw,11px);color:#666;margin-bottom:30px}
+    .process-code{font-size:clamp(7px,1.2vw,9px);color:var(--magenta);margin-bottom:25px;font-family:monospace}
+    
+    .process-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;max-width:700px;margin:0 auto}
+    .process-card{flex:1;min-width:180px;max-width:250px;padding:25px 20px;background:rgba(0,0,0,0.5);border:3px solid #333;transition:all 0.3s;text-align:left}
+    .process-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+    .process-step{font-size:clamp(8px,1.2vw,10px);color:var(--cyan);margin-bottom:10px}
+    .process-card-title{font-size:clamp(10px,1.5vw,13px);color:var(--gold);margin-bottom:10px}
+    .process-card-desc{font-size:clamp(7px,1.2vw,9px);color:#888;line-height:1.6}
+    
+    @media (max-width:600px) {
+      .three-questions-section{width:100%;padding:20px 15px}
+      .process-grid{flex-direction:column;width:100%;gap:15px}
+      .process-card{min-width:100%;max-width:100%;width:100%}
+    }
+    
     .pricing-section{margin:50px 0}
     .pricing-title{font-size:clamp(12px,2vw,16px);color:var(--gold);margin-bottom:10px}
     .pricing-subtitle{font-size:clamp(8px,1.5vw,11px);color:#666;margin-bottom:30px}
@@ -119,6 +138,29 @@
       <div class="badge">★ PAID VERSION ★</div>
       <div class="subtitle">Deep Thinking + Community</div>
       <div class="tagline">3 rounds of AI questioning · Generate thinking report · Join <span>paid community</span></div>
+      
+      <!-- Three Questions Section -->
+      <div class="three-questions-section">
+        <div class="three-questions-title">Three Questions. One Report. That's It.</div>
+        <div class="process-code">you.open(socrates)</div>
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-step">STEP 01</div>
+            <div class="process-card-title">YOU ARRIVE</div>
+            <div class="process-card-desc">You answer the first question.</div>
+          </div>
+          <div class="process-card">
+            <div class="process-step">STEP 02</div>
+            <div class="process-card-title">I PUSH</div>
+            <div class="process-card-desc">The AI finds hidden assumptions through further rounds.</div>
+          </div>
+          <div class="process-card">
+            <div class="process-step">STEP 03</div>
+            <div class="process-card-title">YOU RECEIVE</div>
+            <div class="process-card-desc">A thinking report surfaces core problems and evidence.</div>
+          </div>
+        </div>
+      </div>
       
       <!-- Input Form -->
       <div class="input-area">
