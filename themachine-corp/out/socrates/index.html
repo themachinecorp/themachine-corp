@@ -3,592 +3,691 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOCRATES AI - Paid Version</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/ag-theme.css">
-  <!-- Gumroad overlay — no defer so it's ready on click -->
-  <script src="https://gumroad.com/js/gumroad.js"></script>
+  <title>SOCRATES — The AI That Questions You Back</title>
+  <meta name="description" content="Stop seeking answers. Start asking better questions. Socrates is an AI-powered Socratic questioning tool that helps you think deeper, challenge assumptions, and find your own clarity.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #080810;
-      --gold: #d4af37;
-      --cyan: #00e5ff;
-      --magenta: #ff00aa;
-      --green: #22c55e;
+      --bg: #0a0a0f;
+      --bg-card: #111118;
+      --bg-card-hover: #18181f;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --gold-dim: #8a6f2e;
+      --text: #e8e6e3;
+      --text-muted: #6b6b7b;
+      --text-dim: #3a3a4a;
+      --border: #1e1e28;
+      --border-light: #2a2a38;
     }
+
     * { margin:0; padding:0; box-sizing:border-box; }
-    /* :root vars in ag-theme.css */
-    html,body { background:var(--bg); color:#fff; font-family:'Press Start 2P',monospace; min-height:100vh; overflow-x:hidden; width:100%; max-width:100vw; }
-    .wrapper { min-height:100vh; display:flex; flex-direction:column; padding-bottom:50px; }
-    .container { max-width:800px; margin:0 auto; padding:30px 15px; text-align:center; flex:1; }
-    
-    @media (max-width:600px) {
-      .logo{font-size:clamp(18px,5vw,32px)!important}
-      .subtitle{font-size:clamp(8px,2vw,11px)!important}
-      .tagline{font-size:clamp(6px,1.5vw,9px)!important}
-      .input-area,.demo-area{width:95%!important}
-      .question-input{font-size:clamp(9px,2vw,12px)!important}
-      .btn{padding:12px 15px!important;font-size:clamp(8px,1.2vw,10px)!important}
-      .pricing-card{padding:20px 15px!important}
-      .price{font-size:clamp(16px,3vw,24px)!important}
-      .nav{font-size:clamp(7px,1.2vw,9px)!important;gap:8px!important}
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
     }
-    
-    .nav{display:flex;align-items:center;padding:12px 10px;border-bottom:2px solid var(--cyan);background:rgba(0,0,0,0.8);position:sticky;top:0;z-index:100;overflow-x:auto;flex-wrap:nowrap;justify-content:space-between;gap:10px}
-    .nav-logo{flex-shrink:0;font-size:clamp(10px,2vw,14px);color:var(--gold);text-shadow:2px 2px 0 var(--cyan);text-decoration:none}
-    @keyframes glow{0%,100%{text-shadow:2px 2px 0 var(--cyan)}50%{text-shadow:0 0 20px var(--gold),2px 2px 0 var(--cyan)}}
-    
-    .badge{display:inline-block;background:var(--magenta);color:#fff;padding:8px 16px;font-size:clamp(7px,1.2vw,10px);margin-bottom:15px;animation:pulse 1.5s ease-in-out infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
-    
-    .subtitle{font-size:clamp(10px,2vw,14px);color:var(--cyan);margin:15px 0 20px}
-    .tagline{font-size:clamp(8px,1.5vw,11px);color:#666;margin-bottom:40px}
-    .tagline span{color:var(--gold)}
-    
-    .input-area{width:100%;max-width:600px;margin:0 auto 50px}
-    .question-input{width:100%;padding:20px;background:rgba(0,255,255,0.03);border:3px solid var(--cyan);color:#fff;font-family:'Press Start 2P',monospace;font-size:clamp(11px,2vw,14px);resize:none;transition:all 0.3s}
-    .question-input:focus{outline:none;box-shadow:0 0 20px rgba(0,255,255,0.3);border-color:var(--gold)}
-    .question-input::placeholder{color:#555}
-    
-    .start-btn{width:100%;margin-top:20px;padding:18px 30px;background:var(--magenta);border:3px solid var(--magenta);color:#fff;font-family:'Press Start 2P',monospace;font-size:clamp(10px,1.5vw,13px);cursor:pointer;transition:all 0.2s}
-    .start-btn:hover{background:transparent;color:var(--magenta);transform:scale(1.02)}
-    
-    .demo-section{background:rgba(0,255,255,0.02);border:2px solid var(--cyan);padding:30px;margin:40px 0;border-radius:0}
-    .demo-title{color:var(--cyan);font-size:clamp(10px,2vw,14px);margin-bottom:20px}
-    .demo-area{width:100%;max-width:500px;margin:0 auto}
-    
-    .chat-message{text-align:left;margin:15px 0;padding:15px;background:rgba(0,0,0,0.5);border-left:3px solid var(--gold)}
-    .chat-message.socrates{border-left-color:var(--cyan)}
-    .chat-message.user{border-left-color:var(--magenta)}
-    .chat-role{font-size:clamp(7px,1vw,9px);color:#666;margin-bottom:8px}
-    .chat-text{font-size:clamp(8px,1.2vw,11px);line-height:1.8}
-    
-    .demo-input{width:100%;padding:12px;background:rgba(255,0,255,0.05);border:2px solid var(--magenta);color:#fff;font-family:'Press Start 2P',monospace;font-size:clamp(9px,1.5vw,11px);margin-top:15px}
-    .demo-input:focus{outline:none;border-color:var(--gold)}
-    
-    .demo-btn{width:100%;margin-top:10px;padding:12px;background:var(--green);border:2px solid var(--green);color:var(--bg);font-family:'Press Start 2P',monospace;font-size:clamp(8px,1.2vw,10px);cursor:pointer}
-    .demo-btn:hover{background:transparent;color:var(--green)}
-    .demo-btn:disabled{background:#333;border-color:#333;color:#666;cursor:not-allowed}
-    
-    .typing{color:var(--cyan);animation:pulse 1s infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-    
-    .report-section{display:none;margin-top:30px;padding:20px;background:rgba(212,175,55,0.1);border:2px solid var(--gold)}
-    .report-title{color:var(--gold);font-size:clamp(10px,1.5vw,13px);margin-bottom:15px}
-    .report-content{text-align:left;font-size:clamp(8px,1.2vw,10px);line-height:2;color:#ccc;white-space:pre-wrap}
-    .report-content strong{color:var(--gold)}
-    
-    /* Three Questions Section */
-    .three-questions-section{margin:40px 0;padding:30px 20px;background:rgba(0,0,0,0.3);border:2px solid var(--cyan)}
-    .three-questions-title{font-size:clamp(12px,2vw,18px);color:var(--cyan);margin-bottom:10px}
-    .three-questions-subtitle{font-size:clamp(8px,1.5vw,11px);color:#666;margin-bottom:30px}
-    .process-code{font-size:clamp(7px,1.2vw,9px);color:var(--magenta);margin-bottom:25px;font-family:monospace}
-    
-    .process-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;max-width:700px;margin:0 auto}
-    .process-card{flex:1;min-width:180px;max-width:250px;padding:25px 20px;background:rgba(0,0,0,0.5);border:3px solid #333;transition:all 0.3s;text-align:left}
-    .process-card:hover{border-color:var(--gold);transform:translateY(-3px)}
-    .process-step{font-size:clamp(8px,1.2vw,10px);color:var(--cyan);margin-bottom:10px}
-    .process-card-title{font-size:clamp(10px,1.5vw,13px);color:var(--gold);margin-bottom:10px}
-    .process-card-desc{font-size:clamp(7px,1.2vw,9px);color:#888;line-height:1.6}
-    
-    @media (max-width:600px) {
-      .three-questions-section{width:100%;padding:20px 15px}
-      .process-grid{flex-wrap:nowrap;overflow-x:auto;gap:12px;justify-content:flex-start;-webkit-overflow-scrolling:touch}
-      .process-card{min-width:160px;max-width:160px;flex-shrink:0;overflow:hidden}
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
-    
-    .pricing-section{margin:50px 0}
-    .pricing-title{font-size:clamp(12px,2vw,16px);color:var(--gold);margin-bottom:10px}
-    .pricing-subtitle{font-size:clamp(8px,1.5vw,11px);color:#666;margin-bottom:30px}
-    
-    .pricing-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;max-width:700px;margin:0 auto;overflow-x:hidden}
-    .pricing-card{flex:1;min-width:160px;max-width:220px;padding:25px 15px;background:rgba(0,0,0,0.5);border:3px solid #333;transition:all 0.3s;overflow:hidden;word-break:break-word}
-    .pricing-card:hover{border-color:var(--gold);transform:translateY(-5px)}
-    .pricing-card.featured{border-color:var(--magenta);position:relative}
-    .pricing-card.featured::before{content:"BEST VALUE";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--magenta);padding:5px 10px;font-size:clamp(6px,1vw,8px)}
-    .tier-name{font-size:clamp(9px,1.5vw,12px);color:#666;margin-bottom:10px}
-    .price{font-size:clamp(18px,3vw,28px);color:var(--gold);margin:15px 0}
-    .price span{font-size:clamp(8px,1.2vw,11px);color:#666}
-    .features{text-align:left;margin:20px 0}
-    .feature{font-size:clamp(7px,1.2vw,9px);color:#888;margin:8px 0;padding-left:15px;position:relative}
-    .feature::before{content:">";position:absolute;left:0;color:var(--cyan)}
-    .pricing-btn{width:100%;padding:12px;background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Press Start 2P',monospace;font-size:clamp(8px,1.2vw,10px);cursor:pointer;transition:all 0.2s}
-    .pricing-card.featured .pricing-btn{background:var(--gold);color:var(--bg)}
-    .pricing-btn:hover{background:var(--gold);color:var(--bg)}
-    
-    /* Gumroad overlay links */
-    a.gumroad-button.pricing-card{display:block;text-decoration:none;color:inherit;cursor:pointer}
-    a.gumroad-button.pricing-card:hover{border-color:var(--gold);transform:translateY(-5px)}
-    a.gumroad-button.pricing-card .pricing-btn{transition:all 0.2s}
-    a.gumroad-button.pricing-card:hover .pricing-btn{background:var(--gold);color:var(--bg)}
-    a.gumroad-button.pricing-card.featured::before{content:"BEST VALUE";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--magenta);padding:5px 10px;font-size:clamp(6px,1vw,8px);pointer-events:none}
-    
-    .cta-section{margin:50px 0;padding:30px;background:linear-gradient(135deg,rgba(212,175,55,0.1),rgba(255,0,255,0.1));border:2px solid var(--gold)}
-    .cta-title{font-size:clamp(11px,2vw,15px);color:var(--gold);margin-bottom:15px}
-    .cta-text{font-size:clamp(8px,1.5vw,11px);color:#888;margin-bottom:20px;line-height:1.8}
-    
-    .hud{position:fixed;bottom:0;left:0;right:0;padding:10px 15px;background:rgba(0,0,0,0.9);border-top:2px solid var(--cyan);display:flex;justify-content:space-between;font-size:clamp(7px,1.2vw,10px);z-index:100}
-    .hud-item{display:flex;gap:6px}
-    .hud-label{color:var(--cyan)}
-    .hud-value{color:var(--gold)}
-    
-    .marquee{position:fixed;top:10px;left:0;font-size:clamp(6px,1.2vw,9px);color:var(--magenta);white-space:nowrap;overflow:hidden;text-overflow:clip;animation:scroll 15s linear infinite;z-index:100;max-width:100vw}
-    @keyframes scroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-    
-    .demo-round{color:var(--cyan);font-size:clamp(8px,1.3vw,11px);margin-bottom:15px}
-    
-    .demo-loading{color:var(--cyan);font-size:clamp(7px,1.2vw,9px);margin-top:10px;animation:pulse 1s infinite}
+
+    /* ── NAV ── */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-badge {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      border: 1px solid var(--gold-dim);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 8vw, 68px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-subtitle {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-cta-group {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--gold);
+      color: #0a0a0f;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 1px;
+      height: 40px;
+      background: var(--border-light);
+      margin: 0 auto;
+    }
+
+    /* ── WHAT IS ── */
+    .section {
+      padding: 70px 0;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 38px);
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto 50px;
+      line-height: 1.7;
+    }
+
+    /* ── CONCEPT ── */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+    .concept-item {
+      padding: 36px 30px;
+    }
+    .concept-item:first-child {
+      border-right: none;
+    }
+    .concept-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .concept-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .concept-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── THREE QUESTIONS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .step {
+      background: var(--bg-card);
+      padding: 36px 24px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .step:hover {
+      background: var(--bg-card-hover);
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--gold-dim);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .step-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .step-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 300;
+      font-style: italic;
+      text-align: center;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 560px;
+      margin: 0 auto 16px;
+    }
+    .quote-author {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--gold-dim);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* ── WHO IS IT FOR ── */
+    .audience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .audience-item {
+      background: var(--bg-card);
+      padding: 22px 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: background 0.2s;
+    }
+    .audience-item:hover {
+      background: var(--bg-card-hover);
+    }
+    .audience-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .audience-text h4 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    .audience-text p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── EARLY ACCESS ── */
+    .ea-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      padding: 50px 40px;
+      text-align: center;
+    }
+    .ea-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .ea-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .ea-price-note {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+    }
+    .ea-price-note strong {
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .gumroad-link {
+      display: inline-block;
+      padding: 16px 40px;
+      background: var(--gold);
+      color: #0a0a0f;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      margin-bottom: 12px;
+    }
+    .gumroad-link:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+    .ea-note {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 8px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 36px 40px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .how-row {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .how-row:last-child {
+      border-bottom: none;
+    }
+    .how-idx {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gold);
+      flex-shrink: 0;
+      width: 24px;
+    }
+    .how-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .how-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-text {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 300;
+    }
+    .footer-text a {
+      color: var(--gold-dim);
+      text-decoration: none;
+    }
+    .footer-text a:hover {
+      color: var(--gold);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+      .concept-item:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .steps {
+        grid-template-columns: 1fr;
+      }
+      .ea-section {
+        padding: 40px 24px;
+      }
+      .how-card {
+        padding: 28px 24px;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
-  <div class="marquee">★ SOCRATES AI ★ PAID VERSION ★ DEEP THINKING ★ COMMUNITY ACCESS ★</div>
-  <div class="wrapper">
-    <div class="container">
-      <div class="badge">★ PAID VERSION ★</div>
-      <div class="subtitle">Deep Thinking + Community</div>
-      <div class="tagline">3 rounds of AI questioning · Generate thinking report · Join <span>paid community</span></div>
-      
-      <!-- Three Questions Section -->
-      <div class="three-questions-section">
-        <div class="three-questions-title">Three Questions. One Report. That's It.</div>
-        <div class="process-code">you.open(socrates)</div>
-        <div class="process-grid">
-          <div class="process-card">
-            <div class="process-step">STEP 01</div>
-            <div class="process-card-title">YOU ARRIVE</div>
-            <div class="process-card-desc">You answer the first question.</div>
-          </div>
-          <div class="process-card">
-            <div class="process-step">STEP 02</div>
-            <div class="process-card-title">I PUSH</div>
-            <div class="process-card-desc">The AI finds hidden assumptions through further rounds.</div>
-          </div>
-          <div class="process-card">
-            <div class="process-step">STEP 03</div>
-            <div class="process-card-title">YOU RECEIVE</div>
-            <div class="process-card-desc">A thinking report surfaces core problems and evidence.</div>
-          </div>
+
+<!-- NAV -->
+<nav>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <a href="/" class="nav-logo">SOCRATES</a>
+    <span class="nav-badge">Early Access</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">AI-Powered Deep Thinking</div>
+    <h1 class="hero-title">The AI That<br><em>Questions</em> You Back</h1>
+    <p class="hero-subtitle">
+      Stop seeking answers. Start asking better questions.<br>
+      Socrates guides you through Socratic questioning until you find your own clarity.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#early-access" class="btn-primary">Get Early Access →</a>
+      <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT IS SOCRATES -->
+<section class="section" id="what">
+  <div class="container">
+    <div class="section-label">What is Socrates</div>
+    <h2 class="section-title">A thinking partner,<br>not an answer machine</h2>
+    <p class="section-subtitle">
+      Most AI gives you answers. Socrates gives you better questions — 
+      the kind that expose hidden assumptions, challenge your thinking, 
+      and lead you to your own insights.
+    </p>
+    
+    <div class="concept-grid">
+      <div class="concept-item">
+        <span class="concept-icon">🏛️</span>
+        <div class="concept-title">Rooted in the Socratic Method</div>
+        <div class="concept-desc">
+          The same technique used in philosophy tutorials, therapy, 
+          and leadership coaching — now powered by AI that never gets tired of asking.
         </div>
       </div>
-      
-      <!-- Input Form -->
-      <div class="input-area">
-        <textarea id="mainQuestion" class="question-input" rows="3" placeholder="Enter your confusion or question..."></textarea>
-        <button class="start-btn" onclick="startFullExperience()">Start 3-Round Thinking →</button>
-      </div>
-      
-      <!-- Demo Section -->
-      <div class="demo-section">
-        <div class="demo-title">[ FREE DEMO - TRY NOW ]</div>
-        <div class="demo-area">
-          <div id="demoRound" class="demo-round">Round 1 / 3</div>
-          <div id="demoChat">
-            <div class="chat-message socrates" id="demoInitialMsg">
-              <div class="chat-role">SOCRATES:</div>
-              <div class="chat-text" id="demoFirstQ">Ask yourself: what do you really want to understand?</div>
-            </div>
-          </div>
-          <input type="text" id="demoInput" class="demo-input" placeholder="Your answer...">
-          <div id="demoLoading" class="demo-loading" style="display:none">◈ Socrates is thinking...</div>
-          <button id="demoBtn" class="demo-btn" onclick="nextRound()">Ask Me →</button>
-          
-          <div id="reportSection" class="report-section">
-            <div class="report-title">★ THINKING REPORT ★</div>
-            <div id="reportContent" class="report-content"></div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Pricing -->
-      <div class="pricing-section">
-        <div class="pricing-title">CHOOSE YOUR PATH</div>
-        <div class="pricing-subtitle">Unlock full 3-round sessions + community</div>
-        
-        <div class="pricing-grid">
-          <a class="gumroad-button pricing-card" href="https://themachinecorp.gumroad.com/l/socrates-thought" target="_blank" rel="noopener">
-            <div class="tier-name">STARTER</div>
-            <div class="price">¥299<span>/once</span></div>
-            <div class="features">
-              <div class="feature">3 AI questioning rounds</div>
-              <div class="feature">Thinking report</div>
-              <div class="feature">Basic community access</div>
-            </div>
-            <div class="pricing-btn">GET STARTED →</div>
-          </a>
-          
-          <a class="gumroad-button pricing-card featured" href="https://themachinecorp.gumroad.com/l/socrates-thought" target="_blank" rel="noopener">
-            <div class="tier-name">PRO</div>
-            <div class="price">¥599<span>/month</span></div>
-            <div class="features">
-              <div class="feature">Unlimited rounds</div>
-              <div class="feature">Detailed reports</div>
-              <div class="feature">Pro community</div>
-              <div class="feature">1v1 coaching</div>
-            </div>
-            <div class="pricing-btn">GET STARTED →</div>
-          </a>
-          
-          <a class="gumroad-button pricing-card" href="https://themachinecorp.gumroad.com/l/socrates-thought" target="_blank" rel="noopener">
-            <div class="tier-name">VIP</div>
-            <div class="price">¥1299<span>/month</span></div>
-            <div class="features">
-              <div class="feature">Everything in Pro</div>
-              <div class="feature">Priority support</div>
-              <div class="feature">VIP community</div>
-              <div class="feature">Weekly live sessions</div>
-            </div>
-            <div class="pricing-btn">GET STARTED →</div>
-          </a>
-        </div>
-      </div>
-      
-      <!-- CTA -->
-      <div class="cta-section">
-        <div class="cta-title">Ready to Think Deeper?</div>
-        <div class="cta-text">
-          Join thousands who have discovered clarity through Socratic questioning.<br>
-          Free demo above → Upgrade for full experience
+      <div class="concept-item">
+        <span class="concept-icon">💡</span>
+        <div class="concept-title">You Already Have the Answers</div>
+        <div class="concept-desc">
+          Our job is to remove the noise and help you hear yourself think. 
+          No advice. No judgment. Just rigorous, structured questioning.
         </div>
       </div>
     </div>
   </div>
-  
-  <div class="hud">
-    <div class="hud-item"><span class="hud-label">SYS:</span><span class="hud-value">SOCRATES v1.0</span></div>
-    <div class="hud-item"><span class="hud-label">STATUS:</span><span class="hud-value">ONLINE</span></div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <div class="container">
+    <blockquote class="quote">
+      "The unexamined life is not worth living."
+    </blockquote>
+    <div class="quote-author">— Socrates</div>
   </div>
+</div>
 
-  <script>
-    // ─── Shared API Config ───────────────────────────────────────────────
-    const ENCODED_KEY = 'c2stYXBpLVFvQTdOS29qM1ViT3pJRHNwWnFxakw0Z1V4RUQ2U1lEc1NSSG5hMnR1VFExZ0thdlNXN29oVkd0U1dZeDFUZ1E0QUhtVlowLXR5NlBpSjQ1dHZHLUdMemNhNmtqVGRkNER2YVNieTJ0Rm13d2dKQzhSQWxsZ0kwCg==';
-    const API_BASE = "https://api.minimax.chat/v1/text/chatcompletion_v2";
-    const MODEL = 'abab6.5s-chat';
+<!-- THREE QUESTIONS PROCESS -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-label">The Process</div>
+    <h2 class="section-title">Three questions. One report.</h2>
+    <p class="section-subtitle">
+      You enter a topic or dilemma. Socrates asks a series of 
+      probing questions. You answer honestly. At the end, you get 
+      a thinking report summarizing your reasoning and key insights.
+    </p>
     
-    function getApiKey() {
-      try { return atob(ENCODED_KEY); } catch(e) { return null; }
-    }
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">You Arrive</div>
+        <div class="step-desc">Enter your question, confusion, or decision you're facing. Something you want to think through.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Socrates Pushes</div>
+        <div class="step-desc">Round after round, the AI asks follow-up questions designed to expose assumptions and contradictions.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">You Receive</div>
+        <div class="step-desc">A thinking report distills your reasoning, highlights key insights, and shows your thinking trajectory.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-label">Inside the Experience</div>
+    <h2 class="section-title">What happens in a session</h2>
+    <p class="section-subtitle">
+      A typical Socrates session takes 10–15 minutes and 
+      leaves you with genuine clarity you didn't have before.
+    </p>
     
-    // ─── Language Detection ─────────────────────────────────────────────
-    function detectLang(text) {
-      if (!text) return 'en';
-      // Chinese character check
-      if (/[\u4e00-\u9fff]/.test(text)) return 'zh';
-      return 'en';
-    }
-    
-    const PROMPTS = {
-      en: {
-        system: `You are Socrates — a relentless追问 questioner. Your ONLY weapon is the question.
-
-RULES:
-- Ask ONE question per response
-- Never give advice, never agree, never summarize
-- If the user gives an answer, find the hidden assumption or contradiction and question THAT
-- Push toward the core of the problem, not the surface
-- Be concise — one sharp question, max 2 sentences
-- Use the conversation history to ask increasingly deeper questions
-
-Your questions should make the user uncomfortable in a productive way.`,
-        reportIntro: `You are a Socratic thinking coach. Generate a concise personal thinking report in the SAME language as the user's input.`,
-        reportSections: `Based on this Socratic dialogue, generate a thinking report with exactly these 4 sections (use the SAME language as the user's input):
-
-## 🎯 Core Problem
-[One sentence cutting to the heart of the matter]
-
-## ⚡ Key Contradiction  
-[The central tension or assumption embedded in their thinking]
-
-## 💎 Hidden Resources
-[Strengths, values, or prior experiences they can draw on]
-
-## 🚀 Next Step
-[One specific, immediate action they can take]
-
----Dialogue---
-User's opening question: {question}
-{history}
----End Dialogue---
-
-Output ONLY the 4 sections above, nothing else.`
-      },
-      zh: {
-        system: `你是苏格拉底 —— 一个无情的追问者。你唯一的武器是问题。
-
-规则：
-- 每次只问一个问题
-- 永远不给建议，不同意，不总结
-- 如果用户给出答案，找出其中隐藏的假设或矛盾，追问那个
-- 深入问题的核心，而不是表面
-- 简洁——一个犀利的问题，最多2句话
-- 利用对话历史问越来越深入的问题
-
-你的问题应该让用户在不适中产生生产力。`,
-        reportIntro: `你是一位苏格拉底式思维教练。用与用户相同的语言，生成一份简洁的个人思维报告。`,
-        reportSections: `根据以下苏格拉底式对话，用与用户相同的语言生成一份思维报告，必须包含以下4个部分：
-
-## 🎯 核心问题
-[一句话切入问题的核心]
-
-## ⚡ 关键矛盾
-[他们思维中隐藏的核心矛盾或假设]
-
-## 💎 内在资源
-[他们可以调用的优势、价值观或过往经验]
-
-## 🚀 下一步行动
-[一个他们可以立即采取的具体行动]
-
----对话---
-用户的初始问题：{question}
-{history}
----对话结束---
-
-只输出以上4个部分，不要输出其他内容。`
-      }
-    };
-    
-    // ─── Demo State ──────────────────────────────────────────────────────
-    let demoState = {
-      lang: 'en',
-      round: 0,
-      maxRounds: 3,
-      history: [],
-      initialQuestion: ''
-    };
-    
-    // ─── API Call ────────────────────────────────────────────────────────
-    async function callSocrates(messages, lang) {
-      const key = getApiKey();
-      if (!key) return lang === 'zh' 
-        ? '抱歉，API未配置。' 
-        : 'Sorry, API not configured.';
-      
-      const system = PROMPTS[lang].system;
-      
-      try {
-        const response = await fetch(API_BASE, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + key
-          },
-          body: JSON.stringify({
-            model: MODEL,
-            messages: [{ role: 'system', content: system }, ...messages],
-            temperature: 0.8,
-            max_tokens: 300
-          })
-        });
-        
-        const data = await response.json();
-        if (data.choices && data.choices[0]) {
-          return data.choices[0].message.content.trim();
-        }
-        if (data.error && data.error.message) {
-          return lang === 'zh' 
-            ? 'API错误: ' + data.error.message 
-            : 'API error: ' + data.error.message;
-        }
-      } catch (err) {
-        return lang === 'zh' 
-          ? '网络错误，请检查连接。' 
-          : 'Network error. Please check your connection.';
-      }
-      
-      return lang === 'zh' 
-        ? '抱歉，发生未知错误。' 
-        : 'Sorry, an unknown error occurred.';
-    }
-    
-    // ─── Render Helpers ──────────────────────────────────────────────────
-    function addDemoMessage(role, content) {
-      const chat = document.getElementById('demoChat');
-      const label = role === 'ai' ? 'SOCRATES:' : 'YOU:';
-      const cls = role === 'ai' ? 'socrates' : 'user';
-      chat.innerHTML += `
-        <div class="chat-message ${cls}">
-          <div class="chat-role">${label}</div>
-          <div class="chat-text">${content.replace(/\n/g, '<br>')}</div>
+    <div class="how-card">
+      <div class="how-row">
+        <span class="how-idx">01</span>
+        <div class="how-text">
+          <strong>You state your question</strong> — anything you're wrestling with. A career decision. A relationship. A belief you're unsure about.
         </div>
-      `;
-      chat.scrollTop = chat.scrollHeight;
-    }
+      </div>
+      <div class="how-row">
+        <span class="how-idx">02</span>
+        <div class="how-text">
+          <strong>Socrates asks the first probing question.</strong> "What do you mean by that?" "What's your evidence?" "What would have to be true for this to be false?"
+        </div>
+      </div>
+      <div class="how-row">
+        <span class="how-idx">03</span>
+        <div class="how-text">
+          <strong>You answer. Socrates follows up.</strong> The AI tracks your reasoning and asks increasingly precise questions, typically 3–5 rounds.
+        </div>
+      </div>
+      <div class="how-row">
+        <span class="how-idx">04</span>
+        <div class="how-text">
+          <strong>You get your thinking report.</strong> A structured summary of what you said, what was revealed, and what conclusions (if any) you reached.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS IT FOR -->
+<section class="section" id="audience">
+  <div class="container">
+    <div class="section-label">Who It's For</div>
+    <h2 class="section-title">Built for people who think</h2>
+    <p class="section-subtitle">
+      Not for everyone. Socrates works best for people 
+      who are willing to sit with discomfort and do the intellectual work.
+    </p>
     
-    function setLoading(show) {
-      document.getElementById('demoLoading').style.display = show ? 'block' : 'none';
-      document.getElementById('demoBtn').disabled = show;
-      document.getElementById('demoInput').disabled = show;
-    }
-    
-    function updateRoundLabel() {
-      document.getElementById('demoRound').textContent = 
-        `Round ${demoState.round + 1} / ${demoState.maxRounds}`;
-    }
-    
-    // ─── Demo Flow ───────────────────────────────────────────────────────
-    async function nextRound() {
-      const input = document.getElementById('demoInput');
-      const answer = input.value.trim();
+    <div class="audience-list">
+      <div class="audience-item">
+        <span class="audience-icon">🎯</span>
+        <div class="audience-text">
+          <h4>Decision Makers</h4>
+          <p>Entrepreneurs, managers, and leaders who need to think through complex decisions with clarity — not noise.</p>
+        </div>
+      </div>
+      <div class="audience-item">
+        <span class="audience-icon">🧠</span>
+        <div class="audience-text">
+          <h4>Serious Learners</h4>
+          <p>People who read, study, and think — and want a sparring partner that challenges their understanding.</p>
+        </div>
+      </div>
+      <div class="audience-item">
+        <span class="audience-icon">🔍</span>
+        <div class="audience-text">
+          <h4>Self-Reflectors</h4>
+          <p>Anyone on a journey of self-discovery who wants to move beyond surface-level answers to deeper self-knowledge.</p>
+        </div>
+      </div>
+      <div class="audience-item">
+        <span class="audience-icon">✍️</span>
+        <div class="audience-text">
+          <h4>Writers & Creators</h4>
+          <p>People who work with ideas — use Socrates to stress-test arguments, develop themes, or find the core of what you want to say.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EARLY ACCESS -->
+<section class="section" id="early-access">
+  <div class="container">
+    <div class="ea-section">
+      <div class="section-label">Limited Early Access</div>
+      <h2 class="ea-title">Be Among the First 100 Members</h2>
+      <p class="ea-desc">
+        We're launching a small, focused community of deep thinkers. 
+        Early members get founding pricing — locked in for life.
+      </p>
+      <div class="ea-price-note">
+        Founding member price: <strong>$4.99/month</strong> — normally $9.99/month
+      </div>
       
-      // Round 0: The user hasn't started yet — generate first question from their implicit topic
-      if (demoState.round === 0 && !answer) {
-        // Use the first input as topic signal
-        input.focus();
-        return;
-      }
-      
-      if (demoState.round === 0) {
-        // First answer — detect language from it
-        demoState.lang = detectLang(answer);
-        demoState.initialQuestion = answer;
-        
-        // Show user's first "question" as their opening
-        addDemoMessage('user', answer);
-        demoState.history.push({ role: 'user', content: answer });
-        
-        input.value = '';
-        demoState.round++;
-        updateRoundLabel();
-        
-        // Get AI's first Socratic question
-        setLoading(true);
-        const q = await callSocrates(demoState.history, demoState.lang);
-        setLoading(false);
-        
-        addDemoMessage('ai', q);
-        demoState.history.push({ role: 'assistant', content: q });
-        
-        // Update first question label to reflect user's actual first statement
-        document.getElementById('demoInitialMsg').style.display = 'none';
-        return;
-      }
-      
-      // Subsequent rounds: user answered, get next question
-      if (!answer) {
-        input.focus();
-        return;
-      }
-      
-      addDemoMessage('user', answer);
-      demoState.history.push({ role: 'user', content: answer });
-      input.value = '';
-      
-      if (demoState.round >= demoState.maxRounds) {
-        // Done — generate report
-        await generateDemoReport();
-        return;
-      }
-      
-      setLoading(true);
-      const q = await callSocrates(demoState.history, demoState.lang);
-      setLoading(false);
-      
-      addDemoMessage('ai', q);
-      demoState.history.push({ role: 'assistant', content: q });
-      demoState.round++;
-      updateRoundLabel();
-      
-      if (demoState.round >= demoState.maxRounds) {
-        // Final round — show "see report" prompt
-        document.getElementById('demoBtn').textContent = 'View My Report →';
-        document.getElementById('demoInput').style.display = 'none';
-        document.getElementById('demoBtn').onclick = generateDemoReport;
-      }
-    }
-    
-    async function generateDemoReport() {
-      document.getElementById('demoBtn').style.display = 'none';
-      document.getElementById('demoInput').style.display = 'none';
-      document.getElementById('demoRound').style.display = 'none';
-      
-      setLoading(true);
-      addDemoMessage('ai', demoState.lang === 'zh' 
-        ? '◈ 让我为你生成思维报告...' 
-        : '◈ Let me generate your thinking report...');
-      
-      const historyText = demoState.history.map(m => 
-        `${m.role === 'user' ? 'User' : 'Socrates'}: ${m.content}`
-      ).join('\n');
-      
-      const reportPrompt = PROMPTS[demoState.lang].reportSections
-        .replace('{question}', demoState.initialQuestion)
-        .replace('{history}', historyText);
-      
-      const report = await callSocrates(
-        [{ role: 'user', content: reportPrompt }],
-        demoState.lang
-      );
-      
-      setLoading(false);
-      
-      const reportContent = document.getElementById('reportContent');
-      reportContent.innerHTML = report.replace(/\n/g, '<br>');
-      document.getElementById('reportSection').style.display = 'block';
-      
-      // Save for report.html
-      localStorage.setItem('socrates_report_data', JSON.stringify({
-        initialQuestion: demoState.initialQuestion,
-        messages: demoState.history,
-        createdAt: new Date().toISOString()
-      }));
-    }
-    
-    // ─── Full Version → Gumroad ─────────────────────────────────────
-    function startFullExperience() {
-      const question = document.getElementById('mainQuestion').value.trim();
-      if (!question) {
-        // No question entered — just go to Gumroad
-        window.open('https://themachinecorp.gumroad.com/l/socrates-thought', '_blank');
-        return;
-      }
-      // Has question — save it for after purchase, then go to Gumroad
-      try {
-        sessionStorage.setItem('socrates_pending_question', question);
-      } catch(e) {}
-      window.open('https://themachinecorp.gumroad.com/l/socrates-thought', '_blank');
-    }
-    
-    // Enter key support
-    document.getElementById('demoInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
+      <!-- REPLACE THIS HREF WITH YOUR GUMROAD PRODUCT LINK -->
+      <a href="https://gumroad.com/l/YOUR_GUMROAD_PRODUCT_LINK" class="gumroad-link" id="gumroad-cta">
+        Join Early Access — $4.99/mo
+      </a>
+      <div class="ea-note">Cancel anytime. 30-day money-back guarantee.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-text">
+      <a href="/">THEMACHINE Corp.</a> &nbsp;·&nbsp; Socrates AI &nbsp;·&nbsp; 
+      Built with care for people who think
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
         e.preventDefault();
-        nextRound();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
-    
-    // Update first question label based on detected language
-    function initDemoLabel() {
-      const firstQ = document.getElementById('demoFirstQ');
-      if (firstQ) {
-        firstQ.textContent = demoState.lang === 'zh' 
-          ? '苏格拉底会问你：此刻你最想澄清的是什么？'
-          : 'Socrates asks: What confusion do you most want to clarify right now?';
-      }
-    }
-    
-    // ─── Gumroad post-purchase redirect ────────────────────────────────
-    (function() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('gumroad') === 'paid') {
-        // Show success banner
-        document.body.insertAdjacentHTML('afterbegin',
-          '<div style="position:fixed;top:0;left:0;right:0;z-index:9999;padding:16px 20px;background:linear-gradient(135deg,rgba(34,197,94,0.95),rgba(0,200,100,0.95));color:#fff;font-family:\'Press Start 2P\',monospace;font-size:10px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.4)">' +
-          '★ Payment confirmed! Welcome to Socrates. You now have full access. ★' +
-          '</div>'
-        );
-        // Restore pending question from sessionStorage
-        try {
-          const pending = sessionStorage.getItem('socrates_pending_question');
-          if (pending) {
-            document.getElementById('mainQuestion').value = pending;
-            sessionStorage.removeItem('socrates_pending_question');
-          }
-        } catch(e) {}
-        // Clean URL
-        history.replaceState(null, '', window.location.pathname);
-      }
-    })();
-  </script>
+  });
+</script>
+
 </body>
 </html>
