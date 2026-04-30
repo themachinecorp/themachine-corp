@@ -7,374 +7,378 @@
   <meta name="description" content="Stop seeking answers. Start asking better questions. Socrates is an AI-powered Socratic questioning tool that helps you think deeper, challenge assumptions, and find your own clarity.">
   <link rel="stylesheet" href="/ag-theme.css">
   <style>
-    /* Override only what Socrates needs — preserve --Ag-* vars from ag-theme.css */
+    /* ── THEME OVERRIDES ── */
     :root {
-      --bg: #0a0a0f;
+      --bg: #080810;
       --gold: #c9a84c;
     }
-    body::after { display: none; }
     html { background: var(--bg); }
-    @keyframes goldPulse {
-      0%,100% { box-shadow: 0 0 6px rgba(251,191,36,.3), 0 0 12px rgba(251,191,36,.15); }
-      50%     { box-shadow: 0 0 12px rgba(251,191,36,.6), 0 0 24px rgba(251,191,36,.25); }
-    }
+    body::after { display: none; }
 
-    /* ── CONTAINER ── */
+    /* ── NO GLOW ON H1 (water/calm) ── */
+    body { background: radial-gradient(ellipse at 50% 0%, rgba(0,120,160,.12) 0%, transparent 55%), var(--bg); }
+
+    /* ── LAYOUT ── */
     .container {
-      max-width: 800px;
+      max-width: 760px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* ── HERO (matches homepage h1 style) ── */
+    /* ── HERO ── */
     .hero {
       text-align: center;
-      padding: 60px 20px 48px;
-      max-width: 760px;
+      padding: 56px 20px 44px;
+      max-width: 720px;
       margin: 0 auto;
     }
     .hero-eyebrow {
-      font-size: 12px;
-      color: var(--soc-gold);
+      font-size: 7px;
+      color: var(--cyan);
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+      opacity: .85;
+    }
+    .hero-brand {
+      font-size: clamp(16px, 4vw, 28px);
+      color: var(--Ag-light);
       letter-spacing: 3px;
-      margin-bottom: 16px;
-    }
-    .hero-title {
-      font-size: clamp(36px, 8vw, 64px);
-      color: var(--gold);
+      text-shadow: 0 1px 0 rgba(255,255,255,.9), 0 -1px 0 rgba(0,0,0,.6), 0 0 30px rgba(200,200,220,.15);
+      background: var(--Ag-shine-h);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
       line-height: 1.2;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .hero-title em {
+    .hero-brand em {
       font-style: normal;
+      color: var(--cyan);
     }
-    .hero-subtitle {
-      font-size: 20px;
-      color: var(--gray);
-      line-height: 1.6;
-      max-width: 500px;
+    .hero-sub {
+      font-size: 8px;
+      color: var(--text-dim);
+      line-height: 2.2;
+      max-width: 440px;
       margin: 0 auto 28px;
+      letter-spacing: 1px;
     }
+
+    /* ── CTA BUTTONS ── */
     .cta-row {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
       flex-wrap: wrap;
     }
     .btn-gold {
       display: inline-block;
-      font-size: 14px;
-      padding: 12px 24px;
+      font-size: 8px;
+      padding: 9px 16px;
       background: var(--gold);
-      color: #0a0a0f;
-      font-family: -apple-system, sans-serif;
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,.4);
-      transition: all 0.3s;
+      color: #080810;
+      font-family: 'Press Start 2P', cursive;
+      box-shadow: 0 0 8px rgba(201,168,76,.4), 0 2px 6px rgba(0,0,0,.4);
+      transition: all .2s;
+      letter-spacing: .5px;
     }
     .btn-gold:hover {
-      background: #fcd34d;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(251,191,36,.4), 0 2px 8px rgba(0,0,0,.5);
+      background: var(--gold-light);
+      box-shadow: 0 0 16px rgba(201,168,76,.6), 0 2px 8px rgba(0,0,0,.5);
+      transform: translateY(-1px);
       text-decoration: none;
     }
     .btn-outline {
       display: inline-block;
-      font-size: 14px;
-      padding: 12px 24px;
+      font-size: 8px;
+      padding: 9px 16px;
       background: transparent;
-      color: var(--gray);
-      border: 1px solid #333;
-      font-family: -apple-system, sans-serif;
-      border-radius: 8px;
-      transition: all 0.3s;
+      color: var(--text-dim);
+      border: 1px solid var(--Ag-dark);
+      font-family: 'Press Start 2P', cursive;
+      transition: all .2s;
+      letter-spacing: .5px;
     }
     .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
+      border-color: var(--Ag-light);
+      color: var(--Ag-light);
       text-decoration: none;
     }
 
     /* ── METAL DIVIDER ── */
     .metal-divider {
       width: 100%;
-      max-width: 600px;
-      margin: 0 auto 32px;
+      max-width: 500px;
+      margin: 0 auto 36px;
       height: 2px;
       border: none;
-      border-top: 2px solid #333;
+      border-top: 2px solid;
+      border-image: var(--Ag-border) 1;
+      box-shadow: 0 1px 3px rgba(0,0,0,.4);
     }
 
     /* ── SECTION ── */
-    .section {
-      padding: 48px 0;
-    }
+    .section { padding: 44px 0; }
     .section-label {
-      font-size: 12px;
-      color: var(--gold);
-      letter-spacing: 3px;
+      font-size: 7px;
+      color: var(--cyan);
+      letter-spacing: 4px;
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      opacity: .8;
     }
     .section-title {
-      font-size: clamp(20px, 4vw, 32px);
-      color: var(--text);
+      font-size: clamp(11px, 2.5vw, 16px);
+      color: var(--Ag-light);
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.6;
       margin-bottom: 10px;
+      text-shadow: 0 1px 0 rgba(255,255,255,.6), 0 -1px 0 rgba(0,0,0,.5);
     }
     .section-subtitle {
-      font-size: 14px;
-      color: var(--gray);
+      font-size: 7px;
+      color: var(--text-dim);
       text-align: center;
-      max-width: 480px;
-      margin: 0 auto 32px;
-      line-height: 1.8;
+      max-width: 420px;
+      margin: 0 auto 28px;
+      line-height: 2.2;
+      letter-spacing: .5px;
     }
 
-    /* ── PANELS (matches homepage nav-card style) ── */
-    .panel {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 16px;
-      padding: 24px 20px;
-      margin-bottom: 12px;
-    }
+    /* ── PANEL GRID (silver metallic) ── */
     .panel-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
-    @media (max-width: 560px) {
+    @media (max-width: 520px) {
       .panel-grid { grid-template-columns: 1fr; }
     }
     .panel-item {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 16px;
-      padding: 32px;
-      text-align: left;
-      transition: all 0.3s;
+      background: var(--Ag-panel-bg);
+      border: 1px solid var(--Ag-dark);
+      padding: 22px 18px;
+      box-shadow: var(--Ag-panel-inset), 0 2px 8px rgba(0,0,0,.4);
+      transition: all .2s;
     }
     .panel-item:hover {
-      border-color: var(--gold);
-      transform: translateY(-4px);
+      border-color: var(--cyan);
+      box-shadow: 0 0 8px rgba(0,229,255,.15), var(--Ag-panel-inset), 0 4px 16px rgba(0,0,0,.5);
     }
-    .panel-icon { font-size: 32px; margin-bottom: 12px; }
+    .panel-icon { font-size: 22px; margin-bottom: 10px; display: block; }
     .panel-title {
-      font-size: 18px;
-      color: var(--gold);
-      margin-bottom: 12px;
-      line-height: 1.4;
+      font-size: 8px;
+      color: var(--Ag-light);
+      margin-bottom: 8px;
+      line-height: 1.6;
+      letter-spacing: .5px;
     }
     .panel-desc {
-      font-size: 14px;
-      color: #888;
-      line-height: 1.6;
+      font-size: 7px;
+      color: var(--text-dim);
+      line-height: 2;
     }
 
-    /* ── STEPS (matches homepage nav-card style) ── */
+    /* ── STEPS ── */
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
-    @media (max-width: 560px) {
+    @media (max-width: 520px) {
       .steps { grid-template-columns: 1fr; }
     }
     .step-card {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 16px;
-      padding: 32px;
-      text-align: left;
-      transition: all 0.3s;
+      background: var(--Ag-panel-bg);
+      border: 1px solid var(--Ag-dark);
+      padding: 22px 16px;
+      text-align: center;
+      box-shadow: var(--Ag-panel-inset);
+      transition: all .2s;
     }
     .step-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-4px);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,.5), 0 0 0 1px rgba(0,229,255,.12), var(--Ag-panel-inset);
     }
     .step-num {
-      font-size: 28px;
-      color: var(--gold);
-      margin-bottom: 12px;
-      font-family: -apple-system, sans-serif;
-      font-weight: 700;
+      font-size: 8px;
+      color: var(--cyan);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
     }
     .step-title {
-      font-size: 18px;
-      color: var(--gold);
-      margin-bottom: 12px;
-      line-height: 1.4;
+      font-size: 8px;
+      color: var(--Ag-light);
+      margin-bottom: 8px;
+      line-height: 1.5;
+      letter-spacing: .5px;
     }
     .step-desc {
-      font-size: 14px;
-      color: #888;
-      line-height: 1.6;
+      font-size: 7px;
+      color: var(--text-dim);
+      line-height: 2;
     }
 
     /* ── QUOTE ── */
     .quote-section {
-      padding: 40px 20px;
+      padding: 36px 20px;
       text-align: center;
-      border-top: 1px solid #222;
-      border-bottom: 1px solid #222;
+      border-top: 1px solid rgba(200,200,212,.08);
+      border-bottom: 1px solid rgba(200,200,212,.08);
     }
     .quote-text {
-      font-size: clamp(16px, 3vw, 24px);
-      color: #888;
+      font-size: clamp(9px, 2vw, 13px);
+      color: var(--text-dim);
       font-style: italic;
-      margin-bottom: 12px;
-      line-height: 1.8;
+      margin-bottom: 10px;
+      line-height: 2;
+      letter-spacing: .5px;
     }
     .quote-author {
-      font-size: 14px;
-      color: var(--gold);
-      letter-spacing: 2px;
+      font-size: 7px;
+      color: var(--cyan);
+      letter-spacing: 3px;
+      opacity: .8;
     }
 
-    /* ── AUDIENCE (matches homepage nav-card style) ── */
-    .audience-list {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .audience-item {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 16px;
-      padding: 24px 20px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      transition: all 0.3s;
-    }
-    .audience-item:hover {
-      border-color: var(--gold);
-      transform: translateY(-2px);
-    }
-    .audience-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
-    .audience-title { font-size: 18px; color: var(--gold); margin-bottom: 8px; line-height: 1.4; }
-    .audience-desc { font-size: 14px; color: #888; line-height: 1.6; }
-
-    /* ── HOW IT WORKS ── */
+    /* ── HOW CARD ── */
     .how-card {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 16px;
-      padding: 24px;
+      background: var(--Ag-panel-bg);
+      border: 1px solid var(--Ag-dark);
+      padding: 20px 22px;
+      box-shadow: var(--Ag-panel-inset), 0 2px 8px rgba(0,0,0,.4);
     }
     .how-row {
       display: flex;
       gap: 16px;
-      padding: 16px 0;
-      border-bottom: 1px solid #222;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(200,200,212,.07);
     }
     .how-row:last-child { border-bottom: none; }
     .how-idx {
-      font-size: 18px;
-      color: var(--gold);
+      font-size: 8px;
+      color: var(--cyan);
       flex-shrink: 0;
-      font-family: -apple-system, sans-serif;
-      font-weight: 700;
-      line-height: 1.6;
+      width: 22px;
+      letter-spacing: 1px;
+      padding-top: 1px;
     }
     .how-text {
-      font-size: 14px;
-      color: #888;
-      line-height: 1.8;
+      font-size: 7px;
+      color: var(--text-dim);
+      line-height: 2;
     }
-    .how-text strong { color: var(--text); }
+    .how-text strong { color: var(--Ag-light); }
+
+    /* ── AUDIENCE ── */
+    .audience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .audience-item {
+      background: var(--Ag-panel-bg);
+      border: 1px solid var(--Ag-dark);
+      padding: 14px 18px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      box-shadow: var(--Ag-panel-inset);
+      transition: all .2s;
+    }
+    .audience-item:hover {
+      border-color: rgba(0,229,255,.2);
+      box-shadow: 0 0 6px rgba(0,229,255,.08), var(--Ag-panel-inset);
+    }
+    .audience-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .audience-title { font-size: 8px; color: var(--Ag-light); margin-bottom: 5px; line-height: 1.5; letter-spacing: .5px; }
+    .audience-desc { font-size: 7px; color: var(--text-dim); line-height: 2; }
 
     /* ── EARLY ACCESS ── */
     .ea-section {
-      background: #111;
+      background: var(--Ag-panel-bg);
       border: 2px solid var(--gold);
-      border-radius: 16px;
-      padding: 40px 24px;
+      padding: 36px 24px;
       text-align: center;
+      max-width: 520px;
       margin: 0 auto;
-      max-width: 600px;
-      box-shadow: 0 0 20px rgba(251,191,36,.15);
-      animation: goldPulse 3s ease-in-out infinite;
+      box-shadow: 0 0 16px rgba(201,168,76,.15), var(--Ag-panel-inset);
+      animation: eaGlow 3s ease-in-out infinite;
+    }
+    @keyframes eaGlow {
+      0%,100% { box-shadow: 0 0 12px rgba(201,168,76,.2), var(--Ag-panel-inset); }
+      50%     { box-shadow: 0 0 24px rgba(201,168,76,.35), var(--Ag-panel-inset); }
     }
     .ea-title {
-      font-size: clamp(20px, 4vw, 28px);
+      font-size: clamp(10px, 2.5vw, 15px);
       color: var(--gold);
-      margin-bottom: 12px;
-      line-height: 1.4;
+      margin-bottom: 10px;
+      line-height: 1.5;
+      letter-spacing: .5px;
     }
     .ea-desc {
-      font-size: 14px;
-      color: #888;
-      line-height: 1.8;
-      margin-bottom: 20px;
-      max-width: 400px;
+      font-size: 7px;
+      color: var(--text-dim);
+      line-height: 2.2;
+      margin-bottom: 18px;
+      max-width: 360px;
       margin-left: auto;
       margin-right: auto;
     }
     .ea-price {
-      font-size: 16px;
-      color: #888;
-      margin-bottom: 18px;
+      font-size: 7px;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+      letter-spacing: .5px;
     }
     .ea-price strong { color: var(--gold); }
     .ea-gumroad {
       display: inline-block;
-      font-size: 14px;
-      padding: 14px 28px;
+      font-size: 8px;
+      padding: 10px 20px;
       background: var(--gold);
-      color: #0a0a0f;
-      font-family: -apple-system, sans-serif;
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(251,191,36,.4), 0 2px 6px rgba(0,0,0,.4);
-      transition: all 0.3s;
-      margin-bottom: 10px;
+      color: #080810;
+      font-family: 'Press Start 2P', cursive;
+      box-shadow: 0 0 10px rgba(201,168,76,.45), 0 2px 6px rgba(0,0,0,.4);
+      transition: all .2s;
+      margin-bottom: 8px;
+      letter-spacing: .5px;
     }
     .ea-gumroad:hover {
-      background: #fcd34d;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(251,191,36,.5), 0 2px 8px rgba(0,0,0,.5);
+      background: var(--gold-light);
+      box-shadow: 0 0 20px rgba(201,168,76,.65), 0 2px 8px rgba(0,0,0,.5);
+      transform: translateY(-1px);
       text-decoration: none;
     }
-    .ea-note {
-      font-size: 12px;
-      color: #666;
-    }
+    .ea-note { font-size: 6px; color: var(--text-dim); }
 
-    /* ── FOOTER (matches homepage) ── */
+    /* ── FOOTER ── */
     footer {
       text-align: center;
-      padding: 40px 20px;
-      color: var(--gray);
-      font-size: 14px;
-      margin-top: 48px;
+      padding: 28px 20px;
+      border-top: 1px solid var(--Ag-dark);
+      margin-top: 40px;
     }
-    .footer-text {
-      font-size: 14px;
-      color: var(--gray);
-      line-height: 2;
-    }
+    .footer-text { font-size: 7px; color: var(--text-dim); line-height: 2.5; letter-spacing: .5px; }
     .footer-text a { color: var(--gold); }
-    .footer-text a:hover { text-decoration: underline; }
 
-    /* ── HUD BAR ── */
+    /* ── HUD ── */
     .hud {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: #111;
-      border-top: 1px solid #333;
-      padding: 8px 16px;
+      background: var(--Ag-shine);
+      border-top: 2px solid;
+      border-image: var(--Ag-border) 1;
+      padding: 7px 16px;
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
+      font-size: 7px;
       z-index: 100;
-      box-shadow: 0 -2px 12px rgba(0,0,0,.5);
+      box-shadow: 0 -2px 10px rgba(0,0,0,.5), var(--Ag-inset);
     }
-    .hud-item { display: flex; gap: 8px; }
-    .hud-label { color: #666; }
+    .hud-item { display: flex; gap: 6px; }
+    .hud-label { color: var(--cyan); }
     .hud-value { color: var(--gold); }
   </style>
 </head>
@@ -390,18 +394,18 @@
     <a href="/">HOME</a>
     <a href="#what">WHAT</a>
     <a href="#process">PROCESS</a>
-    <a href="#early-access" class="gold btn-gold" style="font-size:7px;padding:5px 10px;">EARLY ACCESS</a>
+    <a href="#early-access" class="nav-cta" style="color:var(--Ag-text-dark)">EARLY ACCESS</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">★ AI-POWERED DEEP THINKING ★</div>
-  <h1 class="hero-title">The AI That<br><em>Questions</em> You Back</h1>
-  <p class="hero-subtitle">
-    Stop seeking answers. Start asking better questions.<br>
-    Socrates guides you through Socratic questioning until<br>
-    you find your own clarity.
+  <div class="hero-brand">The AI That <em>Questions</em><br>You Back</div>
+  <p class="hero-sub">
+    Stop seeking answers.<br>
+    Start asking better questions.<br>
+    Socrates guides you to your own clarity.
   </p>
   <div class="cta-row">
     <a href="#early-access" class="btn-gold">Get Early Access →</a>
@@ -415,20 +419,16 @@
 <section class="section" id="what">
   <div class="container">
     <div class="section-label">What is Socrates</div>
-    <h2 class="section-title">A thinking partner,<br>not an answer machine</h2>
-    <p class="section-subtitle">
-      Most AI gives you answers.<br>
-      Socrates gives you better questions.
-    </p>
-    
+    <h2 class="section-title">A Thinking Partner,<br>Not an Answer Machine</h2>
+    <p class="section-subtitle">Most AI gives you answers.<br>Socrates gives you better questions.</p>
     <div class="panel-grid">
       <div class="panel-item">
-        <div class="panel-icon">🏛️</div>
+        <span class="panel-icon">🏛️</span>
         <div class="panel-title">Rooted in the<br>Socratic Method</div>
-        <div class="panel-desc">The same technique used in philosophy tutorials, therapy, and leadership coaching — now powered by AI that never gets tired of asking.</div>
+        <div class="panel-desc">The same technique used in philosophy tutorials and leadership coaching — now powered by AI that never gets tired of asking.</div>
       </div>
       <div class="panel-item">
-        <div class="panel-icon">💡</div>
+        <span class="panel-icon">💡</span>
         <div class="panel-title">You Already Have<br>the Answers</div>
         <div class="panel-desc">Our job is to remove the noise and help you hear yourself think. No advice. No judgment. Just rigorous, structured questioning.</div>
       </div>
@@ -442,31 +442,27 @@
   <div class="quote-author">— SOCRATES</div>
 </div>
 
-<!-- THREE QUESTIONS PROCESS -->
+<!-- PROCESS -->
 <section class="section" id="process">
   <div class="container">
     <div class="section-label">The Process</div>
-    <h2 class="section-title">Three questions.<br>One report.</h2>
-    <p class="section-subtitle">
-      You enter a topic. Socrates asks probing questions.<br>
-      You answer. At the end, you get a thinking report.
-    </p>
-    
+    <h2 class="section-title">Three Questions.<br>One Report.</h2>
+    <p class="section-subtitle">Enter a topic. Socrates probes. You answer.<br>At the end, you receive a thinking report.</p>
     <div class="steps">
       <div class="step-card">
         <div class="step-num">01</div>
         <div class="step-title">You Arrive</div>
-        <div class="step-desc">Enter your question, confusion, or decision you're facing. Something you want to think through.</div>
+        <div class="step-desc">Enter your question, confusion, or decision you're facing.</div>
       </div>
       <div class="step-card">
         <div class="step-num">02</div>
         <div class="step-title">Socrates Pushes</div>
-        <div class="step-desc">Round after round, the AI asks follow-up questions designed to expose assumptions and contradictions.</div>
+        <div class="step-desc">Round after round, the AI exposes hidden assumptions and contradictions.</div>
       </div>
       <div class="step-card">
         <div class="step-num">03</div>
         <div class="step-title">You Receive</div>
-        <div class="step-desc">A thinking report distills your reasoning, highlights key insights, and shows your thinking trajectory.</div>
+        <div class="step-desc">A thinking report distills your reasoning and key insights.</div>
       </div>
     </div>
   </div>
@@ -476,74 +472,61 @@
 <section class="section" id="how-it-works">
   <div class="container">
     <div class="section-label">Inside the Experience</div>
-    <h2 class="section-title">What happens<br>in a session</h2>
-    
+    <h2 class="section-title">What Happens<br>in a Session</h2>
     <div class="how-card">
       <div class="how-row">
         <span class="how-idx">01</span>
-        <div class="how-text">
-          <strong>You state your question</strong> — anything you're wrestling with. A career decision. A relationship. A belief you're unsure about.
-        </div>
+        <div class="how-text"><strong>You state your question</strong> — a career decision, a relationship, a belief you're unsure about.</div>
       </div>
       <div class="how-row">
         <span class="how-idx">02</span>
-        <div class="how-text">
-          <strong>Socrates asks the first probing question.</strong> "What do you mean by that?" "What's your evidence?" "What would have to be true for this to be false?"
-        </div>
+        <div class="how-text"><strong>Socrates probes.</strong> "What do you mean by that?" "What's your evidence?" "What would this have to be false for?"</div>
       </div>
       <div class="how-row">
         <span class="how-idx">03</span>
-        <div class="how-text">
-          <strong>You answer. Socrates follows up.</strong> The AI tracks your reasoning and asks increasingly precise questions, typically 3–5 rounds.
-        </div>
+        <div class="how-text"><strong>You answer. Socrates follows up.</strong> Typically 3–5 rounds of increasingly precise questions.</div>
       </div>
       <div class="how-row">
         <span class="how-idx">04</span>
-        <div class="how-text">
-          <strong>You get your thinking report.</strong> A structured summary of what you said, what was revealed, and what conclusions you reached.
-        </div>
+        <div class="how-text"><strong>You get your report.</strong> A structured summary of what was revealed and where your thinking landed.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WHO IS IT FOR -->
+<!-- AUDIENCE -->
 <section class="section" id="audience">
   <div class="container">
     <div class="section-label">Who It's For</div>
-    <h2 class="section-title">Built for people<br>who think</h2>
-    <p class="section-subtitle">
-      Not for everyone. Socrates works best for people<br>
-      who are willing to sit with discomfort.
-    </p>
-    
+    <h2 class="section-title">Built for People<br>Who Think</h2>
+    <p class="section-subtitle">Not for everyone.<br>Socrates rewards those willing to do the work.</p>
     <div class="audience-list">
       <div class="audience-item">
         <span class="audience-icon">🎯</span>
         <div>
           <div class="audience-title">Decision Makers</div>
-          <div class="audience-desc">Entrepreneurs, managers, and leaders who need to think through complex decisions with clarity — not noise.</div>
+          <div class="audience-desc">Entrepreneurs and leaders who need clarity on complex decisions — not more noise.</div>
         </div>
       </div>
       <div class="audience-item">
         <span class="audience-icon">🧠</span>
         <div>
           <div class="audience-title">Serious Learners</div>
-          <div class="audience-desc">People who read, study, and think — and want a sparring partner that challenges their understanding.</div>
+          <div class="audience-desc">People who read and study — and want a sparring partner that challenges their understanding.</div>
         </div>
       </div>
       <div class="audience-item">
         <span class="audience-icon">🔍</span>
         <div>
           <div class="audience-title">Self-Reflectors</div>
-          <div class="audience-desc">Anyone on a journey of self-discovery who wants to move beyond surface-level answers to deeper self-knowledge.</div>
+          <div class="audience-desc">Anyone on a journey of self-discovery who wants to move beyond surface-level answers.</div>
         </div>
       </div>
       <div class="audience-item">
         <span class="audience-icon">✍️</span>
         <div>
           <div class="audience-title">Writers & Creators</div>
-          <div class="audience-desc">People who work with ideas — use Socrates to stress-test arguments, develop themes, or find the core of what you want to say.</div>
+          <div class="audience-desc">People who work with ideas — stress-test arguments, develop themes, find the core.</div>
         </div>
       </div>
     </div>
@@ -557,15 +540,14 @@
       <div class="section-label">★ Limited Early Access ★</div>
       <h2 class="ea-title">Be Among the<br>First 100 Members</h2>
       <p class="ea-desc">
-        We're launching a small, focused community of deep thinkers.<br>
-        Early members get founding pricing — locked in for life.
+        A small, focused community of deep thinkers.<br>
+        Early members lock in founding pricing — for life.
       </p>
       <div class="ea-price">
         Founding member: <strong>$4.99/mo</strong> — normally $9.99/mo
       </div>
-      
       <!-- REPLACE THIS HREF WITH YOUR GUMROAD PRODUCT LINK -->
-      <a href="https://gumroad.com/l/YOUR_GUMROAD_PRODUCT_LINK" class="ea-gumroad" id="gumroad-cta">
+      <a href="https://gumroad.com/l/YOUR_GUMROAD_PRODUCT_LINK" class="ea-gumroad">
         Join Early Access — $4.99/mo
       </a>
       <div class="ea-note">Cancel anytime. 30-day money-back guarantee.</div>
