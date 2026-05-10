@@ -1,3 +1,4 @@
 /about /out/about.html 200
 /team /out/team.html 200
+/logomind /out/logomind/index.html 200
 /logomind/* /out/logomind/:splat 200
