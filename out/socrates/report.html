@@ -77,6 +77,12 @@
 
   <script>
     async function generateReport() {
+      // Paid access check
+      if (localStorage.getItem('socrates_paid') !== '1') {
+        window.location.href = 'access.html';
+        return;
+      }
+
       const stored = localStorage.getItem('socrates_report_data');
       if (!stored) {
         renderEmpty();
