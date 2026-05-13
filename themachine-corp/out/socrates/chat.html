@@ -68,8 +68,22 @@
   <div class="stage-indicator" id="stage">阶段: 澄清</div>
   
   <div class="actions">
-    <button class="action-btn" onclick="generateReport()">Generate Report 📊</button>
+    <button class="action-btn" onclick="showReportModal()">Generate Report 📊</button>
     <button class="action-btn" onclick="clearDialogue()">Clear Chat</button>
+  </div>
+
+  <!-- Report Modal -->
+  <div id="report-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;justify-content:center;align-items:center;">
+    <div style="background:#111;border:1px solid #d4af37;border-radius:12px;padding:32px;max-width:420px;text-align:center;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
+      <h2 style="margin:0 0 16px;font-size:18px;color:#d4af37;">本次体验即将结束</h2>
+      <p style="margin:0 0 24px;font-size:14px;color:#ccc;line-height:1.6;">
+        点击下方按钮获取完整报告。购买后可在报告页反复查看本次对话总结。
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;">
+        <button onclick="confirmReport()" style="background:#d4af37;color:#000;border:none;border-radius:8px;padding:12px 24px;cursor:pointer;font-size:14px;font-weight:600;">获取报告</button>
+        <button onclick="closeReportModal()" style="background:transparent;color:#888;border:1px solid #444;border-radius:8px;padding:12px 20px;cursor:pointer;font-size:14px;">取消</button>
+      </div>
+    </div>
   </div>
   
   <div class="chat-container" id="chat">
@@ -101,6 +115,24 @@
     let dialogue = null;
     let isLoading = false;
     
+
+    function checkGumroadRedirect() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('gumroad') === 'paid') {
+        localStorage.setItem('socrates_paid', '1');
+        window.history.replaceState({}, document.title, window.location.pathname);
+        window.location.href = 'report.html';
+        return true;
+      }
+      return false;
+    }
+    
+    // Run redirect check immediately on page load
+    if (!checkGumroadRedirect()) {
+      // Load dialogue normally after short delay to let page initialize
+      setTimeout(loadDialogue, 50);
+    }
+
     function loadDialogue() {
       const paid = localStorage.getItem('socrates_paid') === '1';
       if (!paid) {
@@ -326,13 +358,26 @@ Ask one question now. No explanation. Just the question.`;
       localStorage.setItem('socrates_dialogue', JSON.stringify(dialogue));
     }
     
-    function generateReport() {
-      // Save dialogue first
+
+    function showReportModal() {
+      document.getElementById('report-modal').style.display = 'flex';
+    }
+    function closeReportModal() {
+      document.getElementById('report-modal').style.display = 'none';
+    }
+    function confirmReport() {
+      closeReportModal();
       localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
-      // Open Gumroad purchase in new tab — user returns here after purchase
       window.open('https://themachinecorp.gumroad.com/l/nqmuws', '_blank');
-      // After purchase, come back to this page and click Generate Report again
-      // to receive your permanent report URL. Dialogue is saved in localStorage.
+    }
+    function goToReport() {
+      localStorage.setItem('socrates_paid', '1');
+      localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
+      window.location.href = 'report.html';
+    }
+    async function generateReport() {
+      // Placeholder — use showReportModal() instead
+    }
     }
     
     function clearDialogue() {
