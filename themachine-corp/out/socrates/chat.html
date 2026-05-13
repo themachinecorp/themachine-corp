@@ -109,7 +109,18 @@
       }
       const stored = localStorage.getItem('socrates_dialogue');
       if (!stored) {
-        window.location.href = 'index.html';
+        // Paid user with no dialogue → initialize a new session directly here
+        const question = 'My first question'; // Will be replaced by user's actual question
+        dialogue = {
+          stage: 'clarification',
+          initialQuestion: question,
+          messages: []
+        };
+        saveDialogue();
+        renderMessages();
+        updateStage();
+        // Show welcome message for returning paid user
+        addMessage('ai', 'Welcome back! What\'s on your mind? Let\'s start a new session.', 'SOCRATES');
         return;
       }
       dialogue = JSON.parse(stored);
