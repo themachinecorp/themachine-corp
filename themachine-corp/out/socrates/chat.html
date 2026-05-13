@@ -104,7 +104,7 @@
     function loadDialogue() {
       const paid = localStorage.getItem('socrates_paid') === '1';
       if (!paid) {
-        window.location.href = 'access.html';
+        window.location.href = 'access';
         return;
       }
       const stored = localStorage.getItem('socrates_dialogue');
@@ -326,7 +326,7 @@ The user's original confusion: ${dialogue.initialQuestion}`;
     function generateReport() {
       // 保存当前对话到报告存储
       localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
-      window.location.href = 'report.html';
+      window.location.href = 'report';
     }
     
     function clearDialogue() {
