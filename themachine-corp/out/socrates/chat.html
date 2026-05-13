@@ -102,6 +102,11 @@
     let isLoading = false;
     
     function loadDialogue() {
+      const paid = localStorage.getItem('socrates_paid') === '1';
+      if (!paid) {
+        window.location.href = 'access.html';
+        return;
+      }
       const stored = localStorage.getItem('socrates_dialogue');
       if (!stored) {
         window.location.href = 'index.html';
