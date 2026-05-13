@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socrates — Access</title>
+  <link rel="stylesheet" href="/ag-theme.css">
+  <style>
+    :root { --bg: #080810; --gold: #c9a84c; }
+    html { background: var(--bg); }
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 0%, rgba(0,120,160,.12) 0%, transparent 55%), var(--bg); }
+    .container { text-align: center; max-width: 480px; padding: 40px 20px; }
+    .card {
+      background: rgba(255,255,255,.03);
+      border: 2px solid var(--gold);
+      padding: 40px 30px;
+      box-shadow: 0 0 20px rgba(201,168,76,.2);
+    }
+    .logo { font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 20px; text-shadow: 0 1px 0 rgba(255,255,255,.5); }
+    .title { font-size: 14px; color: #fff; margin-bottom: 16px; }
+    .desc { font-size: 8px; color: #888; line-height: 2; margin-bottom: 24px; }
+    .status { font-size: 8px; padding: 8px 16px; border-radius: 4px; display: inline-block; }
+    .status.loading { background: rgba(0,229,255,.1); border: 1px solid var(--cyan); color: var(--cyan); }
+    .status.ok { background: rgba(201,168,76,.1); border: 1px solid var(--gold); color: var(--gold); }
+    .status.fail { background: rgba(255,0,0,.1); border: 1px solid #f55; color: #f55; }
+    .note { font-size: 6px; color: #555; margin-top: 16px; }
+    a { color: var(--gold); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card" id="card">
+    <div class="logo">◈ THEMACHINE Corp.</div>
+    <div class="title">Socrates Access</div>
+    <div class="desc" id="desc">Verifying your purchase...</div>
+    <div class="status loading" id="status">Checking</div>
+    <div class="note" id="note"></div>
+  </div>
+</div>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const email = params.get('email');
+  const embed = params.get('embed');
+  const GumroadEmail = email || localStorage.getItem('socrates_gumroad_email');
+
+  // If Gumroad redirected with email, mark as paid
+  if (email) {
+    localStorage.setItem('socrates_gumroad_email', email);
+    localStorage.setItem('socrates_paid', '1');
+  }
+
+  const isPaid = localStorage.getItem('socrates_paid') === '1';
+
+  if (isPaid) {
+    document.getElementById('desc').textContent = 'Purchase verified! Loading Socrates...';
+    document.getElementById('status').textContent = '✓ Access granted';
+    document.getElementById('status').className = 'status ok';
+    document.getElementById('note').textContent = 'Welcome. Let\'s begin.';
+    // Redirect to chat after short delay
+    setTimeout(function() {
+      window.location.href = 'chat.html';
+    }, 1000);
+  } else {
+    document.getElementById('desc').textContent = 'No purchase detected.';
+    document.getElementById('status').textContent = '✗ Access denied';
+    document.getElementById('status').className = 'status fail';
+    document.getElementById('note').innerHTML = 'Purchase Socrates to access the chat.<br><a href="https://themachinecorp.gumroad.com/l/socrates-thought">Buy here →</a>';
+  }
+})();
+</script>
+</body>
+</html>
