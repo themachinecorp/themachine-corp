@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOCRATES - Thinking Report</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -46,7 +47,7 @@
     .dialogue-role.ai{color:var(--magenta)}
     
     .actions{display:flex;gap:15px;justify-content:center;margin-top:30px;flex-wrap:wrap}
-    .action-btn{padding:15px 30px;background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Press Start 2P',monospace;font-size:clamp(10px,1.5vw,12px);cursor:pointer;transition:all .2s;text-decoration:none}
+    .action-btn{padding:15px 30px;background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Press Start 2P',monospace;font-size:clamp(10px,1.5vw,12px);cursor:pointer;transition:all 0.2s;text-decoration:none}
     .action-btn:hover{background:var(--gold);color:var(--bg)}
     .action-btn.cyan{border-color:var(--cyan);color:var(--cyan)}
     .action-btn.cyan:hover{background:var(--cyan)}
@@ -55,14 +56,6 @@
     
     .empty-state{text-align:center;padding:50px 20px;color:#666}
     .empty-state .icon{font-size:50px;margin-bottom:20px}
-    
-    .expired-state{text-align:center;padding:50px 20px}
-    .expired-state .icon{font-size:50px;margin-bottom:20px}
-    .expired-state h2{color:var(--gold);margin-bottom:15px}
-    .expired-state p{color:#888;font-size:clamp(9px,1.5vw,11px);line-height:2;margin-bottom:30px}
-    .expired-state .warning{border:2px solid var(--magenta);padding:15px;margin-bottom:30px;background:rgba(255,0,255,0.05)}
-    
-    .notice{background:rgba(212,175,55,0.05);border:1px solid var(--gold);padding:12px 15px;font-size:clamp(8px,1.2vw,10px);color:var(--gold);margin-bottom:20px;line-height:1.8}
     
     .hud{position:fixed;bottom:0;left:0;right:0;padding:10px 15px;background:rgba(0,0,0,0.9);border-top:2px solid var(--cyan);display:flex;justify-content:space-between;font-size:clamp(7px,1.2vw,10px)}
     .hud-item{display:flex;gap:6px}
@@ -84,68 +77,32 @@
   </div>
 
   <script>
-    (function() {
-      // Parse the URL token from path: /socrates/report/{uuid}
-      const pathParts = window.location.pathname.split('/').filter(Boolean);
-      const urlToken = pathParts.length >= 3 && pathParts[1] === 'report' ? pathParts[2] : null;
-      
-      // Check stored token
-      const storedToken = localStorage.getItem('socrates_report_token');
-      const storedData = localStorage.getItem('socrates_report_data');
-      
-      // Validate: URL token must match stored token (or no token needed if data exists and is first view)
-      if (urlToken && storedToken && urlToken !== storedToken) {
-        renderExpired();
+    async function generateReport() {
+      // Paid access check
+      if (localStorage.getItem('socrates_paid') !== '1') {
+        window.location.href = 'access.html';
+        return;
+      }
+
+      const stored = localStorage.getItem('socrates_report_data');
+      if (!stored) {
+        renderEmpty();
         return;
       }
       
-      if (!storedData) {
-        renderNoData();
-        return;
-      }
+      const dialogue = JSON.parse(stored);
+      const reportContainer = document.getElementById('report');
       
-      // Mark token as used (one-time view)
-      if (urlToken) {
-        localStorage.setItem('socrates_report_viewed_' + urlToken, '1');
-      }
+      // 使用AI生成报告
+      const report = await createReport(dialogue);
       
-      const dialogue = JSON.parse(storedData);
-      generateAndRenderReport(dialogue, urlToken);
-    })();
-    
-    async function generateAndRenderReport(dialogue, urlToken) {
-      const lang = /[\u4e00-\u9fff]/.test(dialogue.initialQuestion || '') ? 'zh' : 'en';
-      const labels = lang === 'zh'
-        ? { 
-            title: '📊 个人思维报告', 
-            core: '核心问题', 
-            contradiction: '关键矛盾', 
-            resources: '内在资源', 
-            action: '下一步行动', 
-            dialogue: '对话回顾', 
-            restart: '重新开始', 
-            copy: '复制报告', 
-            generated: '生成时间',
-            notice: '⚠️ 此报告仅限一次性访问。请复制保存。'
-          }
-        : { 
-            title: '📊 Personal Thinking Report', 
-            core: 'Core Problem', 
-            contradiction: 'Key Contradiction', 
-            resources: 'Hidden Resources', 
-            action: 'Next Step', 
-            dialogue: 'Dialogue Review', 
-            restart: 'Start Over', 
-            copy: 'Copy Report', 
-            generated: 'Generated',
-            notice: '⚠️ This report is for single use only. Please copy and save it now.'
-          };
-      
-      const report = await createReport(dialogue, lang);
-      renderReport(dialogue, report, labels, urlToken);
+      renderReport(dialogue, report);
     }
     
-    async function createReport(dialogue, lang) {
+    async function createReport(dialogue) {
+      // Language detection
+      const lang = /[\u4e00-\u9fff]/.test(dialogue.initialQuestion || '') ? 'zh' : 'en';
+      
       const userMessages = dialogue.messages.filter(m => m.role === 'user').map(m => m.content);
       const aiMessages = dialogue.messages.filter(m => m.role === 'assistant').map(m => m.content);
       
@@ -183,8 +140,8 @@ Follow this exact format — output ONLY these 4 sections:
       
       if (!key) {
         return lang === 'zh'
-          ? '## 🎯 核心问题\n' + dialogue.initialQuestion + '\n\n## ⚡ 关键矛盾\nAPI未配置。\n\n## 💎 内在资源\n—\n\n## 🚀 下一步行动\n请联系支持。'
-          : '## 🎯 Core Problem\n' + dialogue.initialQuestion + '\n\n## ⚡ Key Contradiction\nAPI not configured.\n\n## 💎 Hidden Resources\n—\n\n## 🚀 Next Step\nContact support.';
+          ? 'API未配置，无法生成报告。'
+          : 'API not configured. Cannot generate report.';
       }
       
       try {
@@ -209,24 +166,37 @@ Follow this exact format — output ONLY these 4 sections:
         if (data.choices && data.choices[0]) {
           return data.choices[0].message.content;
         }
+        if (data.error && data.error.message) {
+          return lang === 'zh'
+            ? '报告生成失败: ' + data.error.message
+            : 'Report generation failed: ' + data.error.message;
+        }
       } catch (err) {
         console.error('Report generation error', err);
       }
       
-      // Fallback
+      // Fallback — Socratic-style default
       return lang === 'zh'
         ? `## 🎯 核心问题\n${dialogue.initialQuestion}\n\n## ⚡ 关键矛盾\n在对话中你已开始深入探索自己的困惑，这是重要的第一步。\n\n## 💎 内在资源\n你展现出了面对困惑时深入思考的勇气，这是任何改变的基础。\n\n## 🚀 下一步行动\n1. 回顾对话中你最意外的那个发现\n2. 把那个发现写下来\n3. 问自己：今天我可以迈出哪一小步？`
         : `## 🎯 Core Problem\n${dialogue.initialQuestion}\n\n## ⚡ Key Contradiction\nYou have begun exploring your confusion deeply — that is the critical first step.\n\n## 💎 Hidden Resources\nYour willingness to sit with discomfort and question yourself is the foundation of any real change.\n\n## 🚀 Next Step\n1. Review the dialogue — identify the most surprising insight you discovered\n2. Write it down\n3. Ask yourself: what is the ONE small step I can take today?`;
     }
     
-    function renderReport(dialogue, report, labels, urlToken) {
+    function renderReport(dialogue, report) {
       const container = document.getElementById('report');
       
-      const sections = { core: '', contradiction: '', resources: '', action: '' };
+      // 解析报告内容
+      const sections = {
+        core: '',
+        contradiction: '',
+        resources: '',
+        action: ''
+      };
+      
       const lines = report.split('\n');
       let currentSection = '';
       
       lines.forEach(line => {
+        // Handle both Chinese and English section headers
         if (line.includes('核心问题') || line.includes('Core Problem')) currentSection = 'core';
         else if (line.includes('关键矛盾') || line.includes('Key Contradiction')) currentSection = 'contradiction';
         else if (line.includes('内在资源') || line.includes('Hidden Resources') || line.includes('Inner Resources')) currentSection = 'resources';
@@ -236,15 +206,18 @@ Follow this exact format — output ONLY these 4 sections:
         }
       });
       
+      // 清理内容
       Object.keys(sections).forEach(k => {
         sections[k] = sections[k].replace(/^#+ /, '').trim();
       });
       
-      const date = new Date(dialogue.createdAt || Date.now()).toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-US');
+      const date = new Date(dialogue.createdAt).toLocaleDateString('zh-CN');
       const lang = /[\u4e00-\u9fff]/.test(dialogue.initialQuestion || '') ? 'zh' : 'en';
+      const labels = lang === 'zh'
+        ? { title: '📊 个人思维报告', core: '核心问题', contradiction: '关键矛盾', resources: '内在资源', action: '下一步行动', dialogue: '对话回顾', restart: '重新开始', copy: '复制报告', generated: '生成时间' }
+        : { title: '📊 Personal Thinking Report', core: 'Core Problem', contradiction: 'Key Contradiction', resources: 'Hidden Resources', action: 'Next Step', dialogue: 'Dialogue Review', restart: 'Start Over', copy: 'Copy Report', generated: 'Generated' };
       
       container.innerHTML = `
-        ${urlToken ? '<div class="notice">' + labels.notice + '</div>' : ''}
         <div class="report-title">${labels.title}</div>
         
         <div class="section">
@@ -254,17 +227,17 @@ Follow this exact format — output ONLY these 4 sections:
         
         <div class="section gold">
           <div class="section-title"><span class="section-icon">⚡</span> ${labels.contradiction}</div>
-          <div class="section-content">${sections.contradiction || '—'}</div>
+          <div class="section-content">${sections.contradiction || (lang === 'zh' ? '在探索中...' : 'Still exploring...')}</div>
         </div>
         
         <div class="section">
           <div class="section-title"><span class="section-icon">💎</span> ${labels.resources}</div>
-          <div class="section-content">${sections.resources || '—'}</div>
+          <div class="section-content">${sections.resources || (lang === 'zh' ? '等待发现...' : 'Waiting to be discovered...')}</div>
         </div>
         
         <div class="section magenta">
           <div class="section-title"><span class="section-icon">🚀</span> ${labels.action}</div>
-          <div class="section-content">${sections.action || '—'}</div>
+          <div class="section-content">${sections.action || (lang === 'zh' ? '开始行动吧！' : 'Time to take action!')}</div>
         </div>
         
         <div class="section">
@@ -280,40 +253,21 @@ Follow this exact format — output ONLY these 4 sections:
         </div>
         
         <div class="actions">
-          <a href="index.html" class="action-btn">${labels.restart}</a>
+          <button class="action-btn" onclick="downloadPDF()">⬇️ 下载PDF</button>
           <button class="action-btn cyan" onclick="copyReport()">${labels.copy}</button>
+          <a href="index.html" class="action-btn">${labels.restart}</a>
         </div>
         
         <div class="timestamp">${labels.generated}: ${date}</div>
       `;
     }
     
-    function renderExpired() {
-      const lang = navigator.language.includes('zh') ? 'zh' : 'en';
-      document.getElementById('report').innerHTML = `
-        <div class="expired-state">
-          <div class="icon">🔒</div>
-          <h2>${lang === 'zh' ? '报告已失效' : 'Report Expired'}</h2>
-          <div class="warning">
-            <p>${lang === 'zh' 
-              ? '此报告 URL 仅限一次性访问。您已查看过此报告，链接已失效。' 
-              : 'This report URL is for single use only. You have already viewed this report. The link is now expired.'}</p>
-          </div>
-          <p>${lang === 'zh' 
-            ? '如果需要新的报告，请重新在 Socrates 中开始一次新的对话。' 
-            : 'To get a new report, please start a new session in Socrates.'}</p>
-          <a href="index.html" class="action-btn" style="display:inline-block;margin-top:20px">${lang === 'zh' ? '开始新对话' : 'Start New Session'}</a>
-        </div>
-      `;
-    }
-    
-    function renderNoData() {
-      const lang = navigator.language.includes('zh') ? 'zh' : 'en';
+    function renderEmpty() {
       document.getElementById('report').innerHTML = `
         <div class="empty-state">
           <div class="icon">📭</div>
-          <div>${lang === 'zh' ? '暂无报告数据' : 'No report data found'}</div>
-          <a href="index.html" class="action-btn" style="display:inline-block;margin-top:20px">${lang === 'zh' ? '开始对话' : 'Start Session'}</a>
+          <div>暂无报告数据</div>
+          <a href="index.html" class="action-btn" style="display:inline-block;margin-top:20px">开始对话</a>
         </div>
       `;
     }
@@ -322,10 +276,54 @@ Follow this exact format — output ONLY these 4 sections:
       const container = document.getElementById('report');
       const text = container.innerText;
       navigator.clipboard.writeText(text).then(() => {
-        alert(document.documentElement.lang === 'zh' ? '报告已复制到剪贴板！' : 'Report copied to clipboard!');
-      }).catch(() => {
-        alert(document.documentElement.lang === 'zh' ? '复制失败，请手动选择文本复制。' : 'Copy failed. Please select and copy manually.');
+        alert('报告已复制到剪贴板！');
       });
+    }
+    
+    // 初始化
+    generateReport();
+
+    // 关闭页面时提示
+    window.addEventListener('beforeunload', function(e) {
+      e.preventDefault();
+      e.returnValue = '关闭页面后报告结果将会丢失，请确认已保存结果。';
+    });
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const container = document.getElementById('report');
+      
+      // Title
+      doc.setFontSize(20);
+      doc.setTextColor(212, 175, 55);
+      doc.text('SOCRATES Thinking Report', 105, 20, { align: 'center' });
+      doc.setDrawColor(0, 255, 255);
+      doc.line(20, 25, 190, 25);
+      
+      doc.setFontSize(10);
+      doc.setTextColor(200);
+      doc.text(new Date().toLocaleDateString('zh-CN'), 105, 32, { align: 'center' });
+      
+      let y = 45;
+      const sections = container.querySelectorAll('.section');
+      sections.forEach(section => {
+        const title = section.querySelector('.section-title');
+        const body = section.querySelector('.section-content');
+        if (title && body) {
+          doc.setFontSize(12);
+          doc.setTextColor(0, 200, 200);
+          doc.text(title.innerText, 20, y);
+          y += 8;
+          doc.setFontSize(10);
+          doc.setTextColor(255, 255, 255);
+          const lines = doc.splitTextToSize(body.innerText, 170);
+          doc.text(lines, 20, y);
+          y += lines.length * 6 + 10;
+        }
+      });
+      
+      doc.save('socrates-report.pdf');
     }
   </script>
 </body>
