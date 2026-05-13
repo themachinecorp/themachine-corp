@@ -327,10 +327,12 @@ Ask one question now. No explanation. Just the question.`;
     }
     
     function generateReport() {
-      // Save dialogue to localStorage — will be retrieved after Gumroad purchase redirects back
+      // Save dialogue first
       localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
-      // Redirect to Gumroad one-time purchase
-      window.location.href = 'https://themachinecorp.gumroad.com/l/nqmuws';
+      // Open Gumroad purchase in new tab — user returns here after purchase
+      window.open('https://themachinecorp.gumroad.com/l/nqmuws', '_blank');
+      // After purchase, come back to this page and click Generate Report again
+      // to receive your permanent report URL. Dialogue is saved in localStorage.
     }
     
     function clearDialogue() {
