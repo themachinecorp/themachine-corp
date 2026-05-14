@@ -65,7 +65,7 @@
 <body>
   <nav class="nav"><a href="/" class="nav-logo">◈ THEMACHINE Corp.</a></nav>
   
-  <div class="stage-indicator" id="stage">阶段: 澄清</div>
+  <div class="stage-indicator" id="stage">Stage: Clarification — Explore your core problem</div>
   
   <div class="actions">
     <button class="action-btn" onclick="showReportModal()">Generate Report 📊</button>
@@ -75,9 +75,9 @@
   <!-- Report Modal -->
   <div id="report-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;justify-content:center;align-items:center;">
     <div style="background:#111;border:1px solid #d4af37;border-radius:12px;padding:32px;max-width:420px;text-align:center;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
-      <h2 style="margin:0 0 16px;font-size:18px;color:#d4af37;">购买报告</h2>
+      <h2 style="margin:0 0 16px;font-size:18px;color:#d4af37;">Unlock Your Report</h2>
       <p style="margin:0 0 24px;font-size:14px;color:#ccc;line-height:1.6;">
-        点击下方按钮购买报告。购买完成后刷新页面获取报告。
+        Purchase to unlock your thinking report. Refresh the page after purchase.
       </p>
       <div style="display:flex;gap:12px;justify-content:center;">
         <button onclick="confirmReport()" style="background:#d4af37;color:#000;border:none;border-radius:8px;padding:12px 24px;cursor:pointer;font-size:14px;font-weight:600;">解锁报告 $1.00</button>
@@ -378,7 +378,7 @@ Ask one question now. No explanation. Just the question.`;
       // Open Gumroad, then user purchases and returns to this page manually
       window.open('https://themachinecorp.gumroad.com/l/nqmuws', '_blank');
       // Also show a subtle reminder in the chat
-      addMessage('ai', '购买完成后，请回到此页面刷新。', 'SOCRATES');
+      addMessage('ai', 'After purchase, refresh this page to get your report.', 'SOCRATES');
     }
     function goToReport() {
       localStorage.setItem('socrates_paid', '1');
@@ -387,7 +387,6 @@ Ask one question now. No explanation. Just the question.`;
     }
     async function generateReport() {
       // Placeholder — use showReportModal() instead
-    }
     }
     
     function clearDialogue() {
