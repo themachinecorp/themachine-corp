@@ -72,16 +72,38 @@
     <button class="action-btn" onclick="clearDialogue()">Clear Chat</button>
   </div>
 
-  <!-- Report Modal -->
+  <!-- Pre-purchase reminder modal -->
+  <div id="pre-purchase-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;justify-content:center;align-items:center;">
+    <div style="background:#111;border:2px solid #d4af37;border-radius:12px;padding:32px;max-width:420px;text-align:center;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
+      <div style="font-size:36px;margin-bottom:16px;">💡</div>
+      <h2 style="margin:0 0 12px;font-size:18px;color:#d4af37;">Before You Buy</h2>
+      <p style="margin:0 0 8px;font-size:14px;color:#ccc;line-height:1.6;">
+        After purchase is complete:<br>
+        <strong style="color:#d4af37;">Return to this chat page and refresh</strong><br>
+        to unlock your thinking report.
+      </p>
+      <p style="margin:12px 0 24px;font-size:12px;color:#888;line-height:1.5;">
+        Your conversation history is saved.<br>
+        Refresh after purchase and the report button will activate.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;">
+        <button onclick="proceedToPurchase()" style="background:#d4af37;color:#000;border:none;border-radius:8px;padding:12px 24px;cursor:pointer;font-size:14px;font-weight:600;">I Understand, Buy Now →</button>
+      </div>
+      <p style="margin:16px 0 0;font-size:11px;color:#555;">$1.00 USD — one-time payment</p>
+    </div>
+  </div>
+
+  <!-- Report unlock modal -->
   <div id="report-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;justify-content:center;align-items:center;">
     <div style="background:#111;border:1px solid #d4af37;border-radius:12px;padding:32px;max-width:420px;text-align:center;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
       <h2 style="margin:0 0 16px;font-size:18px;color:#d4af37;">Unlock Your Report</h2>
       <p style="margin:0 0 24px;font-size:14px;color:#ccc;line-height:1.6;">
-        Purchase to unlock your thinking report. Refresh the page after purchase.
+        Your thinking report is ready.<br>
+        <strong style="color:#d4af37;">$1.00 — one-time</strong>
       </p>
       <div style="display:flex;gap:12px;justify-content:center;">
-        <button onclick="confirmReport()" style="background:#d4af37;color:#000;border:none;border-radius:8px;padding:12px 24px;cursor:pointer;font-size:14px;font-weight:600;">解锁报告 $1.00</button>
-        
+        <button onclick="showPrePurchaseModal()" style="background:transparent;color:#d4af37;border:1px solid #d4af37;border-radius:8px;padding:12px 20px;cursor:pointer;font-size:13px;">How does it work?</button>
+        <button onclick="confirmReport()" style="background:#d4af37;color:#000;border:none;border-radius:8px;padding:12px 24px;cursor:pointer;font-size:14px;font-weight:600;">Buy Now — $1.00</button>
       </div>
     </div>
   </div>
@@ -370,14 +392,20 @@ Ask one question now. No explanation. Just the question.`;
     function closeReportModal() {
       document.getElementById('report-modal').style.display = 'none';
     }
-    function confirmReport() {
-      closeReportModal();
+    function showPrePurchaseModal() {
+      document.getElementById('report-modal').style.display = 'none';
+      document.getElementById('pre-purchase-modal').style.display = 'flex';
+    }
+    function proceedToPurchase() {
+      document.getElementById('pre-purchase-modal').style.display = 'none';
       localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
       localStorage.setItem('socrates_pending_purchase', '1');
-      // Open Gumroad, then user purchases and returns to this page manually
       window.open('https://themachinecorp.gumroad.com/l/nqmuws', '_blank');
-      // Also show a subtle reminder in the chat
-      addMessage('ai', 'After purchase, refresh this page to get your report.', 'SOCRATES');
+      addMessage('ai', 'After your purchase is complete, come back to this page and refresh. Your report will be ready.', 'SOCRATES');
+    }
+    function confirmReport() {
+      document.getElementById('report-modal').style.display = 'none';
+      showPrePurchaseModal();
     }
     function goToReport() {
       localStorage.setItem('socrates_paid', '1');
