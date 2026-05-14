@@ -68,8 +68,22 @@
   <div class="stage-indicator" id="stage">阶段: 澄清</div>
   
   <div class="actions">
-    <button class="action-btn" onclick="generateReport()">Generate Report 📊</button>
+    <button class="action-btn" onclick="showReportModal()">Generate Report 📊</button>
     <button class="action-btn" onclick="clearDialogue()">Clear Chat</button>
+  </div>
+
+  <!-- Report Modal -->
+  <div id="report-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;justify-content:center;align-items:center;">
+    <div style="background:#111;border:1px solid #d4af37;border-radius:12px;padding:32px;max-width:420px;text-align:center;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
+      <h2 style="margin:0 0 16px;font-size:18px;color:#d4af37;">购买报告</h2>
+      <p style="margin:0 0 24px;font-size:14px;color:#ccc;line-height:1.6;">
+        点击下方按钮购买报告。购买完成后刷新页面获取报告。
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;">
+        <button onclick="confirmReport()" style="background:#d4af37;color:#000;border:none;border-radius:8px;padding:12px 24px;cursor:pointer;font-size:14px;font-weight:600;">解锁报告 $1.00</button>
+        
+      </div>
+    </div>
   </div>
   
   <div class="chat-container" id="chat">
@@ -101,15 +115,50 @@
     let dialogue = null;
     let isLoading = false;
     
-    function loadDialogue() {
-      const paid = localStorage.getItem('socrates_paid') === '1';
-      if (!paid) {
-        window.location.href = 'access.html';
-        return;
+
+    function checkGumroadRedirect() {
+      // Handle Gumroad post-purchase redirect (from Gumroad's post-purchase redirect URL)
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('gumroad') === 'paid') {
+        localStorage.setItem('socrates_paid', '1');
+        localStorage.removeItem('socrates_pending_purchase');
+        window.history.replaceState({}, document.title, window.location.pathname);
+        window.location.href = 'report.html';
+        return true;
       }
+      // Handle pending purchase state (user clicked buy but came back manually)
+      if (localStorage.getItem('socrates_pending_purchase') === '1') {
+        localStorage.setItem('socrates_paid', '1');
+        localStorage.removeItem('socrates_pending_purchase');
+        window.location.href = 'report.html';
+        return true;
+      }
+      return false;
+    }
+    
+    // Run redirect check immediately on page load
+    if (!checkGumroadRedirect()) {
+      // Load dialogue normally after short delay to let page initialize
+      setTimeout(loadDialogue, 50);
+    }
+
+    function loadDialogue() {
+      // Chat is free, report requires payment
+      const paid = localStorage.getItem('socrates_paid') === '1';
       const stored = localStorage.getItem('socrates_dialogue');
       if (!stored) {
-        window.location.href = 'index.html';
+        // Paid user with no dialogue → initialize a new session directly here
+        const question = 'My first question'; // Will be replaced by user's actual question
+        dialogue = {
+          stage: 'clarification',
+          initialQuestion: question,
+          messages: []
+        };
+        saveDialogue();
+        renderMessages();
+        updateStage();
+        // Show welcome message for returning paid user
+        addMessage('ai', 'Welcome back! What\'s on your mind? Let\'s start a new session.', 'SOCRATES');
         return;
       }
       dialogue = JSON.parse(stored);
@@ -207,30 +256,33 @@
       
       // Authenticated Socratic system prompt — language follows user's input
       const systemContent = lang === 'zh'
-        ? `你是苏格拉底 —— 一个无情的追问者。你唯一的武器是问题。
+        ? `你是一个苏格拉底式的追问者。
 
-规则：
-- 每次只问一个问题
-- 永远不给建议，不同意，不总结
-- 如果用户给出答案，找出其中隐藏的假设或矛盾，追问那个
-- 深入问题的核心，而不是表面
-- 简洁——一个犀利的问题，最多2句话
-- 利用对话历史问越来越深入的问题
-- 用与用户问题相同的语言回应（中文）
+核心规则：
+1. 只问一个问题，越短越好
+2. 不同意，不总结，不给建议
+3. 找到用户话里的矛盾、遗漏、或没说出口的假设
+4. 问题要像针一样刺穿表面，直指核心
 
-用户最初的困惑是：${dialogue.initialQuestion}`
-        : `You are Socrates — a relentless questioner. Your ONLY weapon is the question.
+风格：冷峻、简洁、不客气。像一个不看情面的面试官。
 
-RULES:
-- Ask ONE question per response
-- Never give advice, never agree, never summarize
-- If the user gives an answer, find the hidden assumption or contradiction and question THAT
-- Push toward the core of the problem, not the surface
-- Be concise — one sharp question, max 2 sentences
-- Use the conversation history to ask increasingly deeper questions
-- Respond in the SAME language the user is using
+对话历史：
+${dialogue.messages.map(m => m.role === 'user' ? '用户: ' + m.content : '你: ' + m.content).join('\n')}
 
-The user's original confusion: ${dialogue.initialQuestion}`;
+
+现在，只问一个问题。不要解释。直接问。`
+        : `You are Socrates. Your only weapon: one sharp question.
+
+Rules:
+1. ONE question only. Keep it under 10 words.
+2. Never agree, summarize, or give advice.
+3. Find the hidden contradiction or unstated assumption in what the user just said.
+4. Be cold, precise, and relentless. No mercy.
+
+Conversation history:
+${dialogue.messages.map(m => m.role === 'user' ? 'User: ' + m.content : 'You: ' + m.content).join('\n')}
+
+Ask one question now. No explanation. Just the question.`;
       
       const systemMsg = { role: 'system', content: systemContent };
       const messagesWithSystem = [systemMsg, ...dialogue.messages];
@@ -312,10 +364,30 @@ The user's original confusion: ${dialogue.initialQuestion}`;
       localStorage.setItem('socrates_dialogue', JSON.stringify(dialogue));
     }
     
-    function generateReport() {
-      // 保存当前对话到报告存储
+
+    function showReportModal() {
+      document.getElementById('report-modal').style.display = 'flex';
+    }
+    function closeReportModal() {
+      document.getElementById('report-modal').style.display = 'none';
+    }
+    function confirmReport() {
+      closeReportModal();
+      localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
+      localStorage.setItem('socrates_pending_purchase', '1');
+      // Open Gumroad, then user purchases and returns to this page manually
+      window.open('https://themachinecorp.gumroad.com/l/nqmuws', '_blank');
+      // Also show a subtle reminder in the chat
+      addMessage('ai', '购买完成后，请回到此页面刷新。', 'SOCRATES');
+    }
+    function goToReport() {
+      localStorage.setItem('socrates_paid', '1');
       localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
       window.location.href = 'report.html';
+    }
+    async function generateReport() {
+      // Placeholder — use showReportModal() instead
+    }
     }
     
     function clearDialogue() {
