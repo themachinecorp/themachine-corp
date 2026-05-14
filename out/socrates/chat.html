@@ -142,33 +142,32 @@
       setTimeout(loadDialogue, 50);
     }
 
+    // Fresh start every time — clear old dialogue
+    localStorage.removeItem('socrates_dialogue');
+
     function loadDialogue() {
-      // Chat is free, report requires payment
-      const paid = localStorage.getItem('socrates_paid') === '1';
-      const stored = localStorage.getItem('socrates_dialogue');
-      if (!stored) {
-        // Paid user with no dialogue → initialize a new session directly here
-        const question = 'My first question'; // Will be replaced by user's actual question
-        dialogue = {
-          stage: 'clarification',
-          initialQuestion: question,
-          messages: []
-        };
-        saveDialogue();
-        renderMessages();
-        updateStage();
-        // Show welcome message for returning paid user
-        addMessage('ai', 'Welcome back! What\'s on your mind? Let\'s start a new session.', 'SOCRATES');
-        return;
-      }
-      dialogue = JSON.parse(stored);
+      // Always start fresh — clear previous sessions
+      dialogue = {
+        stage: 'clarification',
+        initialQuestion: 'fresh_start',
+        messages: []
+      };
+      saveDialogue();
       renderMessages();
       updateStage();
-      
-      // 如果有用户的第一条消息，自动发送获取AI响应
-      if (dialogue.messages.length > 0 && dialogue.messages[0].role === 'user') {
-        getAIResponse();
-      }
+      // Socrates opens with the first question immediately
+      const openingQuestions = [
+        "What's on your mind today?",
+        "What decision are you facing?",
+        "What assumption are you most attached to?",
+        "What do you keep circling back to?",
+        "What would you do if you weren't afraid?",
+        "What's the real problem underneath the problem?"
+      ];
+      const firstQ = openingQuestions[Math.floor(Math.random() * openingQuestions.length)];
+      addMessage('ai', firstQ, 'SOCRATES');
+      dialogue.messages.push({ role: 'assistant', content: firstQ });
+      saveDialogue();
     }
     
     function updateStage() {
