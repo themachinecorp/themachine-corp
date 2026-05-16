@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOCRATES - Thinking Report</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -252,8 +253,9 @@ Follow this exact format — output ONLY these 4 sections:
         </div>
         
         <div class="actions">
-          <a href="index.html" class="action-btn">${labels.restart}</a>
+          <button class="action-btn" onclick="downloadPDF()">⬇️ 下载PDF</button>
           <button class="action-btn cyan" onclick="copyReport()">${labels.copy}</button>
+          <a href="index.html" class="action-btn">${labels.restart}</a>
         </div>
         
         <div class="timestamp">${labels.generated}: ${date}</div>
@@ -280,6 +282,49 @@ Follow this exact format — output ONLY these 4 sections:
     
     // 初始化
     generateReport();
+
+    // 关闭页面时提示
+    window.addEventListener('beforeunload', function(e) {
+      e.preventDefault();
+      e.returnValue = '关闭页面后报告结果将会丢失，请确认已保存结果。';
+    });
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const container = document.getElementById('report');
+      
+      // Title
+      doc.setFontSize(20);
+      doc.setTextColor(212, 175, 55);
+      doc.text('SOCRATES Thinking Report', 105, 20, { align: 'center' });
+      doc.setDrawColor(0, 255, 255);
+      doc.line(20, 25, 190, 25);
+      
+      doc.setFontSize(10);
+      doc.setTextColor(200);
+      doc.text(new Date().toLocaleDateString('zh-CN'), 105, 32, { align: 'center' });
+      
+      let y = 45;
+      const sections = container.querySelectorAll('.section');
+      sections.forEach(section => {
+        const title = section.querySelector('.section-title');
+        const body = section.querySelector('.section-content');
+        if (title && body) {
+          doc.setFontSize(12);
+          doc.setTextColor(0, 200, 200);
+          doc.text(title.innerText, 20, y);
+          y += 8;
+          doc.setFontSize(10);
+          doc.setTextColor(255, 255, 255);
+          const lines = doc.splitTextToSize(body.innerText, 170);
+          doc.text(lines, 20, y);
+          y += lines.length * 6 + 10;
+        }
+      });
+      
+      doc.save('socrates-report.pdf');
+    }
   </script>
 </body>
 </html>
