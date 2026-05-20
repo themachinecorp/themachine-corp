@@ -377,11 +377,8 @@ Ask one question now. No explanation. Just the question.`;
     function confirmReport() {
       closeReportModal();
       localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
-      localStorage.setItem('socrates_pending_purchase', '1');
-      // Open Gumroad, then user purchases and returns to this page manually
-      window.open('https://themachinecorp.gumroad.com/l/nqmuws', '_blank');
-      // Also show a subtle reminder in the chat
-      addMessage('ai', '购买完成后，请回到此页面刷新。', 'SOCRATES');
+      // Direct link to Gumroad purchase page
+      window.location.href = 'https://themachinecorp.gumroad.com/l/nqmuws?reference=report';
     }
     function goToReport() {
       localStorage.setItem('socrates_paid', '1');
