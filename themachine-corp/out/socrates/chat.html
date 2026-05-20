@@ -388,9 +388,9 @@ Ask one question now. No explanation. Just the question.`;
       localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
       window.location.href = 'report.html';
     }
-    async function generateReport() {
-      // Placeholder — use showReportModal() instead
-    }
+    function generateReport() {
+      localStorage.setItem('socrates_report_data', JSON.stringify(dialogue));
+      window.location.href = 'report.html';
     }
     
     function clearDialogue() {
