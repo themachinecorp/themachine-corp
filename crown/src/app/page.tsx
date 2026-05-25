@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import WatchForm from '@/components/WatchForm';
 import WatchGallery from '@/components/WatchGallery';
 
