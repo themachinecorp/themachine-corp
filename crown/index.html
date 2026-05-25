@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CROWN — Watch Authentication</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0f;--surface:#111118;--border:#1e1e2e;--gold:#c9a84c;--gold-light:#e8c96a;--text:#f0f0f5;--muted:#7a7a9a;--common:#6b7280;--rare:#3b82f6;--epic:#a855f7;--legendary:#f59e0b;--radius:16px;--font:"Segoe UI",system-ui,sans-serif}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
+.logo{font-size:28px;font-weight:900;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.logo span{color:var(--text)}
+.tagline{color:var(--muted);font-size:11px;letter-spacing:4px;text-transform:uppercase;margin-bottom:32px}
+.container{width:100%;max-width:480px;display:flex;flex-direction:column;gap:16px}
+.steps{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.step{height:3px;flex:1;background:var(--border);border-radius:99px;transition:background .4s}
+.step.active{background:var(--gold)}
+.step.done{background:var(--gold);opacity:.4}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.section-header{font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:14px;padding-left:4px}
+.screen{display:none}
+.screen.active{display:block}
+.photo-zone{border:2px dashed var(--border);border-radius:12px;padding:40px;text-align:center;cursor:pointer;transition:border-color .3s,background .3s;position:relative;overflow:hidden;min-height:180px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.photo-zone:hover,.photo-zone.dragover{border-color:var(--gold);background:rgba(201,168,76,.04)}
+.photo-zone input[type="file"]{display:none}
+.photo-icon{font-size:40px;margin-bottom:12px}
+.photo-text{color:var(--muted);font-size:14px;line-height:1.5}
+.photo-text strong{color:var(--gold)}
+.photo-preview{position:absolute;inset:0;background-size:cover;background-position:center;display:none}
+.photo-preview.show{display:block}
+.photo-preview::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.photo-remove{position:absolute;top:10px;right:10px;z-index:2;background:rgba(255,255,255,.15);border:none;color:white;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:none;align-items:center;justify-content:center}
+.photo-zone.has-photo .photo-remove{display:flex}
+.brand-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.brand-btn{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 4px;color:var(--text);font-size:10px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center;line-height:1.3}
+.brand-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.brand-btn.selected{border-color:var(--gold);background:var(--gold);color:#000}
+.model-search-wrap{position:relative;margin-bottom:12px}
+.model-search{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
+.model-search:focus{border-color:var(--gold)}
+.model-list{max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
+.model-list::-webkit-scrollbar{width:4px}
+.model-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px}
+.model-item{padding:10px 14px;border-radius:8px;cursor:pointer;font-size:13px;transition:background .15s;display:flex;justify-content:space-between;align-items:center}
+.model-item:hover{background:rgba(201,168,76,.1)}
+.model-item.selected{background:rgba(201,168,76,.2);color:var(--gold)}
+.model-item .model-year{color:var(--muted);font-size:11px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.field input,.field select{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s;width:100%}
+.field input:focus,.field select:focus{border-color:var(--gold)}
+.field input[readonly]{opacity:.6;cursor:not-allowed}
+.field select option{background:var(--surface)}
+.btn{background:var(--gold);color:#000;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;width:100%;letter-spacing:1px;transition:background .2s,transform .1s;text-transform:uppercase;display:block;text-align:center}
+.btn:hover{background:var(--gold-light)}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-secondary{background:transparent;color:var(--muted);border:1px solid var(--border);padding:12px;font-size:13px;letter-spacing:.5px;border-radius:12px;cursor:pointer;transition:all .2s;text-align:center;display:block}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.btn-row{display:flex;gap:10px}
+.btn-row .btn,.btn-row .btn-secondary{flex:1}
+.rarity-badge{display:inline-block;padding:4px 12px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.rarity-common{background:rgba(107,114,128,.2);color:var(--common);border:1px solid rgba(107,114,128,.4)}
+.rarity-rare{background:rgba(59,130,246,.15);color:var(--rare);border:1px solid rgba(59,130,246,.4)}
+.rarity-epic{background:rgba(168,85,247,.15);color:var(--epic);border:1px solid rgba(168,85,247,.4)}
+.rarity-legendary{background:rgba(245,158,11,.15);color:var(--legendary);border:1px solid rgba(245,158,11,.4)}
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.watch-image{width:100%;height:240px;object-fit:cover;display:block}
+.result-body{padding:24px}
+.result-brand{font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.result-model{font-size:22px;font-weight:700;margin-bottom:8px;line-height:1.2}
+.result-meta{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.result-year{color:var(--muted);font-size:13px}
+.result-price{color:var(--text);font-size:16px;font-weight:600}
+.result-divider{height:1px;background:var(--border);margin:16px 0}
+.result-section-title{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+.rarity-bar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.rarity-visual{flex:1;height:6px;background:var(--border);border-radius:99px;overflow:hidden}
+.rarity-fill{height:100%;border-radius:99px;transition:width 1s ease;width:0}
+.rarity-fill.common{background:var(--common)}
+.rarity-fill.rare{background:var(--rare)}
+.rarity-fill.epic{background:var(--epic)}
+.rarity-fill.legendary{background:var(--legendary)}
+.rarity-score{font-size:13px;color:var(--muted);min-width:30px;text-align:right}
+.rarity-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.collection-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.collection-title{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
+.collection-count{font-size:11px;color:var(--muted)}
+.collection-list{display:flex;flex-direction:column;gap:8px;max-height:380px;overflow-y:auto}
+.col-item{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:10px;cursor:pointer;transition:border-color .2s}
+.col-item:hover{border-color:var(--gold)}
+.col-thumb{width:56px;height:56px;border-radius:8px;object-fit:cover;background:var(--surface);flex-shrink:0}
+.col-info{flex:1;min-width:0}
+.col-brand{font-size:9px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.col-model{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.col-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.col-delete{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:2px 6px;border-radius:4px;transition:color .2s}
+.col-delete:hover{color:#ef4444}
+#downloadCanvas{display:none}
+@media(max-width:480px){.brand-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="logo">CR<span>●</span>WN</div>
+<div class="tagline">Luxury Watch Authentication</div>
+<div class="container">
+  <div class="steps" id="steps">
+    <div class="step active" id="step0"></div>
+    <div class="step" id="step1"></div>
+    <div class="step" id="step2"></div>
+    <div class="step" id="step3"></div>
+    <div class="step" id="step4"></div>
+  </div>
+  <div class="screen active" id="screen0">
+    <div class="section-header">Step 1 — Capture</div>
+    <div class="card">
+      <div class="photo-zone" id="photoZone">
+        <input type="file" id="photoInput" accept="image/*">
+        <div class="photo-preview" id="photoPreview"></div>
+        <button class="photo-remove" id="photoRemove" title="Remove">✕</button>
+        <div class="photo-placeholder" id="photoPlaceholder">
+          <div class="photo-icon">📷</div>
+          <div class="photo-text"><strong>Tap to capture</strong><br>or select from gallery</div>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn btn-secondary" id="galleryBtn">📁 Gallery</button>
+        <button class="btn" id="photoNextBtn" disabled style="flex:2">Next →</button>
+      </div>
+    </div>
+  </div>
+  <div class="screen" id="screen1">
+    <div class="section-header">Step 2 — Brand</div>
+    <div class="card">
+      <div class="brand-grid" id="brandGrid"></div>
+      <div style="margin-top:16px"><button class="btn btn-secondary" id="brandBackBtn">← Back</button></div>
+    </div>
+  </div>
+  <div class="screen" id="screen2">
+    <div class="section-header">Step 3 — Model</div>
+    <div class="card">
+      <div id="selectedBrandLabel" style="font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;text-align:center"></div>
+      <div class="model-search-wrap"><input type="text" class="model-search" id="modelSearch" placeholder="Search models..."></div>
+      <div class="model-list" id="modelList"></div>
+      <div style="margin-top:16px"><button class="btn btn-secondary" id="modelBackBtn">← Back</button></div>
+    </div>
+  </div>
+  <div class="screen" id="screen3">
+    <div class="section-header">Step 4 — Details</div>
+    <div class="card">
+      <div class="info-grid">
+        <div class="field"><label>Brand</label><input type="text" id="infoBrand" readonly></div>
+        <div class="field"><label>Model</label><input type="text" id="infoModel" readonly></div>
+        <div class="field"><label>Year</label><input type="number" id="infoYear" placeholder="2024" min="1900" max="2030"></div>
+        <div class="field"><label>Price (USD)</label><input type="number" id="infoPrice" placeholder="25000"></div>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:10px">
+        <button class="btn btn-secondary" id="infoBackBtn" style="flex:1">← Back</button>
+        <button class="btn" id="authenticateBtn" style="flex:2">⚡ Authenticate</button>
+      </div>
+    </div>
+  </div>
+  <div class="screen" id="screen4">
+    <div class="section-header">Step 5 — Result</div>
+    <div class="result-card" id="resultCard">
+      <img class="watch-image" id="resultImage" src="" alt="Watch">
+      <div class="result-body">
+        <div class="result-brand" id="resultBrand"></div>
+        <div class="result-model" id="resultModel"></div>
+        <div class="result-meta"><span class="result-year" id="resultYear"></span><span class="result-price" id="resultPrice"></span><span id="resultBadge"></span></div>
+        <div class="result-divider"></div>
+        <div class="rarity-bar"><div class="rarity-visual"><div class="rarity-fill" id="rarityFill"></div></div><span class="rarity-score" id="rarityScore"></span></div>
+        <div class="result-section-title">Rarity Assessment</div>
+        <div class="rarity-desc" id="rarityDesc"></div>
+        <div style="margin-top:16px"><button class="btn btn-secondary" id="downloadCardBtn" style="width:100%;font-size:12px;padding:10px">⬇ Download Card</button></div>
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px">
+      <button class="btn btn-secondary" id="saveBtn" style="flex:1">♡ Save to Collection</button>
+      <button class="btn" id="newBtn" style="flex:2">✨ New Scan</button>
+    </div>
+  </div>
+  <div class="card" id="collectionPanel">
+    <div class="collection-header"><div class="collection-title">★ My Collection</div><div class="collection-count" id="colCount">0 watches</div></div>
+    <div class="collection-list" id="colList"></div>
+  </div>
+</div>
+<canvas id="downloadCanvas" width="700" height="500"></canvas>
