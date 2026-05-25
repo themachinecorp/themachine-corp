@@ -75,6 +75,12 @@ export default function Home() {
         >
           My Collection
         </button>
+        <Link
+          href="/me"
+          className="px-7 py-2.5 text-sm font-semibold rounded-full transition-all bg-white/5 text-gray-400 hover:bg-white/10"
+        >
+          👑 Me
+        </Link>
       </nav>
 
       {/* Content */}
