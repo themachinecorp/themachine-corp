@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import WatchForm from '@/components/WatchForm';
 import { getWatches } from '@/lib/storage';
 import { Watch } from '@/lib/types';
-import { BRANDS, TIER_CONFIG } from '@/lib/brands';
+import { BRANDS } from '@/lib/brands';
 
-/* ─── Tier-agnostic silver palette (overrides tier accents for all cards) ─── */
 const SILVER = {
   stripe: 'rgba(180,195,215,0.5)',
   stripeBright: 'rgba(220,230,245,0.8)',
@@ -17,55 +16,99 @@ const SILVER = {
   bg: '#111118',
 };
 
+/* ─── Live Clock ─── */
+function LiveClock() {
+  const [time, setTime] = useState(() => {
+    const now = new Date();
+    return `UTC+8 ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+  });
+  useEffect(() => {
+    const id = setInterval(() => {
+      const now = new Date();
+      setTime(`UTC+8 ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`);
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return <span className="live-timestamp flicker" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(148,163,184,0.65)', letterSpacing: '0.08em' }}>{time}</span>;
+}
+
+/* ─── Particle Field ─── */
+function ParticleField() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    const el = ref.current;
+    const particles: { el: HTMLDivElement; x: number; y: number; speed: number; size: number }[] = [];
+    for (let i = 0; i < 30; i++) {
+      const div = document.createElement('div');
+      div.className = 'particle';
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      const speed = 8 + Math.random() * 20;
+      const size = 1 + Math.random() * 2;
+      div.style.cssText = `left:${x}%;top:${y}%;width:${size}px;height:${size}px;animation-duration:${speed}s;animation-delay:${-Math.random() * speed}s`;
+      el.appendChild(div);
+      particles.push({ el: div, x, y, speed, size });
+    }
+    return () => { particles.forEach(p => p.el.remove()); };
+  }, []);
+  return <div ref={ref} className="particle-field" />;
+}
+
+/* ─── Watch Card — Steel Edition ─── */
 function WatchCardMini({ watch }: { watch: Watch }) {
   const brand = BRANDS.find((b) => b.id === watch.brandId) || BRANDS[0];
-
+  const [hov, setHov] = useState(false);
   return (
-    <Link href={`/card/${watch.id}`} className="block">
-      <div className="metallic-card relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:z-10">
+    <Link href={`/me/`} className="block">
+      <div
+        className="watch-card-wrapper rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:z-10"
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
+      >
         {/* Image */}
-        <div className="aspect-[4/5] overflow-hidden" style={{ background: '#00000015' }}>
+        <div className="steel-bezel" style={{ overflow: 'hidden', background: '#08080e', marginBottom: 0 }}>
           {watch.imageUrl ? (
             <img
               src={watch.imageUrl}
               alt={watch.model}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              className="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-110"
               crossOrigin="anonymous"
+              style={{ filter: hov ? 'brightness(1.08) contrast(1.06) saturate(0.88)' : 'brightness(0.78) contrast(1.06) saturate(0.88)' }}
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <span className="text-5xl opacity-40">⌚</span>
+            <div className="w-full aspect-[4/5] flex items-center justify-center" style={{ background: '#08080e' }}>
+              <span className="text-6xl opacity-30">⌚</span>
             </div>
           )}
+          {/* Brushed steel top band */}
+          <div className="brushed-h" style={{ position: 'absolute', top: 0, left: '18%', right: '18%', height: '18%', opacity: 0.95 }} />
+          {/* Brushed steel bottom band */}
+          <div className="brushed-h" style={{ position: 'absolute', bottom: 0, left: '18%', right: '18%', height: '18%', opacity: 0.95 }} />
+          {/* Dark gradient bottom */}
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, background: 'linear-gradient(to top, rgba(8,8,14,0.9), transparent)' }} />
+          {/* Scan line */}
+          <div className="scan-line" />
+          {/* Silver corner brackets */}
+          <div className="corner-tl" />
+          <div className="corner-tr" />
+          <div className="corner-bl" />
+          <div className="corner-br" />
+          {/* Crown crown-worn indicator */}
+          <div style={{ position: 'absolute', top: 8, right: 8, width: 4, height: 22, background: 'linear-gradient(180deg,rgba(226,232,240,0.35) 0%,rgba(148,163,184,0.25) 50%,rgba(226,232,240,0.35) 100%)', borderRadius: 1 }} />
         </div>
-
-        {/* Hover glow overlay */}
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-          style={{ boxShadow: `inset 0 0 40px ${SILVER.glow}` }}
-        />
-
-        {/* Bottom info */}
-        <div
-          className="absolute inset-x-0 bottom-0 p-3"
-          style={{ background: `linear-gradient(transparent, ${SILVER.bg}ee)` }}
-        >
-          <div className="text-[9px] tracking-widest mb-0.5" style={{ color: SILVER.accent }}>
+        {/* Info */}
+        <div className="p-3" style={{ background: '#0c0c11' }}>
+          <div className="text-[9px] tracking-widest mb-0.5" style={{ color: SILVER.accent, fontFamily: 'var(--font-mono)' }}>
             {brand.name.toUpperCase()}
           </div>
           <div className="text-sm font-bold text-white truncate">{watch.model}</div>
-          <div className="text-[10px] font-mono mt-1 opacity-60" style={{ color: SILVER.text }}>
+          <div className="text-[10px] font-mono mt-1" style={{ color: 'rgba(148,163,184,0.5)' }}>
             #{watch.cardNumber.toString().padStart(4, '0')}
           </div>
         </div>
-
-        {/* Top rarity stripe — pure silver edge */}
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{
-            background: `linear-gradient(to right, transparent, ${SILVER.stripe}, ${SILVER.stripeBright}, ${SILVER.stripe}, transparent)`,
-          }}
-        />
+        {/* Top silver edge */}
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: `linear-gradient(to right, transparent, ${SILVER.stripe}, ${SILVER.stripeBright}, ${SILVER.stripe}, transparent)` }} />
       </div>
     </Link>
   );
@@ -73,13 +116,36 @@ function WatchCardMini({ watch }: { watch: Watch }) {
 
 function SkeletonCard() {
   return (
-    <div className="metallic-card rounded-2xl overflow-hidden">
+    <div className="watch-card-wrapper rounded-2xl overflow-hidden">
       <div className="aspect-[4/5] skeleton" />
-      <div className="p-3">
+      <div className="p-3" style={{ background: '#0c0c11' }}>
         <div className="h-3 w-20 skeleton mb-2" />
         <div className="h-4 w-28 skeleton" />
       </div>
     </div>
+  );
+}
+
+/* ─── Mobile Bottom Nav ─── */
+function MobileBottomNav({ activeTab, showAddForm, onTab }: {
+  activeTab: string; showAddForm: boolean;
+  onTab: (tab: 'home'|'add'|'collection') => void;
+}) {
+  return (
+    <nav className="mobile-bottom-nav lg:hidden">
+      <button onClick={() => onTab('home')} className={`mobile-bottom-nav-btn ${activeTab === 'home' && !showAddForm ? 'active' : ''}`}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </button>
+      <button onClick={() => onTab('add')} className={`mobile-bottom-nav-btn ${showAddForm ? 'active' : ''}`}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Add
+      </button>
+      <Link href="/me/" onClick={() => onTab('collection')} className={`mobile-bottom-nav-btn ${activeTab === 'collection' ? 'active' : ''}`}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Collection
+      </Link>
+    </nav>
   );
 }
 
@@ -91,351 +157,150 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'home' | 'add' | 'collection'>('home');
 
   useEffect(() => {
-    const load = () => {
-      setWatches(getWatches());
-      setLoading(false);
-    };
+    const load = () => { setWatches(getWatches()); setLoading(false); };
     load();
     window.addEventListener('storage', load);
     const t = setTimeout(() => setHeroVisible(true), 50);
-    return () => {
-      window.removeEventListener('storage', load);
-      clearTimeout(t);
-    };
+    return () => { window.removeEventListener('storage', load); clearTimeout(t); };
   }, []);
 
-  return (
-    <div className="min-h-screen" style={{ background: 'transparent' }}>
-      {/* ─── Top Navigation Bar ─── */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 glass"
-        style={{ borderBottom: '1px solid rgba(160, 175, 200, 0.06)' }}
-      >
-        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span
-              className="text-2xl transition-transform duration-300 group-hover:scale-110"
-              style={{ filter: 'drop-shadow(0 0 8px rgba(180,195,215,0.4))' }}
-            >
-              👑
-            </span>
-            <span
-              className="text-sm font-black tracking-[0.25em] hidden sm:block"
-              style={{
-                background: 'linear-gradient(135deg, #94A3B8, #CBD5E1, #94A3B8)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              CROWN
-            </span>
-          </Link>
+  const handleTab = (tab: 'home' | 'add') => {
+    setActiveTab(tab);
+    setShowAddForm(tab === 'add');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-          {/* Nav Icons */}
-          <nav className="flex items-center gap-1">
-            <button
-              onClick={() => { setActiveTab('home'); setShowAddForm(false); }}
-              className={`nav-item flex items-center justify-center w-10 h-10 rounded-xl transition-all ${
-                activeTab === 'home' && !showAddForm
-                  ? 'bg-white/10 text-white'
-                  : 'text-gray-500 hover:text-white hover:bg-white/5'
-              }`}
-              title="Home"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
-            </button>
-            <button
-              onClick={() => { setActiveTab('add'); setShowAddForm(true); }}
-              className={`nav-item flex items-center justify-center w-10 h-10 rounded-xl transition-all ${
-                showAddForm
-                  ? 'bg-white/10 text-white'
-                  : 'text-gray-500 hover:text-white hover:bg-white/5'
-              }`}
-              title="Add Watch"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="12" y1="8" x2="12" y2="16"/>
-                <line x1="8" y1="12" x2="16" y2="12"/>
-              </svg>
-            </button>
-            <Link
-              href="/me/"
-              onClick={() => setActiveTab('collection')}
-              className={`nav-item flex items-center justify-center w-10 h-10 rounded-xl transition-all ${
-                activeTab === 'collection'
-                  ? 'bg-white/10 text-white'
-                  : 'text-gray-500 hover:text-white hover:bg-white/5'
-              }`}
-              title="My Collection"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-            </Link>
-          </nav>
+  return (
+    <div className="min-h-screen" style={{ background: 'var(--deep-space)' }}>
+      {/* ─── HUD Background Effects ─── */}
+      <div className="hud-grid" />
+      <ParticleField />
+      <div className="holo-overlay" />
+
+      {/* ─── Top Navigation Bar ─── */}
+      <header className="fixed top-0 left-0 right-0 z-50 navbar">
+        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-2xl" style={{ filter: 'drop-shadow(0 0 8px rgba(180,195,215,0.4))' }}>👑</span>
+            <span className="text-sm font-black tracking-[0.25em] hidden sm:block hero-title" style={{ fontSize: 13 }}>CROWN</span>
+          </Link>
+          <div className="flex items-center gap-3" style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>
+            <span style={{ color: 'rgba(148,163,184,0.5)', letterSpacing: '0.1em' }}>STEEL EDITION</span>
+            <span style={{ width: 1, height: 14, background: 'var(--border-subtle)' }} />
+            <LiveClock />
+          </div>
         </div>
       </header>
 
       {/* ─── Main Content ─── */}
-      <div className="mobile-nav-safe">
-        {/* Hero Section */}
-        {!showAddForm && (
-          <section
-            className={`relative pt-14 min-h-[75vh] flex flex-col items-center justify-center px-4 overflow-hidden transition-all duration-700 ${
-              heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            {/* Deep space base */}
-            <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(180deg, #0c0d14 0%, #090a10 50%, #0b0c12 100%)' }} />
+      <div className="page-content">
+        <div className="mobile-nav-safe">
 
-            {/* Brushed steel diagonal bands */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `repeating-linear-gradient(
-                  115deg,
-                  transparent 0px,
-                  transparent 3px,
-                  rgba(160, 170, 195, 0.025) 3px,
-                  rgba(160, 170, 195, 0.025) 5px
-                )`,
-              }} />
-              {/* Silver metallic highlight — no gold */}
-              <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-25" style={{
-                background: 'radial-gradient(ellipse, rgba(180, 195, 220, 0.2) 0%, transparent 70%)',
-                filter: 'blur(40px)',
-              }} />
-              {/* Secondary silver sheen */}
-              <div className="absolute bottom-20 right-[20%] w-[400px] h-[300px] rounded-full opacity-10" style={{
-                background: 'radial-gradient(circle, rgba(148, 163, 184, 0.15) 0%, transparent 70%)',
-                filter: 'blur(40px)',
-              }} />
-            </div>
-
-            {/* Noise texture */}
-            <div className="absolute inset-0 pointer-events-none noise-texture" />
-
-            {/* Silver top edge glow */}
-            <div className="absolute top-0 left-0 right-0 h-px pointer-events-none" style={{
-              background: 'linear-gradient(90deg, transparent 0%, rgba(180,195,215,0.3) 30%, rgba(220,230,245,0.7) 50%, rgba(180,195,215,0.3) 70%, transparent 100%)',
-            }} />
-
-            <div className="relative z-10 text-center max-w-2xl mx-auto stagger-children">
-              {/* Crown — silver glow, gentle spin */}
-              <div
-                className="text-7xl mb-6 animate-crown-spin"
-                style={{ filter: 'drop-shadow(0 0 20px rgba(180,195,215,0.35))' }}
-              >
-                👑
-              </div>
-
-              {/* Headline — pure silver metallic shimmer */}
-              <h1
-                className="text-4xl sm:text-5xl font-black mb-4 leading-tight"
-                style={{
-                  background: 'linear-gradient(135deg, #64748B 0%, #c8ccd6 35%, #ffffff 55%, #94A3B8 75%, #64748B 100%)',
-                  backgroundSize: '200% 200%',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  animation: 'silver-shimmer 4s ease infinite',
-                }}
-              >
-                Your Watch.
-                <br />
-                <span style={{ color: '#ffffff', WebkitTextFillColor: 'white' }}>Your Legacy.</span>
-              </h1>
-
-              {/* Sub */}
-              <p className="text-gray-400 text-base sm:text-lg max-w-md mx-auto mb-8 leading-relaxed">
-                Turn your timepiece collection into shareable digital identity cards. Every watch tells a story.
-              </p>
-
-              {/* CTA buttons — silver metallic */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                <button
-                  onClick={() => { setShowAddForm(true); setActiveTab('add'); }}
-                  className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow silver-btn"
-                  style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8, #CBD5E1, #94A3B8)', color: '#08080c', fontWeight: 700 }}
-                >
-                  ✦ Add Your Watch
-                </button>
-                <Link
-                  href="/me/"
-                  className="w-full sm:w-auto px-8 py-3.5 text-sm font-semibold rounded-full transition-all glass hover:bg-white/10 silver-btn"
-                >
-                  👑 View Collection
-                </Link>
-              </div>
-
-              {/* Stats pills — silver glass */}
-              {watches.length > 0 && (
-                <div className="flex gap-4 justify-center mt-8 animate-fade-in">
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                    <span style={{ color: '#94A3B8' }}>⌚</span>
-                    <span className="text-sm text-gray-300">{watches.length} cards</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                    <span style={{ color: '#94A3B8' }}>🏆</span>
-                    <span className="text-sm text-gray-300">{[...new Set(watches.map(w => w.brandId))].length} brands</span>
-                  </div>
+          {/* Hero */}
+          {!showAddForm && (
+            <section className={`relative pt-14 min-h-[75vh] flex flex-col items-center justify-center px-4 overflow-hidden transition-all duration-700 ${heroVisible ? 'opacity-100' : 'opacity-0'}`}
+              style={{ animation: heroVisible ? 'fadeIn 0.6s ease-out' : 'none' }}>
+              <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(180deg, #0c0d14 0%, #090a10 50%, #0b0c12 100%)' }} />
+              <div className="absolute inset-0 noise-texture" />
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(180,195,215,0.3), rgba(220,230,245,0.7), rgba(180,195,215,0.3), transparent)' }} />
+              <div className="relative z-10 text-center max-w-2xl mx-auto stagger-children">
+                <div className="text-7xl mb-6" style={{ filter: 'drop-shadow(0 0 20px rgba(180,195,215,0.35))' }}>👑</div>
+                <h1 className="text-4xl sm:text-5xl font-black mb-4 leading-tight hero-title">
+                  Your Watch.<br /><span style={{ color: '#ffffff' }}>Your Legacy.</span>
+                </h1>
+                <p className="text-gray-400 text-base sm:text-lg max-w-md mx-auto mb-8 leading-relaxed">
+                  Precision Craft · STEEL EDITION
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <button onClick={() => handleTab('add')} className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow"
+                    style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8, #CBD5E1)', color: '#08080c', fontWeight: 700 }}>
+                    ✦ Add Your Watch
+                  </button>
+                  <Link href="/me/" className="w-full sm:w-auto px-8 py-3.5 text-sm font-semibold rounded-full glass hover:bg-white/10 transition-all">
+                    👑 View Collection
+                  </Link>
                 </div>
-              )}
-            </div>
+                {watches.length > 0 && (
+                  <div className="flex gap-4 justify-center mt-8">
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
+                      <span style={{ color: '#94A3B8' }}>⌚</span>
+                      <span className="text-sm text-gray-300">{watches.length} cards</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
+                      <span style={{ color: '#94A3B8' }}>🏆</span>
+                      <span className="text-sm text-gray-300">{[...new Set(watches.map(w => w.brandId))].length} brands</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
 
-            {/* Scroll indicator — silver */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-              <span className="text-[10px] tracking-widest" style={{ color: '#4a4d5e' }}>SCROLL</span>
-              <div className="w-px h-6" style={{ background: 'linear-gradient(to bottom, rgba(180,195,215,0.4), transparent)' }} />
-            </div>
-          </section>
-        )}
-
-        {/* ─── Add Watch Form ─── */}
-        {showAddForm && (
-          <section
-            className={`pt-24 pb-12 px-4 transition-all duration-500 ${
-              heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <div className="max-w-md mx-auto">
-              <div className="text-center mb-6">
-                <button
-                  onClick={() => setShowAddForm(false)}
-                  className="text-xs mb-4 inline-flex items-center gap-1 transition-colors silver-btn rounded-full px-4 py-2"
-                  style={{ color: '#6b6d7e' }}
-                >
+          {/* Add Form */}
+          {showAddForm && (
+            <section className="pt-24 pb-16 px-4">
+              <div className="max-w-md mx-auto">
+                <button onClick={() => handleTab('home')} className="text-xs mb-4 inline-flex items-center gap-1 transition-colors silver-btn rounded-full px-4 py-2" style={{ color: '#6b6d7e' }}>
                   ← Back
                 </button>
                 <h2 className="text-2xl font-black text-white mb-1">Add a Watch</h2>
-                <p className="text-sm text-gray-400">Create your digital watch card</p>
+                <p className="text-sm text-gray-400 mb-6">Precision Craft · Steel Edition</p>
+                <div className="metallic-card rounded-3xl p-6">
+                  <WatchForm />
+                </div>
               </div>
-              <div className="metallic-card rounded-3xl p-6">
-                <WatchForm />
-              </div>
-            </div>
-          </section>
-        )}
+            </section>
+          )}
 
-        {/* ─── Gallery Section ─── */}
+          {/* Gallery */}
+          {!showAddForm && (
+            <section className="max-w-7xl mx-auto px-4 pb-16">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-lg font-bold text-white mb-0.5">
+                    {watches.length > 0 ? 'Latest Cards' : 'Featured Watches'}
+                  </h2>
+                  <p className="text-xs" style={{ color: '#88889a', fontFamily: 'var(--font-mono)' }}>
+                    {watches.length > 0 ? `${watches.length} cards in the vault` : 'Be the first to add a watch'}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 text-xs" style={{ color: '#88889a', fontFamily: 'var(--font-mono)' }}>
+                  <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#94A3B8' }} />
+                  LIVE
+                </div>
+              </div>
+              {loading ? (
+                <div className="watch-grid">
+                  {Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)}
+                </div>
+              ) : watches.length === 0 ? (
+                <div className="metallic-card rounded-3xl p-12 text-center">
+                  <div className="text-6xl mb-4 animate-float">⌚</div>
+                  <h3 className="text-xl font-bold text-white mb-2">The Vault is Empty</h3>
+                  <p className="text-gray-400 mb-6 max-w-sm mx-auto">No watch cards yet. Be the first to immortalize your collection.</p>
+                  <button onClick={() => handleTab('add')} className="px-8 py-3 text-sm font-bold rounded-full transition-all"
+                    style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8)', color: '#08080c', fontWeight: 700 }}>
+                    ✦ Create First Card
+                  </button>
+                </div>
+              ) : (
+                <div className="watch-grid stagger-children">
+                  {watches.slice().reverse().map((watch) => <WatchCardMini key={watch.id} watch={watch} />)}
+                </div>
+              )}
+            </section>
+          )}
+        </div>
+
+        {/* Mobile Bottom Nav */}
+        <MobileBottomNav activeTab={activeTab} showAddForm={showAddForm} onTab={(tab) => tab === 'home' ? handleTab('home') : handleTab('add')} />
+
         {!showAddForm && (
-          <section className="max-w-7xl mx-auto px-4 pb-16">
-            {/* Section header */}
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-lg font-bold text-white mb-0.5">
-                  {watches.length > 0 ? 'Latest Cards' : 'Featured Watches'}
-                </h2>
-                <p className="text-xs" style={{ color: '#88889a' }}>
-                  {watches.length > 0 ? `${watches.length} cards in the vault` : 'Be the first to add a watch'}
-                </p>
-              </div>
-              <div className="flex items-center gap-2 text-xs" style={{ color: '#88889a' }}>
-                <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#94A3B8' }} />
-                Live
-              </div>
-            </div>
-
-            {/* Masonry grid */}
-            {loading ? (
-              <div className="masonry-grid">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <SkeletonCard key={i} />
-                ))}
-              </div>
-            ) : watches.length === 0 ? (
-              <div className="metallic-card rounded-3xl p-12 text-center">
-                <div className="text-6xl mb-4 animate-float">⌚</div>
-                <h3 className="text-xl font-bold text-white mb-2">The Vault is Empty</h3>
-                <p className="text-gray-400 mb-6 max-w-sm mx-auto">
-                  No watch cards yet. Be the first to immortalize your collection on-chain.
-                </p>
-                <button
-                  onClick={() => { setShowAddForm(true); setActiveTab('add'); }}
-                  className="px-8 py-3 text-sm font-bold rounded-full transition-all silver-btn"
-                  style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8, #CBD5E1)', color: '#08080c', fontWeight: 700 }}
-                >
-                  ✦ Create First Card
-                </button>
-              </div>
-            ) : (
-              <div className="masonry-grid stagger-children">
-                {watches.slice().reverse().map((watch) => (
-                  <WatchCardMini key={watch.id} watch={watch} />
-                ))}
-              </div>
-            )}
-          </section>
+          <footer className="text-center py-8 px-4 text-[11px]" style={{ color: '#3a3d4e', fontFamily: 'var(--font-mono)' }}>
+            CROWN — STEEL EDITION · Info-Architecture
+          </footer>
         )}
       </div>
-
-      {/* ─── Mobile Bottom Navigation Bar ─── */}
-      <nav
-        className="fixed bottom-0 left-0 right-0 z-50 glass lg:hidden"
-        style={{ borderTop: '1px solid rgba(160, 175, 200, 0.06)' }}
-      >
-        <div className="h-16 flex items-center justify-around px-2">
-          <button
-            onClick={() => { setShowAddForm(false); setActiveTab('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className={`flex flex-col items-center gap-0.5 px-4 py-2 rounded-xl transition-all ${
-              activeTab === 'home' && !showAddForm ? 'text-white' : 'text-gray-500'
-            }`}
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill={activeTab === 'home' && !showAddForm ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-              <polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
-            <span className="text-[9px] tracking-wider">Home</span>
-          </button>
-
-          <button
-            onClick={() => { setShowAddForm(true); setActiveTab('add'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className={`flex flex-col items-center gap-0.5 px-4 py-2 rounded-xl transition-all ${
-              showAddForm ? 'text-white' : 'text-gray-500'
-            }`}
-          >
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center -mt-4 transition-all"
-              style={{
-                background: showAddForm
-                  ? 'linear-gradient(135deg, #64748B, #94A3B8, #CBD5E1, #94A3B8)'
-                  : 'linear-gradient(145deg, #1e2030, #14161e)',
-                border: showAddForm ? 'none' : '1px solid rgba(160,175,200,0.12)',
-                boxShadow: showAddForm ? '0 4px 16px rgba(148,163,184,0.3)' : 'none',
-              }}
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={showAddForm ? '#08080c' : '#64748B'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"/>
-                <line x1="5" y1="12" x2="19" y2="12"/>
-              </svg>
-            </div>
-            <span className={`text-[9px] tracking-wider ${showAddForm ? 'text-white' : 'text-gray-500'}`}>Add</span>
-          </button>
-
-          <Link
-            href="/me/"
-            onClick={() => setActiveTab('collection')}
-            className={`flex flex-col items-center gap-0.5 px-4 py-2 rounded-xl transition-all ${
-              activeTab === 'collection' ? 'text-white' : 'text-gray-500'
-            }`}
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill={activeTab === 'collection' ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-            <span className="text-[9px] tracking-wider">Collection</span>
-          </Link>
-        </div>
-      </nav>
-
-      {/* ─── Footer ─── */}
-      {!showAddForm && (
-        <footer className="text-center py-8 px-4 text-[11px]" style={{ color: '#3a3d4e' }}>
-          <span>CROWN — Watch Collection Identity</span>
-        </footer>
-      )}
     </div>
   );
 }
