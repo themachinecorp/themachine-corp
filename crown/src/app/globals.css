@@ -7,9 +7,9 @@
   --metallic-silver: #c0c4cc;
   --metallic-dark: #12141a;
   --metallic-shine: rgba(220, 225, 235, 0.12);
-  --gold-accent: #F5C542;
-  --gold-bright: #FCD34D;
-  --gold-dim: #B8860B;
+  --silver-accent: #94A3B8;
+  --silver-bright: #CBD5E1;
+  --silver-dim: #64748B;
 }
 
 /* Brushed silver noise texture for liquid metal effect */
@@ -69,9 +69,9 @@ body {
   background: linear-gradient(180deg, #4a4d5e, #2d303d, #4a4d5e);
 }
 
-/* Selection — gold tint */
+/* Selection — silver tint */
 ::selection {
-  background: rgba(245, 197, 66, 0.25);
+  background: rgba(148, 163, 184, 0.25);
   color: #ffffff;
 }
 
@@ -114,9 +114,9 @@ body {
   50% { transform: translateY(-10px); }
 }
 
-@keyframes pulse-glow-gold {
-  0%, 100% { box-shadow: 0 0 20px rgba(245, 197, 66, 0.15), 0 0 40px rgba(245, 197, 66, 0.05); }
-  50% { box-shadow: 0 0 35px rgba(245, 197, 66, 0.3), 0 0 60px rgba(245, 197, 66, 0.1); }
+@keyframes pulse-glow-silver {
+  0%, 100% { box-shadow: 0 0 20px rgba(148, 163, 184, 0.15), 0 0 40px rgba(148, 163, 184, 0.05); }
+  50% { box-shadow: 0 0 35px rgba(148, 163, 184, 0.3), 0 0 60px rgba(148, 163, 184, 0.1); }
 }
 
 @keyframes crown-spin {
@@ -147,7 +147,7 @@ body {
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow-gold 2.5s ease-in-out infinite;
+  animation: pulse-glow-silver 2.5s ease-in-out infinite;
 }
 
 .animate-crown-spin {
@@ -160,7 +160,7 @@ body {
     90deg,
     transparent 0%,
     rgba(220, 230, 245, 0.06) 40%,
-    rgba(245, 197, 66, 0.08) 50%,
+    rgba(148, 163, 184, 0.08) 50%,
     rgba(220, 230, 245, 0.06) 60%,
     transparent 100%
   );
@@ -211,13 +211,13 @@ body {
     90deg,
     transparent 0%,
     rgba(200, 210, 225, 0.3) 30%,
-    rgba(245, 197, 66, 0.5) 50%,
+    rgba(148, 163, 184, 0.5) 50%,
     rgba(200, 210, 225, 0.3) 70%,
     transparent 100%
   );
 }
 
-/* Bottom silver edge with gold glow */
+/* Bottom silver edge with silver glow */
 .metallic-card::after {
   content: '';
   position: absolute;
@@ -229,20 +229,20 @@ body {
     90deg,
     transparent 0%,
     rgba(200, 210, 225, 0.15) 40%,
-    rgba(245, 197, 66, 0.4) 50%,
+    rgba(148, 163, 184, 0.4) 50%,
     rgba(200, 210, 225, 0.15) 60%,
     transparent 100%
   );
 }
 
-/* Hover: lift + gold border glow */
+/* Hover: lift + silver border glow */
 .metallic-card:hover {
-  border-color: rgba(245, 197, 66, 0.25);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 197, 66, 0.08);
+  border-color: rgba(148, 163, 184, 0.25);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(148, 163, 184, 0.08);
   transform: translateY(-2px);
 }
 
-/* ─── Gold glow border ─── */
+/* ─── Silver glow border ─── */
 .glow-border {
   position: relative;
 }
@@ -253,7 +253,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(245, 197, 66, 0.5), transparent 40%, rgba(245, 197, 66, 0.25));
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.5), transparent 40%, rgba(148, 163, 184, 0.25));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -324,7 +324,7 @@ body {
   transform: translateX(-50%) scaleX(0);
   width: 20px;
   height: 2px;
-  background: linear-gradient(90deg, #F5C542, #FCD34D, #F5C542);
+  background: linear-gradient(90deg, #94A3B8, #CBD5E1, #94A3B8);
   border-radius: 1px;
   transition: transform 0.2s ease;
 }
@@ -334,9 +334,9 @@ body {
   transform: translateX(-50%) scaleX(1);
 }
 
-/* ─── Avatar ring — silver + gold ─── */
+/* ─── Avatar ring — silver gradient ─── */
 .avatar-ring {
-  background: linear-gradient(135deg, #c8ccd6, #F5C542, #c8ccd6, #FCD34D);
+  background: linear-gradient(135deg, #c8ccd6, #94A3B8, #c8ccd6, #CBD5E1);
   background-size: 300% 300%;
   animation: silver-shimmer 4s ease infinite;
   padding: 3px;
@@ -353,31 +353,31 @@ body {
 
 .silver-btn:hover {
   background: linear-gradient(145deg, #252840, #1a1d2a, #252840);
-  border-color: rgba(245, 197, 66, 0.3);
+  border-color: rgba(148, 163, 184, 0.3);
   color: #ffffff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(245, 197, 66, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(148, 163, 184, 0.08);
 }
 
 .silver-btn:active {
   transform: scale(0.98);
 }
 
-/* ─── Gold button ─── */
-.gold-btn {
-  background: linear-gradient(135deg, #F5C542, #F59E0B, #FCD34D);
+/* ─── Silver metallic button ─── */
+.silver-metallic-btn {
+  background: linear-gradient(135deg, #94A3B8, #64748B, #CBD5E1);
   color: #08080c;
   font-weight: 700;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 24px rgba(245, 197, 66, 0.25);
+  box-shadow: 0 4px 24px rgba(148, 163, 184, 0.25);
 }
 
-.gold-btn:hover {
-  background: linear-gradient(135deg, #FCD34D, #F5C542, #FCD34D);
-  box-shadow: 0 6px 32px rgba(245, 197, 66, 0.4), 0 0 40px rgba(245, 197, 66, 0.15);
+.silver-metallic-btn:hover {
+  background: linear-gradient(135deg, #CBD5E1, #94A3B8, #CBD5E1);
+  box-shadow: 0 6px 32px rgba(148, 163, 184, 0.4), 0 0 40px rgba(148, 163, 184, 0.15);
   transform: translateY(-1px);
 }
 
-.gold-btn:active {
+.silver-metallic-btn:active {
   transform: scale(0.97) translateY(0);
 }
 

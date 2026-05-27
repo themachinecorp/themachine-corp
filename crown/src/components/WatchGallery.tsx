@@ -37,9 +37,9 @@ export default function WatchGallery() {
           href="/"
           className="inline-block px-6 py-2.5 text-sm font-semibold rounded-full transition-all"
           style={{
-            background: 'linear-gradient(135deg, #F5C542, #F59E0B)',
+            background: 'linear-gradient(135deg, #94A3B8, #64748B)',
             color: '#0a0a0a',
-            boxShadow: '0 4px 20px #F59E0B30',
+            boxShadow: '0 4px 20px #64748B30',
           }}
         >
           Add Your First Watch
@@ -69,7 +69,7 @@ export default function WatchGallery() {
       >
         <div className="flex flex-col">
           <span className="text-[10px] tracking-widest text-gray-500 mb-1">COLLECTION POWER</span>
-          <span className="text-3xl font-black" style={{ color: '#F5C542' }}>{power}</span>
+          <span className="text-3xl font-black" style={{ color: '#94A3B8' }}>{power}</span>
         </div>
         <div className="w-px h-10" style={{ background: '#1e1e2e' }} />
         <div className="flex flex-col">

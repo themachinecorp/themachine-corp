@@ -58,10 +58,10 @@ export const TIER_CONFIG = {
   },
   legendary: {
     bg: '#0A0A0F',
-    border: '#F59E0B',
-    text: '#FCD34D',
-    accent: '#F5C542',
-    glow: '#F59E0B',
+    border: '#64748B',
+    text: '#CBD5E1',
+    accent: '#94A3B8',
+    glow: '#94A3B8',
   },
 };
 

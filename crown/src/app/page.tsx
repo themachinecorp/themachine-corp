@@ -61,7 +61,7 @@ function WatchCardMini({ watch }: { watch: Watch }) {
         <div
           className="absolute top-0 left-0 right-0 h-px"
           style={{
-            background: `linear-gradient(to right, rgba(180,195,215,0.3), ${config.border}, ${config.accent}, ${config.border}, rgba(180,195,215,0.3))`,
+            background: `linear-gradient(to right, rgba(148,163,184, 0.3), ${config.border}, ${config.accent}, ${config.border}, rgba(148,163,184, 0.3))`,
           }}
         />
       </div>
@@ -114,14 +114,14 @@ export default function Home() {
           <Link href="/" className="flex items-center gap-2 group">
             <span
               className="text-2xl transition-transform duration-300 group-hover:scale-110"
-              style={{ filter: 'drop-shadow(0 0 8px rgba(245,197,66,0.4))' }}
+              style={{ filter: 'drop-shadow(0 0 8px rgba(148,163,184,0.4))' }}
             >
               👑
             </span>
             <span
               className="text-sm font-black tracking-[0.25em] hidden sm:block"
               style={{
-                background: 'linear-gradient(135deg, #F5C542, #FCD34D, #F5C542)',
+                background: 'linear-gradient(135deg, #94A3B8, #CBD5E1, #94A3B8)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -209,7 +209,7 @@ export default function Home() {
               }} />
               {/* Gold accent glow */}
               <div className="absolute top-20 left-[60%] w-[300px] h-[200px] rounded-full opacity-10" style={{
-                background: 'radial-gradient(circle, rgba(245, 197, 66, 0.15) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(148, 163, 184, 0.15) 0%, transparent 70%)',
                 filter: 'blur(30px)',
               }} />
             </div>
@@ -219,14 +219,14 @@ export default function Home() {
 
             {/* Silver top edge glow */}
             <div className="absolute top-0 left-0 right-0 h-px pointer-events-none" style={{
-              background: 'linear-gradient(90deg, transparent 0%, rgba(180,195,215,0.3) 30%, rgba(245,197,66,0.6) 50%, rgba(180,195,215,0.3) 70%, transparent 100%)',
+              background: 'linear-gradient(90deg, transparent 0%, rgba(148,163,184, 0.3) 30%, rgba(148,163,184,0.6) 50%, rgba(148,163,184, 0.3) 70%, transparent 100%)',
             }} />
 
             <div className="relative z-10 text-center max-w-2xl mx-auto stagger-children">
               {/* Crown — animated spin with glow */}
               <div
                 className="text-7xl mb-6 animate-crown-spin"
-                style={{ filter: 'drop-shadow(0 0 20px rgba(245,197,66,0.3))' }}
+                style={{ filter: 'drop-shadow(0 0 20px rgba(148,163,184,0.3))' }}
               >
                 👑
               </div>
@@ -235,7 +235,7 @@ export default function Home() {
               <h1
                 className="text-4xl sm:text-5xl font-black mb-4 leading-tight"
                 style={{
-                  background: 'linear-gradient(135deg, #c8ccd6 0%, #ffffff 30%, #F5C542 55%, #FCD34D 75%, #c8ccd6 100%)',
+                  background: 'linear-gradient(135deg, #c8ccd6 0%, #ffffff 30%, #94A3B8 55%, #CBD5E1 75%, #c8ccd6 100%)',
                   backgroundSize: '200% 200%',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
@@ -272,11 +272,11 @@ export default function Home() {
               {watches.length > 0 && (
                 <div className="flex gap-4 justify-center mt-8 animate-fade-in">
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                    <span style={{ color: '#F5C542' }}>⌚</span>
+                    <span style={{ color: '#94A3B8' }}>⌚</span>
                     <span className="text-sm text-gray-300">{watches.length} cards</span>
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                    <span style={{ color: '#F5C542' }}>🏆</span>
+                    <span style={{ color: '#94A3B8' }}>🏆</span>
                     <span className="text-sm text-gray-300">{[...new Set(watches.map(w => w.brandId))].length} brands</span>
                   </div>
                 </div>
@@ -330,7 +330,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex items-center gap-2 text-xs" style={{ color: '#88889a' }}>
-                <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#F5C542' }} />
+                <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#94A3B8' }} />
                 Live
               </div>
             </div>
@@ -396,10 +396,10 @@ export default function Home() {
               className="w-10 h-10 rounded-full flex items-center justify-center -mt-4 transition-all"
               style={{
                 background: showAddForm
-                  ? 'linear-gradient(135deg, #F5C542, #F59E0B)'
+                  ? 'linear-gradient(135deg, #94A3B8, #94A3B8)'
                   : 'linear-gradient(145deg, #1e2030, #14161e)',
                 border: showAddForm ? 'none' : '1px solid rgba(160,175,200,0.12)',
-                boxShadow: showAddForm ? '0 4px 16px rgba(245, 197, 66, 0.4)' : 'none',
+                boxShadow: showAddForm ? '0 4px 16px rgba(148, 163, 184, 0.4)' : 'none',
               }}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={showAddForm ? '#08080c' : '#888'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

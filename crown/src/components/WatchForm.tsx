@@ -108,7 +108,7 @@ export default function WatchForm() {
         </select>
         {selectedBrand && (
           <p className="mt-1.5 text-xs text-gray-500">
-            Tier: <span className="font-semibold uppercase" style={{ color: selectedBrand.tier === 'legendary' ? '#F59E0B' : selectedBrand.tier === 'epic' ? '#A855F7' : selectedBrand.tier === 'rare' ? '#3B82F6' : '#6B7280' }}>{selectedBrand.tier}</span>
+            Tier: <span className="font-semibold uppercase" style={{ color: selectedBrand.tier === 'legendary' ? '#94A3B8' : selectedBrand.tier === 'epic' ? '#A855F7' : selectedBrand.tier === 'rare' ? '#3B82F6' : '#6B7280' }}>{selectedBrand.tier}</span>
           </p>
         )}
       </div>
@@ -165,7 +165,7 @@ export default function WatchForm() {
         </label>
         <div
           className={`relative rounded-xl overflow-hidden cursor-pointer transition-all ${
-            dragOver ? 'border-2 border-dashed border-yellow-400 bg-yellow-400/5' : ''
+            dragOver ? 'border-2 border-dashed border-gray-400 bg-gray-400/5' : ''
           }`}
           style={{
             background: imagePreview ? 'transparent' : '#00000020',
@@ -227,9 +227,9 @@ export default function WatchForm() {
         disabled={isSubmitting || !model || !ownerName}
         className="w-full py-3.5 font-bold rounded-xl hover:opacity-90 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
         style={{
-          background: 'linear-gradient(135deg, #F5C542, #F59E0B)',
+          background: 'linear-gradient(135deg, #94A3B8, #64748B)',
           color: '#0a0a0a',
-          boxShadow: '0 4px 20px #F59E0B30',
+          boxShadow: '0 4px 20px #94A3B830',
         }}
       >
         {isSubmitting ? 'Creating Card...' : '✦ Generate My Card →'}
