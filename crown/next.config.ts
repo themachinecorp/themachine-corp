@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   cleanDistDir: true,
   output: 'export',
   basePath: '/crown',
+  assetPrefix: '/',
   trailingSlash: true,
   turbopack: {
     root: __dirname,
