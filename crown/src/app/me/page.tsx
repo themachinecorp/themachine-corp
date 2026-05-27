@@ -63,7 +63,7 @@ function ProfileCard({ power, count, brands }: { power: number; count: number; b
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(245, 197, 66, 0.07) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse at 50% 0%, rgba(148,163,184, 0.07) 0%, transparent 60%)',
         }}
       />
 
@@ -88,7 +88,7 @@ function ProfileCard({ power, count, brands }: { power: number; count: number; b
             {count > 0 && (
               <div className="flex items-center gap-1.5 mt-1.5">
                 {power >= 50 ? (
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(245,197,66,0.15)', color: '#F5C542', border: '1px solid rgba(245,197,66,0.3)' }}>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(148,163,184,0.15)', color: '#94A3B8', border: '1px solid rgba(148,163,184,0.3)' }}>
                     ★ Legendary
                   </span>
                 ) : power >= 20 ? (
@@ -106,9 +106,9 @@ function ProfileCard({ power, count, brands }: { power: number; count: number; b
         </div>
 
         {/* Big power number */}
-        <div className="text-center mb-5 py-4 rounded-2xl" style={{ background: 'rgba(245,197,66,0.05)', border: '1px solid rgba(245,197,66,0.1)' }}>
+        <div className="text-center mb-5 py-4 rounded-2xl" style={{ background: 'rgba(148,163,184,0.05)', border: '1px solid rgba(148,163,184,0.1)' }}>
           <div className="text-[9px] tracking-widest text-gray-500 mb-1.5">COLLECTION POWER</div>
-          <div className="text-5xl font-black" style={{ color: '#F5C542' }}>{power}</div>
+          <div className="text-5xl font-black" style={{ color: '#94A3B8' }}>{power}</div>
         </div>
 
         {/* Stats */}
@@ -117,7 +117,7 @@ function ProfileCard({ power, count, brands }: { power: number; count: number; b
           <div className="w-px h-10" style={{ background: '#1e1e2e' }} />
           <StatCard label="Brands" value={brands} accent="#ffffff" delay={300} />
           <div className="w-px h-10" style={{ background: '#1e1e2e' }} />
-          <StatCard label="Score" value={power} accent="#F5C542" delay={400} />
+          <StatCard label="Score" value={power} accent="#94A3B8" delay={400} />
         </div>
       </div>
     </div>
@@ -298,7 +298,7 @@ export default function MePage() {
             <span
               className="text-sm font-black tracking-[0.25em] hidden sm:block"
               style={{
-                background: 'linear-gradient(135deg, #F5C542, #F59E0B)',
+                background: 'linear-gradient(135deg, #94A3B8, #64748B)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -419,7 +419,7 @@ export default function MePage() {
                 <div className="flex items-center gap-2 text-xs text-gray-500">
                   <div
                     className="w-2 h-2 rounded-full"
-                    style={{ background: '#F5C542' }}
+                    style={{ background: '#94A3B8' }}
                   />
                   On-chain
                 </div>
@@ -448,7 +448,7 @@ export default function MePage() {
                   href="/"
                   className="inline-block px-8 py-3 text-sm font-bold rounded-full transition-all"
                   style={{
-                    background: 'linear-gradient(135deg, #F5C542, #F59E0B)',
+                    background: 'linear-gradient(135deg, #94A3B8, #64748B)',
                     color: '#0a0a0a',
                   }}
                 >
@@ -496,9 +496,9 @@ export default function MePage() {
               className="w-10 h-10 rounded-full flex items-center justify-center -mt-4 transition-all"
               style={{
                 background: activeTab === 'add'
-                  ? 'linear-gradient(135deg, #F5C542, #F59E0B)'
+                  ? 'linear-gradient(135deg, #94A3B8, #64748B)'
                   : 'linear-gradient(135deg, #333, #444)',
-                boxShadow: activeTab === 'add' ? '0 4px 16px rgba(245, 197, 66, 0.4)' : 'none',
+                boxShadow: activeTab === 'add' ? '0 4px 16px rgba(148,163,184, 0.4)' : 'none',
               }}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={activeTab === 'add' ? '#0a0a0a' : '#888'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

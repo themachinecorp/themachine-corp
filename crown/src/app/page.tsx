@@ -14,11 +14,7 @@ function WatchCardMini({ watch }: { watch: Watch }) {
   return (
     <Link href={`/card/${watch.id}`} className="block">
       <div
-        className="relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:z-10"
-        style={{
-          background: config.bg,
-          boxShadow: '0 4px 24px rgba(0,0,0,0.4)',
-        }}
+        className="metallic-card relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:z-10"
       >
         {/* Image */}
         <div className="aspect-[4/5] overflow-hidden" style={{ background: '#00000015' }}>
@@ -40,7 +36,7 @@ function WatchCardMini({ watch }: { watch: Watch }) {
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
           style={{
-            boxShadow: `inset 0 0 40px ${config.border}20`,
+            boxShadow: `inset 0 0 40px ${config.border}18`,
           }}
         />
 
@@ -61,10 +57,12 @@ function WatchCardMini({ watch }: { watch: Watch }) {
           </div>
         </div>
 
-        {/* Top rarity stripe */}
+        {/* Top rarity stripe — silver-to-gold edge */}
         <div
-          className="absolute top-0 left-0 right-0 h-0.5"
-          style={{ background: `linear-gradient(to right, ${config.border}, ${config.accent})` }}
+          className="absolute top-0 left-0 right-0 h-px"
+          style={{
+            background: `linear-gradient(to right, rgba(180,195,215,0.3), ${config.border}, ${config.accent}, ${config.border}, rgba(180,195,215,0.3))`,
+          }}
         />
       </div>
     </Link>
@@ -73,7 +71,7 @@ function WatchCardMini({ watch }: { watch: Watch }) {
 
 function SkeletonCard() {
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ background: '#111118' }}>
+    <div className="metallic-card rounded-2xl overflow-hidden">
       <div className="aspect-[4/5] skeleton" />
       <div className="p-3">
         <div className="h-3 w-20 skeleton mb-2" />
@@ -97,7 +95,6 @@ export default function Home() {
     };
     load();
     window.addEventListener('storage', load);
-    // entrance animation
     const t = setTimeout(() => setHeroVisible(true), 50);
     return () => {
       window.removeEventListener('storage', load);
@@ -105,23 +102,26 @@ export default function Home() {
     };
   }, []);
 
-  const displayWatches = watches.length > 0 ? watches : [];
-
   return (
-    <div className="min-h-screen" style={{ background: '#0a0a0a' }}>
+    <div className="min-h-screen" style={{ background: 'transparent' }}>
       {/* ─── Top Navigation Bar ─── */}
       <header
         className="fixed top-0 left-0 right-0 z-50 glass"
-        style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+        style={{ borderBottom: '1px solid rgba(160, 175, 200, 0.06)' }}
       >
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-2xl transition-transform duration-300 group-hover:scale-110">👑</span>
+            <span
+              className="text-2xl transition-transform duration-300 group-hover:scale-110"
+              style={{ filter: 'drop-shadow(0 0 8px rgba(245,197,66,0.4))' }}
+            >
+              👑
+            </span>
             <span
               className="text-sm font-black tracking-[0.25em] hidden sm:block"
               style={{
-                background: 'linear-gradient(135deg, #F5C542, #F59E0B)',
+                background: 'linear-gradient(135deg, #F5C542, #FCD34D, #F5C542)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -184,41 +184,67 @@ export default function Home() {
         {/* Hero Section */}
         {!showAddForm && (
           <section
-            className={`relative pt-14 min-h-[70vh] flex flex-col items-center justify-center px-4 overflow-hidden transition-all duration-700 ${
+            className={`relative pt-14 min-h-[75vh] flex flex-col items-center justify-center px-4 overflow-hidden transition-all duration-700 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            {/* Radial background */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: 'radial-gradient(ellipse at 50% 30%, rgba(245, 197, 66, 0.08) 0%, transparent 60%)',
-              }}
-            />
-            {/* Noise texture overlay */}
-            <div
-              className="absolute inset-0 pointer-events-none opacity-[0.03]"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-              }}
-            />
+            {/* Deep space base */}
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(180deg, #0c0d14 0%, #090a10 50%, #0b0c12 100%)' }} />
+
+            {/* Brushed steel diagonal bands */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `repeating-linear-gradient(
+                  115deg,
+                  transparent 0px,
+                  transparent 3px,
+                  rgba(160, 170, 195, 0.02) 3px,
+                  rgba(160, 170, 195, 0.02) 5px
+                )`,
+              }} />
+              {/* Silver metallic highlight */}
+              <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-20" style={{
+                background: 'radial-gradient(ellipse, rgba(180, 195, 220, 0.12) 0%, transparent 70%)',
+                filter: 'blur(40px)',
+              }} />
+              {/* Gold accent glow */}
+              <div className="absolute top-20 left-[60%] w-[300px] h-[200px] rounded-full opacity-10" style={{
+                background: 'radial-gradient(circle, rgba(245, 197, 66, 0.15) 0%, transparent 70%)',
+                filter: 'blur(30px)',
+              }} />
+            </div>
+
+            {/* Noise texture */}
+            <div className="absolute inset-0 pointer-events-none noise-texture" />
+
+            {/* Silver top edge glow */}
+            <div className="absolute top-0 left-0 right-0 h-px pointer-events-none" style={{
+              background: 'linear-gradient(90deg, transparent 0%, rgba(180,195,215,0.3) 30%, rgba(245,197,66,0.6) 50%, rgba(180,195,215,0.3) 70%, transparent 100%)',
+            }} />
 
             <div className="relative z-10 text-center max-w-2xl mx-auto stagger-children">
-              {/* Crown emoji big */}
-              <div className="text-6xl mb-5 animate-float">👑</div>
+              {/* Crown — animated spin with glow */}
+              <div
+                className="text-7xl mb-6 animate-crown-spin"
+                style={{ filter: 'drop-shadow(0 0 20px rgba(245,197,66,0.3))' }}
+              >
+                👑
+              </div>
 
-              {/* Headline */}
+              {/* Headline — silver + gold shimmer */}
               <h1
                 className="text-4xl sm:text-5xl font-black mb-4 leading-tight"
                 style={{
-                  background: 'linear-gradient(135deg, #F5C542 0%, #FCD34D 40%, #F5C542 70%, #F59E0B 100%)',
+                  background: 'linear-gradient(135deg, #c8ccd6 0%, #ffffff 30%, #F5C542 55%, #FCD34D 75%, #c8ccd6 100%)',
+                  backgroundSize: '200% 200%',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
+                  animation: 'silver-shimmer 4s ease infinite',
                 }}
               >
                 Your Watch.
                 <br />
-                <span style={{ color: '#ffffff' }}>Your Legacy.</span>
+                <span style={{ color: '#ffffff', WebkitTextFillColor: 'white' }}>Your Legacy.</span>
               </h1>
 
               {/* Sub */}
@@ -230,18 +256,13 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
                 <button
                   onClick={() => { setShowAddForm(true); setActiveTab('add'); }}
-                  className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow"
-                  style={{
-                    background: 'linear-gradient(135deg, #F5C542, #F59E0B)',
-                    color: '#0a0a0a',
-                    boxShadow: '0 4px 24px rgba(245, 197, 66, 0.25)',
-                  }}
+                  className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow gold-btn"
                 >
                   ✦ Add Your Watch
                 </button>
                 <Link
                   href="/me/"
-                  className="w-full sm:w-auto px-8 py-3.5 text-sm font-semibold rounded-full transition-all glass hover:bg-white/10 border border-white/10"
+                  className="w-full sm:w-auto px-8 py-3.5 text-sm font-semibold rounded-full transition-all glass hover:bg-white/10 silver-btn"
                 >
                   👑 View Collection
                 </Link>
@@ -251,11 +272,11 @@ export default function Home() {
               {watches.length > 0 && (
                 <div className="flex gap-4 justify-center mt-8 animate-fade-in">
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                    <span className="text-yellow-400 text-sm">⌚</span>
+                    <span style={{ color: '#F5C542' }}>⌚</span>
                     <span className="text-sm text-gray-300">{watches.length} cards</span>
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
-                    <span className="text-yellow-400 text-sm">🏆</span>
+                    <span style={{ color: '#F5C542' }}>🏆</span>
                     <span className="text-sm text-gray-300">{[...new Set(watches.map(w => w.brandId))].length} brands</span>
                   </div>
                 </div>
@@ -264,13 +285,13 @@ export default function Home() {
 
             {/* Scroll indicator */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-              <span className="text-[10px] tracking-widest text-gray-600">SCROLL</span>
-              <div className="w-px h-6 bg-gradient-to-b from-gray-600 to-transparent animate-pulse" />
+              <span className="text-[10px] tracking-widest" style={{ color: '#4a4d5e' }}>SCROLL</span>
+              <div className="w-px h-6" style={{ background: 'linear-gradient(to bottom, rgba(180,195,215,0.4), transparent)' }} />
             </div>
           </section>
         )}
 
-        {/* ─── Add Watch Form (modal-like) ─── */}
+        {/* ─── Add Watch Form ─── */}
         {showAddForm && (
           <section
             className={`pt-24 pb-12 px-4 transition-all duration-500 ${
@@ -278,18 +299,19 @@ export default function Home() {
             }`}
           >
             <div className="max-w-md mx-auto">
-              {/* Header */}
               <div className="text-center mb-6">
                 <button
                   onClick={() => setShowAddForm(false)}
-                  className="text-xs text-gray-500 hover:text-white mb-4 inline-flex items-center gap-1 transition-colors"
+                  className="text-xs text-gray-500 hover:text-white mb-4 inline-flex items-center gap-1 transition-colors silver-btn rounded-full px-4 py-2"
                 >
-                  <span>←</span> Back
+                  ← Back
                 </button>
                 <h2 className="text-2xl font-black text-white mb-1">Add a Watch</h2>
                 <p className="text-sm text-gray-400">Create your digital watch card</p>
               </div>
-              <WatchForm />
+              <div className="metallic-card rounded-3xl p-6">
+                <WatchForm />
+              </div>
             </div>
           </section>
         )}
@@ -303,12 +325,12 @@ export default function Home() {
                 <h2 className="text-lg font-bold text-white mb-0.5">
                   {watches.length > 0 ? 'Latest Cards' : 'Featured Watches'}
                 </h2>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs" style={{ color: '#88889a' }}>
                   {watches.length > 0 ? `${watches.length} cards in the vault` : 'Be the first to add a watch'}
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-xs text-gray-500">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <div className="flex items-center gap-2 text-xs" style={{ color: '#88889a' }}>
+                <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#F5C542' }} />
                 Live
               </div>
             </div>
@@ -321,11 +343,7 @@ export default function Home() {
                 ))}
               </div>
             ) : watches.length === 0 ? (
-              /* Empty state */
-              <div
-                className="rounded-3xl p-12 text-center"
-                style={{ background: '#111118', border: '1px solid #1e1e2e' }}
-              >
+              <div className="metallic-card rounded-3xl p-12 text-center">
                 <div className="text-6xl mb-4 animate-float">⌚</div>
                 <h3 className="text-xl font-bold text-white mb-2">The Vault is Empty</h3>
                 <p className="text-gray-400 mb-6 max-w-sm mx-auto">
@@ -333,11 +351,7 @@ export default function Home() {
                 </p>
                 <button
                   onClick={() => { setShowAddForm(true); setActiveTab('add'); }}
-                  className="px-8 py-3 text-sm font-bold rounded-full transition-all"
-                  style={{
-                    background: 'linear-gradient(135deg, #F5C542, #F59E0B)',
-                    color: '#0a0a0a',
-                  }}
+                  className="px-8 py-3 text-sm font-bold rounded-full gold-btn"
                 >
                   ✦ Create First Card
                 </button>
@@ -356,7 +370,7 @@ export default function Home() {
       {/* ─── Mobile Bottom Navigation Bar ─── */}
       <nav
         className="fixed bottom-0 left-0 right-0 z-50 glass lg:hidden"
-        style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        style={{ borderTop: '1px solid rgba(160, 175, 200, 0.06)' }}
       >
         <div className="h-16 flex items-center justify-around px-2">
           <button
@@ -383,11 +397,12 @@ export default function Home() {
               style={{
                 background: showAddForm
                   ? 'linear-gradient(135deg, #F5C542, #F59E0B)'
-                  : 'linear-gradient(135deg, #333, #444)',
+                  : 'linear-gradient(145deg, #1e2030, #14161e)',
+                border: showAddForm ? 'none' : '1px solid rgba(160,175,200,0.12)',
                 boxShadow: showAddForm ? '0 4px 16px rgba(245, 197, 66, 0.4)' : 'none',
               }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={showAddForm ? '#0a0a0a' : '#888'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={showAddForm ? '#08080c' : '#888'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"/>
                 <line x1="5" y1="12" x2="19" y2="12"/>
               </svg>
@@ -412,7 +427,7 @@ export default function Home() {
 
       {/* ─── Footer ─── */}
       {!showAddForm && (
-        <footer className="text-center py-8 px-4 text-[11px] text-gray-600">
+        <footer className="text-center py-8 px-4 text-[11px]" style={{ color: '#3a3d4e' }}>
           <span>CROWN — Watch Collection Identity</span>
         </footer>
       )}
