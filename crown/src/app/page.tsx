@@ -1,21 +1,28 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import WatchForm from '@/components/WatchForm';
 import { getWatches } from '@/lib/storage';
 import { Watch } from '@/lib/types';
 import { BRANDS, TIER_CONFIG } from '@/lib/brands';
 
+/* ─── Tier-agnostic silver palette (overrides tier accents for all cards) ─── */
+const SILVER = {
+  stripe: 'rgba(180,195,215,0.5)',
+  stripeBright: 'rgba(220,230,245,0.8)',
+  glow: 'rgba(148,163,184,0.12)',
+  accent: '#94A3B8',
+  text: '#94A3B8',
+  bg: '#111118',
+};
+
 function WatchCardMini({ watch }: { watch: Watch }) {
   const brand = BRANDS.find((b) => b.id === watch.brandId) || BRANDS[0];
-  const config = TIER_CONFIG[brand.tier];
 
   return (
     <Link href={`/card/${watch.id}`} className="block">
-      <div
-        className="metallic-card relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:z-10"
-      >
+      <div className="metallic-card relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:z-10">
         {/* Image */}
         <div className="aspect-[4/5] overflow-hidden" style={{ background: '#00000015' }}>
           {watch.imageUrl ? (
@@ -35,33 +42,28 @@ function WatchCardMini({ watch }: { watch: Watch }) {
         {/* Hover glow overlay */}
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-          style={{
-            boxShadow: `inset 0 0 40px ${config.border}18`,
-          }}
+          style={{ boxShadow: `inset 0 0 40px ${SILVER.glow}` }}
         />
 
         {/* Bottom info */}
         <div
-          className="absolute inset-x-0 bottom-0 p-3 transition-opacity duration-300"
-          style={{ background: `linear-gradient(transparent, ${config.bg}ee)` }}
+          className="absolute inset-x-0 bottom-0 p-3"
+          style={{ background: `linear-gradient(transparent, ${SILVER.bg}ee)` }}
         >
-          <div className="text-[9px] tracking-widest mb-0.5" style={{ color: config.accent }}>
+          <div className="text-[9px] tracking-widest mb-0.5" style={{ color: SILVER.accent }}>
             {brand.name.toUpperCase()}
           </div>
           <div className="text-sm font-bold text-white truncate">{watch.model}</div>
-          <div
-            className="text-[10px] font-mono mt-1 opacity-60"
-            style={{ color: config.text }}
-          >
+          <div className="text-[10px] font-mono mt-1 opacity-60" style={{ color: SILVER.text }}>
             #{watch.cardNumber.toString().padStart(4, '0')}
           </div>
         </div>
 
-        {/* Top rarity stripe — silver-to-gold edge */}
+        {/* Top rarity stripe — pure silver edge */}
         <div
           className="absolute top-0 left-0 right-0 h-px"
           style={{
-            background: `linear-gradient(to right, rgba(148,163,184, 0.3), ${config.border}, ${config.accent}, ${config.border}, rgba(148,163,184, 0.3))`,
+            background: `linear-gradient(to right, transparent, ${SILVER.stripe}, ${SILVER.stripeBright}, ${SILVER.stripe}, transparent)`,
           }}
         />
       </div>
@@ -114,7 +116,7 @@ export default function Home() {
           <Link href="/" className="flex items-center gap-2 group">
             <span
               className="text-2xl transition-transform duration-300 group-hover:scale-110"
-              style={{ filter: 'drop-shadow(0 0 8px rgba(148,163,184,0.4))' }}
+              style={{ filter: 'drop-shadow(0 0 8px rgba(180,195,215,0.4))' }}
             >
               👑
             </span>
@@ -198,19 +200,19 @@ export default function Home() {
                   115deg,
                   transparent 0px,
                   transparent 3px,
-                  rgba(160, 170, 195, 0.02) 3px,
-                  rgba(160, 170, 195, 0.02) 5px
+                  rgba(160, 170, 195, 0.025) 3px,
+                  rgba(160, 170, 195, 0.025) 5px
                 )`,
               }} />
-              {/* Silver metallic highlight */}
-              <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-20" style={{
-                background: 'radial-gradient(ellipse, rgba(180, 195, 220, 0.12) 0%, transparent 70%)',
+              {/* Silver metallic highlight — no gold */}
+              <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-25" style={{
+                background: 'radial-gradient(ellipse, rgba(180, 195, 220, 0.2) 0%, transparent 70%)',
                 filter: 'blur(40px)',
               }} />
-              {/* Gold accent glow */}
-              <div className="absolute top-20 left-[60%] w-[300px] h-[200px] rounded-full opacity-10" style={{
+              {/* Secondary silver sheen */}
+              <div className="absolute bottom-20 right-[20%] w-[400px] h-[300px] rounded-full opacity-10" style={{
                 background: 'radial-gradient(circle, rgba(148, 163, 184, 0.15) 0%, transparent 70%)',
-                filter: 'blur(30px)',
+                filter: 'blur(40px)',
               }} />
             </div>
 
@@ -219,23 +221,23 @@ export default function Home() {
 
             {/* Silver top edge glow */}
             <div className="absolute top-0 left-0 right-0 h-px pointer-events-none" style={{
-              background: 'linear-gradient(90deg, transparent 0%, rgba(148,163,184, 0.3) 30%, rgba(148,163,184,0.6) 50%, rgba(148,163,184, 0.3) 70%, transparent 100%)',
+              background: 'linear-gradient(90deg, transparent 0%, rgba(180,195,215,0.3) 30%, rgba(220,230,245,0.7) 50%, rgba(180,195,215,0.3) 70%, transparent 100%)',
             }} />
 
             <div className="relative z-10 text-center max-w-2xl mx-auto stagger-children">
-              {/* Crown — animated spin with glow */}
+              {/* Crown — silver glow, gentle spin */}
               <div
                 className="text-7xl mb-6 animate-crown-spin"
-                style={{ filter: 'drop-shadow(0 0 20px rgba(148,163,184,0.3))' }}
+                style={{ filter: 'drop-shadow(0 0 20px rgba(180,195,215,0.35))' }}
               >
                 👑
               </div>
 
-              {/* Headline — silver + gold shimmer */}
+              {/* Headline — pure silver metallic shimmer */}
               <h1
                 className="text-4xl sm:text-5xl font-black mb-4 leading-tight"
                 style={{
-                  background: 'linear-gradient(135deg, #c8ccd6 0%, #ffffff 30%, #94A3B8 55%, #CBD5E1 75%, #c8ccd6 100%)',
+                  background: 'linear-gradient(135deg, #64748B 0%, #c8ccd6 35%, #ffffff 55%, #94A3B8 75%, #64748B 100%)',
                   backgroundSize: '200% 200%',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
@@ -252,11 +254,12 @@ export default function Home() {
                 Turn your timepiece collection into shareable digital identity cards. Every watch tells a story.
               </p>
 
-              {/* CTA buttons */}
+              {/* CTA buttons — silver metallic */}
               <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
                 <button
                   onClick={() => { setShowAddForm(true); setActiveTab('add'); }}
-                  className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow gold-btn"
+                  className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow silver-btn"
+                  style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8, #CBD5E1, #94A3B8)', color: '#08080c', fontWeight: 700 }}
                 >
                   ✦ Add Your Watch
                 </button>
@@ -268,7 +271,7 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Stats pills */}
+              {/* Stats pills — silver glass */}
               {watches.length > 0 && (
                 <div className="flex gap-4 justify-center mt-8 animate-fade-in">
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full glass">
@@ -283,7 +286,7 @@ export default function Home() {
               )}
             </div>
 
-            {/* Scroll indicator */}
+            {/* Scroll indicator — silver */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-fade-in" style={{ animationDelay: '0.8s' }}>
               <span className="text-[10px] tracking-widest" style={{ color: '#4a4d5e' }}>SCROLL</span>
               <div className="w-px h-6" style={{ background: 'linear-gradient(to bottom, rgba(180,195,215,0.4), transparent)' }} />
@@ -302,7 +305,8 @@ export default function Home() {
               <div className="text-center mb-6">
                 <button
                   onClick={() => setShowAddForm(false)}
-                  className="text-xs text-gray-500 hover:text-white mb-4 inline-flex items-center gap-1 transition-colors silver-btn rounded-full px-4 py-2"
+                  className="text-xs mb-4 inline-flex items-center gap-1 transition-colors silver-btn rounded-full px-4 py-2"
+                  style={{ color: '#6b6d7e' }}
                 >
                   ← Back
                 </button>
@@ -351,7 +355,8 @@ export default function Home() {
                 </p>
                 <button
                   onClick={() => { setShowAddForm(true); setActiveTab('add'); }}
-                  className="px-8 py-3 text-sm font-bold rounded-full gold-btn"
+                  className="px-8 py-3 text-sm font-bold rounded-full transition-all silver-btn"
+                  style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8, #CBD5E1)', color: '#08080c', fontWeight: 700 }}
                 >
                   ✦ Create First Card
                 </button>
@@ -396,13 +401,13 @@ export default function Home() {
               className="w-10 h-10 rounded-full flex items-center justify-center -mt-4 transition-all"
               style={{
                 background: showAddForm
-                  ? 'linear-gradient(135deg, #94A3B8, #94A3B8)'
+                  ? 'linear-gradient(135deg, #64748B, #94A3B8, #CBD5E1, #94A3B8)'
                   : 'linear-gradient(145deg, #1e2030, #14161e)',
                 border: showAddForm ? 'none' : '1px solid rgba(160,175,200,0.12)',
-                boxShadow: showAddForm ? '0 4px 16px rgba(148, 163, 184, 0.4)' : 'none',
+                boxShadow: showAddForm ? '0 4px 16px rgba(148,163,184,0.3)' : 'none',
               }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={showAddForm ? '#08080c' : '#888'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={showAddForm ? '#08080c' : '#64748B'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"/>
                 <line x1="5" y1="12" x2="19" y2="12"/>
               </svg>

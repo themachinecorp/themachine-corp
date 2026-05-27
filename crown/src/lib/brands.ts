@@ -33,35 +33,36 @@ export const BRANDS: Brand[] = [
   { id: 'apple', name: 'Apple Watch', country: 'USA', founded: 2015, tier: 'common' },
 ];
 
-// Web3 NFT aesthetic tier configs
+// Web3 NFT aesthetic tier configs — pure silver liquid metal theme
+// Rarity still distinguished by brightness/saturation, all in silver spectrum
 export const TIER_CONFIG = {
   common: {
-    bg: '#111118',
-    border: '#6B7280',
-    text: '#9CA3AF',
-    accent: '#D1D5DB',
-    glow: '#6B7280',
+    bg: '#0f1117',
+    border: '#475569',
+    text: '#64748B',
+    accent: '#94A3B8',
+    glow: '#475569',
   },
   rare: {
-    bg: '#0D1B2A',
-    border: '#3B82F6',
-    text: '#93C5FD',
-    accent: '#60A5FA',
-    glow: '#3B82F6',
+    bg: '#111827',
+    border: '#64748B',
+    text: '#94A3B8',
+    accent: '#CBD5E1',
+    glow: '#64748B',
   },
   epic: {
-    bg: '#1A0A2E',
-    border: '#A855F7',
-    text: '#C084FC',
-    accent: '#A855F7',
-    glow: '#A855F7',
+    bg: '#131a2a',
+    border: '#94A3B8',
+    text: '#CBD5E1',
+    accent: '#E2E8F0',
+    glow: '#94A3B8',
   },
   legendary: {
-    bg: '#0A0A0F',
-    border: '#64748B',
-    text: '#CBD5E1',
-    accent: '#94A3B8',
-    glow: '#94A3B8',
+    bg: '#0c0f18',
+    border: '#CBD5E1',
+    text: '#E2E8F0',
+    accent: '#FFFFFF',
+    glow: '#CBD5E1',
   },
 };
 
