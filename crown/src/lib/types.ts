@@ -8,6 +8,11 @@ export interface Watch {
   ownerName: string;
   createdAt: number;
   cardNumber: number;
+  // Socrates philosophy fields
+  philosophyNotes?: string;
+  timePhilosophy?: 'metal' | 'flow' | 'precision' | 'silence';
+  philosophyTags?: string[];
+  rarity?: 'common' | 'rare' | 'epic' | 'legendary';
 }
 
 export function generateId(): string {

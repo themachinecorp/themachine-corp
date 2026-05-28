@@ -5,6 +5,56 @@ import html2canvas from 'html2canvas';
 import { Brand, TIER_CONFIG } from '@/lib/brands';
 import { Watch } from '@/lib/types';
 
+// ─── Rarity config ─────────────────────────────────────────────────
+const RARITY_CONFIG = {
+  legendary: {
+    border: '#FFD700',
+    bg: 'linear-gradient(135deg, #FFD70015, #FFD70008)',
+    label: 'LEGENDARY',
+    glow: '#FFD700',
+    pillBg: '#FFD70020',
+    pillColor: '#FFD700',
+  },
+  epic: {
+    border: '#C0C0C0',
+    bg: 'linear-gradient(135deg, #C0C0C015, #C0C0C008)',
+    label: 'EPIC',
+    glow: '#C0C0C0',
+    pillBg: '#C0C0C020',
+    pillColor: '#C0C0C0',
+  },
+  rare: {
+    border: '#CD7F32',
+    bg: 'linear-gradient(135deg, #CD7F3215, #CD7F3208)',
+    label: 'RARE',
+    glow: '#CD7F32',
+    pillBg: '#CD7F3220',
+    pillColor: '#CD7F32',
+  },
+  common: {
+    border: '#9CA3AF',
+    bg: 'linear-gradient(135deg, #9CA3AF10, #9CA3AF05)',
+    label: 'COMMON',
+    glow: '#9CA3AF',
+    pillBg: '#9CA3AF15',
+    pillColor: '#9CA3AF',
+  },
+};
+
+const TIME_PHILOSOPHY_ICONS: Record<string, string> = {
+  metal: '⚔️',
+  flow: '🌊',
+  precision: '⚖️',
+  silence: '🏛️',
+};
+
+const TIME_PHILOSOPHY_LABELS: Record<string, string> = {
+  metal: '坚韧如金属',
+  flow: '流动如水',
+  precision: '精准如哲学',
+  silence: '沉默如历史',
+};
+
 interface WatchCardProps {
   watch: Watch;
   brand: Brand;
@@ -13,7 +63,10 @@ interface WatchCardProps {
 export default function WatchCard({ watch, brand }: WatchCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const config = TIER_CONFIG[brand.tier];
+  const rarity = watch.rarity ?? 'common';
+  const rarityConfig = RARITY_CONFIG[rarity];
 
   const handleDownload = async () => {
     if (!cardRef.current) return;
@@ -46,15 +99,19 @@ export default function WatchCard({ watch, brand }: WatchCardProps) {
       {/* Card */}
       <div
         ref={cardRef}
-        className="relative w-[420px] h-[600px] rounded-2xl overflow-hidden"
+        className="relative w-[420px] h-[620px] rounded-2xl overflow-hidden"
         style={{ background: config.bg }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        title={watch.philosophyNotes ? `"${watch.philosophyNotes}"` : undefined}
       >
-        {/* Outer glow border */}
+        {/* Rarity outer glow border — gold/silver/bronze/white */}
         <div
           className="absolute inset-0 rounded-2xl pointer-events-none"
           style={{
-            padding: '1.5px',
-            background: `linear-gradient(135deg, ${config.border}, ${config.accent}40, ${config.border})`,
+            padding: '2px',
+            background: `linear-gradient(135deg, ${rarityConfig.border}, ${rarityConfig.glow}60, ${rarityConfig.border})`,
+            boxShadow: `0 0 24px ${rarityConfig.glow}30`,
             WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
             WebkitMaskComposite: 'xor',
             maskComposite: 'exclude',
@@ -64,11 +121,29 @@ export default function WatchCard({ watch, brand }: WatchCardProps) {
         {/* Inner background */}
         <div className="absolute inset-0 rounded-2xl" style={{ background: config.bg }} />
 
+        {/* Rarity corner badge */}
+        <div
+          className="absolute top-4 right-4 z-10 flex items-center gap-1 px-2.5 py-1 rounded-full"
+          style={{
+            background: `${rarityConfig.border}25`,
+            border: `1px solid ${rarityConfig.border}60`,
+            boxShadow: `0 0 12px ${rarityConfig.glow}25`,
+          }}
+        >
+          <span style={{ color: rarityConfig.border, fontSize: '10px' }}>◆</span>
+          <span
+            className="text-[9px] font-black tracking-widest"
+            style={{ color: rarityConfig.border }}
+          >
+            {rarityConfig.label}
+          </span>
+        </div>
+
         {/* Radial top glow */}
         <div
           className="absolute top-0 left-0 right-0 h-80 pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse at 50% 0%, ${config.glow}30 0%, transparent 70%)`,
+            background: `radial-gradient(ellipse at 50% 0%, ${config.glow}25 0%, transparent 70%)`,
           }}
         />
 
@@ -101,7 +176,7 @@ export default function WatchCard({ watch, brand }: WatchCardProps) {
         </div>
 
         {/* Watch image zone */}
-        <div className="relative mx-7 h-[240px] rounded-2xl overflow-hidden" style={{ background: '#00000030' }}>
+        <div className="relative mx-7 h-[220px] rounded-2xl overflow-hidden" style={{ background: '#00000030' }}>
           {watch.imageUrl ? (
             <img
               src={watch.imageUrl}
@@ -153,14 +228,50 @@ export default function WatchCard({ watch, brand }: WatchCardProps) {
 
           {/* Model name */}
           <h2
-            className="text-2xl font-black text-white mb-4 leading-tight"
+            className="text-2xl font-black text-white mb-3 leading-tight"
             style={{ color: config.accent }}
           >
             {watch.model}
           </h2>
 
+          {/* ─── Philosophy Bar (only shown if philosophy data exists) ─── */}
+          {(watch.timePhilosophy || (watch.philosophyTags && watch.philosophyTags.length > 0)) && (
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              {/* Time philosophy icon + label */}
+              {watch.timePhilosophy && (
+                <div
+                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+                  style={{
+                    background: rarityConfig.pillBg,
+                    border: `1px solid ${rarityConfig.border}40`,
+                  }}
+                >
+                  <span className="text-sm">{TIME_PHILOSOPHY_ICONS[watch.timePhilosophy]}</span>
+                  <span className="text-[10px] font-medium" style={{ color: rarityConfig.pillColor }}>
+                    {TIME_PHILOSOPHY_LABELS[watch.timePhilosophy]}
+                  </span>
+                </div>
+              )}
+
+              {/* Philosophy tags */}
+              {watch.philosophyTags && watch.philosophyTags.map((tag) => (
+                <div
+                  key={tag}
+                  className="px-2.5 py-1 rounded-full text-[10px] font-medium"
+                  style={{
+                    background: rarityConfig.pillBg,
+                    color: rarityConfig.pillColor,
+                    border: `1px solid ${rarityConfig.border}40`,
+                  }}
+                >
+                  {tag}
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Metadata */}
-          <div className="grid grid-cols-2 gap-2 mb-5">
+          <div className="grid grid-cols-2 gap-2 mb-4">
             {watch.year && (
               <div className="flex items-center gap-2">
                 <span className="text-[9px] tracking-widest text-gray-500">YR</span>
@@ -178,6 +289,23 @@ export default function WatchCard({ watch, brand }: WatchCardProps) {
               </div>
             )}
           </div>
+
+          {/* Philosophy notes hover reveal */}
+          {watch.philosophyNotes && (
+            <div
+              className="mb-4 px-3 py-2 rounded-lg text-xs italic transition-all duration-300"
+              style={{
+                background: `${rarityConfig.border}10`,
+                border: `1px solid ${rarityConfig.border}30`,
+                color: '#9CA3AF',
+                opacity: hovered ? 1 : 0,
+                maxHeight: hovered ? '100px' : '0',
+                overflow: 'hidden',
+              }}
+            >
+              "{watch.philosophyNotes}"
+            </div>
+          )}
 
           {/* Footer bar */}
           <div

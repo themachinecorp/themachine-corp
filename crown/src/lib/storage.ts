@@ -4,7 +4,8 @@ import { Watch } from '@/lib/types';
 import { supabase, isConfigured } from './supabase';
 import { User } from '@supabase/supabase-js';
 
-// Fallback localStorage for when Supabase is not configured
+// ─── Local fallback ────────────────────────────────────────────────
+
 const LOCAL_KEY = 'crown_watches';
 
 function localGetWatches(): Watch[] {
@@ -42,6 +43,11 @@ export async function saveWatch(watch: Watch, user: User): Promise<void> {
     card_number: watch.cardNumber,
     user_id: user.id,
     created_at: new Date(watch.createdAt).toISOString(),
+    // Socrates philosophy fields
+    philosophy_notes: watch.philosophyNotes ?? null,
+    time_philosophy: watch.timePhilosophy ?? null,
+    philosophy_tags: watch.philosophyTags ?? null,
+    rarity: watch.rarity ?? 'common',
   });
 
   if (error) {
@@ -79,6 +85,11 @@ export async function getWatches(userId?: string): Promise<Watch[]> {
     ownerName: row.owner_name,
     cardNumber: row.card_number,
     createdAt: new Date(row.created_at).getTime(),
+    // Socrates philosophy fields
+    philosophyNotes: row.philosophy_notes ?? undefined,
+    timePhilosophy: row.time_philosophy ?? undefined,
+    philosophyTags: row.philosophy_tags ?? undefined,
+    rarity: row.rarity ?? 'common',
   }));
 }
 
