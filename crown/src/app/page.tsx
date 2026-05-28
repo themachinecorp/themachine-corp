@@ -7,6 +7,7 @@ import { getWatches } from '@/lib/storage';
 import { Watch } from '@/lib/types';
 import { BRANDS } from '@/lib/brands';
 import { useAuth } from '@/components/auth/AuthProvider';
+import { isConfigured as isConfiguredSupabase } from '@/lib/supabase';
 import LoginModal from '@/components/auth/LoginModal';
 
 const SILVER = {
@@ -153,6 +154,9 @@ function MobileBottomNav({ activeTab, showAddForm, onTab }: {
 
 export default function Home() {
   const { user, loading: authLoading } = useAuth();
+  console.log('DBG isConfigured:', isConfiguredSupabase);
+  console.log('DBG user:', user);
+  console.log('DBG authLoading:', authLoading);
   const [showAddForm, setShowAddForm] = useState(false);
   const [watches, setWatches] = useState<Watch[]>([]);
   const [loading, setLoading] = useState(true);
