@@ -16,7 +16,7 @@ export default function AuthCallback() {
       if (session) {
         router.push('/');
       } else {
-        router.push('/_auth/');
+        router.push('/login/');
       }
     });
   }, [router]);
