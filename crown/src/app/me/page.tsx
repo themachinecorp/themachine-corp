@@ -357,7 +357,7 @@ export default function MePage() {
               </svg>
             </Link>
             <button
-              onClick={() => { setActiveTab('add'); setShowAddForm(true); }}
+              onClick={() => { if (!user && !authLoading) { setShowLogin(true); return; } setActiveTab('add'); setShowAddForm(true); }}
               className={`nav-item flex items-center justify-center w-10 h-10 rounded-xl transition-all ${
                 activeTab === 'add'
                   ? 'bg-white/10 text-white'

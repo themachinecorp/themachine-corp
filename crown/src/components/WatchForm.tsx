@@ -67,6 +67,7 @@ export default function WatchForm() {
   const router = useRouter();
   const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [showLogin, setShowLogin] = useState(false);
 
   // Basic fields
   const [ownerName, setOwnerName] = useState('');
@@ -122,6 +123,7 @@ export default function WatchForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) { setShowLogin(true); return; }
     if (!model || !ownerName) return;
 
     setIsSubmitting(true);

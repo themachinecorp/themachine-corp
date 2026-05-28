@@ -220,7 +220,7 @@ export default function Home() {
                   Precision Craft · STEEL EDITION
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <button onClick={() => user ? handleTab('add') : setShowLogin(true)} className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow"
+                  <button onClick={() => { if (user) { handleTab('add'); } else { setShowLogin(true); } }} className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow"
                     style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8, #CBD5E1)', color: '#08080c', fontWeight: 700 }}>
                     ✦ Add Your Watch
                   </button>
@@ -306,7 +306,7 @@ export default function Home() {
         </div>
 
         {/* Mobile Bottom Nav */}
-        <MobileBottomNav activeTab={activeTab} showAddForm={showAddForm} onTab={(tab) => tab === 'home' ? handleTab('home') : handleTab('add')} />
+        <MobileBottomNav activeTab={activeTab} showAddForm={showAddForm} onTab={(tab) => { if (tab === 'home') { handleTab('home'); } else { if (user) { handleTab('add'); } else { setShowLogin(true); } } }} />
 
         {!showAddForm && (
           <footer className="text-center py-8 px-4 text-[11px]" style={{ color: '#3a3d4e', fontFamily: 'var(--font-mono)' }}>
