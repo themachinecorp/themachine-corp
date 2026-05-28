@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { Session, User } from '@supabase/supabase-js';
 import { supabase, isConfigured } from '@/lib/supabase';
 
@@ -9,6 +9,7 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   signInWithEmail: (email: string) => Promise<{ error?: string }>;
+  signInWithGoogle: () => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
   isConfigured: boolean;
 }
@@ -18,6 +19,7 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
   signInWithEmail: async () => ({ error: 'Not configured' }),
+  signInWithGoogle: async () => ({ error: 'Not configured' }),
   signOut: async () => {},
   isConfigured: false,
 });
@@ -31,27 +33,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
       return;
     }
-
-    // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
     });
-
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-
     return () => subscription.unsubscribe();
   }, []);
 
   const signInWithEmail = async (email: string): Promise<{ error?: string }> => {
     if (!isConfigured) return { error: 'Supabase not configured' };
-    const redirectTo = typeof window !== 'undefined' ? `${window.location.origin}/auth/callback` : undefined;
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: redirectTo },
+    const redirectTo = typeof window !== 'undefined' ? `${window.location.origin}/callback_route/` : undefined;
+    const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: redirectTo } });
+    if (error) return { error: error.message };
+    return {};
+  };
+
+  const signInWithGoogle = async (): Promise<{ error?: string }> => {
+    if (!isConfigured) return { error: 'Supabase not configured' };
+    const redirectTo = typeof window !== 'undefined' ? `${window.location.origin}/callback_route/` : undefined;
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo },
     });
     if (error) return { error: error.message };
     return {};
@@ -68,6 +73,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       user: session?.user ?? null,
       loading,
       signInWithEmail,
+      signInWithGoogle,
       signOut,
       isConfigured,
     }}>

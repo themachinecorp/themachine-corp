@@ -2,9 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   cleanDistDir: true,
+  // Keep basePath so internal assets resolve correctly under /crown/
+  // when deployed to themachine-corp.pages.dev/crown/
+  basePath: '/crown',
+  assetPrefix: '/crown',
   trailingSlash: true,
-  // Note: output: 'export' removed for multi-user SSR support.
-  // Use `wrangler pages deploy .next` on Cloudflare Pages.
   turbopack: {
     root: __dirname,
   },
