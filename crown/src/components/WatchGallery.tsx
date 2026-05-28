@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { getWatches } from '@/lib/storage';
 import { Watch } from '@/lib/types';
 import { BRANDS, TIER_CONFIG } from '@/lib/brands';
+import { useAuth } from '@/components/auth/AuthProvider';
 
 function computeCollectionPower(watches: Watch[]): number {
   if (watches.length === 0) return 0;
@@ -18,14 +19,18 @@ function computeCollectionPower(watches: Watch[]): number {
 }
 
 export default function WatchGallery() {
+  const { user } = useAuth();
   const [watches, setWatches] = useState<Watch[]>([]);
 
   useEffect(() => {
-    const load = () => setWatches(getWatches());
+    const load = async () => {
+      const data = await getWatches(user?.id);
+      setWatches(data);
+    };
     load();
     window.addEventListener('storage', load);
     return () => window.removeEventListener('storage', load);
-  }, []);
+  }, [user?.id]);
 
   if (watches.length === 0) {
     return (

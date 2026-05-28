@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { getWatches } from '@/lib/storage';
 import { Watch } from '@/lib/types';
 import { BRANDS, TIER_CONFIG } from '@/lib/brands';
+import { useAuth } from '@/components/auth/AuthProvider';
+import LoginModal from '@/components/auth/LoginModal';
 
 function computeCollectionPower(watches: Watch[]): number {
   if (watches.length === 0) return 0;
@@ -289,20 +291,23 @@ function TierBar({ watches }: { watches: Watch[] }) {
 }
 
 export default function MePage() {
+  const { user, loading: authLoading, signOut } = useAuth();
   const [watches, setWatches] = useState<Watch[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeTab, setActiveTab] = useState<'home' | 'add' | 'collection'>('collection');
+  const [showLogin, setShowLogin] = useState(false);
 
   useEffect(() => {
-    const load = () => {
-      setWatches(getWatches());
+    const load = async () => {
+      const data = await getWatches(user?.id);
+      setWatches(data);
       setLoading(false);
     };
     load();
     window.addEventListener('storage', load);
     return () => window.removeEventListener('storage', load);
-  }, []);
+  }, [user?.id]);
 
   const power = computeCollectionPower(watches);
   const uniqueBrands = [...new Set(watches.map((w) => w.brandId))].length;
@@ -377,6 +382,31 @@ export default function MePage() {
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
               </svg>
             </button>
+            {user ? (
+              <button
+                onClick={signOut}
+                className="nav-item flex items-center justify-center w-10 h-10 rounded-xl text-gray-500 hover:text-white hover:bg-white/5 transition-all"
+                title="Sign out"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+              </button>
+            ) : (
+              <button
+                onClick={() => setShowLogin(true)}
+                className="nav-item flex items-center justify-center w-10 h-10 rounded-xl text-gray-500 hover:text-white hover:bg-white/5 transition-all"
+                title="Sign in"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                  <polyline points="10 17 15 12 10 7"/>
+                  <line x1="15" y1="12" x2="3" y2="12"/>
+                </svg>
+              </button>
+            )}
           </nav>
         </div>
       </header>
@@ -545,6 +575,7 @@ export default function MePage() {
           </button>
         </div>
       </nav>
+      {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
     </div>
   );
 }

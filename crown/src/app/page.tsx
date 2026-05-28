@@ -6,6 +6,8 @@ import WatchForm from '@/components/WatchForm';
 import { getWatches } from '@/lib/storage';
 import { Watch } from '@/lib/types';
 import { BRANDS } from '@/lib/brands';
+import { useAuth } from '@/components/auth/AuthProvider';
+import LoginModal from '@/components/auth/LoginModal';
 
 const SILVER = {
   stripe: 'rgba(180,195,215,0.5)',
@@ -150,19 +152,25 @@ function MobileBottomNav({ activeTab, showAddForm, onTab }: {
 }
 
 export default function Home() {
+  const { user, loading: authLoading } = useAuth();
   const [showAddForm, setShowAddForm] = useState(false);
   const [watches, setWatches] = useState<Watch[]>([]);
   const [loading, setLoading] = useState(true);
   const [heroVisible, setHeroVisible] = useState(false);
   const [activeTab, setActiveTab] = useState<'home' | 'add' | 'collection'>('home');
+  const [showLogin, setShowLogin] = useState(false);
 
   useEffect(() => {
-    const load = () => { setWatches(getWatches()); setLoading(false); };
+    const load = async () => {
+      const data = await getWatches(user?.id);
+      setWatches(data);
+      setLoading(false);
+    };
     load();
     window.addEventListener('storage', load);
     const t = setTimeout(() => setHeroVisible(true), 50);
     return () => { window.removeEventListener('storage', load); clearTimeout(t); };
-  }, []);
+  }, [user?.id]);
 
   const handleTab = (tab: 'home' | 'add') => {
     setActiveTab(tab);
@@ -212,13 +220,18 @@ export default function Home() {
                   Precision Craft · STEEL EDITION
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <button onClick={() => handleTab('add')} className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow"
+                  <button onClick={() => user ? handleTab('add') : setShowLogin(true)} className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow"
                     style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8, #CBD5E1)', color: '#08080c', fontWeight: 700 }}>
                     ✦ Add Your Watch
                   </button>
                   <Link href="/me/" className="w-full sm:w-auto px-8 py-3.5 text-sm font-semibold rounded-full glass hover:bg-white/10 transition-all">
                     👑 View Collection
                   </Link>
+                  {!user && !authLoading && (
+                    <button onClick={() => setShowLogin(true)} className="w-full sm:w-auto px-8 py-3.5 text-sm font-semibold rounded-full glass border hover:bg-white/10 transition-all">
+                      🔐 Sign In
+                    </button>
+                  )}
                 </div>
                 {watches.length > 0 && (
                   <div className="flex gap-4 justify-center mt-8">
@@ -301,6 +314,7 @@ export default function Home() {
           </footer>
         )}
       </div>
+      {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
     </div>
   );
 }

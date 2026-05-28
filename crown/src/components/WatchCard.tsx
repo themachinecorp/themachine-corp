@@ -25,7 +25,7 @@ export default function WatchCard({ watch, brand }: WatchCardProps) {
         useCORS: true,
       });
       const link = document.createElement('a');
-      link.download = `CROWN-${watch.cardNumber.toString().padStart(4, '0')}-${brand.name.replace(/\s+/g, '-')}.png`;
+      link.download = `crown-${brand.name.replace(/\s+/g, '-')}-${watch.model.replace(/\s+/g, '-')}-${watch.cardNumber.toString().padStart(4, '0')}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
     } catch (err) {

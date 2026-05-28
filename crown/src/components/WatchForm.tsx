@@ -3,11 +3,13 @@
 import React, { useState, useRef } from 'react';
 import { BRANDS } from '@/lib/brands';
 import { Watch, generateId } from '@/lib/types';
-import { saveWatch, getNextCardNumber } from '@/lib/storage';
+import { saveWatch as saveWatchToDb, getNextCardNumber } from '@/lib/storage';
+import { useAuth } from '@/components/auth/AuthProvider';
 import { useRouter } from 'next/navigation';
 
 export default function WatchForm() {
   const router = useRouter();
+  const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [brandId, setBrandId] = useState('rolex');
   const [model, setModel] = useState('');
@@ -58,10 +60,10 @@ export default function WatchForm() {
       imageUrl: imageUrl || undefined,
       ownerName,
       createdAt: Date.now(),
-      cardNumber: getNextCardNumber(),
+      cardNumber: await getNextCardNumber(user?.id),
     };
 
-    saveWatch(watch);
+    await saveWatchToDb(watch, user!);
     router.push(`/card/${watch.id}`);
   };
 
