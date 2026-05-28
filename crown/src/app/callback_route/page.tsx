@@ -14,7 +14,7 @@ export default function AuthCallback() {
     }
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        router.push('/');
+        router.push('/me/');
       } else {
         router.push('/login/');
       }

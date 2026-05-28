@@ -2,9 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   cleanDistDir: true,
-  // Keep basePath so all CROWN assets and routes resolve under /crown/
-  basePath: '/crown',
-  assetPrefix: '/crown',
+  // CROWN serves at root — basePath removed for unified multi-product auth
   trailingSlash: true,
 };
 
