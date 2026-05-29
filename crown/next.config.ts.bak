@@ -1,0 +1,11 @@
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  cleanDistDir: true,
+  basePath: '/crown',
+  trailingSlash: true,
+  output: 'export',
+  dynamicParams: true,
+};
+
+export default nextConfig;
