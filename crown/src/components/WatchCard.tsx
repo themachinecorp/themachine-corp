@@ -87,7 +87,7 @@ export default function WatchCard({ watch, brand }: WatchCardProps) {
   };
 
   const handleCopyLink = () => {
-    const url = `${window.location.origin}/card/${watch.id}`;
+    const url = `${window.location.origin}/me/`;
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
