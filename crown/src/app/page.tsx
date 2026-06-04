@@ -189,22 +189,8 @@ export default function Home() {
       <ParticleField />
       <div className="holo-overlay" />
 
-      {/* ─── Top Navigation Bar ─── */}
-      <header className="fixed top-0 left-0 right-0 z-50 navbar">
-        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl" style={{ filter: 'drop-shadow(0 0 8px rgba(180,195,215,0.4))' }}>👑</span>
-            <span className="text-sm font-black tracking-[0.25em] hidden sm:block hero-title" style={{ fontSize: 13 }}>CROWN</span>
-          </Link>
-          <div className="flex items-center gap-3" style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>
-            <span style={{ color: 'rgba(148,163,184,0.5)', letterSpacing: '0.1em' }}>STEEL EDITION</span>
-            <span style={{ width: 1, height: 14, background: 'var(--border-subtle)' }} />
-            <LiveClock />
-          </div>
-        </div>
-      </header>
-
       {/* ─── Main Content ─── */}
+      {/* (Top navbar provided globally by <GlobalNavbar /> in root layout) */}
       <div className="page-content">
         <div className="mobile-nav-safe">
 
@@ -220,9 +206,10 @@ export default function Home() {
                 <h1 className="text-4xl sm:text-5xl font-black mb-4 leading-tight hero-title">
                   Your Watch.<br /><span style={{ color: '#ffffff' }}>Your Legacy.</span>
                 </h1>
-                <p className="text-gray-400 text-base sm:text-lg max-w-md mx-auto mb-8 leading-relaxed">
+                <p className="text-gray-400 text-base sm:text-lg max-w-md mx-auto mb-2 leading-relaxed">
                   Precision Craft · STEEL EDITION
                 </p>
+                <div className="mb-8 flex justify-center"><LiveClock /></div>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <button onClick={() => { if (user) { handleTab('add'); } else { setShowLogin(true); } }} className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold rounded-full transition-all animate-pulse-glow"
                     style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8, #CBD5E1)', color: '#08080c', fontWeight: 700 }}>

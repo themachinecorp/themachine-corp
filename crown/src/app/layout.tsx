@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/components/auth/AuthProvider";
+import GlobalNavbar from "@/components/auth/GlobalNavbar";
 
 export const metadata: Metadata = {
   title: "CROWN — Watch Collection Identity",
@@ -18,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen antialiased" style={{ background: '#0a0a0a' }}>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <GlobalNavbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

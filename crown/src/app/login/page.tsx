@@ -1,15 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/auth/AuthProvider';
 
 export default function AuthPage() {
-  const { signInWithEmail, signInWithGoogle, isConfigured } = useAuth();
+  const { signInWithEmail, signInWithGoogle, isConfigured, basePath } = useAuth();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+
+  // Check for error params from callback
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const errorParam = params.get('error');
+    const errorCode = params.get('error_code');
+    if (errorParam) {
+      setError(`${errorParam}${errorCode ? ` (${errorCode})` : ''}`);
+    }
+  }, []);
 
   if (!isConfigured) {
     return (
@@ -18,7 +28,7 @@ export default function AuthPage() {
           <div className="text-5xl mb-4">🔧</div>
           <h1 className="text-xl font-black mb-2" style={{ color: '#e0e0ec' }}>Setup Required</h1>
           <p className="text-sm mb-6" style={{ color: '#686880' }}>Add Supabase credentials to enable login.</p>
-          <Link href="/" className="px-6 py-3 text-sm font-bold rounded-xl inline-block"
+          <Link href={`${basePath}/`} className="px-6 py-3 text-sm font-bold rounded-xl inline-block"
             style={{ background: 'linear-gradient(135deg, #475569, #64748B, #94A3B8)', color: '#08080c' }}>
             Go Home
           </Link>
