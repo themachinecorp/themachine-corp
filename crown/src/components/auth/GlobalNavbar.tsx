@@ -30,15 +30,20 @@ export default function GlobalNavbar() {
         {/* Logo */}
         <Link href={homeHref} className="flex items-center gap-2 group">
           <span
-            className="text-2xl transition-transform duration-300 group-hover:scale-110"
-            style={{ filter: 'drop-shadow(0 0 8px rgba(180,195,215,0.4))' }}
+            className="watch-mark transition-transform duration-300 group-hover:scale-110"
+            style={{ width: 22, height: 22, display: 'block', color: '#E8ECF2', filter: 'drop-shadow(0 1px 0 rgba(0,0,0,0.5))' }}
           >
-            👑
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" className="watch-live" style={{ width: '100%', height: '100%' }}>
+              {/* Needle hands — both rotate around (12, 12). Live time. */}
+              <polygon className="wm-hour" points="12,1.5 12.7,11.4 12.7,12 11.3,12 11.3,11.4"/>
+              <polygon className="wm-min" points="12,0.2 12.5,11.4 12.5,12 11.5,12 11.5,11.4"/>
+              <circle cx="12" cy="12" r="0.8"/>
+            </svg>
           </span>
           <span
-            className="text-sm font-black tracking-[0.25em] hidden sm:block"
+            className="text-sm font-black tracking-[0.30em] hidden sm:block"
             style={{
-              background: 'linear-gradient(135deg, #94A3B8, #CBD5E1, #94A3B8)',
+              background: 'linear-gradient(180deg, #E8ECF2 0%, #7B8493 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}

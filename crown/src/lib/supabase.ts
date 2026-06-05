@@ -1,27 +1,19 @@
+// supabase.ts — Supabase client singleton (lazy).
+// Importing this file DOES pull @supabase/supabase-js (~150KB) into bundle.
+// Use dynamic import: `const { supabase } = await import('./supabase')`
+// For just the configured-constant, use './supabase-config' (light).
+
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from './supabase-config';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+// Re-export isConfigured for backward compat (delegates to light config).
+export { isConfigured } from './supabase-config';
 
-export const isConfigured = !!(supabaseUrl && supabaseAnonKey);
-
-/**
- * Supabase client singleton.
- *
- * Persistence strategy (per CEO spec):
- *   - persistSession: true     → @supabase/supabase-js default
- *   - storageKey: 'crown-auth' → shared key across ALL pages
- *   - storage: window.localStorage (explicit so behavior is obvious)
- *
- * Because storageKey is a fixed, well-known string, ANY page on the same
- * origin (root /, /crown/, /about/, etc.) that loads this same client
- * will see the same session — login is truly global.
- */
 function createSafeClient(): SupabaseClient {
-  if (!supabaseUrl || !supabaseAnonKey) {
-    return createClient('https://placeholder.supabase.co', 'placeholder-key');
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    return createClient('https://placeholder.example.invalid', 'placeholder-anon-key-not-real');
   }
-  return createClient(supabaseUrl, supabaseAnonKey, {
+  return createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     auth: {
       persistSession: true,
       autoRefreshToken: true,

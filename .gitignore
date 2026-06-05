@@ -9,3 +9,5 @@ __pycache__/
 *.pyc
 # Node
 node_modules/
+themachine-corp/out/
+themachine-corp/.out-backups/

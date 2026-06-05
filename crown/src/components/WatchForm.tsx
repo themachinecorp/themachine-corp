@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { BRANDS, TIER_CONFIG } from '@/lib/brands';
 import { Watch, generateId } from '@/lib/types';
-import { saveWatch as saveWatchToDb, getNextCardNumber } from '@/lib/storage';
+import { saveWatch as saveWatchToDb, getNextCardNumber, updateWatch } from '@/lib/storage';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { useRouter } from 'next/navigation';
 
@@ -63,26 +63,34 @@ export function calculateRarity(params: {
 }
 
 // ─── Component ──────────────────────────────────────────────────────
-export default function WatchForm() {
+interface WatchFormProps {
+  /** Pass an existing watch to enter edit mode. */
+  initial?: Watch;
+  /** If true, navigating away returns to the card page after save. */
+  returnToCardOnSave?: boolean;
+}
+
+export default function WatchForm({ initial, returnToCardOnSave }: WatchFormProps = {}) {
+  const isEdit = !!initial;
   const router = useRouter();
   const { user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showLogin, setShowLogin] = useState(false);
 
   // Basic fields
-  const [ownerName, setOwnerName] = useState('');
-  const [brandId, setBrandId] = useState('rolex');
-  const [model, setModel] = useState('');
-  const [year, setYear] = useState('');
-  const [price, setPrice] = useState('');
-  const [story, setStory] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [ownerName, setOwnerName] = useState(initial?.ownerName || '');
+  const [brandId, setBrandId] = useState(initial?.brandId || 'rolex');
+  const [model, setModel] = useState(initial?.model || '');
+  const [year, setYear] = useState(initial?.year ? String(initial.year) : '');
+  const [price, setPrice] = useState(initial?.price || '');
+  const [story, setStory] = useState(initial?.philosophyNotes || '');
+  const [imageUrl, setImageUrl] = useState(initial?.imageUrl || '');
+  const [imagePreview, setImagePreview] = useState<string | null>(initial?.imageUrl || null);
 
   // Socrates philosophy fields
-  const [philosophyNotes, setPhilosophyNotes] = useState('');
-  const [timePhilosophy, setTimePhilosophy] = useState<string>('');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [philosophyNotes, setPhilosophyNotes] = useState(initial?.philosophyNotes || '');
+  const [timePhilosophy, setTimePhilosophy] = useState<string>(initial?.timePhilosophy || '');
+  const [selectedTags, setSelectedTags] = useState<string[]>(initial?.philosophyTags || []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dragOver, setDragOver] = useState(false);
@@ -137,23 +145,27 @@ export default function WatchForm() {
     });
 
     const watch: Watch = {
-      id: generateId(),
+      id: initial?.id || generateId(),
       brandId,
       model,
       year: year ? parseInt(year) : undefined,
       price: price || undefined,
       imageUrl: imageUrl || undefined,
       ownerName,
-      createdAt: Date.now(),
-      cardNumber: await getNextCardNumber(user?.id),
+      createdAt: initial?.createdAt || Date.now(),
+      cardNumber: initial?.cardNumber ?? (await getNextCardNumber(user?.id)),
       philosophyNotes: philosophyNotes || undefined,
       timePhilosophy: (timePhilosophy as Watch['timePhilosophy']) || undefined,
       philosophyTags: selectedTags.length > 0 ? selectedTags : undefined,
       rarity,
     };
 
-    await saveWatchToDb(watch, user!);
-    router.push(`/card/${watch.id}`);
+    if (isEdit && user) {
+      await updateWatch(watch.id, watch, user);
+    } else {
+      await saveWatchToDb(watch, user!);
+    }
+    router.push(returnToCardOnSave ? `/card/?id=${watch.id}` : `/card/?id=${watch.id}`);
   };
 
   const tierColors: Record<string, { accent: string; bg: string }> = {
@@ -447,7 +459,7 @@ export default function WatchForm() {
           boxShadow: '0 4px 20px #94A3B830',
         }}
       >
-        {isSubmitting ? 'Creating Card...' : '✦ Forge My Time Philosophy →'}
+        {isSubmitting ? (isEdit ? 'Saving…' : 'Creating Card...') : isEdit ? '✦ Save Changes' : '✦ Forge My Time Philosophy →'}
       </button>
     </form>
   );

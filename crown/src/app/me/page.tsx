@@ -165,7 +165,7 @@ function WatchCardGridItem({ watch, index }: { watch: Watch; index: number }) {
   }, [index]);
 
   return (
-    <Link href={`/card/${watch.id}`} className="block">
+    <Link href={`/card/?id=${watch.id}`} className="block">
       <div
         className={`metallic-card relative rounded-2xl overflow-hidden group cursor-pointer transition-all duration-500 hover:scale-[1.04] hover:z-10 ${
           visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -290,6 +290,78 @@ function TierBar({ watches }: { watches: Watch[] }) {
   );
 }
 
+type SortKey = 'newest' | 'oldest' | 'tier' | 'brand' | 'cardnum';
+type TierFilter = 'all' | 'legendary' | 'epic' | 'rare' | 'common';
+
+// Today's Pick — rotates deterministically (one per day) through the collection.
+// Same watch shown all day, then switches at local midnight.
+function TodaysPick({ watches }: { watches: Watch[] }) {
+  if (watches.length === 0) return null;
+  // Day index: number of days since a fixed epoch
+  const epoch = new Date('2026-01-01').getTime();
+  const dayIndex = Math.floor((Date.now() - epoch) / (24 * 60 * 60 * 1000));
+  // Weight higher-tier watches to be picked more often
+  const tierWeight = { legendary: 8, epic: 4, rare: 2, common: 1 } as const;
+  const weighted: number[] = [];
+  watches.forEach((w, i) => {
+    const tier = (BRANDS.find((b) => b.id === w.brandId)?.tier || 'common') as keyof typeof tierWeight;
+    const weight = tierWeight[tier];
+    for (let n = 0; n < weight; n++) weighted.push(i);
+  });
+  const idx = weighted[dayIndex % weighted.length];
+  const pick = watches[idx];
+  const brand = BRANDS.find((b) => b.id === pick.brandId) || BRANDS[0];
+  const config = TIER_CONFIG[brand.tier];
+  const pickDate = new Date(Date.now() - (Date.now() - epoch) % (24 * 60 * 60 * 1000));
+  const dateStr = pickDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+  return (
+    <Link
+      href={`/card/?id=${pick.id}`}
+      className="block rounded-2xl overflow-hidden transition-all hover:scale-[1.01] active:scale-[0.99]"
+      style={{
+        background: `linear-gradient(135deg, ${config.bg} 0%, #0d0f17 100%)`,
+        border: `1px solid ${config.border}50`,
+        boxShadow: `0 4px 24px ${config.border}10`,
+      }}
+    >
+      <div className="flex items-center gap-4 p-4">
+        {/* Thumbnail */}
+        <div
+          className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden flex items-center justify-center"
+          style={{ background: '#00000040' }}
+        >
+          {pick.imageUrl ? (
+            <img src={pick.imageUrl} alt={pick.model} className="w-full h-full object-cover" crossOrigin="anonymous" />
+          ) : (
+            <span className="text-3xl opacity-50">⌚</span>
+          )}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[9px] tracking-widest font-bold uppercase" style={{ color: config.accent }}>
+              ✦ TODAY'S PICK · {dateStr}
+            </span>
+            <span className="text-[9px] tracking-widest uppercase" style={{ color: '#5a5a6e' }}>
+              · {brand.tier}
+            </span>
+          </div>
+          <h3 className="text-base font-black text-white truncate">{pick.model}</h3>
+          <p className="text-[11px] truncate" style={{ color: config.text, opacity: 0.7 }}>
+            {brand.name}
+            {pick.year ? ` · ${pick.year}` : ''}
+            {' · '}
+            <span style={{ color: '#94A3B8' }}>#{pick.cardNumber.toString().padStart(4, '0')}</span>
+          </p>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#5a5a6e' }} className="flex-shrink-0">
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+      </div>
+    </Link>
+  );
+}
+
 export default function MePage() {
   const { user, loading: authLoading, signOut } = useAuth();
   const [watches, setWatches] = useState<Watch[]>([]);
@@ -297,6 +369,9 @@ export default function MePage() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeTab, setActiveTab] = useState<'home' | 'add' | 'collection'>('collection');
   const [showLogin, setShowLogin] = useState(false);
+  const [query, setQuery] = useState('');
+  const [tierFilter, setTierFilter] = useState<TierFilter>('all');
+  const [sort, setSort] = useState<SortKey>('newest');
 
   useEffect(() => {
     const load = async () => {
@@ -311,6 +386,54 @@ export default function MePage() {
 
   const power = computeCollectionPower(watches);
   const uniqueBrands = [...new Set(watches.map((w) => w.brandId))].length;
+
+  // Filter + sort
+  const filtered = (() => {
+    const q = query.trim().toLowerCase();
+    let list = watches;
+    if (tierFilter !== 'all') {
+      list = list.filter((w) => {
+        const b = BRANDS.find((x) => x.id === w.brandId);
+        return b?.tier === tierFilter;
+      });
+    }
+    if (q) {
+      list = list.filter((w) => {
+        const b = BRANDS.find((x) => x.id === w.brandId);
+        return (
+          w.model.toLowerCase().includes(q) ||
+          (b?.name || '').toLowerCase().includes(q) ||
+          (w.year ? String(w.year).includes(q) : false) ||
+          (w.philosophyNotes || '').toLowerCase().includes(q) ||
+          ((w.philosophyTags || []).some((t) => t.toLowerCase().includes(q)))
+        );
+      });
+    }
+    const tierRank = { legendary: 4, epic: 3, rare: 2, common: 1 } as const;
+    const sorted = [...list];
+    sorted.sort((a, b) => {
+      switch (sort) {
+        case 'newest': return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        case 'oldest': return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+        case 'tier': {
+          const ta = tierRank[(BRANDS.find((x) => x.id === a.brandId)?.tier || 'common')];
+          const tb = tierRank[(BRANDS.find((x) => x.id === b.brandId)?.tier || 'common')];
+          return tb - ta;
+        }
+        case 'brand': {
+          const ba = BRANDS.find((x) => x.id === a.brandId)?.name || '';
+          const bb = BRANDS.find((x) => x.id === b.brandId)?.name || '';
+          return ba.localeCompare(bb);
+        }
+        case 'cardnum': return b.cardNumber - a.cardNumber;
+        default: return 0;
+      }
+    });
+    return sorted;
+  })();
+
+  const hasActiveFilter = query !== '' || tierFilter !== 'all' || sort !== 'newest';
+  const clearFilters = () => { setQuery(''); setTierFilter('all'); setSort('newest'); };
 
   return (
     <div className="min-h-screen" style={{ background: 'transparent' }}>
@@ -372,6 +495,13 @@ export default function MePage() {
             </div>
           )}
 
+          {/* Today's Pick — deterministic daily rotation through collection */}
+          {!loading && watches.length > 0 && (
+            <div className="mt-4">
+              <TodaysPick watches={watches} />
+            </div>
+          )}
+
           {/* Gallery Section */}
           <div className="mt-8">
             {/* Section header */}
@@ -413,11 +543,85 @@ export default function MePage() {
                 </Link>
               </div>
             ) : (
+              <>
+              {/* Filter bar */}
+              <div className="mb-4 p-3 rounded-2xl flex flex-wrap items-center gap-2" style={{ background: '#0e0e14', border: '1px solid #1e1e2e' }}>
+                <div className="relative flex-1 min-w-[160px]">
+                  <svg className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#5a5a6e' }}>
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m21 21-4.3-4.3" />
+                  </svg>
+                  <input
+                    type="search"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search model, brand, year, tag…"
+                    className="w-full pl-9 pr-3 py-2 text-xs rounded-lg outline-none transition-colors"
+                    style={{ background: '#0a0a12', border: '1px solid #1e1e2e', color: '#e5e7eb' }}
+                    aria-label="Search watches"
+                  />
+                </div>
+                <div className="flex items-center gap-1 flex-wrap" role="tablist" aria-label="Filter by tier">
+                  {(['all', 'legendary', 'epic', 'rare', 'common'] as TierFilter[]).map((t) => {
+                    const active = tierFilter === t;
+                    const accent = t === 'all' ? '#94A3B8' : TIER_CONFIG[t].accent;
+                    return (
+                      <button
+                        key={t}
+                        role="tab"
+                        aria-selected={active}
+                        onClick={() => setTierFilter(t)}
+                        className="px-2.5 py-1 text-[9px] tracking-widest uppercase font-bold rounded-lg transition-all"
+                        style={{
+                          background: active ? `${accent}20` : 'transparent',
+                          color: active ? accent : '#6b6d7e',
+                          border: `1px solid ${active ? `${accent}50` : '#1e1e2e'}`,
+                        }}
+                      >
+                        {t}
+                      </button>
+                    );
+                  })}
+                </div>
+                <select
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value as SortKey)}
+                  className="text-[10px] font-semibold tracking-wide px-2.5 py-2 rounded-lg outline-none cursor-pointer"
+                  style={{ background: '#0a0a12', border: '1px solid #1e1e2e', color: '#94A3B8' }}
+                  aria-label="Sort by"
+                >
+                  <option value="newest">Newest</option>
+                  <option value="oldest">Oldest</option>
+                  <option value="tier">Rarity ↓</option>
+                  <option value="brand">A → Z</option>
+                  <option value="cardnum">Card #</option>
+                </select>
+                {hasActiveFilter && (
+                  <button onClick={clearFilters} className="text-[9px] tracking-widest uppercase font-semibold px-2.5 py-1.5 rounded-lg" style={{ color: '#f87171', border: '1px solid rgba(248,113,113,0.3)' }} aria-label="Clear all filters">
+                    ✕ Clear
+                  </button>
+                )}
+                <span className="ml-auto text-[9px] tracking-widest uppercase" style={{ color: '#5a5a6e' }}>
+                  {filtered.length} / {watches.length}
+                </span>
+              </div>
+
+              {filtered.length === 0 ? (
+                <div className="text-center py-10 rounded-2xl" style={{ background: '#0e0e14', border: '1px solid #1e1e2e' }}>
+                  <div className="text-3xl mb-2 opacity-40">⌖</div>
+                  <p className="text-xs text-gray-400">No matches.</p>
+                  <button onClick={clearFilters} className="mt-2 text-[10px] font-semibold tracking-wider underline" style={{ color: '#94A3B8' }}>
+                    Clear filters
+                  </button>
+                </div>
+              ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 stagger-children">
-                {watches.map((watch, i) => (
+                {filtered.map((watch, i) => (
                   <WatchCardGridItem key={watch.id} watch={watch} index={i} />
                 ))}
               </div>
+              )}
+              </>
             )}
           </div>
         </div>

@@ -1,8 +1,15 @@
 'use client';
 
 import { Watch } from '@/lib/types';
-import { supabase, isConfigured } from './supabase';
-import { User } from '@supabase/supabase-js';
+import { isConfigured } from './supabase';
+import type { User } from '@supabase/supabase-js';
+
+// Lazy import supabase client (~150KB) to keep it out of main page bundle.
+// Only loaded when user actually tries to save/load authenticated data.
+async function getSupabase() {
+  const mod = await import('./supabase');
+  return mod.supabase;
+}
 
 // ─── Local fallback ────────────────────────────────────────────────
 
@@ -32,6 +39,7 @@ export async function saveWatch(watch: Watch, user: User): Promise<void> {
     return;
   }
 
+  const supabase = await getSupabase();
   const { error } = await supabase.from('watches').insert({
     id: watch.id,
     brand_id: watch.brandId,
@@ -62,6 +70,7 @@ export async function getWatches(userId?: string): Promise<Watch[]> {
     return localGetWatches();
   }
 
+  const supabase = await getSupabase();
   const { data, error } = await supabase
     .from('watches')
     .select('*')
@@ -93,11 +102,67 @@ export async function getWatches(userId?: string): Promise<Watch[]> {
   }));
 }
 
+// ─── Delete a watch ───
+function localDeleteWatch(id: string): void {
+  const watches = localGetWatches().filter((w) => w.id !== id);
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(watches));
+}
+
+export async function deleteWatch(id: string, user: User): Promise<void> {
+  if (!isConfigured) {
+    localDeleteWatch(id);
+    return;
+  }
+  const supabase = await getSupabase();
+  const { error } = await supabase.from('watches').delete().eq('id', id).eq('user_id', user.id);
+  if (error) {
+    console.error('Supabase delete error:', error);
+    localDeleteWatch(id);
+    return;
+  }
+  // Mirror locally too so /me shows fresh state immediately
+  localDeleteWatch(id);
+}
+
+// ─── Update a watch (for future edit feature) ───
+function localUpdateWatch(id: string, patch: Partial<Watch>): Watch | null {
+  const watches = localGetWatches();
+  const idx = watches.findIndex((w) => w.id === id);
+  if (idx === -1) return null;
+  watches[idx] = { ...watches[idx], ...patch };
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(watches));
+  return watches[idx];
+}
+
+export async function updateWatch(id: string, patch: Partial<Watch>, user: User): Promise<Watch | null> {
+  if (!isConfigured) {
+    return localUpdateWatch(id, patch);
+  }
+  const supabase = await getSupabase();
+  const dbPatch: Record<string, unknown> = {};
+  if (patch.brandId !== undefined) dbPatch.brand_id = patch.brandId;
+  if (patch.model !== undefined) dbPatch.model = patch.model;
+  if (patch.year !== undefined) dbPatch.year = patch.year;
+  if (patch.price !== undefined) dbPatch.price = patch.price;
+  if (patch.imageUrl !== undefined) dbPatch.image_url = patch.imageUrl;
+  if (patch.ownerName !== undefined) dbPatch.owner_name = patch.ownerName;
+  if (patch.philosophyNotes !== undefined) dbPatch.philosophy_notes = patch.philosophyNotes;
+  if (patch.timePhilosophy !== undefined) dbPatch.time_philosophy = patch.timePhilosophy;
+  if (patch.philosophyTags !== undefined) dbPatch.philosophy_tags = patch.philosophyTags;
+  if (patch.rarity !== undefined) dbPatch.rarity = patch.rarity;
+  const { error } = await supabase.from('watches').update(dbPatch).eq('id', id).eq('user_id', user.id);
+  if (error) {
+    console.error('Supabase update error:', error);
+  }
+  return localUpdateWatch(id, patch);
+}
+
 export async function getNextCardNumber(userId?: string): Promise<number> {
   if (!isConfigured || !userId) {
     return localGetNextCardNumber();
   }
 
+  const supabase = await getSupabase();
   const { count, error } = await supabase
     .from('watches')
     .select('id', { count: 'exact', head: true })

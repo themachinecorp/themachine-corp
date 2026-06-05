@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CROWN Waitlist — Brushed Steel Edition · 2026</title>
+  <meta name="description" content="Be first when the doors open. CROWN turns your watch collection into shareable identity cards. Subscribers get early access + founder pricing.">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta property="og:title" content="CROWN — Waitlist">
+  <meta property="og:description" content="Be first when the doors open. Brushed Steel Edition 2026.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8ECF2'><polygon points='12,1.5 12.7,11.4 12.7,12 11.3,12 11.3,11.4'/><circle cx='12' cy='12' r='0.8'/></svg>">
+  <link rel="preconnect" href="https://api.minimaxi.com" crossorigin="anonymous">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #0e0e14;
+      --text: #e5e7eb;
+      --text-dim: rgba(220, 230, 245, 0.55);
+      --text-faint: rgba(148, 163, 184, 0.4);
+      --gold: #E8ECF2;
+      --gold-mid: #94A3B8;
+      --gold-dim: rgba(220, 230, 245, 0.7);
+      --border: rgba(148, 163, 184, 0.12);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--bg); color: var(--text); min-height: 100vh; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      background: radial-gradient(ellipse at 50% 0%, rgba(148,163,184,0.05) 0%, transparent 60%), var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    .hud-grid {
+      position: fixed; inset: 0; pointer-events: none; opacity: 0.4;
+      background-image:
+        linear-gradient(rgba(148,163,184,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148,163,184,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 24px 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .back-link {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-decoration: none;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      margin-bottom: 60px;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover { color: var(--gold-mid); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      color: var(--gold-dim);
+      margin-bottom: 24px;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold-mid);
+      box-shadow: 0 0 0 3px rgba(148,163,184,0.18);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    h1 {
+      font-size: clamp(38px, 8vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    h1 .accent {
+      background: linear-gradient(180deg, var(--gold) 0%, var(--gold-mid) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lede {
+      font-size: clamp(16px, 2.2vw, 19px);
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 540px;
+      margin-bottom: 48px;
+    }
+    .lede strong { color: var(--text); font-weight: 600; }
+    .form-card {
+      background: linear-gradient(180deg, rgba(148,163,184,0.04) 0%, rgba(20,22,30,0.6) 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 12%; right: 12%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(220, 230, 245, 0.45) 50%, transparent);
+    }
+    .form-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+    }
+    .form-title {
+      font-size: clamp(22px, 3.5vw, 28px);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .form-sub {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+      max-width: 480px;
+    }
+    form {
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+      max-width: 480px;
+    }
+    @media (max-width: 520px) {
+      form { flex-direction: column; }
+    }
+    input[type="email"] {
+      flex: 1;
+      background: rgba(8, 10, 16, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      min-width: 0;
+    }
+    input[type="email"]::placeholder { color: var(--text-faint); }
+    input[type="email"]:focus {
+      border-color: rgba(220, 230, 245, 0.5);
+      background: rgba(8, 10, 16, 0.8);
+    }
+    input[aria-invalid="true"] {
+      border-color: rgba(239, 68, 68, 0.6);
+    }
+    button[type="submit"] {
+      background: linear-gradient(180deg, #E8ECF2 0%, #94A3B8 100%);
+      color: #0a0a0f;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    button[type="submit"]:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(220, 230, 245, 0.15);
+    }
+    button[type="submit"]:active:not(:disabled) { transform: translateY(0); }
+    button[type="submit"]:disabled { opacity: 0.5; cursor: not-allowed; }
+    .success {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(148, 163, 184, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: var(--text);
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .check-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #E8ECF2, #94A3B8);
+      color: #0a0a0f;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .error-msg {
+      color: rgba(248, 113, 113, 0.95);
+      font-size: 12px;
+      margin-top: 10px;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      letter-spacing: 0.05em;
+    }
+    .count {
+      margin-top: 18px;
+      font-size: 11px;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      letter-spacing: 0.12em;
+      color: rgba(148, 163, 184, 0.5);
+      text-transform: uppercase;
+    }
+    .count strong {
+      color: rgba(220, 230, 245, 0.9);
+      font-weight: 700;
+      font-size: 13px;
+      margin-right: 4px;
+    }
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 640px) {
+      .benefits { grid-template-columns: 1fr; gap: 20px; }
+    }
+    .benefit {
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .benefit-num {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold-mid);
+      margin-bottom: 8px;
+    }
+    .benefit-title {
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .benefit-desc {
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+    .footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 11px;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      letter-spacing: 0.12em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+    .footer a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer a:hover { color: var(--gold-mid); }
+  </style>
+</head>
+<body>
+  <div class="hud-grid" aria-hidden="true"></div>
+  <div class="container">
+    <a href="/crown/" class="back-link">← BACK TO CROWN</a>
+
+    <div class="badge">
+      <span class="badge-dot" aria-hidden="true"></span>
+      <span>BRUSHED STEEL EDITION · 2026</span>
+    </div>
+
+    <h1>
+      <span class="accent">Your watch.</span><br>
+      <span class="accent">Your legacy.</span><br>
+      <span class="accent">Your crown.</span>
+    </h1>
+
+    <p class="lede">
+      CROWN turns your watch collection into <strong>shareable digital identity cards</strong>.
+      Every timepiece, machined to its moment.
+      <br><br>
+      The first edition opens to <strong>200 collectors</strong>. We're not building for everyone.
+    </p>
+
+    <div class="form-card">
+      <div class="form-eyebrow">JOIN THE LIST</div>
+      <h2 class="form-title">Be first when the doors open.</h2>
+      <p class="form-sub">
+        Early subscribers get a 24-hour head start and founder pricing locked in for the life of your account.
+      </p>
+
+      <div id="form-wrap">
+        <form id="waitlist-form" novalidate>
+          <input
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            required
+            placeholder="you@domain.com"
+            aria-label="Email address"
+          >
+          <button type="submit">✦ NOTIFY ME</button>
+        </form>
+        <p id="error" class="error-msg" role="alert" style="display:none">Please enter a valid email.</p>
+      </div>
+
+      <p class="count" id="count" style="display:none">
+        <strong id="count-num">0</strong> on the list
+      </p>
+    </div>
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-num">01</div>
+        <div class="benefit-title">24-hour head start</div>
+        <div class="benefit-desc">Public launch opens later. You're in first.</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-num">02</div>
+        <div class="benefit-title">Founder pricing</div>
+        <div class="benefit-desc">$4/mo locked in, vs. $9.99 after public launch.</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-num">03</div>
+        <div class="benefit-title">Direct line to the team</div>
+        <div class="benefit-desc">One email, one reply. We read everything.</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>◈ CROWN · STEEL EDITION</span>
+      <a href="/crown/">SEE THE PRODUCT →</a>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const STORAGE_KEY = 'crown-waitlist';
+      const form = document.getElementById('waitlist-form');
+      const formWrap = document.getElementById('form-wrap');
+      const errorEl = document.getElementById('error');
+      const countEl = document.getElementById('count');
+      const countNum = document.getElementById('count-num');
+      const input = form.querySelector('input[type="email"]');
+
+      function getList() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          return stored ? JSON.parse(stored) : [];
+        } catch { return []; }
+      }
+      function saveList(list) {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch {}
+      }
+      function updateCount() {
+        const list = getList();
+        if (list.length > 0) {
+          countEl.style.display = '';
+          countNum.textContent = list.length.toLocaleString();
+        }
+      }
+      function isValidEmail(s) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s); }
+      function showSuccess() {
+        formWrap.innerHTML = '<div class="success" role="status"><span class="check-icon">✓</span><span>You\'re on the list. Check your inbox.</span></div>';
+        updateCount();
+      }
+      function showError() {
+        errorEl.style.display = '';
+        input.setAttribute('aria-invalid', 'true');
+      }
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        errorEl.style.display = 'none';
+        input.removeAttribute('aria-invalid');
+        const email = input.value.trim().toLowerCase();
+        if (!isValidEmail(email)) { showError(); return; }
+        const list = getList();
+        if (!list.includes(email)) list.push(email);
+        saveList(list);
+        // Fire-and-forget supabase if available
+        try {
+          if (window.supabase && window.supabase.from) {
+            window.supabase.from('waitlist').upsert({ email, source: 'waitlist-landing' }, { onConflict: 'email' });
+          }
+        } catch {}
+        showSuccess();
+      });
+      updateCount();
+    })();
+  </script>
+</body>
+</html>

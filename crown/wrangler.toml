@@ -1,0 +1,10 @@
+name = "themachine-corp"
+account_id = "ae030de578dfa0a3e796a53380d03208"
+
+[builds]
+[builds.command]
+[builds.publish]
+
+[env.production]
+name = "themachine-corp"
+account_id = "ae030de578dfa0a3e796a53380d03208"
